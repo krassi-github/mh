@@ -4,28 +4,140 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"RVEUVV":30,"IBUKDW":30}'}
   name: content_panel
   layout_properties: {slot: default}
   components:
+  - type: Spacer
+    properties: {height: 44}
+    name: spacer_1
+    layout_properties: {grid_position: 'RTWQUI,KTOGHT'}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
     name: column_panel_2
     layout_properties: {grid_position: 'OGCEYX,RVEUVV'}
     components:
-    - type: TextBox
+    - type: Label
       properties: {}
-      name: text_box_1
-      layout_properties: {grid_position: 'KFIDFR,FISHJG'}
+      name: label_1
+      layout_properties: {grid_position: 'INEXFP,SJMPMA'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: date, font_size: 20, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_1
+      layout_properties: {grid_position: 'XTKGAB,UCFLLP'}
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: SYS, font_size: 20, font: '', spacing_above: small, icon_align: left,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: lb_2
+      layout_properties: {grid_position: 'XTKGAB,GIBSXC'}
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: DIA, font_size: 20, font: '', spacing_above: small, icon_align: left,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: lb_3
+      layout_properties: {grid_position: 'XTKGAB,IGQZJU'}
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: PUL, font_size: 20, font: '', spacing_above: small, icon_align: left,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: lb_4
+      layout_properties: {grid_position: 'XTKGAB,QJVERU'}
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: MEAN, font_size: 20, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_5
+      layout_properties: {grid_position: 'XTKGAB,EBIYQZ'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 22/12, font_size: 20, font: '', spacing_above: large,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_21
+      layout_properties: {grid_position: 'SLLSPA,KMZJLR'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '223', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_22
+      layout_properties: {grid_position: 'SLLSPA,GDRUVF'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '122', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_23
+      layout_properties: {grid_position: 'SLLSPA,VKKJKM'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '140', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_24
+      layout_properties: {grid_position: 'SLLSPA,YCOPYM'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '156', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: lb_25
+      layout_properties: {grid_position: 'SLLSPA,WEEEPH'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 23/12, font_size: 20, font: '', spacing_above: large,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_31
+      layout_properties: {grid_position: 'PAUJKU,JGVGHQ'}
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+        visible: true, text: '127', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_32
+      layout_properties: {grid_position: 'PAUJKU,UBEAOY'}
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+        visible: true, text: '84', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_33
+      layout_properties: {grid_position: 'PAUJKU,ICBJUP'}
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+        visible: true, text: '66', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: lb_34
+      layout_properties: {grid_position: 'PAUJKU,UZRLFK'}
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+        visible: true, text: '98', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: lb_35
+      layout_properties: {grid_position: 'PAUJKU,EULLWP'}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
     name: column_panel_3
     layout_properties: {grid_position: 'OGCEYX,IBUKDW'}
     components:
-    - type: TextBox
-      properties: {}
-      name: text_box_2
-      layout_properties: {grid_position: 'UCAUDQ,MBXJDS'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Caption_2_..............................................................................................................,
+        font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+        italic: false, background: '', bold: false, underline: true, icon: ''}
+      name: label_2
+      layout_properties: {grid_position: 'YDQDXP,ATXMIL'}
 - type: FlowPanel
   properties: {}
   name: navbar_links
