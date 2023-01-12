@@ -12,8 +12,11 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.column_panel_2.width = "100%"
+    #self.column_panel_2.width = "default"
+    self.b_up.width = "20"
+    self.b_dn.width = "40"
     self.column_panel_2.row_spacing = 4
+    self.label_1.text = self.column_panel_2.width
     self.show_summary()
 
 
@@ -22,3 +25,8 @@ class Form1(Form1Template):
     self.lb_23.text = Data.bp_sys[1]
     self.lb_24.text = Data.bp_sys[2]
     self.lb_25.text = Data.bp_sys[3]
+
+  def b_up_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
