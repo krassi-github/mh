@@ -59,35 +59,35 @@ components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 22/12, font_size: 20, font: '', spacing_above: large,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: lb_21
       layout_properties: {grid_position: 'SLLSPA,KMZJLR'}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: '223', font_size: 48, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: lb_22
       layout_properties: {grid_position: 'SLLSPA,GDRUVF'}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: '122', font_size: 48, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: lb_23
       layout_properties: {grid_position: 'SLLSPA,VKKJKM'}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: '140', font_size: 48, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: lb_24
       layout_properties: {grid_position: 'SLLSPA,YCOPYM'}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: '156', font_size: 48, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: lb_25
       layout_properties: {grid_position: 'SLLSPA,WEEEPH'}

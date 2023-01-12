@@ -12,7 +12,8 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.column_panel_2.width = "800"
+    self.column_panel_2.width = "100%"
+    self.column_panel_2.row_spacing = 4
     self.show_summary()
 
 
