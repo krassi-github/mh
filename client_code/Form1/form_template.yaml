@@ -31,12 +31,12 @@ components:
       layout_properties: {grid_position: 'HPYIJP,DBMCDD'}
       components:
       - type: Button
-        properties: {role: tonal-button, align: full, tooltip: '', border: '', enabled: true,
+        properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
           foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
-          icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
-          underline: false, icon: 'fa:chevron-up'}
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: 'fa:arrow-up'}
         name: b_up
-        layout_properties: {}
+        layout_properties: {width: 18.388900000000007}
       - type: Spacer
         properties: {height: 32}
         name: spacer_2
@@ -44,10 +44,10 @@ components:
       - type: Button
         properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
           foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
-          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-          underline: false, icon: 'fa:chevron-down'}
+          icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: 'fa:arrow-down'}
         name: b_dn
-        layout_properties: {}
+        layout_properties: {width: 37.38890000000001}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: date, font_size: 20, font: '', spacing_above: small,
