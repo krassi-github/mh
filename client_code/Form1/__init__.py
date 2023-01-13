@@ -18,6 +18,8 @@ class Form1(Form1Template):
     self.column_panel_2.row_spacing = 4
     self.label_1.text = self.column_panel_2.width
     self.show_summary()
+    Data.set_bp_list()
+    self.repeating_panel_1.items = Data.bp_list  # [{}]      # 
 
 
   def show_summary(self):
