@@ -9,8 +9,8 @@ components:
   data_bindings:
   - {property: text, code: 'self.item["date"]'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '222', font_size: 48, font: '', spacing_above: small, icon_align: left,
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: '222', font_size: 48, font: '', spacing_above: small, icon_align: left,
     spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: lb_2
@@ -18,8 +18,8 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''sys'']'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '123', font_size: 48, font: '', spacing_above: small, icon_align: left,
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: '123', font_size: 48, font: '', spacing_above: small, icon_align: left,
     spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: lb_3
@@ -27,25 +27,28 @@ components:
   data_bindings:
   - {property: text, code: 'self.item[''dia'']'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 48, font: '', spacing_above: small, icon_align: left, spacing_below: none,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: lb_4
   layout_properties: {column: VZPVKB}
   data_bindings:
   - {property: text, code: 'self.item[''pul'']'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 48, font: '', spacing_above: small, icon_align: left, spacing_below: none,
-    italic: false, background: '', bold: true, underline: false, icon: ''}
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: true, underline: false,
+    icon: ''}
   name: lb_5
   layout_properties: {column: XTQSTS}
   data_bindings:
   - {property: text, code: 'self.item[''mean'']'}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 20, font: '', spacing_above: large, icon_align: left, spacing_below: none,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
+  properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: 20, font: '', spacing_above: large, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: lb_6
   layout_properties: {column: MDFTDB}
   data_bindings:
