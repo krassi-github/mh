@@ -216,7 +216,7 @@ components:
       show_page_controls: true
       spacing_above: small
       spacing_below: small
-      background: rgba(69,183,249,0.3)
+      background: ''
     name: data_grid_1
     layout_properties: {grid_position: 'OGCEYX,IBUKDW YMAIEF,YPNIRU'}
     components:
