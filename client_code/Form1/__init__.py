@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 from .. import Data
 
 
-class Form1(Form1Template)
+class Form1(Form1Template):
   
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -18,6 +18,12 @@ class Form1(Form1Template)
     self.show_summary()
     Data.set_bp_list()
     self.repeating_panel_1.items = Data.bp_list  # [{}]
+    self.color_rows(self.repeating_panel_1)
+
+  def color_rows(self, rep):
+    for i, r in enumerate(rep.get_components()):
+      if not i%2:
+        r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
      
 
 
