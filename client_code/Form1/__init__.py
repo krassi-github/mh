@@ -11,8 +11,9 @@ class Form1(Form1Template):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     #self.column_panel_2.width = "default"
-    self.b_up.width = "20"
-    self.b_dn.width = "40"
+    #self.b_up.width = "80"
+    #self.b_up.text = "   "
+    #self.b_dn.width = "60"
     self.column_panel_2.row_spacing = 4
     self.label_1.text = self.column_panel_2.width
     self.show_summary()
@@ -36,4 +37,9 @@ class Form1(Form1Template):
   def b_up_click(self, **event_args):
     """This method is called when the button is clicked"""
     pass
+
+  def b_dn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
 

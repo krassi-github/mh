@@ -1,10 +1,7 @@
-# This is a module.
-# You can define variables and functions here, and use them from any form. For example, in a top-level form:
-#
 #    from . import Module1
-#
 #    Module1.say_hello()
-#
+#import sqlite3
+
 bp_dat = ["01/01 11:12", "02/01 22:22", "03/01 22:23", "04/01 22:24", "05/01 22:25", "06/01 22:26",
          "07/01 22:30", "08/01 07:30", "09/01 0933", "10/01 08:50"]
 bp_sys = [142, 135, 134, 122, 138, 118, 115, 142, 135, 134]
