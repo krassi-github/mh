@@ -20,6 +20,7 @@ class Form1(Form1Template):
     Data.set_bp_list()
     self.repeating_panel_1.items = Data.bp_list  # [{}]
     self.color_rows(self.repeating_panel_1)
+    self.plot_1_show()
 
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
@@ -43,3 +44,15 @@ class Form1(Form1Template):
     pass
 
 
+  def plot_1_show(self):
+    self.plot_1.data = [
+    go.Scatter(
+    x = Data.bp_dat,
+    y = Data.bp_sys,
+    name="BP",
+    marker = dict(
+      color= 'rgb(30, 99, 160)',         # color= 'rgb(16, 32, 77)'      
+      )
+    ), 
+    ]
+  
