@@ -46,7 +46,7 @@ class Form1(Form1Template):
 
   def plot_1_show(self):
     self.plot_1.data = [
-    go.Scatter(
+    go.Bar(
     x = Data.bp_dat,
     y = Data.bp_sys,
     name="BP",
