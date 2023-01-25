@@ -25,8 +25,7 @@ class Form1(Form1Template):
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
       if not i%2:
-        r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
-     
+        r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'     
 
 
   def show_summary(self):
@@ -45,6 +44,7 @@ class Form1(Form1Template):
 
 
   def plot_1_show(self):
+    self.label_1.text += "  plot_1"
     self.plot_1.data = [
     go.Bar(
     x = Data.bp_dat,
