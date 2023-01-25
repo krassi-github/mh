@@ -8,6 +8,7 @@ class Form1(Form1Template):
   
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    print("Start Init()")
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     #self.column_panel_2.width = "default"
@@ -44,6 +45,7 @@ class Form1(Form1Template):
 
 
   def plot_1_show(self):
+    print("plot_1  IN")
     self.label_1.text += "  plot_1"
     self.plot_1.data = [
     go.Bar(
