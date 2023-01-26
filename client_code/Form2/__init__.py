@@ -34,6 +34,7 @@ class Form2(Form2Template):
                 x=data["labels"],
                 y=data["model_1"],
                 offsetgroup=1,
+                color = "white"
             ),
             go.Bar(
                 name="Model 2",
