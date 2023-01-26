@@ -46,35 +46,40 @@ class Form1(Form1Template):
 
   def plot_1_show(self):     
     self.label_1.text += "  plot_1"
+    #bp_color
     fig3 = go.Figure(
-    data=[
+      data=[
         go.Bar(
-            name="BP-D",
-            x=Data.bp_dat,
-            y=Data.bp_dia,
-            offsetgroup=0,
-            marker = dict(color = "white", )
+          name="BP-D",
+          x=Data.bp_dat,
+          y=Data.bp_dia,
+          offsetgroup=0,
+          marker = dict(color = "white", )
         ),
         go.Bar(
-            name="BP-D",
-            x=data[Data.bp_sys],
-            y=data["model_1"],
-            offsetgroup=1,
-            marker = dict(color = "white", )
+          name="BP-S",
+          x=Data.bp_dat,
+          y= lambda x: Data.bp_sys[x] - Data.bp_dia[x],
+          offsetgroup=0,
+          base = Data.bp_dia,          
+          marker = dict(color = "green", )
         ),
-        go.Bar(
-            name="Model 2",
-            x=data["labels"],
-            y=data["model_2"],
-            offsetgroup=1,
-            base=data["model_1"], 
+        go.Scatter(
+          name="BP-M",
+          x=Data.bp_dat,
+          y=Data.bp_mea,
+          marker = dict(color = "rgba(0, 0, 200, 1.9)", )
         )
-    ],
-    layout=go.Layout(
-        title="Issue Types - Original and Models",
-        yaxis_title="Number of Issues"
+      ],
+      layout=go.Layout(
+        title="Артериално налягане",
+        yaxis_title="BP mm/Hg",
+        #xaxis_title="Време"    
+      )
     )
-)
+    self.plot_1.figure = fig3
+  
+    '''
     self.plot_1.data = [
     go.Bar(
     x = Data.bp_dat,
@@ -86,4 +91,5 @@ class Form1(Form1Template):
       )
     ), 
     ]
+    '''
   
