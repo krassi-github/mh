@@ -6,8 +6,58 @@ class Test(TestTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+#    The basic form is how to create a list of colors for the x-axis, so there are many different approaches. 
+# I suggest this as an example of how to make a color list with conditions.
 
+  # import pandas as pd
+  import plotly.graph_objects as go
+  
+  # sample df
+  df = pd.DataFrame({'Date': ['2010 - Q3','2010 - Q4','2011 - Q1','2011 - Q2','2011 - Q3','2011 - Q4'],
+                    'Rate' : ['11.4','12.2','14.4','15.5','10.1','13.1'],
+                    'Rate1': ['2.1','2.3','1.9','1.6','2.5','1.1']
+                  })
+  
+  clrs = []
+  for i in range(len(df)):
+      if df.loc[i,'Date'][:4] == '2010':
+          clrs.append('rgb(222,0,0)')
+      else:
+          clrs.append('rgb(0,100,0)')
+  #clrs = ['rgb(222,0,0)','rgb(222,0,0)','rgb(0,100,0)','rgb(0,100,0)','rgb(0,100,0)','rgb(0,100,0)']
+  
+  
+  fig = go.Figure(
+              data=[
+                    go.Bar(
+                          x=df['Date'],
+                          y=df['Rate'],
+                          name='Natural Level'
+                          ),
+                    go.Bar(
+                          x=df['Date'],
+                          y=df['Rate1'],
+                          name='Change',
+                          marker=dict(color=clrs)
+                          )
+                    ],
+              layout=go.Layout(
+                  title='Measuring excess demand and supply in the market.',
+                  xaxis=dict(
+                      tickangle=90,
+                      tickfont=dict(family='Rockwell', color='crimson', size=14)
+                  ),
+                  yaxis=dict(
+                      title='Rate',
+                      showticklabels=True
+                  ),
+                  barmode='stack',
+              )
+          )
+  
+  fig.show()
 
+'''
     data = {
         "original":[15, 23, 32, 10, 23],
         "model_1": [4,   8, 18,  6,  0],
@@ -51,3 +101,4 @@ class Test(TestTemplate):
     )
     # !!! GO through "figure"
     self.plot_1.figure = fig3
+'''
