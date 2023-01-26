@@ -54,12 +54,12 @@ class Form1(Form1Template):
           x=Data.bp_dat,
           y=Data.bp_dia,
           offsetgroup=0,
-          marker = dict(color = "white", )
+          marker = dict(color = "rgba(10, 10, 10, 0.1)", )
         ),
         go.Bar(
           name="BP-S",
           x=Data.bp_dat,
-          y= lambda x: Data.bp_sys[x] - Data.bp_dia[x],
+          y=Data.bp_sys_add,
           offsetgroup=0,
           base = Data.bp_dia,          
           marker = dict(color = "green", )
