@@ -44,16 +44,45 @@ class Form1(Form1Template):
     pass
 
 
-  def plot_1_show(self):
-    print("plot_1  IN")
+  def plot_1_show(self):     
     self.label_1.text += "  plot_1"
+    fig3 = go.Figure(
+    data=[
+        go.Bar(
+            name="BP-D",
+            x=Data.bp_dat,
+            y=Data.bp_dia,
+            offsetgroup=0,
+            marker = dict(color = "white", )
+        ),
+        go.Bar(
+            name="BP-D",
+            x=data[Data.bp_sys],
+            y=data["model_1"],
+            offsetgroup=1,
+            marker = dict(color = "white", )
+        ),
+        go.Bar(
+            name="Model 2",
+            x=data["labels"],
+            y=data["model_2"],
+            offsetgroup=1,
+            base=data["model_1"], 
+        )
+    ],
+    layout=go.Layout(
+        title="Issue Types - Original and Models",
+        yaxis_title="Number of Issues"
+    )
+)
     self.plot_1.data = [
     go.Bar(
     x = Data.bp_dat,
     y = Data.bp_sys,
     name="BP",
+    color= 'rgb(16, 32, 77)',
     marker = dict(
-      color= 'rgb(30, 99, 160)',         # color= 'rgb(16, 32, 77)'      
+      color= 'rgba(200,09, 0, 0.2)',         # color= 'rgb(16, 32, 77)'      
       )
     ), 
     ]
