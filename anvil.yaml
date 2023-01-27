@@ -3,7 +3,7 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: Test}
+startup: {type: form, module: Form1}
 package_name: M3_App_1
 allow_embedding: false
 name: M3 App 1

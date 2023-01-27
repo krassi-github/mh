@@ -43,7 +43,7 @@ class Form1(Form1Template):
     """This method is called when the button is clicked"""
     pass
 
-
+  clrs = ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)']    # ,'rgb(0,100,0)','rgb(0,100,0)','rgb(0,100,0)']
   def plot_1_show(self):     
     self.label_1.text += "  plot_1"
     #bp_color
@@ -62,7 +62,7 @@ class Form1(Form1Template):
           y=Data.bp_sys_add,
           offsetgroup=0,
           base = Data.bp_dia,          
-          marker = dict(color = "green", )
+          marker = dict(color = self.clrs, )
         ),
         go.Scatter(
           name="BP-M",
