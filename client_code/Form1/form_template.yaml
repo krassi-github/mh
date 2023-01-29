@@ -126,8 +126,8 @@ components:
       layout_properties: {grid_position: 'SLLSPA,WEEEPH', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '1234', font_size: 20, font: '', spacing_above: large,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        visible: true, text: '1234', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: lb_26
       layout_properties: {grid_position: 'SLLSPA,TIWABF', full_width_row: false}
@@ -168,8 +168,8 @@ components:
       layout_properties: {grid_position: 'PAUJKU,EULLWP', full_width_row: true}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '9876', font_size: 20, font: '', spacing_above: large,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        visible: true, text: '9876', font_size: 48, font: '', spacing_above: small,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: lb_36
       layout_properties: {grid_position: 'PAUJKU,QRUSTM', full_width_row: true}
@@ -202,7 +202,7 @@ components:
       - {id: GCJKIU, title: DIA, data_key: '', $$hashKey: 'object:165560'}
       - {id: VZPVKB, title: PUL, data_key: '', $$hashKey: 'object:165601'}
       - {id: XTQSTS, title: MEAN, data_key: mean, $$hashKey: 'object:165603'}
-      - {id: MDFTDB, title: afib, data_key: afib, $$hashKey: 'object:165605'}
+      - {id: MDFTDB, title: afib, data_key: '', $$hashKey: 'object:165605'}
       auto_header: true
       tooltip: ''
       border: ''

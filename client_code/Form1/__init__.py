@@ -39,6 +39,7 @@ class Form1(Form1Template):
     self.lb_24.text = Data.bp_list[-2]["pul"]
     self.lb_25.text = Data.bp_list[-2]["mean"]
     self.lb_26.text = Data.bp_list[-2]["afib"]
+    self.lb_26.foreground = "rgb(255, 0, )"    
 
     self.lb_31.text = Data.bp_list[-1]["date"]
     self.lb_32.text = Data.bp_list[-1]["sys"]
@@ -46,6 +47,7 @@ class Form1(Form1Template):
     self.lb_34.text = Data.bp_list[-1]["pul"]
     self.lb_35.text = Data.bp_list[-1]["mean"]
     self.lb_36.text = Data.bp_list[-1]["afib"]
+    self.lb_36.foreground = "rgb(255, 0, 0)"
 
   def b_up_click(self, **event_args):
     """This method is called when the button is clicked"""

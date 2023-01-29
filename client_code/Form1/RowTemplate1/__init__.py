@@ -12,4 +12,7 @@ class RowTemplate1(RowTemplate1Template):
       self.lb_3.foreground = "red"
     if int(self.lb_5.text) > 100:
       self.lb_5.foreground = "red"
+    if (self.lb_5.text):
+      self.lb_6.foreground = "red"
+      
 

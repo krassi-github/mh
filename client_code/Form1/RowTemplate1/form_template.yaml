@@ -44,10 +44,10 @@ components:
   - {property: text, code: 'self.item[''mean'']'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 20, font: '', spacing_above: large, icon_align: left, spacing_below: none,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
+    text: '', font_size: 48, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    italic: false, background: '', bold: true, underline: false, icon: ''}
   name: lb_6
   layout_properties: {column: MDFTDB}
   data_bindings:
-  - {property: text, code: 'self.item[''n'']'}
+  - {property: text, code: 'self.item[''afib'']'}
 is_package: true
