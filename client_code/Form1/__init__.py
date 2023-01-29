@@ -16,10 +16,13 @@ class Form1(Form1Template):
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
     self.column_panel_2.row_spacing = 4
-    self.label_1.text = self.column_panel_2.width    
-    Data.set_bp_list()
+    self.label_1.text = self.column_panel_2.width
+    r = Data.set_bp_list()
+    if r:
+      self.label_1.text += f"  set_bp_list= [{r}] "
+      print(f"  set_bp_list= {r} ")
     self.show_summary()
-    self.repeating_panel_1.items = Data.bp_list  # [{}]
+    self.repeating_panel_1.items = Data.bp_list  # 
     self.color_rows(self.repeating_panel_1)
     #self.plot_1_show()
 
@@ -35,14 +38,14 @@ class Form1(Form1Template):
     self.lb_23.text = Data.bp_list[-2]["dia"]
     self.lb_24.text = Data.bp_list[-2]["pul"]
     self.lb_25.text = Data.bp_list[-2]["mean"]
-    self.lb_26.text = Data.bp_list[-2]["n"]
+    self.lb_26.text = Data.bp_list[-2]["afib"]
 
     self.lb_31.text = Data.bp_list[-1]["date"]
     self.lb_32.text = Data.bp_list[-1]["sys"]
     self.lb_33.text = Data.bp_list[-1]["dia"]
     self.lb_34.text = Data.bp_list[-1]["pul"]
     self.lb_35.text = Data.bp_list[-1]["mean"]
-    self.lb_36.text = Data.bp_list[-1]["n"]
+    self.lb_36.text = Data.bp_list[-1]["afib"]
 
   def b_up_click(self, **event_args):
     """This method is called when the button is clicked"""
