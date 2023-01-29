@@ -1,5 +1,6 @@
 from ._anvil_designer import Test_MAINTemplate
 from anvil import *
+import anvil.server
 
 class Test_MAIN(Test_MAINTemplate):
   def __init__(self, **properties):
