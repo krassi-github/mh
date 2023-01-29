@@ -17,8 +17,8 @@ def set_bp_list():
   #global x_data
   #global y_values
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/07/20 00:00", "2021/07/22 23:59",\
-                                120, fill_empty=False)
+  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/06/22 00:00", "2021/07/22 23:59",\
+                                60, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   print(y_values)
   print(x_data)
