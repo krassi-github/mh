@@ -19,11 +19,13 @@ def set_bp_list():
     bp_list.append({"date": bp_dat[i], "sys":bp_sys[i], "dia":bp_dia[i], "pul":bp_pul[i], "mean":bp_mea[i], "n":bp_n[i]})
     # {"date": bp_dat[0], "sys":bp_sys[0], "dia":bp_dia[0], "pul":bp_pul[0], "mean":bp_mea[0], "n":bp_n[0]}
     bp_sys_add.append(bp_sys[i] - bp_dia[i])
+    
 # ===============================================================================================================================
 # Retreive data from DB
 x_data = []
 y_values = []
 
-r, x_data, y_values = anvil.server.call("prep_data", "1001", "2022/04/09 00:00", "2022/04/12 23:59",\
-                                360, fill_empty=True)
+def get_data():
+  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2022/04/09 00:00", "2022/04/12 23:59",\
+                                360, fill_empty=False)
 

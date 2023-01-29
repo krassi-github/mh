@@ -9,6 +9,7 @@ allow_embedding: false
 name: M3 App 1
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
   server_spec: null}
+metadata: {logo_img: 'asset:kag1.jpg'}
 startup_form: null
 uplink_visible: true
 renamed: true

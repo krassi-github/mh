@@ -35,6 +35,11 @@ class Form1(Form1Template):
     self.lb_23.text = Data.bp_sys[1]
     self.lb_24.text = Data.bp_sys[2]
     self.lb_25.text = Data.bp_sys[3]
+    
+    self.lb_32.text = Data.bp_sys[0]
+    self.lb_33.text = Data.bp_sys[1]
+    self.lb_34.text = Data.bp_sys[2]
+    self.lb_35.text = Data.bp_sys[3]
 
   def b_up_click(self, **event_args):
     """This method is called when the button is clicked"""
