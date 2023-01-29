@@ -9,7 +9,6 @@ bp_pul = []
 bp_mea = []
 bp_n = []
 bp_list = []
-#[lambda x: for i in range(5): ({"date": bp_dat[i], "sys":bp_sys[i], "dia":bp_dia[i], "pul":bp_pul[i], "mean":bp_mea[i], "n":bp_n[i]}]
 
 x_data = []
 y_values = []
@@ -19,7 +18,7 @@ def set_bp_list():
   #global y_values
   # Retreive data from DB
   r, x_data, y_values = anvil.server.call("prep_data", "1001", "2022/04/09 00:00", "2022/04/12 23:59",\
-                                360, fill_empty=False)
+                                360, fill_empty=True)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   if not r:
     for i in range(len(y_values)):
