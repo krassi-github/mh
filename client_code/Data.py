@@ -24,7 +24,7 @@ def set_bp_list():
   #print(y_values)
   #print(x_data)
   if not r:
-    all = True    # y_values[i][2] / True
+    all = False    # y_values[i][2] / True
     for i in range(len(y_values)):
       if all:    # y_values[i][2] / True
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3], "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})    # x_data[i]
