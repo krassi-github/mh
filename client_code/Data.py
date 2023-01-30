@@ -18,7 +18,7 @@ def set_bp_list():
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
   global y_values
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/07/22 00:00", "2021/08/22 23:59",\
+  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/07/22 00:00", "2021/07/23 23:59",\
                                 360, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(y_values)
