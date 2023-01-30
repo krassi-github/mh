@@ -24,7 +24,7 @@ class Form1(Form1Template):
     self.show_summary()
     self.repeating_panel_1.items = Data.bp_list  # 
     self.color_rows(self.repeating_panel_1)
-    #self.plot_1_show()
+    self.plot_1_show()
 
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
@@ -65,24 +65,24 @@ class Form1(Form1Template):
       data=[
         go.Bar(
           name="BP-D",
-          x=Data.bp_dat,
-          y=Data.bp_dia,
+          x=Data.x_data,
+          y=Data.y_values["dia"],
           offsetgroup=0,
           marker = dict(color = "rgba(10, 10, 10, 0.1)", )
         ),
         go.Bar(
           name="BP-S",
-          x=Data.bp_dat,
+          x=Data.x_data,
           y=Data.bp_sys_add,
           offsetgroup=0,
-          base = Data.bp_dia,          
-          marker = dict(color = self.clrs, )
+          base = Data.y_values["dia"],          
+          marker = dict(color="green")      # dict(color = self.clrs, )
         ),
         go.Scatter(
           name="BP-M",
-          x=Data.bp_dat,
-          y=Data.bp_mea,
-          marker = dict(color = "rgba(0, 0, 200, 1.9)", )
+          x=Data.x_data,
+          y=Data.y_values["mean"],
+          marker = dict(color = "rgba(0, 0, 200, 0.9)", )
         )
       ],
       layout=go.Layout(
