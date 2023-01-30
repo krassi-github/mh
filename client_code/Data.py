@@ -8,6 +8,7 @@ bp_sys_add = []
 bp_pul = []
 bp_mean = []
 bp_n = []
+bp_colors = []
 bp_list = []
 
 x_data = []
@@ -23,12 +24,20 @@ def set_bp_list():
   #print(y_values)
   #print(x_data)
   if not r:
+    all = True    # y_values[i][2] / True
     for i in range(len(y_values)):
-      if True:    # y_values[i][2] / True
+      if all:    # y_values[i][2] / True
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3], "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})    # x_data[i]
         # {"date": bp_dat[0], "sys":bp_sys[0], "dia":bp_dia[0], "pul":bp_pul[0], "mean":bp_mea[0], "n":bp_n[0]}
         bp_dia.append(y_values[i][3])        
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
+        if y_values[i][2] >= 140 or y_values[i][3] >= 90:
+          bp_colors.append("rgba(255,0,0, 0.8)")        
+        elif y_values[i][2] >= 135 or y_values[i][3] >= 85:
+          bp_colors.append("rgba(245,195,39, 0.8)")
+        else:
+          bp_colors.append("rgba(0,255,0, 0.8)")
+        
         if y_values[i][2]:
           bp_mean.append(y_values[i][5])
         elif len(bp_mean):

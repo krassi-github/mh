@@ -78,7 +78,7 @@ class Form1(Form1Template):
           y=Data.bp_sys_add,
           offsetgroup=0,
           base = Data.bp_dia,          
-          marker = dict(color="rgba(0, 200, 0, 0.8)", )      # dict(color = self.clrs, )
+          marker = dict(color=Data.bp_colors, )      # dict(color = self.clrs, )
         ),
         go.Scatter(
           name="BP-M",
