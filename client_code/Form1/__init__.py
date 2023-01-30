@@ -23,7 +23,7 @@ class Form1(Form1Template):
       print(f"  set_bp_list= {r} ")
     self.show_summary()
     self.repeating_panel_1.items = Data.bp_list  # 
-    print("init says x_data: ", Data.x_data)
+    print(f"init says x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)} ")
     self.color_rows(self.repeating_panel_1)
     self.plot_1_show()
 
@@ -62,8 +62,7 @@ class Form1(Form1Template):
   def plot_1_show(self):     
     self.label_1.text += "  plot_1"
     #bp_color
-    print("x_data: ", Data.x_data)
-    print("bp_dia: ", Data.bp_dia)
+
     fig3 = go.Figure(
       data=[
         go.Bar(
@@ -71,7 +70,7 @@ class Form1(Form1Template):
           x=Data.x_data,
           y=Data.bp_dia,
           offsetgroup=0,
-          marker = dict(color = "rgba(10, 10, 10, 0.1)", )
+          marker = dict(color = "rgba(10, 10, 10, 0.05)", )
         ),
         go.Bar(
           name="BP-S",
@@ -79,23 +78,34 @@ class Form1(Form1Template):
           y=Data.bp_sys_add,
           offsetgroup=0,
           base = Data.bp_dia,          
-          marker = dict(color="green")      # dict(color = self.clrs, )
+          marker = dict(color="rgba(0, 200, 0, 0.8)", )      # dict(color = self.clrs, )
         ),
         go.Scatter(
           name="BP-M",
           x=Data.x_data,
           y=Data.bp_mean,
           marker = dict(color = "rgba(0, 0, 200, 0.9)", )
-        )
+        ) 
+
       ],
       layout=go.Layout(
         title="Артериално налягане",
         yaxis_title="BP mm/Hg",
+        showlegend=False,
         #xaxis_title="Време"    
       )
     )
     self.plot_1.figure = fig3
-  
+
+    #  snipets
+    '''    MEAN preassure
+        go.Scatter(
+          name="BP-M",
+          x=Data.x_data,
+          y=Data.bp_mean,
+          marker = dict(color = "rgba(0, 0, 200, 0.9)", )
+        ) 
+    '''
     '''
     self.plot_1.data = [
     go.Bar(
