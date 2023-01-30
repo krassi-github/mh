@@ -24,9 +24,9 @@ def set_bp_list():
   #print(y_values)
   #print(x_data)
   if not r:
-    all = False    # y_values[i][2] / True
+    all = True    # all - including records without values (measurements)
     for i in range(len(y_values)):
-      if all:    # y_values[i][2] / True
+      if all or y_values[i][2]:    # y_values[i][2] / True
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3], "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})    # x_data[i]
         # {"date": bp_dat[0], "sys":bp_sys[0], "dia":bp_dia[0], "pul":bp_pul[0], "mean":bp_mea[0], "n":bp_n[0]}
         bp_dia.append(y_values[i][3])        
@@ -45,6 +45,9 @@ def set_bp_list():
             if k[5]:
               bp_mean.append(k[5])
               break
+        elif not len(bp_mean):
+          bp_mean.append(None)          
+        
   return(r)
 
     
