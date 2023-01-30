@@ -38,10 +38,13 @@ def set_bp_list():
         else:
           bp_colors.append("rgba(0,255,0, 0.8)")
         
-        if y_values[i][2]:
+        if y_values[i][5]:
           bp_mean.append(y_values[i][5])
-        elif len(bp_mean):
-          bp_mean.append(bp_mean[-1])
+        elif len(bp_mean):          
+          for k in (y_values[i:]):
+            if k[5]:
+              bp_mean.append(k[5])
+              break
   return(r)
 
     
