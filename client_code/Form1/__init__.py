@@ -16,13 +16,14 @@ class Form1(Form1Template):
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
     self.column_panel_2.row_spacing = 4
-    self.label_1.text = self.column_panel_2.width
+    #self.label_1.text = self.column_panel_2.width
     r = Data.set_bp_list()
     if r:
       self.label_1.text += f"  set_bp_list= [{r}] "
       print(f"  set_bp_list= {r} ")
     self.show_summary()
     self.repeating_panel_1.items = Data.bp_list  # 
+    print("init says x_data: ", Data.x_data)
     self.color_rows(self.repeating_panel_1)
     self.plot_1_show()
 
@@ -61,12 +62,14 @@ class Form1(Form1Template):
   def plot_1_show(self):     
     self.label_1.text += "  plot_1"
     #bp_color
+    print("x_data: ", Data.x_data)
+    print("bp_dia: ", Data.bp_dia)
     fig3 = go.Figure(
       data=[
         go.Bar(
           name="BP-D",
           x=Data.x_data,
-          y=Data.y_values["dia"],
+          y=Data.bp_dia,
           offsetgroup=0,
           marker = dict(color = "rgba(10, 10, 10, 0.1)", )
         ),
@@ -75,13 +78,13 @@ class Form1(Form1Template):
           x=Data.x_data,
           y=Data.bp_sys_add,
           offsetgroup=0,
-          base = Data.y_values["dia"],          
+          base = Data.bp_dia,          
           marker = dict(color="green")      # dict(color = self.clrs, )
         ),
         go.Scatter(
           name="BP-M",
           x=Data.x_data,
-          y=Data.y_values["mean"],
+          y=Data.bp_mean,
           marker = dict(color = "rgba(0, 0, 200, 0.9)", )
         )
       ],
