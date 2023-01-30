@@ -18,13 +18,13 @@ def set_bp_list():
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
   global y_values
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/07/22 00:00", "2021/07/23 23:59",\
-                                360, fill_empty=False)
+  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/07/22 00:00", "2021/08/23 23:59",\
+                                1440, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(y_values)
   #print(x_data)
   if not r:
-    all = True    # all - including records without values (measurements)
+    all = False    # all - including records without values (measurements)
     for i in range(len(y_values)):
       if all or y_values[i][2]:    # y_values[i][2] / True
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3], "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})    # x_data[i]
