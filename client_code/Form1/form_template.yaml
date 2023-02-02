@@ -242,3 +242,7 @@ components:
       underline: false, icon: ''}
     name: button_1
     layout_properties: {grid_position: 'VONSXA,WHAFCH'}
+  - type: form:Filter
+    properties: {}
+    name: filter_1
+    layout_properties: {grid_position: 'EGBAPR,PXWOAC'}
