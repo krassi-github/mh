@@ -23,6 +23,7 @@ components:
       bold: false, group_name: fix_range, underline: false}
     name: w
     layout_properties: {grid_position: 'JJCFHV,MFIRLQ'}
+    event_bindings: {clicked: w_clicked}
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
       enabled: true, foreground: '', value: '', visible: true, text: m, font_size: null,
@@ -36,8 +37,9 @@ components:
       enabled: true, foreground: '', value: '', visible: true, text: 3m, font_size: null,
       font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
       bold: false, group_name: fix_range, underline: false}
-    name: radio_button_1_copy
+    name: m3
     layout_properties: {grid_position: 'JJCFHV,LXPTVL'}
+    event_bindings: {clicked: m3}
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
       enabled: true, foreground: '', value: '', visible: true, text: range, font_size: null,
@@ -45,6 +47,7 @@ components:
       bold: false, group_name: fix_range, underline: false}
     name: range
     layout_properties: {grid_position: 'JJCFHV,IQWZLZ'}
+    event_bindings: {clicked: range_clicked}
 - type: FlowPanel
   properties: {}
   name: flow_panel_1
