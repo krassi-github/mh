@@ -54,5 +54,10 @@ def set_bp_list():
 fixed_range = ''
 time_from = None
 time_to = None
+d_default = 60
+w_default = 6*60
+m_default = 24*60
+m3_default = 24*60
+r_default = 30*24*60
 
 
