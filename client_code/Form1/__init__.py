@@ -58,12 +58,8 @@ class Form1(Form1Template):
   def b_dn_click(self, **event_args):
     """This method is called when the button is clicked"""
     pass
-
-  clrs = ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)']    # ,'rgb(0,100,0)','rgb(0,100,0)','rgb(0,100,0)']
-  def plot_1_show(self):     
-    self.label_1.text += "  plot_1"
-    #bp_color
-
+  
+  def plot_1_show(self):
     fig3 = go.Figure(
       data=[
         go.Bar(

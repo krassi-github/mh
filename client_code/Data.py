@@ -14,12 +14,18 @@ bp_list = []
 x_data = []
 y_values = []
 
+orange_sys = 135
+red_sys = 140
+orange_dia = 85
+red_dia = 90
+red_mean = 100
+
 def set_bp_list():
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
   global y_values
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_data", "1001", "2021/07/22 00:00", "2021/08/23 23:59",\
-                                1440, fill_empty=False)
+  r, x_data, y_values = anvil.server.call("prep_plot", "1001", Tb="2021/07/22 00:00", Te="2021/08/23 23:59",\
+                                Step=1440, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(y_values)
   #print(x_data)
@@ -31,9 +37,9 @@ def set_bp_list():
         # {"date": bp_dat[0], "sys":bp_sys[0], "dia":bp_dia[0], "pul":bp_pul[0], "mean":bp_mea[0], "n":bp_n[0]}
         bp_dia.append(y_values[i][3])        
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
-        if y_values[i][2] >= 140 or y_values[i][3] >= 90:
+        if y_values[i][2] >= red_sys or y_values[i][3] >= red_dia:
           bp_colors.append("rgba(255,0,0, 0.8)")        
-        elif y_values[i][2] >= 135 or y_values[i][3] >= 85:
+        elif y_values[i][2] >= orange_sys or y_values[i][3] >= orange_dia:
           bp_colors.append("rgba(245,195,39, 0.8)")
         else:
           bp_colors.append("rgba(0,255,0, 0.8)")

@@ -39,7 +39,7 @@ components:
       bold: false, group_name: fix_range, underline: false}
     name: m3
     layout_properties: {grid_position: 'JJCFHV,LXPTVL'}
-    event_bindings: {clicked: m3}
+    event_bindings: {clicked: m3_clicked}
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
       enabled: true, foreground: '', value: '', visible: true, text: range, font_size: null,
@@ -71,7 +71,7 @@ components:
     layout_properties: {}
 - type: DatePicker
   properties: {}
-  name: date_picker_2
+  name: t_to
   layout_properties: {grid_position: 'AXUESG,RIPMES'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,

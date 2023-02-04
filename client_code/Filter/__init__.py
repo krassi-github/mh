@@ -21,15 +21,11 @@ class Filter(FilterTemplate):
     """This method is called when this radio button is selected"""
     pass
 
-  def m3(self, **event_args):
+  def m3_clicked(self, **event_args):
     """This method is called when this radio button is selected"""
     pass
 
   def range_clicked(self, **event_args):
-    """This method is called when this radio button is selected"""
+    
     pass
-
-
-
-
 
