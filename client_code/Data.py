@@ -40,9 +40,9 @@ def set_bp_list(object, ):
         if y_values[i][2] >= red_sys or y_values[i][3] >= red_dia:
           bp_colors.append("rgba(255,0,0, 0.8)")        
         elif y_values[i][2] >= orange_sys or y_values[i][3] >= orange_dia:
-          bp_colors.append("rgba(245,195,39, 0.8)")
+          bp_colors.append("rgba(245,195,39, 1.0)")
         else:
-          bp_colors.append("rgba(0,255,0, 0.8)")
+          bp_colors.append("rgba(0,255,0, 1.0)")
         
         if y_values[i][5]:
           bp_mean.append(y_values[i][5])
