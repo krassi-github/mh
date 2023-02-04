@@ -20,7 +20,7 @@ orange_dia = 85
 red_dia = 90
 red_mean = 100
 
-def set_bp_list(object, ):
+def set_bp_list(object):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
   global y_values
   # Retreive data from DB
@@ -31,10 +31,13 @@ def set_bp_list(object, ):
   #print(x_data)
   if not r:
     all = False    # all - including records without values (measurements)
-    for i in range(len(y_values)):
+    print("y_values LEN: ", len(y_values))
+    for i in range(34):         # len(y_values)
+      print("0", end=" ")
       if all or y_values[i][2]:    # y_values[i][2] / True
+        print("1", end="  ")
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3], "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})    # x_data[i]
-        # {"date": bp_dat[0], "sys":bp_sys[0], "dia":bp_dia[0], "pul":bp_pul[0], "mean":bp_mea[0], "n":bp_n[0]}
+        print(2)
         bp_dia.append(y_values[i][3])        
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
         if y_values[i][2] >= red_sys or y_values[i][3] >= red_dia:
