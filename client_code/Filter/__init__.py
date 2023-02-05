@@ -10,8 +10,7 @@ class Filter(FilterTemplate):
     # Any code you write here will run before the form opens.
 
   def d_clicked(self, **event_args):
-    
-    pass
+    Data.show_range('d')    
 
   def w_clicked(self, **event_args):
     """This method is called when this radio button is selected"""

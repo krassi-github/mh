@@ -32,7 +32,7 @@ def set_bp_list(user_id):
   #print(y_values)
   #print(x_data)
   if not r:
-    all = False    # all - including records without values (measurements)   
+    all = True    # all - including records without values (measurements)   
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
@@ -73,4 +73,5 @@ r_default = 30*24*60
 current_day = ""
 current_range = ''
 
-
+def show_range(rng):
+  
