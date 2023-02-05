@@ -20,19 +20,19 @@ orange_dia = 85
 red_dia = 90
 red_mean = 100
 
-def set_bp_list(object):
+def set_bp_list(user_id):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
   global y_values
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_plot", object, Tb="2021/07/22 00:00", Te="2021/08/23 23:59",\
+  r, x_data, y_values = anvil.server.call("prep_plot", user_id, Tb="2021/07/22 00:00", Te="2021/08/23 23:59",\
                                 Step=1440, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(y_values)
   #print(x_data)
   if not r:
     all = False    # all - including records without values (measurements)
-    print("y_values LEN: ", len(y_values))
-    for i in range(34):         # len(y_values)
+    print("y_values LEN: ", len(y_values))   
+    for i in range(len(y_values)):         # len(y_values)
       print("0", end=" ")
       if all or y_values[i][2]:    # y_values[i][2] / True
         print("1", end="  ")
@@ -60,8 +60,7 @@ def set_bp_list(object):
   
 # ===============================================================================================================================
 # Time filters
-range = ''
-
+t_range = ''
 
 fixed_range = ''
 time_from = None
