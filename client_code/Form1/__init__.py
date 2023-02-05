@@ -18,7 +18,7 @@ class Form1(Form1Template):
     self.column_panel_2.row_spacing = 4
     #self.label_1.text = self.column_panel_2.width
     Data.load_params()
-    r = Data.show_range("1001", 'd')
+    r = Data.set_bp_list("1001", 'd')
     if r:
       self.label_1.text += f"  set_bp_list= [{r}] "
       print(f"  set_bp_list= {r} ")    

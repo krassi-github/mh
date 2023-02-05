@@ -1,4 +1,5 @@
 import anvil.server
+
 #    from . import Module1
 
 bp_dat = []
@@ -72,8 +73,6 @@ r_default = 30*24*60
 current_day = ""
 current_range = ''
 
-def show_range(user, rng):
-  global bp_list
-  set_bp_list(user, fr=rng)
-  #get_open_form().repeating_panel_1.items = bp_list
+
+
   
