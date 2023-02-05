@@ -20,14 +20,13 @@ def load_params():
   global params
   params = anvil.server.call("get_params")
 
-def set_bp_list(user_id):
+def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
   global y_values
   global params
 
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_plot", user_id, Tb="2021/07/22 00:00", Te="2021/08/23 23:59",\
-                                Step=1440, fill_empty=False)
+  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(y_values)
   #print(x_data)
@@ -73,5 +72,8 @@ r_default = 30*24*60
 current_day = ""
 current_range = ''
 
-def show_range(rng):
+def show_range(user, rng):
+  global bp_list
+  set_bp_list(user, fr=rng)
+  #get_open_form().repeating_panel_1.items = bp_list
   

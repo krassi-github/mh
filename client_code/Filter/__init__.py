@@ -1,6 +1,7 @@
 from ._anvil_designer import FilterTemplate
 from anvil import *
 import anvil.server
+from . import Data
 
 class Filter(FilterTemplate):
   def __init__(self, **properties):
@@ -10,19 +11,16 @@ class Filter(FilterTemplate):
     # Any code you write here will run before the form opens.
 
   def d_clicked(self, **event_args):
-    Data.show_range('d')    
+    Data.show_range("1001", 'd')    
 
   def w_clicked(self, **event_args):
-    """This method is called when this radio button is selected"""
-    pass
+    Data.show_range("1001", 'w')    
 
   def m_clicked(self, **event_args):
-    """This method is called when this radio button is selected"""
-    pass
+    Data.show_range("1001", 'm')
 
   def m3_clicked(self, **event_args):
-    """This method is called when this radio button is selected"""
-    pass
+    Data.show_range("1001"", 'm3')
 
   def range_clicked(self, **event_args):
     
