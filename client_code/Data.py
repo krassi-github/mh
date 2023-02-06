@@ -1,6 +1,7 @@
 import anvil.server
-
 #    from . import Module1
+all = False    # all - including records without values (measurements)
+params = {}
 
 bp_dat = []
 bp_sys = []
@@ -15,24 +16,33 @@ bp_summary = []
 x_data = []
 y_values = []
 
-params = {}
 
 def load_params():
   global params
   params = anvil.server.call("get_params")
 
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
-  global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с appens)
+  global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
   global params
+  global all
+  global bp_list
+  global bp_dia
+  global bp_sys_add
+  global bp_mean
+  global bp_colors
 
   # Retreive data from DB
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(y_values)
   #print(x_data)
-  if not r:
-    all = True    # all - including records without values (measurements)   
+  bp_list = []
+  bp_dia = []
+  bp_sys_add = []
+  bp_mean = []
+  bp_colors = []
+  if not r:       
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\

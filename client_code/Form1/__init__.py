@@ -5,8 +5,7 @@ import plotly.graph_objects as go
 from .. import Data
 
 
-class Form1(Form1Template):
-  
+class Form1(Form1Template):  
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -23,8 +22,6 @@ class Form1(Form1Template):
       self.label_1.text += f"  set_bp_list= [{r}] "
       print(f"  set_bp_list= {r} ")    
     self.repeating_panel_1.items = Data.bp_list  # 
-    print(f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
-    bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")
     self.color_rows(self.repeating_panel_1)
     self.show_summary()
     self.plot_1_show()
