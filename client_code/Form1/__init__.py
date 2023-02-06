@@ -20,7 +20,7 @@ class Form1(Form1Template):
     r = Data.set_bp_list("1001", 'd')
     if r:
       self.label_1.text += f"  set_bp_list= [{r}] "
-      print(f"  set_bp_list= {r} ")    
+      self.label_1.foreground = "red"    
     self.repeating_panel_1.items = Data.bp_list  # 
     self.color_rows(self.repeating_panel_1)
     self.show_summary()
