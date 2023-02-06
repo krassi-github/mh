@@ -12,6 +12,7 @@ class Filter(FilterTemplate):
 
   def show_range(self, user, rng):    
     Data.set_bp_list(user, fr=rng)
+    Data.set_summary(user, fr=rng)
     self.parent.parent.repeating_panel_1.items = Data.bp_list
     self.parent.parent.show_summary()
     self.parent.parent.plot_1_show()

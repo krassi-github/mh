@@ -66,7 +66,15 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
         elif not len(bp_mean):
           bp_mean.append(None)       
   return(r)
-  
+
+  def set_summary():
+    global bp_summary
+    x_data = []
+    y_values = []
+
+    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=-1, fill_empty=False)
+
+    
 # ===============================================================================================================================
 # Time filters
 t_range = ''
@@ -74,11 +82,6 @@ t_range = ''
 fixed_range = ''
 time_from = None
 time_to = None
-d_default = 60
-w_default = 6*60
-m_default = 24*60
-m3_default = 24*60
-r_default = 30*24*60
 
 current_day = ""
 current_range = ''

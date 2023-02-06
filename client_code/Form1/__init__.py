@@ -15,7 +15,7 @@ class Form1(Form1Template):
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
     self.column_panel_2.row_spacing = 4
-    #self.label_1.text = self.column_panel_2.width
+   
     Data.load_params()
     r = Data.set_bp_list("1001", 'd')
     if r:
@@ -23,6 +23,10 @@ class Form1(Form1Template):
       self.label_1.foreground = "red"    
     self.repeating_panel_1.items = Data.bp_list  # 
     self.color_rows(self.repeating_panel_1)
+    r = Data.set_summary("1001", 'd')
+    if r:
+      self.label_1.text += f"  set_summary= [{r}] "
+      self.label_1.foreground = "red" 
     self.show_summary()
     self.plot_1_show()
 
