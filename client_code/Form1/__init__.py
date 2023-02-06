@@ -58,7 +58,7 @@ class Form1(Form1Template):
     pass
   
   def plot_1_show(self):
-        print(f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
+    self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
     bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")
     fig3 = go.Figure(
       data=[
