@@ -33,10 +33,10 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   global bp_colors
 
   # Retreive data from DB
-  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, fill_empty=False)
+  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, Average=False, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
-  #print(y_values)
-  #print(x_data)
+  print(x_data)
+  print(y_values)  
   bp_list = []
   bp_dia = []
   bp_sys_add = []
@@ -66,13 +66,22 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
         elif not len(bp_mean):
           bp_mean.append(None)       
   return(r)
+  
 
-  def set_summary():
-    global bp_summary
-    x_data = []
-    y_values = []
+def set_summary(user_id, fr=None, Tb=None, Te=None):
+  global bp_summary
+  global all
+  x_data = []
+  y_values = []
 
-    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=-1, fill_empty=False)
+  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
+                                          Tb=Tb, Te=Te, Average=True, fill_empty=False)
+  if not r:       
+    for i in range(len(y_values)):      
+      if all or y_values[i][2]:    #        
+        bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
+                        "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
+  return(r)
 
     
 # ===============================================================================================================================

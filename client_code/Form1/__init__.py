@@ -37,13 +37,24 @@ class Form1(Form1Template):
 
 
   def show_summary(self):
-    self.lb_21.text = Data.bp_list[-2]["date"]
-    self.lb_22.text = Data.bp_list[-2]["sys"]
-    self.lb_23.text = Data.bp_list[-2]["dia"]
-    self.lb_24.text = Data.bp_list[-2]["pul"]
-    self.lb_25.text = Data.bp_list[-2]["mean"]
-    self.lb_26.text = Data.bp_list[-2]["afib"]
-    self.lb_26.foreground = "red"    
+    self.lb_21.text = Data.bp_summary[0]["date"]
+    self.lb_22.text = Data.bp_summary[0]["sys"]
+    self.lb_23.text = Data.bp_summary[0]["dia"]
+    self.lb_24.text = Data.bp_summary[0]["pul"]
+    self.lb_25.text = Data.bp_summary[0]["mean"]
+    self.lb_26.text = Data.bp_summary[0]["afib"]
+    self.lb_26.foreground = "red"
+    
+    if int(self.lb_22.text) >= Data.params["red_sys"]:
+      self.lb_22.foreground = "red"
+    elif int(self.lb_22.text) >= Data.params["orange_sys"]:
+      self.lb_22.foreground = "orange"
+    if int(self.lb_23.text) >= Data.params["red_dia"]:
+      self.lb_23.foreground = "red"
+    elif  int(self.lb_23.text) >= Data.params["orange_dia"]:
+      self.lb_23.foreground = "orange"
+    if int(self.lb_25.text) > Data.params["red_mean"]:
+      self.lb_25.foreground = "red"
 
     self.lb_31.text = Data.bp_list[-1]["date"]
     self.lb_32.text = Data.bp_list[-1]["sys"]
