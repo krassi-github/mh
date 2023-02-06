@@ -37,6 +37,7 @@ class Form1(Form1Template):
 
 
   def show_summary(self):
+    self.label_2.text += " *SM"
     self.lb_21.text = Data.bp_summary[0]["date"]
     self.lb_22.text = Data.bp_summary[0]["sys"]
     self.lb_23.text = Data.bp_summary[0]["dia"]

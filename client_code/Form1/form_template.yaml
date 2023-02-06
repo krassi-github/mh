@@ -185,9 +185,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: Caption_2_..............................................................................................................,
-        font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-        italic: false, background: '', bold: false, underline: true, icon: ''}
+        visible: true, text: 'Data_2:', font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: true, icon: ''}
       name: label_2
       layout_properties: {grid_position: 'YDQDXP,ATXMIL'}
   - type: DataGrid

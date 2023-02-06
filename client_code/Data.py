@@ -1,6 +1,6 @@
 import anvil.server
 #    from . import Module1
-all = False    # all - including records without values (measurements)
+all = True    # all - including records without values (measurements)
 params = {}
 
 bp_dat = []
@@ -35,8 +35,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   # Retreive data from DB
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, Average=False, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
-  print(x_data)
-  print(y_values)  
+  #print(x_data)
+  #print(y_values)  
   bp_list = []
   bp_dia = []
   bp_sys_add = []
@@ -74,11 +74,13 @@ def set_summary(user_id, fr=None, Tb=None, Te=None):
   x_data = []
   y_values = []
 
+  bp_summary = []
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
                                           Tb=Tb, Te=Te, Average=True, fill_empty=False)
+  print(f"Summary  X= {x_data} #  Y= {y_values}")
   if not r:       
     for i in range(len(y_values)):      
-      if all or y_values[i][2]:    #        
+      if y_values[i][2]:    #        
         bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
   return(r)
