@@ -5,13 +5,17 @@ from .. import Data
 
 class Filter(FilterTemplate):
   # for binding
-  item = {"from_date": Data.time_from, "to_date": Data.time_to}
+  self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
   
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)    
     # Any code you write here will run before the form opens.
-
+    print(self.item.get("to_date", "Error")
+'''    
+  def form_show(self, **event_args):
+    print(f"From Filter  {self.item["to_date"]}")
+'''    
   def show_range(self, user, rng):    
     Data.set_bp_list(user, fr=rng)
     Data.set_summary(user, fr=rng)
@@ -41,6 +45,9 @@ class Filter(FilterTemplate):
   def t_to_change(self, **event_args):
     Data.time_to = self.item["to_date"]
     self.parent.parent.label_2.text += f" TO {Data.time_to}"
+
+
+
 
 
 

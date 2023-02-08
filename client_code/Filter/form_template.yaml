@@ -3,6 +3,7 @@ container:
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{}', spacing_below: small,
     background: ''}
+  event_bindings: {show: form_show}
 components:
 - type: FlowPanel
   properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
@@ -96,7 +97,7 @@ components:
   layout_properties: {grid_position: 'LGBALO,RCTBGY'}
 - type: DropDown
   properties:
-    role: null
+    role: outlined
     align: full
     tooltip: ''
     placeholder: Select Zone
@@ -110,7 +111,7 @@ components:
     spacing_above: small
     spacing_below: small
     italic: false
-    background: '"white"'
+    background: ''
     bold: false
     underline: false
     include_placeholder: false

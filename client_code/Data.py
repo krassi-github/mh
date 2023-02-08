@@ -19,7 +19,15 @@ y_values = []
 
 def load_params():
   global params
+  global time_to
+  
   params = anvil.server.call("get_params")
+  r, time_to = anvil.server.call("get_last_date")
+  if r or not params:
+    return(-1)
+  else:
+    return(0)   
+  
 
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
@@ -91,8 +99,8 @@ def set_summary(user_id, fr=None, Tb=None, Te=None):
 t_range = ''
 
 fixed_range = ''
-time_from = "1953/11/14"
-time_to = "1990/12/11"
+time_from = ""
+time_to = ""
 
 current_day = ""
 current_range = ''
