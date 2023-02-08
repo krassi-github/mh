@@ -29,6 +29,7 @@ class Form1(Form1Template):
       self.label_1.foreground = "red" 
     self.show_summary()
     self.plot_1_show()
+    self.label_2.text = Data.time_to
 
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):

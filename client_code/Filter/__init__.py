@@ -5,18 +5,16 @@ from .. import Data
 
 class Filter(FilterTemplate):
   # for binding
-  self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
+  #item = {"from_date": Data.time_from, "to_date": Data.time_to}
   
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    self.init_components(**properties)    
+    self.init_components(**properties)  
     # Any code you write here will run before the form opens.
-    print(self.item.get("to_date", "Error")
-'''    
-  def form_show(self, **event_args):
-    print(f"From Filter  {self.item["to_date"]}")
-'''    
-  def show_range(self, user, rng):    
+    self.item = {"from_date": Data.time_from, "to_date": Data.time_to}    
+   
+  def show_range(self, user, rng):
+    print(self.item.get("to_date")
     Data.set_bp_list(user, fr=rng)
     Data.set_summary(user, fr=rng)
     self.parent.parent.repeating_panel_1.items = Data.bp_list

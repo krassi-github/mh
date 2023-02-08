@@ -22,7 +22,8 @@ def load_params():
   global time_to
   
   params = anvil.server.call("get_params")
-  r, time_to = anvil.server.call("get_last_date")
+  r, tt = anvil.server.call("get_last_date")
+  time_to = tt[:10]
   if r or not params:
     return(-1)
   else:

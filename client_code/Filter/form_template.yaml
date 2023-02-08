@@ -3,7 +3,7 @@ container:
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{}', spacing_below: small,
     background: ''}
-  event_bindings: {show: form_show}
+  event_bindings: {}
 components:
 - type: FlowPanel
   properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
