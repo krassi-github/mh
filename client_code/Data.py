@@ -20,7 +20,7 @@ y_values = []
 def load_params():
   global params
   global time_to
-  
+
   params = anvil.server.call("get_params")
   r, tt = anvil.server.call("get_last_date")
   time_to = tt[:10]

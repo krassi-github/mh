@@ -4,17 +4,24 @@ import anvil.server
 from .. import Data
 
 class Filter(FilterTemplate):
-  # for binding
-  #item = {"from_date": Data.time_from, "to_date": Data.time_to}
+  # for binding !!! item = {"from_date": Data.time_from, "to_date": Data.time_to}
   
   def __init__(self, **properties):
+    p = Data.load_params()
+    if p:
+      self.parent.parent.label_1.text += f" load_params= {p}"
+      self.parent.parent.label_1.foreground = "red" 
+    self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
     # Set Form properties and Data Bindings.
-    self.init_components(**properties)  
-    # Any code you write here will run before the form opens.
-    self.item = {"from_date": Data.time_from, "to_date": Data.time_to}    
+    self.init_components(**properties)
+    self.t_from.width = "80%"
+    self.t_to.width = "80%"
+    self.drop_down_1.width = "80%"
+    # Any code you write here will run before the form opens.    
+    self.to = self.item.get("to_date", "Error")
+    # print(f"Filter says  {self.to}")
    
-  def show_range(self, user, rng):
-    print(self.item.get("to_date")
+  def show_range(self, user, rng):    
     Data.set_bp_list(user, fr=rng)
     Data.set_summary(user, fr=rng)
     self.parent.parent.repeating_panel_1.items = Data.bp_list

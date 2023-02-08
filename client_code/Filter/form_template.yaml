@@ -6,8 +6,8 @@ container:
   event_bindings: {}
 components:
 - type: FlowPanel
-  properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
-    foreground: '', visible: true, spacing_above: small, spacing_below: small, background: ''}
+  properties: {role: null, spacing: small, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, spacing_above: small, spacing_below: small, background: ''}
   name: flow_panel_2
   layout_properties: {grid_position: 'HGFGXB,NWXPOO'}
   components:
@@ -44,7 +44,8 @@ components:
     layout_properties: {grid_position: 'JJCFHV,LXPTVL'}
     event_bindings: {clicked: m3_clicked}
 - type: FlowPanel
-  properties: {}
+  properties: {role: null, spacing: small, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, spacing_above: small, spacing_below: small, background: ''}
   name: flow_panel_1
   layout_properties: {grid_position: 'OSHLVW,WIHBNY'}
   components:
@@ -97,7 +98,7 @@ components:
   layout_properties: {grid_position: 'LGBALO,RCTBGY'}
 - type: DropDown
   properties:
-    role: outlined
+    role: null
     align: full
     tooltip: ''
     placeholder: Select Zone

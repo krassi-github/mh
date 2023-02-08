@@ -6,19 +6,19 @@ from .. import Data
 
 
 class Form1(Form1Template):  
-  def __init__(self, **properties):
+  def __init__(self, **properties):    
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # Any code you write here will run before the form opens.
-    #self.column_panel_2.width = "default"
+    # Any code you write here will run before the form opens.    
     #self.b_up.width = "80"
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
+    self.column_panel_1.width = "80%"
     self.column_panel_2.row_spacing = 4
    
-    p = Data.load_params()
+    # p = Data.load_params()  # Moved to Filter init() to ensure timely binding
     r = Data.set_bp_list("1001", 'd')
-    if r or p:
+    if r:
       self.label_1.text += f"  set_bp_list= {r}  load_params= {p}"
       self.label_1.foreground = "red"    
     self.repeating_panel_1.items = Data.bp_list  # 
@@ -29,13 +29,11 @@ class Form1(Form1Template):
       self.label_1.foreground = "red" 
     self.show_summary()
     self.plot_1_show()
-    self.label_2.text = Data.time_to
 
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
       if not i%2:
         r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'     
-
 
   def show_summary(self):
     self.label_2.text += " *SM"
