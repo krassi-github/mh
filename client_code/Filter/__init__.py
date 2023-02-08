@@ -4,10 +4,12 @@ import anvil.server
 from .. import Data
 
 class Filter(FilterTemplate):
+  # for binding
+  item = {"from_date": Data.time_from, "to_date": Data.time_to}
+  
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    self.init_components(**properties)
-    self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
+    self.init_components(**properties)    
     # Any code you write here will run before the form opens.
 
   def show_range(self, user, rng):    
@@ -29,12 +31,12 @@ class Filter(FilterTemplate):
   def m3_clicked(self, **event_args):
     self.show_range("1001"", 'm3')
 
-  def range_clicked(self, **event_args):
-    
+  def range_clicked(self, **event_args):    
     pass
 
   def t_from_change(self, **event_args):
-    self.parent.parent.label_2.text += Data.time_from
-    print(f"TIME_FROM= {Data.time_from}")
+    Data.time_from = self.item["from_date"]
+    self.parent.parent.label_2.text += f" {Data.time_from}"
+
 
 

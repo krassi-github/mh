@@ -68,7 +68,7 @@ components:
   - type: DatePicker
     properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
       placeholder: Date FROM, border: '', enabled: true, foreground: '', visible: true,
-      font_size: 8, font: '', spacing_above: small, spacing_below: small, italic: false,
+      font_size: null, font: '', spacing_above: small, spacing_below: small, italic: false,
       date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/
         %m/ %d'}
     name: t_from
