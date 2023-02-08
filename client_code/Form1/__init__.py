@@ -13,8 +13,10 @@ class Form1(Form1Template):
     #self.b_up.width = "80"
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
-    self.column_panel_1.width = "80%"
+    self.column_panel_1.width = "90%"
+    self.button_1.width = "60%"
     self.column_panel_2.row_spacing = 4
+    
    
     # p = Data.load_params()  # Moved to Filter init() to ensure timely binding
     r = Data.set_bp_list("1001", 'd')

@@ -14,6 +14,8 @@ class Filter(FilterTemplate):
     self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.flow_panel_2.width = "95%"
+    self.flow_panel_1.width = "95%"
     self.t_from.width = "80%"
     self.t_to.width = "80%"
     self.drop_down_1.width = "80%"
