@@ -77,12 +77,16 @@ components:
     - {property: date, code: 'self.item[''from_date'']', writeback: true}
     event_bindings: {change: t_from_change}
 - type: DatePicker
-  properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
-    placeholder: '', border: '', enabled: true, foreground: '', visible: true, font_size: null,
-    font: '', spacing_above: small, spacing_below: small, italic: false, date: '',
-    min_date: '', background: '', bold: false, underline: false, format: '"YYYY/MM/DD"'}
+  properties: {role: null, align: left, max_date: '', pick_time: true, tooltip: '',
+    placeholder: Date TO, border: '', enabled: true, foreground: '', visible: true,
+    font_size: null, font: '', spacing_above: small, spacing_below: small, italic: false,
+    date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/
+      %m/ %d'}
   name: t_to
   layout_properties: {grid_position: 'AXUESG,RIPMES'}
+  data_bindings:
+  - {property: date, code: 'self.item[''to_date'']', writeback: true}
+  event_bindings: {change: t_to_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Day ZONE, font_size: null, font: '', spacing_above: small, icon_align: left,

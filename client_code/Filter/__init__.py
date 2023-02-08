@@ -38,5 +38,10 @@ class Filter(FilterTemplate):
     Data.time_from = self.item["from_date"]
     self.parent.parent.label_2.text += f" {Data.time_from}"
 
+  def t_to_change(self, **event_args):
+    Data.time_to = self.item["to_date"]
+    self.parent.parent.label_2.text += f" TO {Data.time_to}"
+
+
 
 
