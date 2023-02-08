@@ -249,4 +249,4 @@ components:
   - type: form:Filter
     properties: {}
     name: filter_1
-    layout_properties: {grid_position: 'EGBAPR,PXWOAC'}
+    layout_properties: {grid_position: 'EGBAPR,YSUNZO'}

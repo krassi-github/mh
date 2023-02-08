@@ -40,6 +40,11 @@ components:
     name: m3
     layout_properties: {grid_position: 'JJCFHV,LXPTVL'}
     event_bindings: {clicked: m3_clicked}
+- type: FlowPanel
+  properties: {}
+  name: flow_panel_1
+  layout_properties: {grid_position: 'OSHLVW,WIHBNY'}
+  components:
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
       enabled: true, foreground: '', value: '', visible: true, text: range, font_size: null,
@@ -48,11 +53,6 @@ components:
     name: range
     layout_properties: {grid_position: 'JJCFHV,IQWZLZ'}
     event_bindings: {clicked: range_clicked}
-- type: FlowPanel
-  properties: {}
-  name: flow_panel_1
-  layout_properties: {grid_position: 'OSHLVW,WIHBNY'}
-  components: []
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Time FROM - TO, font_size: null, font: '', spacing_above: small, icon_align: left,
@@ -66,7 +66,10 @@ components:
   layout_properties: {grid_position: 'DEDTVD,TMPOUV'}
   components:
   - type: DatePicker
-    properties: {}
+    properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
+      placeholder: '', border: '', enabled: true, foreground: '', visible: true, font_size: null,
+      font: '', spacing_above: small, spacing_below: small, italic: false, date: '',
+      min_date: '', background: '', bold: false, underline: false, format: ''}
     name: t_from
     layout_properties: {}
 - type: DatePicker
