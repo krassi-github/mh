@@ -7,7 +7,7 @@ class Filter(FilterTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
     # Any code you write here will run before the form opens.
 
   def show_range(self, user, rng):    
@@ -32,4 +32,9 @@ class Filter(FilterTemplate):
   def range_clicked(self, **event_args):
     
     pass
+
+  def t_from_change(self, **event_args):
+    self.parent.parent.label_2.text += Data.time_from
+    print(f"TIME_FROM= {Data.time_from}")
+
 

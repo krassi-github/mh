@@ -91,8 +91,8 @@ def set_summary(user_id, fr=None, Tb=None, Te=None):
 t_range = ''
 
 fixed_range = ''
-time_from = None
-time_to = None
+time_from = "1953/11/14"
+time_to = "1990/12/11"
 
 current_day = ""
 current_range = ''
