@@ -12,7 +12,7 @@ class Filter(FilterTemplate):
       self.parent.parent.label_1.text += f" load_params= {p}"
       self.parent.parent.label_1.foreground = "red" 
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
-    print(f"Filter_INIT: {type(Data.time_from)}  {type(Data.time_to)}")
+    #print(f"Filter_INIT: {type(Data.time_from)}  {type(Data.time_to)}")
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.flow_panel_2.width = "95%"
@@ -22,8 +22,7 @@ class Filter(FilterTemplate):
     self.drop_down_1.width = "80%"
     # Any code you write here will run before the form opens.
     self.fr = self.item.get("from_date", "Error")
-    self.to = self.item.get("to_date", "Error")
-    print(f"Filter says  {self.to}")
+    self.to = self.item.get("to_date", "Error")  
    
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):    
     Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
@@ -55,14 +54,17 @@ class Filter(FilterTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 #################
   def t_from_change(self, **event_args):
-    Data.time_from = str(self.item["from_date"]) + " 00:00"
-    print(f"t_from_change()  {type(self.fr)}")
+    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")# + " 00:00"
+    print(f"t_from_change()  {type(self.fr)}   {str(self.fr)}")
     self.parent.parent.label_2.text += f" {Data.time_from}"
+    if self.fixed_range.selected == 'r':
+      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   def t_to_change(self, **event_args):
-    Data.time_to = str(self.item["to_date"]) + " 23:59"
-    print(f"t_to_change()  {type(self.to)}")
+    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + " 23:59"    
     self.parent.parent.label_2.text += f" TO {Data.time_to}"
+    if self.fixed_range.selected == 'r':
+      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
 
 
