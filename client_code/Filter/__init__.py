@@ -23,7 +23,7 @@ class Filter(FilterTemplate):
     self.to = self.item.get("to_date", "Error")
     # print(f"Filter says  {self.to}")
    
-  def show_range(self, user, rng):    
+  def show_range(self, user, rng, Tb=None, Te=None, Step=None):    
     Data.set_bp_list(user, fr=rng)
     Data.set_summary(user, fr=rng)
     self.parent.parent.repeating_panel_1.items = Data.bp_list
@@ -40,11 +40,18 @@ class Filter(FilterTemplate):
     self.show_range("1001", 'm')
 
   def m3_clicked(self, **event_args):
-    self.show_range("1001"", 'm3')
+    self.show_range("1001"", 'm3')  
 
-  def range_clicked(self, **event_args):    
-    pass
-
+  def r_clicked(self, **event_args):
+    if Data.time_from >= Data.time_to:
+      a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
+      \n Do you want to correct date(s)?")
+      if not c:
+        self.r.selected = False
+        return()
+    else:
+      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
+#################
   def t_from_change(self, **event_args):
     Data.time_from = self.item["from_date"]
     self.parent.parent.label_2.text += f" {Data.time_from}"
@@ -52,6 +59,8 @@ class Filter(FilterTemplate):
   def t_to_change(self, **event_args):
     Data.time_to = self.item["to_date"]
     self.parent.parent.label_2.text += f" TO {Data.time_to}"
+
+
 
 
 

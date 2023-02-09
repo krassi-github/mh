@@ -54,9 +54,9 @@ components:
       enabled: true, foreground: '', value: '', visible: true, text: range, font_size: null,
       font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
       bold: false, group_name: fix_range, underline: false}
-    name: range
+    name: r
     layout_properties: {grid_position: 'JJCFHV,IQWZLZ'}
-    event_bindings: {clicked: range_clicked}
+    event_bindings: {clicked: r_clicked}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Time FROM - TO, font_size: null, font: '', spacing_above: small, icon_align: left,
