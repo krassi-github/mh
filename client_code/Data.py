@@ -40,7 +40,7 @@ def load_params():
   if r or not params:
     return(r)
   else:
-    time_to = tt[:10]
+    time_to = tt
     tb = datetime.datetime.strptime(tt, "%Y/%m/%d %H:%M") - datetime.timedelta(days=params["r_range"])
     time_from = datetime.datetime.strftime(tb, "%Y/%m/%d %H:%M")
     return(0)   
