@@ -24,8 +24,8 @@ class Filter(FilterTemplate):
     # print(f"Filter says  {self.to}")
    
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):    
-    Data.set_bp_list(user, fr=rng)
-    Data.set_summary(user, fr=rng)
+    Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
+    Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
     self.parent.parent.repeating_panel_1.items = Data.bp_list
     self.parent.parent.show_summary()
     self.parent.parent.plot_1_show()
