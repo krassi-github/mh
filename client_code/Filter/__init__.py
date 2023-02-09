@@ -11,7 +11,7 @@ class Filter(FilterTemplate):
     if p:
       self.parent.parent.label_1.text += f" load_params= {p}"
       self.parent.parent.label_1.foreground = "red" 
-    self.item = {"from_date": Data.time_from, "to_date": Data.time_to}
+    self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.flow_panel_2.width = "95%"

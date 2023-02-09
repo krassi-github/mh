@@ -1,7 +1,20 @@
 import anvil.server
+import datetime
 #    from . import Module1
 all = True    # all - including records without values (measurements)
 params = {}
+'''INSERT INTO Params(key, descr, value1) values 
+('d_step', "day default step 1h", 60),
+('w_step', "week default step 6h", 6*60),
+('m_step', "month default step 1day", 24*60),
+('m3_step', "3 months default step 1 day", 24*60),
+('r_step', "range default step 1 month", 30*24*60),
+('r_range', "default length of range 6m", 180),
+('orange_sys', "systolic I threshold", 135),
+('red_sys', "systolic II threshold", 140),
+('orange_dia', "diastolic I threshold", 85),
+('red_dia', "diastolic II threshold", 90),
+('red_mean', "mean pressure threshold", 100)'''
 
 bp_dat = []
 bp_sys = []
@@ -20,13 +33,16 @@ y_values = []
 def load_params():
   global params
   global time_to
+  global time_from
 
   params = anvil.server.call("get_params")
   r, tt = anvil.server.call("get_last_date")
-  time_to = tt[:10]
   if r or not params:
-    return(-1)
+    return(r)
   else:
+    time_to = tt[:10]
+    tb = datetime.datetime.strptime(tt, "%Y/%m/%d %H:%M") - datetime.timedelta(days=params["r_range"])
+    time_from = datetime.datetime.strftime(tb, "%Y/%m/%d %H:%M")
     return(0)   
   
 
