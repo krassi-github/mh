@@ -23,14 +23,14 @@ class Form1(Form1Template):
     # p = Data.load_params()  # Moved to Filter init() to ensure timely binding
     r = Data.set_bp_list("1001", 'd')
     if r:
-      self.label_1.text += f"  set_bp_list= {r}  load_params= {p}"
-      self.label_1.foreground = "red"    
+      self.label_2.text += f"  set_bp_list= {r}"
+      self.label_2.foreground = "red"    
     self.repeating_panel_1.items = Data.bp_list  # 
     self.color_rows(self.repeating_panel_1)
     r = Data.set_summary("1001", 'd')
     if r:
-      self.label_1.text += f"  set_summary= {r} "
-      self.label_1.foreground = "red" 
+      self.label_2.text += f"  set_summary= {r} "
+      self.label_2.foreground = "red" 
     self.show_summary()
     self.plot_1_show()
   
