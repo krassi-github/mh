@@ -82,14 +82,14 @@ class Form1(Form1Template):
       data=[
         go.Bar(
           name="BP-D",
-          x=Data.x_data,
+          x=Data.bp_date,    # 10-02-2023  x_data
           y=Data.bp_dia,
           offsetgroup=0,
           marker = dict(color = "rgba(10, 10, 10, 0.05)", )
         ),
         go.Bar(
           name="BP-S",
-          x=Data.x_data,
+          x=Data.bp_date,    # 10-02-2023  x_data
           y=Data.bp_sys_add,
           offsetgroup=0,
           base = Data.bp_dia,          
@@ -97,11 +97,10 @@ class Form1(Form1Template):
         ),
         go.Scatter(
           name="BP-M",
-          x=Data.x_data,
+          x=Data.bp_date,    # 10-02-2023  x_data
           y=Data.bp_mean,
           marker = dict(color = "rgba(0, 0, 200, 0.9)", )
         ) 
-
       ],
       layout=go.Layout(
         title="Артериално налягане",

@@ -39,7 +39,7 @@ class Filter(FilterTemplate):
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):    
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
     if r:
-      self.parent.parent.label_2.text += f"  set_bp_list= {r}  load_params= {p}"
+      self.parent.parent.label_2.text += f"  set_bp_list= {r}"
       self.parent.parent.label_2.foreground = "red"
     r = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
     if r:
@@ -72,7 +72,11 @@ class Filter(FilterTemplate):
     self.show_range("1001"", 'm3')
 
   def all_change(self, **event_args):
+    Tb = Te = None
     Data.all = self.all.checked
-    self.show_range("1001", )
+    if Data.current_range == 'r':
+      Tb=Data.time_from
+      Te=Data.time_to
+    self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
  

@@ -16,7 +16,14 @@ params = {}
 ('red_dia', "diastolic II threshold", 90),
 ('red_mean', "mean pressure threshold", 100)'''
 
+
+time_from = ""
+time_to = ""
+current_day = ""
+current_range = ''
+
 bp_dat = []
+bp_date = []
 bp_sys = []
 bp_dia = []
 bp_sys_add = []
@@ -52,12 +59,15 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   global params
   global all
   global bp_list
+  global bp_date
   global bp_dia
   global bp_sys_add
   global bp_mean
   global bp_colors
+  global current_range
 
   # Retreive data from DB
+  current_range = fr    
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, Average=False, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
@@ -72,6 +82,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
       if all or y_values[i][2]:    #        
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})        
+        bp_date.append(y_values[i][1])
         bp_dia.append(y_values[i][3])        
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
         if y_values[i][2] >= params["red_sys"] or y_values[i][3] >= params["red_dia"]:
@@ -111,16 +122,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None):
   return(r)
 
     
-# ===============================================================================================================================
-# Time filters
-t_range = ''
 
-fixed_range = ''
-time_from = ""
-time_to = ""
-
-current_day = ""
-current_range = ''
 
 
 
