@@ -39,8 +39,7 @@ class Form1(Form1Template):
       if not i%2:
         r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'     
 
-  def show_summary(self):
-    self.label_2.text += " *SM"
+  def show_summary(self):    
     self.lb_21.text = Data.bp_summary[0]["date"]
     self.lb_22.text = Data.bp_summary[0]["sys"]
     self.lb_23.text = Data.bp_summary[0]["dia"]

@@ -26,14 +26,11 @@ class Filter(FilterTemplate):
 
   def t_from_change(self, **event_args):
     Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
-    #print(f"t_from_change() {type(self.fr)}  {str(self.fr)} Data.from {Data.time_from}")
-    self.parent.parent.label_2.text += f" {Data.time_from}"
     if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   def t_to_change(self, **event_args):
     Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"    
-    self.parent.parent.label_2.text += f" TO {Data.time_to}"
     if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
@@ -41,8 +38,8 @@ class Filter(FilterTemplate):
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):    
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
     if r:
-      self.label_2.text += f"  set_bp_list= {r}  load_params= {p}"
-      self.label_2.foreground = "red"
+      self.parent.parent.label_2.text += f"  set_bp_list= {r}  load_params= {p}"
+      self.parent.parent.label_2.foreground = "red"
     r = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
     if r:
       self.label_2.text += f"  set_summary= {r} "
@@ -55,7 +52,7 @@ class Filter(FilterTemplate):
     if Data.time_from >= Data.time_to:
       a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
       \n Do you want to correct date(s)?")
-      if not c:
+      if not a:
         self.r.selected = False
         return()
     else:
