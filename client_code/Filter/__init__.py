@@ -12,9 +12,10 @@ class Filter(FilterTemplate):
       self.parent.parent.label_1.text += f" load_params= {p}"
       self.parent.parent.label_1.foreground = "red" 
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
-    #print(f"Filter_INIT: {type(Data.time_from)}  {type(Data.time_to)}")
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.all.checked = False
+    Data.all = self.all.checked
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.t_from.width = "80%"
@@ -69,4 +70,9 @@ class Filter(FilterTemplate):
 
   def m3_clicked(self, **event_args):
     self.show_range("1001"", 'm3')
+
+  def all_change(self, **event_args):
+    Data.all = self.all.checked
+    self.show_range("1001", )
+
  
