@@ -4,9 +4,12 @@ import anvil.server
 import plotly.graph_objects as go
 from .. import Data
 
-
+def error_handler(err):
+  alert(str(err), title="An error has occurred")
+  
 class Form1(Form1Template):  
-  def __init__(self, **properties):    
+  def __init__(self, **properties):
+    set_default_error_handling(error_handler)   # for TESTING
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.    
@@ -30,7 +33,7 @@ class Form1(Form1Template):
       self.label_1.foreground = "red" 
     self.show_summary()
     self.plot_1_show()
-
+  
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
       if not i%2:
