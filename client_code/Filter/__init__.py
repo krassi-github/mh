@@ -54,14 +54,14 @@ class Filter(FilterTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 #################
   def t_from_change(self, **event_args):
-    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")# + " 00:00"
-    print(f"t_from_change()  {type(self.fr)}   {str(self.fr)}")
+    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
+    #print(f"t_from_change() {type(self.fr)}  {str(self.fr)} Data.from {Data.time_from}")
     self.parent.parent.label_2.text += f" {Data.time_from}"
     if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   def t_to_change(self, **event_args):
-    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + " 23:59"    
+    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"    
     self.parent.parent.label_2.text += f" TO {Data.time_to}"
     if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
