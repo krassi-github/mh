@@ -106,8 +106,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
               break
         elif not len(bp_mean):
           bp_mean.append(None)
-    loaded_from = y_values[0][1]     # test x_data alternatively
-    loaded_to = y_values[-1][1]
+    loaded_from = x_data[0]     # test x_data alternatively
+    loaded_to = x_data[-1]
   return(r)
   
 

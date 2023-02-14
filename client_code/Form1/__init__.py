@@ -69,7 +69,7 @@ class Form1(Form1Template):
     self.plot_1_show()
     
   def b_up_click(self, **event_args):
-    print(f"b_up() {event_args}")
+    print((f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range}"))
     self.label_2.text = (f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range}")
     Te = Data.loaded_from
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
@@ -77,6 +77,8 @@ class Form1(Form1Template):
     new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     if Data.current_range == 'd':
       td = 24 * 60
+    elif Data.current_range == 'w':
+      td = 7 * 24 * 60
     elif Data.current_range == 'm':
       td = 30 * 24 * 60
     elif Data.current_range == 'm3':
@@ -85,7 +87,7 @@ class Form1(Form1Template):
       td = round((te - tb).total_seconds() // 60)
     new_tb = new_te - datetime.timedelta(minutes=td)
     Tb = new_tb.strftime("%Y/%m/%d %H:%M")
-    self.render_data("1001", Data.current_range, Tb, Te)
+    self.render_data("1001", 'r', Tb, Te)
     
     pass
 
