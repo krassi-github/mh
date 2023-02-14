@@ -21,6 +21,8 @@ time_from = ""
 time_to = ""
 current_day = ""
 current_range = ''
+loaded_from = ""
+loaded_to = ""
 
 bp_dat = []
 bp_date = []
@@ -65,13 +67,15 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   global bp_mean
   global bp_colors
   global current_range
+  global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
+  global loaded_to        # loaded data time stamp TO
 
   # Retreive data from DB
   current_range = fr    
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, Average=False, fill_empty=False)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
-  #print(y_values)  
+  #print(y_values) 
   bp_list = []
   bp_dia = []
   bp_sys_add = []
@@ -100,7 +104,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
               bp_mean.append(k[5])
               break
         elif not len(bp_mean):
-          bp_mean.append(None)       
+          bp_mean.append(None)
+    loaded_from = y_values[0][1]     # test x_data alternatively
+    loaded_to = y_values[-1][1]
   return(r)
   
 
