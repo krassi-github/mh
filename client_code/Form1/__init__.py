@@ -67,14 +67,17 @@ class Form1(Form1Template):
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
       self.label_2.boldface = True
-    r = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
-    if r:
+    r1 = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
+    if r1:
       self.label_2.text += f"  set_summary= {r} "
       self.label_2.foreground = "red"
       self.label_2.boldface = True
-    self.repeating_panel_1.items = Data.bp_list
-    self.show_summary()
-    self.plot_1_show()
+    if r or r1:
+      pass    # UI message to be generated
+    else:
+      self.repeating_panel_1.items = Data.bp_list
+      self.show_summary()
+      self.plot_1_show()
 
   def show_move(self, direction):
     print((f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range} "))
