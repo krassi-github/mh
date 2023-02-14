@@ -77,6 +77,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   #print(x_data)
   #print(y_values) 
   bp_list = []
+  bp_date = []
   bp_dia = []
   bp_sys_add = []
   bp_mean = []

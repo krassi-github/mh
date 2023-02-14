@@ -36,7 +36,9 @@ class Filter(FilterTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
 # Ranges processing
-  def show_range(self, user, rng, Tb=None, Te=None, Step=None):    
+  def show_range(self, user, rng, Tb=None, Te=None, Step=None):
+    self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
+    '''
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
     if r:
       self.parent.parent.label_2.text += f"  set_bp_list= {r}"
@@ -48,6 +50,7 @@ class Filter(FilterTemplate):
     self.parent.parent.repeating_panel_1.items = Data.bp_list
     self.parent.parent.show_summary()
     self.parent.parent.plot_1_show()
+    '''
    
   def r_clicked(self, **event_args):
     if Data.time_from >= Data.time_to:

@@ -35,6 +35,7 @@ components:
           underline: false, icon: 'fa:arrow-up'}
         name: b_up
         layout_properties: {width: 18.388900000000007}
+        event_bindings: {click: b_up_click}
       - type: Button
         properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
           foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,

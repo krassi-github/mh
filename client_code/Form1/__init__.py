@@ -1,3 +1,4 @@
+import datetime
 from ._anvil_designer import Form1Template
 from anvil import *
 import anvil.server
@@ -18,21 +19,8 @@ class Form1(Form1Template):
     #self.b_dn.width = "60"
     self.column_panel_1.width = "90%"
     self.button_1.width = "60%"
-    self.column_panel_2.row_spacing = 4    
-   
-    # p = Data.load_params()  # Moved to Filter init() to ensure timely binding
-    r = Data.set_bp_list("1001", 'd')
-    if r:
-      self.label_2.text += f"  set_bp_list= {r}"
-      self.label_2.foreground = "red"    
-    self.repeating_panel_1.items = Data.bp_list  # 
-    self.color_rows(self.repeating_panel_1)
-    r = Data.set_summary("1001", 'd')
-    if r:
-      self.label_2.text += f"  set_summary= {r} "
-      self.label_2.foreground = "red" 
-    self.show_summary()
-    self.plot_1_show()
+    self.column_panel_2.row_spacing = 4
+    self.render_data("1001", 'd')   
   
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
@@ -67,17 +55,47 @@ class Form1(Form1Template):
     self.lb_36.text = Data.bp_list[-1]["afib"]
     self.lb_36.foreground = "red"
 
+  def render_data(self, user, rng, Tb=None, Te=None, Step=None):   #  show_range 
+    r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
+    if r:
+      self.parent.parent.label_2.text += f"  set_bp_list= {r}"
+      self.parent.parent.label_2.foreground = "red"
+    r = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
+    if r:
+      self.label_2.text += f"  set_summary= {r} "
+      self.label_2.foreground = "red"
+    self.repeating_panel_1.items = Data.bp_list
+    self.show_summary()
+    self.plot_1_show()
+    
   def b_up_click(self, **event_args):
-    """This method is called when the button is clicked"""
+    print(f"b_up() {event_args}")
+    self.label_2.text = (f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range}")
+    Te = Data.loaded_from
+    te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
+    tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
+    new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
+    if Data.current_range == 'd':
+      td = 24 * 60
+    elif Data.current_range == 'm':
+      td = 30 * 24 * 60
+    elif Data.current_range == 'm3':
+      td = 3 * 30 * 24 * 60
+    elif Data.current_range == 'r':
+      td = round((te - tb).total_seconds() // 60)
+    new_tb = new_te - datetime.timedelta(minutes=td)
+    Tb = new_tb.strftime("%Y/%m/%d %H:%M")
+    self.render_data("1001", Data.current_range, Tb, Te)
+    
     pass
 
   def b_dn_click(self, **event_args):
-    """This method is called when the button is clicked"""
+    
     pass
   
   def plot_1_show(self):
     self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
-    bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")
+    bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")    
     fig3 = go.Figure(
       data=[
         go.Bar(
@@ -111,6 +129,7 @@ class Form1(Form1Template):
     )
     self.plot_1.figure = fig3
 
+    
     #  snipets
     '''    MEAN preassure
         go.Scatter(
