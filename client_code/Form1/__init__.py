@@ -40,12 +40,18 @@ class Form1(Form1Template):
       self.lb_22.foreground = "red"
     elif int(self.lb_22.text) >= Data.params["orange_sys"]:
       self.lb_22.foreground = "orange"
+    else:
+      self.lb_22.foreground = "black"      
     if int(self.lb_23.text) >= Data.params["red_dia"]:
       self.lb_23.foreground = "red"
     elif  int(self.lb_23.text) >= Data.params["orange_dia"]:
       self.lb_23.foreground = "orange"
+    else:
+      self.lb_23.foreground = "black"
     if int(self.lb_25.text) > Data.params["red_mean"]:
       self.lb_25.foreground = "red"
+    else:
+      self.lb_25.foreground = "black"
 
     self.lb_31.text = Data.bp_list[-1]["date"]
     self.lb_32.text = Data.bp_list[-1]["sys"]
@@ -58,23 +64,23 @@ class Form1(Form1Template):
   def render_data(self, user, rng, Tb=None, Te=None, Step=None):   #  show_range 
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
     if r:
-      self.parent.parent.label_2.text += f"  set_bp_list= {r}"
-      self.parent.parent.label_2.foreground = "red"
+      self.label_2.text += f"  set_bp_list= {r}"
+      self.label_2.foreground = "red"
+      self.label_2.boldface = True
     r = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
     if r:
       self.label_2.text += f"  set_summary= {r} "
       self.label_2.foreground = "red"
+      self.label_2.boldface = True
     self.repeating_panel_1.items = Data.bp_list
     self.show_summary()
     self.plot_1_show()
-    
-  def b_up_click(self, **event_args):
-    print((f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range}"))
-    self.label_2.text = (f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range}")
-    Te = Data.loaded_from
-    te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
+
+  def show_move(self, direction):
+    print((f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range} "))
+    self.label_2.text = (f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range} ")
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
-    new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
+    te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
     if Data.current_range == 'd':
       td = 24 * 60
     elif Data.current_range == 'w':
@@ -85,15 +91,23 @@ class Form1(Form1Template):
       td = 3 * 30 * 24 * 60
     elif Data.current_range == 'r':
       td = round((te - tb).total_seconds() // 60)
-    new_tb = new_te - datetime.timedelta(minutes=td)
+    if direction == 'up':      
+      #Te = Data.loaded_from 
+      new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
+      new_tb = new_te - datetime.timedelta(minutes=td)
+    else:
+      new_tb = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
+      new_te = new_tb + datetime.timedelta(minutes=td)    
     Tb = new_tb.strftime("%Y/%m/%d %H:%M")
+    Te = new_te.strftime("%Y/%m/%d %H:%M")
     self.render_data("1001", 'r', Tb, Te)
-    
-    pass
+
+  def b_up_click(self, **event_args):
+    self.show_move("up")
 
   def b_dn_click(self, **event_args):
-    
-    pass
+    self.show_move("dn")
+
   
   def plot_1_show(self):
     self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
