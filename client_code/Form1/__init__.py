@@ -28,7 +28,7 @@ class Form1(Form1Template):
         r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'     
 
   def show_summary(self):    
-    self.lb_21.text = Data.bp_summary[0]["date"]
+    self.lb_21.text = Data.bp_summary[0]["date"][:10]
     self.lb_22.text = Data.bp_summary[0]["sys"]
     self.lb_23.text = Data.bp_summary[0]["dia"]
     self.lb_24.text = Data.bp_summary[0]["pul"]
@@ -80,8 +80,6 @@ class Form1(Form1Template):
       self.plot_1_show()
 
   def show_move(self, direction):
-    print((f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range} "))
-    self.label_2.text = (f"{Data.loaded_from}  {Data.loaded_to}  {Data.current_range} ")
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
     if Data.current_range == 'd':
@@ -103,6 +101,7 @@ class Form1(Form1Template):
       new_te = new_tb + datetime.timedelta(minutes=td)    
     Tb = new_tb.strftime("%Y/%m/%d %H:%M")
     Te = new_te.strftime("%Y/%m/%d %H:%M")
+    self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
     self.render_data("1001", 'r', Tb, Te)
 
   def b_up_click(self, **event_args):
