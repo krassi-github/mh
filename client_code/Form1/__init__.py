@@ -129,7 +129,7 @@ class Form1(Form1Template):
           y=Data.bp_sys_add,
           offsetgroup=0,
           base = Data.bp_dia,          
-          marker = dict(color=Data.bp_colors, )      # dict(color = self.clrs, )
+          marker = dict(color=Data.bp_colors, )
         ),
         go.Scatter(
           name="BP-M",
@@ -137,8 +137,20 @@ class Form1(Form1Template):
           y=Data.bp_mean,
           marker = dict(color = "rgba(0, 0, 200, 0.9)", )
         ) 
-      ],
-      layout_yaxis_range=[50, 180]
+      ],                
+      layout=go.Layout(       
+        title="Артериално налягане",        
+        yaxis=dict(range=[60, max(Data.bp_sys)], title="BP mm/Hg"),
+        showlegend=False,
+        # xaxis=dict(title="Време"),
+         # expand the graphs
+        margin=dict(
+            l=50, #left margin
+            r=50, #right margin
+            # b=50, #bottom margin
+            t=50, #top margin
+        ),
+      )
     )
     #fig.update_xaxes(title_text='Време')
     #fig.update_yaxes(title_text='BP mm/Hg')
@@ -153,11 +165,21 @@ class Form1(Form1Template):
         title="Артериално налягане",
         yaxis_title="BP mm/Hg",
         yaxis_range=[60, 200],
+        yaxis=dict(range=[30, 170)
         showlegend=False,
         #xaxis_title="Време"    
       )
     
-    
+    !!!
+    layout_boxplots = go.Layout(margin=dict(t=50, b=50, l=150, r=50),    width=500,
+    height=300,
+    font=dict(family='Open Sans', size=14, color='#176db6'),
+    showlegend=False,
+    yaxis=dict(range=[-5, max(data1)]),
+    yaxis2 = dict(range=[-5,max(data2)]),
+    yaxis3 = dict(range=[-5,max(data3)]),
+    updatemenus=updatemenus_boxplots
+)
     MEAN preassure
         go.Scatter(
           name="BP-M",
