@@ -114,7 +114,7 @@ class Form1(Form1Template):
   def plot_1_show(self):
     self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
     bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")    
-    fig3 = go.Figure(
+    fig = go.Figure(
       data=[
         go.Bar(
           name="BP-D",
@@ -138,18 +138,27 @@ class Form1(Form1Template):
           marker = dict(color = "rgba(0, 0, 200, 0.9)", )
         ) 
       ],
-      layout=go.Layout(
-        title="Артериално налягане",
-        yaxis_title="BP mm/Hg",
-        showlegend=False,
-        #xaxis_title="Време"    
-      )
+      layout_yaxis_range=[50, 180]
     )
-    self.plot_1.figure = fig3
+    #fig.update_xaxes(title_text='Време')
+    #fig.update_yaxes(title_text='BP mm/Hg')
+    self.plot_1.figure = fig
+  
 
     
     #  snipets
-    '''    MEAN preassure
+    '''    
+          
+      layout=go.Layout(       
+        title="Артериално налягане",
+        yaxis_title="BP mm/Hg",
+        yaxis_range=[60, 200],
+        showlegend=False,
+        #xaxis_title="Време"    
+      )
+    
+    
+    MEAN preassure
         go.Scatter(
           name="BP-M",
           x=Data.x_data,
