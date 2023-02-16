@@ -113,12 +113,13 @@ class Form1(Form1Template):
   
   def plot_1_show(self):
     self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
-    bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")    
+    bp_list: {len(Data.bp_list)}  bp_mean: {len(Data.bp_mean)}")
+    on_x = Data.bp_date
     fig = go.Figure(
       data=[
         go.Bar(
           name="BP-D",
-          x=Data.bp_date,    # 10-02-2023  x_data
+          x=on_x,    # 10-02-2023  x_data
           y=Data.bp_dia,
           offsetgroup=0,
           marker = dict(color = "rgba(10, 10, 10, 0.05)", )
