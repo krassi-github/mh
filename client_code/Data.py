@@ -3,7 +3,8 @@ import datetime
 #    from . import Module1
 all = True    # all - including records without values (measurements)
 params = {}
-'''INSERT INTO Params(key, descr, value1) values 
+'''INSERT INTO Params(key, descr, value1) values
+('day1', "fixed ranges start on first day", 1),
 ('d_step', "day default step 1h", 60),
 ('w_step', "week default step 6h", 6*60),
 ('m_step', "month default step 1day", 24*60),
