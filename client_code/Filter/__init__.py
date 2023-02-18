@@ -14,6 +14,7 @@ class Filter(FilterTemplate):
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.d.selected = True
     self.all.checked = False
     Data.all = self.all.checked
     self.flow_panel_2.width = "95%"
@@ -78,8 +79,8 @@ class Filter(FilterTemplate):
     Tb = Te = None
     Data.all = self.all.checked
     if Data.current_range == 'r':
-      Tb=Data.time_from
-      Te=Data.time_to
+      Tb=Data.loaded_from        #time_from
+      Te=Data.loaded_to          # time_to
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
  

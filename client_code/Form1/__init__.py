@@ -79,9 +79,10 @@ class Form1(Form1Template):
       self.show_summary()
       self.plot_1_show()
 
-  def show_move(self, direction):
+  def calc_move(self, direction):
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
+    '''
     if Data.current_range == 'd':
       td = 24 * 60
     elif Data.current_range == 'w':
@@ -92,23 +93,29 @@ class Form1(Form1Template):
       td = 3 * 30 * 24 * 60
     elif Data.current_range == 'r':
       td = round((te - tb).total_seconds() // 60)
+    '''
+    td = te - tb
     if direction == 'up':      
       #Te = Data.loaded_from 
       new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
-      new_tb = new_te - datetime.timedelta(minutes=td)
+      new_tb = new_te - td
     else:
       new_tb = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
-      new_te = new_tb + datetime.timedelta(minutes=td)    
+      new_te = new_tb + td    
     Tb = new_tb.strftime("%Y/%m/%d %H:%M")
     Te = new_te.strftime("%Y/%m/%d %H:%M")
     self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
     self.render_data("1001", 'r', Tb, Te)
 
   def b_up_click(self, **event_args):
-    self.show_move("up")
+    self.app_title.text = f"UP time_from= {Data.time_from}  time_to= {Data.time_to}"
+    self.calc_move("up")
+    self.app_title.text += f"-- time_from= {Data.time_from}  time_to= {Data.time_to}"
 
   def b_dn_click(self, **event_args):
-    self.show_move("dn")
+    self.app_title.text = f"DN time_from= {Data.time_from}  time_to= {Data.time_to}"
+    self.calc_move("dn")
+    self.app_title.text += f"-- time_from= {Data.time_from}  time_to= {Data.time_to}"
 
   
   def plot_1_show(self):
