@@ -79,7 +79,7 @@ class Form1(Form1Template):
       self.show_summary()
       self.plot_1_show()
 
-  def calc_move(self, direction):
+  def ahow_move(self, direction):
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
     '''
@@ -109,13 +109,13 @@ class Form1(Form1Template):
 
   def b_up_click(self, **event_args):
     self.app_title.text = f"UP time_from= {Data.time_from}  time_to= {Data.time_to}"
-    self.calc_move("up")
-    self.app_title.text += f"-- time_from= {Data.time_from}  time_to= {Data.time_to}"
+    self.show_move("up")
+    self.app_title.text += f" - time_from= {Data.time_from}  time_to= {Data.time_to}"
 
   def b_dn_click(self, **event_args):
     self.app_title.text = f"DN time_from= {Data.time_from}  time_to= {Data.time_to}"
-    self.calc_move("dn")
-    self.app_title.text += f"-- time_from= {Data.time_from}  time_to= {Data.time_to}"
+    self.show_move("dn")
+    self.app_title.text += f" - time_from= {Data.time_from}  time_to= {Data.time_to}"
 
   
   def plot_1_show(self):
