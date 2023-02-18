@@ -82,21 +82,19 @@ class Form1(Form1Template):
   def show_move(self, direction):
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
-    '''
+    
     if Data.current_range == 'd':
-      td = 24 * 60
+      td = datetime.timedelta(days=1)
     elif Data.current_range == 'w':
-      td = 7 * 24 * 60
+      td = datetime.timedelta(weeks=1)
     elif Data.current_range == 'm':
-      td = 30 * 24 * 60
+      td = datetime.timedelta(months=1)
     elif Data.current_range == 'm3':
-      td = 3 * 30 * 24 * 60
+      td = datetime.timedelta(months=3)
     elif Data.current_range == 'r':
-      td = round((te - tb).total_seconds() // 60)
-    '''
-    td = te - tb
+      td = te - tb    
+    
     if direction == 'up':      
-      #Te = Data.loaded_from 
       new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
       new_tb = new_te - td
     else:
