@@ -79,7 +79,7 @@ class Form1(Form1Template):
       self.show_summary()
       self.plot_1_show()
 
-  def ahow_move(self, direction):
+  def show_move(self, direction):
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
     '''
