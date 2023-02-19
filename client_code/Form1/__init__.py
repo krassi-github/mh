@@ -86,8 +86,7 @@ class Form1(Form1Template):
     if Data.current_range == 'r':
       td = te - tb
     else:
-      td = anvil.server.call("td_calc", Data.current_range)
-    
+      td = anvil.server.call("td_calc", Data.current_range) 
     if direction == 'up':      
       new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
       new_tb = new_te - td
