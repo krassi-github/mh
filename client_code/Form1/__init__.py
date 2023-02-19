@@ -84,6 +84,9 @@ class Form1(Form1Template):
     Tb, Te = anvil.server.call("times_calc", Data.current_range, \
                                Data.loaded_from, Data.loaded_to, direction)
     self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
+    te = datetime.datetime.strptime(Te,  "%Y/%m/%d %H:%M")
+    te -= datetime.timedelta(days=1)
+    Te = te.strftime("%Y/%m/%d %H:%M")
     self.render_data("1001", 'r', Tb, Te)
 
   def b_up_click(self, **event_args):
