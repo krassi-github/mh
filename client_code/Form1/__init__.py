@@ -83,17 +83,10 @@ class Form1(Form1Template):
   def show_move(self, direction):
     tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
-    
-    if Data.current_range == 'd':
-      td = relativedelta(days=1)
-    elif Data.current_range == 'w':
-      td = relativedelta(weeks=1)
-    elif Data.current_range == 'm':
-      td = relativedelta(months=1)
-    elif Data.current_range == 'm3':
-      td = relativedelta(months=3)
-    elif Data.current_range == 'r':
-      td = te - tb    
+    if Data.current_range == 'r':
+      td = te - tb
+    else:
+      td = anvil.server.call("td_calc", Data.current_range)
     
     if direction == 'up':      
       new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
