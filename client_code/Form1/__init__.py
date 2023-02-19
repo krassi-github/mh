@@ -92,7 +92,8 @@ class Form1(Form1Template):
       new_tb = new_te - td
     else:
       new_tb = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
-      new_te = new_tb + td    
+      new_te = new_tb + td
+      
     Tb = new_tb.strftime("%Y/%m/%d %H:%M")
     Te = new_te.strftime("%Y/%m/%d %H:%M")
     self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
