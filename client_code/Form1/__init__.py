@@ -70,7 +70,7 @@ class Form1(Form1Template):
       self.label_2.boldface = True
     r1 = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
     if r1:
-      self.label_2.text += f"  set_summary= {r} "
+      self.label_2.text += f"  set_summary= {r1} "
       self.label_2.foreground = "red"
       self.label_2.boldface = True
     if r or r1:
@@ -85,7 +85,7 @@ class Form1(Form1Template):
                                Data.loaded_from, Data.loaded_to, direction)
     self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
     te = datetime.datetime.strptime(Te,  "%Y/%m/%d %H:%M")
-    te -= datetime.timedelta(days=1)
+    #te -= datetime.timedelta(days=1)
     Te = te.strftime("%Y/%m/%d %H:%M")
     self.render_data("1001", 'r', Tb, Te)
 
