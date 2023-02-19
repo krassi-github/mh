@@ -81,21 +81,8 @@ class Form1(Form1Template):
       self.plot_1_show()
 
   def show_move(self, direction):
-    tb = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
-    te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
-    if Data.current_range == 'r':
-      td = te - tb
-    else:
-      td = anvil.server.call("td_calc", Data.current_range) 
-    if direction == 'up':      
-      new_te = datetime.datetime.strptime(Data.loaded_from, "%Y/%m/%d %H:%M")
-      new_tb = new_te - td
-    else:
-      new_tb = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
-      new_te = new_tb + td
-      
-    Tb = new_tb.strftime("%Y/%m/%d %H:%M")
-    Te = new_te.strftime("%Y/%m/%d %H:%M")
+    Tb, Te = anvil.server.call("times_calc", Data.current_range, \
+                               Data.loaded_from, Data.loaded_to, direction)
     self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
     self.render_data("1001", 'r', Tb, Te)
 
