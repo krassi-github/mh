@@ -3,6 +3,7 @@ from ._anvil_designer import Form1Template
 from anvil import *
 import anvil.server
 import plotly.graph_objects as go
+#from dateutil.relativedelta import relativedelta
 from .. import Data
 
 def error_handler(err):
@@ -84,13 +85,13 @@ class Form1(Form1Template):
     te = datetime.datetime.strptime(Data.loaded_to, "%Y/%m/%d %H:%M")
     
     if Data.current_range == 'd':
-      td = datetime.timedelta(days=1)
+      td = relativedelta(days=1)
     elif Data.current_range == 'w':
-      td = datetime.timedelta(weeks=1)
+      td = relativedelta(weeks=1)
     elif Data.current_range == 'm':
-      td = datetime.timedelta(months=1)
+      td = relativedelta(months=1)
     elif Data.current_range == 'm3':
-      td = datetime.timedelta(months=3)
+      td = relativedelta(months=3)
     elif Data.current_range == 'r':
       td = te - tb    
     
