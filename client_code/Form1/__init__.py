@@ -62,8 +62,8 @@ class Form1(Form1Template):
     self.lb_36.text = Data.bp_list[-1]["afib"]
     self.lb_36.foreground = "red"
 
-  def render_data(self, user, rng, Tb=None, Te=None, Step=None):   #  show_range 
-    r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
+  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range 
+    r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r:
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
@@ -87,7 +87,7 @@ class Form1(Form1Template):
     te = datetime.datetime.strptime(Te,  "%Y/%m/%d %H:%M")
     #te -= datetime.timedelta(days=1)
     Te = te.strftime("%Y/%m/%d %H:%M")
-    self.render_data("1001", 'r', Tb, Te)
+    self.render_data("1001", Data.current_range, Tb, Te, crawl=True)
 
   def b_up_click(self, **event_args):
     self.app_title.text = f"UP time_from= {Data.time_from}  time_to= {Data.time_to}"

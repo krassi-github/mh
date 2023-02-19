@@ -15,6 +15,7 @@ class Filter(FilterTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.d.selected = True
+    Data.current_range = 'd'
     self.all.checked = False
     Data.all = self.all.checked
     self.flow_panel_2.width = "95%"
@@ -38,6 +39,7 @@ class Filter(FilterTemplate):
 
 # Ranges processing
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):
+    Data.current_range = rng
     self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
     '''
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
@@ -60,7 +62,7 @@ class Filter(FilterTemplate):
       if not a:
         self.r.selected = False
         return()
-    else:
+    else:     
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
           
   def d_clicked(self, **event_args):

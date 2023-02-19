@@ -56,7 +56,7 @@ def load_params():
     return(0)   
   
 
-def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
+def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
   global params
@@ -73,8 +73,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None):
   global loaded_to        # loaded data time stamp TO
 
   # Retreive data from DB
-  current_range = fr    
-  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, Average=False, fill_empty=False)
+  # current_range = fr    
+  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                          Average=False, fill_empty=False, crawl=crawl)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values) 
