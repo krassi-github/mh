@@ -55,7 +55,7 @@ class Filter(FilterTemplate):
     self.parent.parent.plot_1_show()
     '''
    
-  def r_clicked(self, **event_args):
+  def r_clicked(self, **event_args):        # Range
     if Data.time_from >= Data.time_to:
       a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
       \n Do you want to correct date(s)?")

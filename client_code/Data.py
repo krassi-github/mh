@@ -125,7 +125,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None):
   bp_summary = []
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
                                           Tb=Tb, Te=Te, Average=True, fill_empty=False)
-  # print(f"Summary  X= {x_data} #  Y= {y_values}")
+  print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
   if not r:       
     for i in range(len(y_values)):      
       if y_values[i][2]:    #        

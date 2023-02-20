@@ -90,15 +90,12 @@ class Form1(Form1Template):
     self.render_data("1001", Data.current_range, Tb, Te, crawl=True)
 
   def b_up_click(self, **event_args):
-    self.app_title.text = f"UP time_from= {Data.time_from}  time_to= {Data.time_to}"
-    self.show_move("up")
-    self.app_title.text += f" - time_from= {Data.time_from}  time_to= {Data.time_to}"
+    #self.app_title.text = f"UP time_from= {Data.time_from}  time_to= {Data.time_to}"
+    self.show_move("up")    
 
   def b_dn_click(self, **event_args):
-    self.app_title.text = f"DN time_from= {Data.time_from}  time_to= {Data.time_to}"
-    self.show_move("dn")
-    self.app_title.text += f" - time_from= {Data.time_from}  time_to= {Data.time_to}"
-
+    #self.app_title.text = f"DN time_from= {Data.time_from}  time_to= {Data.time_to}"
+    self.show_move("dn")    
   
   def plot_1_show(self):
     self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
