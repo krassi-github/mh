@@ -68,7 +68,7 @@ class Form1(Form1Template):
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
       self.label_2.boldface = True
-    r1 = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
+    r1 = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te, crawl=crawl)
     if r1:
       self.label_2.text += f"  set_summary= {r1} "
       self.label_2.foreground = "red"

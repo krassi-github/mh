@@ -116,7 +116,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   return(r)
   
 
-def set_summary(user_id, fr=None, Tb=None, Te=None):
+def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   global bp_summary
   global all
   x_data = []
@@ -124,7 +124,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None):
 
   bp_summary = []
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
-                                          Tb=Tb, Te=Te, Average=True, fill_empty=False)
+                                          Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl)
   print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
   if not r:       
     for i in range(len(y_values)):      
