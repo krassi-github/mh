@@ -26,3 +26,30 @@ components:
       underline: false, icon: ''}
     name: select_file
     layout_properties: {}
+  - type: FileLoader
+    properties:
+      role: tonal-button
+      show_state: true
+      align: center
+      tooltip: ''
+      border: ''
+      file_types: csv
+      enabled: true
+      files: []
+      foreground: ''
+      visible: true
+      text: Upload
+      font_size: null
+      font: ''
+      spacing_above: small
+      icon_align: left
+      spacing_below: small
+      italic: false
+      file: null
+      background: ''
+      bold: false
+      underline: false
+      multiple: false
+      icon: fa:upload
+    name: file_loader_1
+    layout_properties: {}
