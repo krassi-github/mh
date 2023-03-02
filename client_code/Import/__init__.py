@@ -17,6 +17,7 @@ class Import(ImportTemplate):
     print(f'length: {my_media.length} bytes')
     print(f'name: {my_media.name}')
     print(f'raw bytes: {my_media.get_bytes()[:15]} ...')
+    self.file_loader_1.clear()
     r = anvil.server.call("send_csv", file)
     
     
