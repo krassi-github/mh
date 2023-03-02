@@ -2,7 +2,6 @@ from ._anvil_designer import ImportTemplate
 from anvil import *
 import anvil.server
 
-
 path = "c:\microlife"
 
 
