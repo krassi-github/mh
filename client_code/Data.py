@@ -16,6 +16,14 @@ params = {}
 ('orange_dia', "diastolic I threshold", 85),
 ('red_dia', "diastolic II threshold", 90),
 ('red_mean', "mean pressure threshold", 100)'''
+sd_descr = {}
+sysdata = {}
+'''INSERT INTO SysData(key, descr, value) values
+(-111, "import_data()", "open DB error"),
+(-110, "import_data()", "open DB error"),
+(-109, "import_data()", "processing error"),
+(-108, "import_data()", "no records error"),
+(-107, "import_data()", "no NEW records")'''
 
 
 time_from = ""
@@ -47,8 +55,10 @@ def load_params():
 
   params = anvil.server.call("get_params")
   r, tt = anvil.server.call("get_last_date")
-  if r or not params:
-    return(r)
+  if r :
+    return(r)  
+  elif not params:
+    return(# !! WRONG return
   else:
     time_to = tt
     tb = datetime.datetime.strptime(tt, "%Y/%m/%d %H:%M") - datetime.timedelta(days=params["r_range"])
@@ -56,6 +66,14 @@ def load_params():
     return(0)   
   
 
+def load_sysdata():
+  global sd_descr
+  global sysdata
+
+  if not sysdata or not sd_descr:
+    
+
+  sysdata, sd_descr = anvil.server.call("get_sysdata")
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
