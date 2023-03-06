@@ -70,7 +70,14 @@ def load_sysdata():
   global sd_descr
   global sysdata
 
-  if not sysdata or not sd_descr:
+  sysdata, sd_descr = anvil.server.call("get_sysdata")
+  if not sysdata: 
+    r = -22
+  elif not sd_descr:
+    r = -23
+  else:
+    r = 0
+  return(r)  
     
 
   sysdata, sd_descr = anvil.server.call("get_sysdata")
