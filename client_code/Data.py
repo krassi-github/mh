@@ -58,7 +58,7 @@ def load_params():
   if r :
     return(r)  
   elif not params:
-    return(# !! WRONG return
+    return(-260)     # !! WRONG return
   else:
     time_to = tt
     tb = datetime.datetime.strptime(tt, "%Y/%m/%d %H:%M") - datetime.timedelta(days=params["r_range"])

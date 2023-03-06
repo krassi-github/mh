@@ -10,6 +10,7 @@ class Import(ImportTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.width = 120
 
   def file_loader_1_change(self, file, **event_args):
     my_media = file    

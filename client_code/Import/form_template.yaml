@@ -47,10 +47,11 @@ components:
       italic: false
       file: null
       background: ''
-      bold: false
+      bold: true
       underline: false
       multiple: false
       icon: fa:download
     name: file_loader_1
     layout_properties: {}
     event_bindings: {change: file_loader_1_change}
+custom_component: true
