@@ -19,11 +19,11 @@ params = {}
 sd_descr = {}
 sysdata = {}
 '''INSERT INTO SysData(key, descr, value) values
-(-111, "import_data()", "open DB error"),
-(-110, "import_data()", "open DB error"),
-(-109, "import_data()", "processing error"),
-(-108, "import_data()", "no records error"),
-(-107, "import_data()", "no NEW records")'''
+('-111', "import_data()", "open DB error"),
+('-110', "import_data()", "open DB error"),
+('-109', "import_data()", "processing error"),
+('-108', "import_data()", "no records error"),
+('-107', "import_data()", "no NEW records")'''
 
 
 time_from = ""

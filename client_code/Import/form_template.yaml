@@ -1,12 +1,9 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
+  properties: {tooltip: '', background: '', foreground: '', border: solid, visible: true,
+    role: null, html: '@theme:standard-page.html'}
 components:
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: nav-right}
 - type: Label
   properties: {role: title, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
     visible: true, text: Data Import, font_size: null, font: '', spacing_above: small,
