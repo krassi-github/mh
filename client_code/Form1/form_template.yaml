@@ -247,7 +247,7 @@ components:
   - type: form:Import
     properties: {}
     name: import_1
-    layout_properties: {grid_position: 'ZZECCS,DCJKEZ'}
+    layout_properties: {grid_position: 'ZZECCS,DCJKEZ', full_width_row: false}
 - type: Label
   properties: {role: title, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
     visible: true, text: Overview, font_size: null, font: '', spacing_above: small,
