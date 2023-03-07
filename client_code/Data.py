@@ -16,8 +16,8 @@ params = {}
 ('orange_dia', "diastolic I threshold", 85),
 ('red_dia', "diastolic II threshold", 90),
 ('red_mean', "mean pressure threshold", 100)'''
-sd_descr = {}
-sysdata = {}
+sd_descr = {}     # values = [1] modules names
+sysdata = {}      # values = [2] text messages
 '''INSERT INTO SysData(key, descr, value) values
 ('-111', "import_data()", "open DB error"),
 ('-110', "import_data()", "open DB error"),

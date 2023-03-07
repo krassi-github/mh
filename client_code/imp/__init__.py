@@ -1,24 +1,36 @@
 from ._anvil_designer import impTemplate
 from anvil import *
 import anvil.server
+from .. import Data
 
 class imp(impTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.width = "90%"
+    #self.width = "90%"
 
 
   def file_loader_1_change(self, file, **event_args):
-    my_media = file    
-    print(f'content_type: {my_media.content_type}')
-    print(f'length: {my_media.length} bytes')
-    print(f'name: {my_media.name}')
-    print(f'raw bytes: {my_media.get_bytes()[:15]} ...')
+    if file.content_type != "text/csv":
+      alert(f"{file.name} is not csv file", title="Invalid file")
+      self.file_loader_1.clear()
+      self.label_1.text = '.CSV file'
+      return(0)
+    self.label_1.text = file.name
     r = anvil.server.call("import_csv", file)
+    if r < 0:
+      msg = Data.sysdata[str(r)]
+      alert(f"{msg}", title="System Message")
+      self.file_loader_1.clear()
+      self.label_1.text = '.CSV file'
+      return(0)
     self.file_loader_1.clear()
     self.label_1.text = r
+    self.timer_1.interval = 5
 
   def file_loader_1_lost_focus(self, **event_args):
-    self.label_1.text = ''
+    self.label_1.text = '.CSV file'
 
+  def timer_1_tick(self, **event_args):
+    self.label_1.text = '.CSV file'
+    self.timer_1.interval = 0

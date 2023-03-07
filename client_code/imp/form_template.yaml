@@ -11,7 +11,7 @@ components:
     properties:
       role: tonal-button
       show_state: true
-      align: center
+      align: left
       tooltip: ''
       border: ''
       file_types: csv
@@ -36,11 +36,15 @@ components:
     layout_properties: {}
     event_bindings: {change: file_loader_1_change, lost_focus: file_loader_1_lost_focus}
   - type: Label
-    properties: {role: input-prompt, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: null, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: false, underline: false,
-      icon: ''}
+    properties: {role: input-prompt, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: .CSV file, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
     name: label_1
     layout_properties: {}
+- type: Timer
+  properties: {}
+  name: timer_1
+  event_bindings: {tick: timer_1_tick}
 is_package: true
 custom_component: true
