@@ -113,7 +113,7 @@ components:
     border: ''
     enabled: true
     foreground: ''
-    items: ['ALL ', '08:00 - 16:00', '16:00 - 24:00', '00:00 - 08:00']
+    items: ['']
     visible: true
     font_size: null
     font: ''
@@ -125,7 +125,8 @@ components:
     underline: false
     include_placeholder: false
   name: drop_down_1
-  layout_properties: {grid_position: 'GVBMFN,CCDJVX'}
+  layout_properties: {grid_position: 'GVBMFN,WWZEEE'}
   data_bindings: []
+  event_bindings: {change: drop_down_1_change}
 is_package: true
 custom_component: true

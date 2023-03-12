@@ -23,6 +23,7 @@ class Filter(FilterTemplate):
     Data.current_range = 'd'
     self.all.checked = False
     Data.all = self.all.checked
+    self.drop_down_1.items = Date.zone_items
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.t_from.width = "80%"
@@ -89,5 +90,9 @@ class Filter(FilterTemplate):
       Tb=Data.loaded_from        #time_from
       Te=Data.loaded_to          # time_to
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
+
+  def drop_down_1_change(self, **event_args):
+    Data.current_zone = self.drop_down_1.selected
+
 
  

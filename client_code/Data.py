@@ -24,10 +24,15 @@ sysdata = {}      # values = [2] text messages
 ('-109', "import_data()", "processing error"),
 ('-108', "import_data()", "no records error"),
 ('-107', "import_data()", "no NEW records")'''
+ALL 
+
+
 
 
 time_from = ""
 time_to = ""
+zone_items = [("ALL", 0), ("08:00 - 16:00", 1),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
+current_zone = 0
 current_day = ""
 current_range = ''
 loaded_from = ""
@@ -80,7 +85,6 @@ def load_sysdata():
   return(r)  
     
 
-  sysdata, sd_descr = anvil.server.call("get_sysdata")
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
