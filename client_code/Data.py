@@ -30,8 +30,8 @@ time_from = ""
 time_to = ""
 zone_items = [("ALL", 0), ("08:00 - 16:00", 1),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
 current_zone = 0
-zt_beg = "10:00"
-zt_end = "16:00"
+zt_beg = "00:00"
+zt_end = "00:00"
 current_day = ""
 current_range = ''
 loaded_from = ""
@@ -176,10 +176,3 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
         bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
   return(r)
-
-    
-
-
-
-
-  
