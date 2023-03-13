@@ -24,15 +24,14 @@ sysdata = {}      # values = [2] text messages
 ('-109', "import_data()", "processing error"),
 ('-108', "import_data()", "no records error"),
 ('-107', "import_data()", "no NEW records")'''
-ALL 
-
-
 
 
 time_from = ""
 time_to = ""
 zone_items = [("ALL", 0), ("08:00 - 16:00", 1),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
 current_zone = 0
+zt_from = "00:00"
+zt_to = "23:59"
 current_day = ""
 current_range = ''
 loaded_from = ""
