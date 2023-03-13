@@ -7,23 +7,24 @@ class Filter(FilterTemplate):
   # for binding !!! item = {"from_date": Data.time_from, "to_date": Data.time_to}
   
   def __init__(self, **properties):
+    self.init_components(**properties)
     p = Data.load_params()
     if p:
-      self.parent.parent.label_1.text += f" load_params= {p}"
-      self.parent.parent.label_1.foreground = "red" 
+      self.msg.text += f" load_params= {p}"
+      self.msg.foreground = "red" 
     p = Data.load_sysdata()
     if p:
-      self.parent.parent.label_1.text += Data.sysdata[p] # f" load_params= {p}"
-      self.parent.parent.label_1.foreground = "red" 
+      self.msg.text +=  f" load_sysdata= {p}"    # Data.sysdata[p] #
+      self.msg.label_1.foreground = "red" 
       
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     # Set Form properties and Data Bindings.
-    self.init_components(**properties)
+    
     self.d.selected = True
     Data.current_range = 'd'
     self.all.checked = False
     Data.all = self.all.checked
-    self.drop_down_1.items = Date.zone_items
+    self.drop_down_1.items = Data.zone_items
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.t_from.width = "80%"

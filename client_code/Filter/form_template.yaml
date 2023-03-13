@@ -1,7 +1,7 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35}',
+    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35,"JCQVTI":10,"EYBBTB":50}',
     spacing_below: small, background: ''}
   event_bindings: {}
 components:
@@ -72,6 +72,10 @@ components:
     icon: ''}
   name: t_from_to
   layout_properties: {grid_position: 'NDJMBI,JCQVTI'}
+- type: Label
+  properties: {}
+  name: msg
+  layout_properties: {grid_position: 'NDJMBI,EYBBTB'}
 - type: LinearPanel
   properties: {}
   name: linear_panel_1
