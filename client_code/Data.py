@@ -30,8 +30,8 @@ time_from = ""
 time_to = ""
 zone_items = [("ALL", 0), ("08:00 - 16:00", 1),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
 current_zone = 0
-zt_from = "00:00"
-zt_to = "23:59"
+zt_from = "10:00"
+zt_to = "16:00"
 current_day = ""
 current_range = ''
 loaded_from = ""
@@ -99,11 +99,18 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
   global loaded_to        # loaded data time stamp TO
+  global zt_beg           # beg of time zone
+  global zt_end           # end of time zone
 
   # Retreive data from DB
-  # current_range = fr    
+  if zt_beg == "00:00" and zt_end == "00:00":
+    zb = None
+    ze = None
+  else:
+    zb = zt_beg
+    ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                          Average=False, fill_empty=False, crawl=crawl)
+                        Average=False, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values) 
@@ -147,12 +154,21 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
 def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   global bp_summary
   global all
+  global zt_beg           # beg of time zone
+  global zt_end           # end of time zone
   x_data = []
   y_values = []
-
+  
+  # Retreive data from DB
   bp_summary = []
+  if zt_beg == "00:00" and zt_end == "00:00":
+    zb = None
+    ze = None
+  else:
+    zb = zt_beg
+    ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
-                                          Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl)
+                        Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
   print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
   if not r:       
     for i in range(len(y_values)):      
