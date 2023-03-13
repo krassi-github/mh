@@ -28,6 +28,7 @@ class imp(impTemplate):
     r, all_recs, last_date = anvil.server.call("db_status")
     self.label_1.text = str(r) + ' / ' + str(all_recs)
     self.last.text = last_date
+    Data.load_params()
     self.timer_1.interval = 5
 
   def file_loader_1_lost_focus(self, **event_args):
