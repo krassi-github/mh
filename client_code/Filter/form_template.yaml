@@ -1,7 +1,7 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35,"JCQVTI":10,"EYBBTB":50}',
+    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35,"JCQVTI":15,"EYBBTB":45}',
     spacing_below: small, background: ''}
   event_bindings: {}
 components:
