@@ -136,5 +136,9 @@ components:
   properties: {}
   name: drop_down_2
   layout_properties: {grid_position: 'REPJDC,JFXTWE'}
+- type: Label
+  properties: {}
+  name: temp
+  layout_properties: {grid_position: 'YIHNMT,WHMSIC'}
 is_package: true
 custom_component: true

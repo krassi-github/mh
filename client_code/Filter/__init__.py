@@ -14,10 +14,21 @@ class Filter(FilterTemplate):
       self.msg.foreground = "red" 
     p = Data.load_sysdata()
     if p:
-      self.msg.text +=  f" load_sysdata= {p}"    # Data.sysdata[p] #
+      self.msg.text +=  f" load_sysdata= {p}"
       self.msg.foreground = "red" 
-      
+    p = Data.load_zones()
+    if p:
+      self.msg.text +=  f" load_zones= {p}" 
+      self.msg.foreground = "red"
+    print(f"zone_items= {Data.zone_items}")
+    input("Check and GO ")
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
+    self.drop_down_1.items = Data.zone_items
+    self.drop_down_2.items = Data.custom_zone_items
+    self.drop_down_2.placeholder = "Select a custom zone"
+    self.drop_down_2.selected_value = None
+    self.default_zone(0)
+    self.temp.text = Data.current_zone+' '+Data.tz_beg+' '+Data.tz_end
     # Set Form properties and Data Bindings.
     
     self.d.selected = True
@@ -34,6 +45,11 @@ class Filter(FilterTemplate):
     self.fr = self.item.get("from_date", "Error")
     self.to = self.item.get("to_date", "Error")  
 
+
+  def default_zone(self, zone):
+    self.drop_down_1.selected_value = Data.zone_items[zone][1]
+    Data.set_zone(zone)
+  
   def t_from_change(self, **event_args):
     Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
     if self.r.selected:

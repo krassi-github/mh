@@ -29,8 +29,8 @@ sysdata = {}      # values = [2] text messages
 zones = [] 
 ''' record per zone. elements:
 (type, key, beg, end)'''
-zone_items = [("ALL", "s0"), ("08:00 - 16:00", "c1"),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
-cust_zone_items = []
+zone_items = []               # [("ALL", "s0"), ("08:00 - 16:00", "c1"),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
+custom_zone_items = []
 current_zone = 0
 zt_beg = "08:00"
 zt_end = "16:00"
@@ -65,9 +65,9 @@ def load_params():
   params = anvil.server.call("get_params")
   r, tt = anvil.server.call("get_last_date")
   if r :
-    return(r)  
+    return(-300+r)  
   elif not params:
-    return(-260)     # !! WRONG return
+    return(-321)     
   else:
     time_to = tt
     tb = datetime.datetime.strptime(tt, "%Y/%m/%d %H:%M") - datetime.timedelta(days=params["r_range"])
@@ -81,9 +81,9 @@ def load_sysdata():
 
   sysdata, sd_descr = anvil.server.call("get_sysdata")
   if not sysdata: 
-    r = -22
+    r = -322
   elif not sd_descr:
-    r = -23
+    r = -323
   else:
     r = 0
   return(r)
@@ -94,12 +94,33 @@ def load_zones():
   global current_zone; global zt_beg; global zt_end
 
   z = anvil.server.call("get_zones")
-  print(type(z))
-  for r in range(len(z)):
-    print(f" ------- {type(z[r])} ------------------")
-    for i in range(len(z[r])):
-      print(f"{type(z[r][i])} {z[r][i]}")
-    
+  if not z:
+    r = -325
+  else:    
+    zones = z
+    zone_items = []
+    custom_zone_items = []
+    for r in z:
+      for i in r:
+        print(i)
+        if i == "standard":
+          zone_items.append((r[2]+' - '+r[3], r[1]))
+        elif i == "custom":
+          custom_zone_items.append((r[2]+' - '+r[3], r[1]))
+        else:
+          return(-326)
+    r = 0
+  return(r)
+
+
+def set_zone(zone):
+  global zones; global current_zone; global zt_beg; global zt_end
+
+  current_zone = zone
+  for i in zones:
+    if i[1] == zone:    # search the zone_keys
+      zt_beg = i[2]
+      zt_end = i[3]   
 
     
 # Load data funcs
