@@ -28,7 +28,8 @@ sysdata = {}      # values = [2] text messages
 
 time_from = ""
 time_to = ""
-zone_items = [("ALL", 0), ("08:00 - 16:00", 1),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
+zone_items = [("ALL", "s0"), ("08:00 - 16:00", "c1"),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
+cust_zone_items = []
 current_zone = 0
 zt_beg = "08:00"
 zt_end = "16:00"

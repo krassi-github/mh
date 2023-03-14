@@ -93,7 +93,9 @@ class Filter(FilterTemplate):
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
   def drop_down_1_change(self, **event_args):
-    Data.current_zone = self.drop_down_1.selected
+    Data.current_zone = self.drop_down_1.selected_value
+    self.msg.text = self.drop_down_1.selected_value
+    
 
 
  

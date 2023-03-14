@@ -1,7 +1,7 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35,"JCQVTI":15,"EYBBTB":45}',
+    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35,"JCQVTI":30,"EYBBTB":30}',
     spacing_below: small, background: ''}
   event_bindings: {}
 components:
@@ -132,5 +132,9 @@ components:
   layout_properties: {grid_position: 'GVBMFN,WWZEEE'}
   data_bindings: []
   event_bindings: {change: drop_down_1_change}
+- type: DropDown
+  properties: {}
+  name: drop_down_2
+  layout_properties: {grid_position: 'REPJDC,JFXTWE'}
 is_package: true
 custom_component: true
