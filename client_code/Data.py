@@ -91,7 +91,7 @@ def load_sysdata():
 
 def load_zones():
   global zones; global zone_items; global cust_zone_items;
-  global cgurrent_zone; global zt_beg; global zt_end
+  global current_zone; global zt_beg; global zt_end
 
   z = get_zones()
   print(type(z))
