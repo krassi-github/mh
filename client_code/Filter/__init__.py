@@ -20,15 +20,19 @@ class Filter(FilterTemplate):
     if p:
       self.msg.text +=  f" load_zones= {p}" 
       self.msg.foreground = "red"
-    print(f"zone_items= {Data.zone_items}")
-    input("Check and GO ")
+    #input("Check and GO ")
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     self.drop_down_1.items = Data.zone_items
     self.drop_down_2.items = Data.custom_zone_items
+    print(f"dorpdown_2 items {Data.custom_zone_items}")
+    '''
+    self.drop_down_2.include_placeholder = True
     self.drop_down_2.placeholder = "Select a custom zone"
     self.drop_down_2.selected_value = None
+    self.drop_down_2.items = self.drop_down_2.items
+    '''
     self.default_zone(0)
-    self.temp.text = Data.current_zone+' '+Data.tz_beg+' '+Data.tz_end
+    self.temp.text = Data.current_zone+' '+Data.zt_beg+' '+Data.zt_end
     # Set Form properties and Data Bindings.
     
     self.d.selected = True
@@ -46,8 +50,9 @@ class Filter(FilterTemplate):
     self.to = self.item.get("to_date", "Error")  
 
 
-  def default_zone(self, zone):
-    self.drop_down_1.selected_value = Data.zone_items[zone][1]
+  def default_zone(self, zone_index):
+    zone = Data.zone_items[zone_index][1]
+    self.drop_down_1.selected_value = zone
     Data.set_zone(zone)
   
   def t_from_change(self, **event_args):
@@ -64,19 +69,7 @@ class Filter(FilterTemplate):
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):
     Data.current_range = rng
     self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
-    '''
-    r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step)
-    if r:
-      self.parent.parent.label_2.text += f"  set_bp_list= {r}"
-      self.parent.parent.label_2.foreground = "red"
-    r = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te)
-    if r:
-      self.label_2.text += f"  set_summary= {r} "
-      self.label_2.foreground = "red"
-    self.parent.parent.repeating_panel_1.items = Data.bp_list
-    self.parent.parent.show_summary()
-    self.parent.parent.plot_1_show()
-    '''
+
    
   def r_clicked(self, **event_args):        # Range
     if Data.time_from >= Data.time_to:
@@ -98,7 +91,7 @@ class Filter(FilterTemplate):
     self.show_range("1001", 'm')
 
   def m3_clicked(self, **event_args):
-    self.show_range("1001"", 'm3')
+    self.show_range("1001", 'm3')
 
   def all_change(self, **event_args):
     Tb = Te = None
@@ -109,9 +102,16 @@ class Filter(FilterTemplate):
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
   def drop_down_1_change(self, **event_args):
-    Data.current_zone = self.drop_down_1.selected_value
+    Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value
-    
+    self.all_change()
 
+  def drop_down_2_change(self, **event_args):
+    Data.set_zone(self.drop_down_2.selected_value)
+    self.msg.text = self.drop_down_2.selected_value
+    self.all_change()
+
+    
+  
 
  

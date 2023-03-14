@@ -31,7 +31,7 @@ zones = []
 (type, key, beg, end)'''
 zone_items = []               # [("ALL", "s0"), ("08:00 - 16:00", "c1"),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
 custom_zone_items = []
-current_zone = 0
+current_zone = ''
 zt_beg = "08:00"
 zt_end = "16:00"
 
@@ -90,8 +90,7 @@ def load_sysdata():
 
 
 def load_zones():
-  global zones; global zone_items; global cust_zone_items;
-  global current_zone; global zt_beg; global zt_end
+  global zones; global zone_items; global custom_zone_items;  
 
   z = anvil.server.call("get_zones")
   if not z:
@@ -101,14 +100,12 @@ def load_zones():
     zone_items = []
     custom_zone_items = []
     for r in z:
-      for i in r:
-        print(i)
-        if i == "standard":
-          zone_items.append((r[2]+' - '+r[3], r[1]))
-        elif i == "custom":
-          custom_zone_items.append((r[2]+' - '+r[3], r[1]))
-        else:
-          return(-326)
+      if r[0] == "standard":
+        zone_items.append((r[2]+' - '+r[3], r[1]))
+      elif r[0] == "custom":
+        custom_zone_items.append((r[2]+' - '+r[3], r[1]))
+      else:
+        return(-326)
     r = 0
   return(r)
 

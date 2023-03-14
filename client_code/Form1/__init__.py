@@ -29,32 +29,40 @@ class Form1(Form1Template):
         r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'     
 
   def show_summary(self):
-    print(f"bp_summary {Data.bp_summary[0]}")
-    self.lb_21.text = Data.bp_summary[0]["date"][:10]
-    self.lb_22.text = Data.bp_summary[0]["sys"]
-    self.lb_23.text = Data.bp_summary[0]["dia"]
-    self.lb_24.text = Data.bp_summary[0]["pul"]
-    self.lb_25.text = Data.bp_summary[0]["mean"]
-    self.lb_26.text = Data.bp_summary[0]["afib"]
-    self.lb_26.foreground = "red"
-    
-    if int(self.lb_22.text) >= Data.params["red_sys"]:
-      self.lb_22.foreground = "red"
-    elif int(self.lb_22.text) >= Data.params["orange_sys"]:
-      self.lb_22.foreground = "orange"
+    if Data.bp_summary:
+      print(f"bp_summary {Data.bp_summary[0]}")
+      self.lb_21.text = Data.bp_summary[0]["date"][:10]
+      self.lb_22.text = Data.bp_summary[0]["sys"]
+      self.lb_23.text = Data.bp_summary[0]["dia"]
+      self.lb_24.text = Data.bp_summary[0]["pul"]
+      self.lb_25.text = Data.bp_summary[0]["mean"]
+      self.lb_26.text = Data.bp_summary[0]["afib"]
+      self.lb_26.foreground = "red"
+      
+      if int(self.lb_22.text) >= Data.params["red_sys"]:
+        self.lb_22.foreground = "red"
+      elif int(self.lb_22.text) >= Data.params["orange_sys"]:
+        self.lb_22.foreground = "orange"
+      else:
+        self.lb_22.foreground = "black"      
+      if int(self.lb_23.text) >= Data.params["red_dia"]:
+        self.lb_23.foreground = "red"
+      elif  int(self.lb_23.text) >= Data.params["orange_dia"]:
+        self.lb_23.foreground = "orange"
+      else:
+        self.lb_23.foreground = "black"
+      if int(self.lb_25.text) > Data.params["red_mean"]:
+        self.lb_25.foreground = "red"
+      else:
+        self.lb_25.foreground = "black"
     else:
-      self.lb_22.foreground = "black"      
-    if int(self.lb_23.text) >= Data.params["red_dia"]:
-      self.lb_23.foreground = "red"
-    elif  int(self.lb_23.text) >= Data.params["orange_dia"]:
-      self.lb_23.foreground = "orange"
-    else:
-      self.lb_23.foreground = "black"
-    if int(self.lb_25.text) > Data.params["red_mean"]:
-      self.lb_25.foreground = "red"
-    else:
-      self.lb_25.foreground = "black"
-
+      self.lb_21.text = ''
+      self.lb_22.text = ''
+      self.lb_23.text = ''
+      self.lb_24.text = ''
+      self.lb_25.text = ''
+      self.lb_26.text = ''
+    '''  
     self.lb_31.text = Data.bp_list[-1]["date"]
     self.lb_32.text = Data.bp_list[-1]["sys"]
     self.lb_33.text = Data.bp_list[-1]["dia"]
@@ -62,7 +70,7 @@ class Form1(Form1Template):
     self.lb_35.text = Data.bp_list[-1]["mean"]
     self.lb_36.text = Data.bp_list[-1]["afib"]
     self.lb_36.foreground = "red"
-
+    '''
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range 
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r:
