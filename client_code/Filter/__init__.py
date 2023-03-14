@@ -15,7 +15,7 @@ class Filter(FilterTemplate):
     p = Data.load_sysdata()
     if p:
       self.msg.text +=  f" load_sysdata= {p}"    # Data.sysdata[p] #
-      self.msg.label_1.foreground = "red" 
+      self.msg.foreground = "red" 
       
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     # Set Form properties and Data Bindings.

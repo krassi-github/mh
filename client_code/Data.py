@@ -93,7 +93,7 @@ def load_zones():
   global zones; global zone_items; global cust_zone_items;
   global current_zone; global zt_beg; global zt_end
 
-  z = get_zones()
+  z = anvil.server.call("get_zones")
   print(type(z))
   for r in range(len(z)):
     print(f" ------- {type(z[r])} ------------------")
