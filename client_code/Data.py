@@ -16,6 +16,7 @@ params = {}
 ('orange_dia', "diastolic I threshold", 85),
 ('red_dia', "diastolic II threshold", 90),
 ('red_mean', "mean pressure threshold", 100)'''
+
 sd_descr = {}     # values = [1] modules names
 sysdata = {}      # values = [2] text messages
 '''INSERT INTO SysData(key, descr, value) values
@@ -25,14 +26,17 @@ sysdata = {}      # values = [2] text messages
 ('-108', "import_data()", "no records error"),
 ('-107', "import_data()", "no NEW records")'''
 
-
-time_from = ""
-time_to = ""
+zones = [] 
+''' record per zone. elements:
+(type, key, beg, end)'''
 zone_items = [("ALL", "s0"), ("08:00 - 16:00", "c1"),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
 cust_zone_items = []
 current_zone = 0
 zt_beg = "08:00"
 zt_end = "16:00"
+
+time_from = ""
+time_to = ""
 current_day = ""
 current_range = ''
 loaded_from = ""
@@ -82,9 +86,23 @@ def load_sysdata():
     r = -23
   else:
     r = 0
-  return(r)  
+  return(r)
+
+
+def load_zones():
+  global zones; global zone_items; global cust_zone_items;
+  global cgurrent_zone; global zt_beg; global zt_end
+
+  z = get_zones()
+  print(type(z))
+  for r in range(len(z)):
+    print(f" ------- {type(z[r])} ------------------")
+    for i in range(len(z[r])):
+      print(f"{type(z[r][i])} {z[r][i]}")
     
 
+    
+# Load data funcs
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
