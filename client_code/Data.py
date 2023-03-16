@@ -65,7 +65,7 @@ def load_params():
   params = anvil.server.call("get_params")
   r, tt = anvil.server.call("get_last_date")
   if r :
-    return(-300+r)  
+    return(-300+r)
   elif not params:
     return(-321)     
   else:
