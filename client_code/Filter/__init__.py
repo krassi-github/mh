@@ -24,8 +24,8 @@ class Filter(FilterTemplate):
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     self.drop_down_1.items = Data.zone_items
     self.drop_down_2.items = Data.custom_zone_items
-    print(f"dorpdown_2 items {Data.custom_zone_items}")
-    '''
+
+    '''    TO BE TESTED
     self.drop_down_2.include_placeholder = True
     self.drop_down_2.placeholder = "Select a custom zone"
     self.drop_down_2.selected_value = None
