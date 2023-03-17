@@ -7,7 +7,7 @@ container:
 components:
 - type: FlowPanel
   properties: {role: null, spacing: tiny, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, spacing_above: small, spacing_below: small, background: ''}
+    visible: true, spacing_above: none, spacing_below: none, background: ''}
   name: flow_panel_2
   layout_properties: {grid_position: 'HGFGXB,NWXPOO'}
   components:
@@ -45,7 +45,7 @@ components:
     event_bindings: {clicked: m3_clicked}
 - type: FlowPanel
   properties: {role: null, spacing: tiny, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, spacing_above: small, spacing_below: small, background: ''}
+    visible: true, spacing_above: none, spacing_below: none, background: ''}
   name: flow_panel_1
   layout_properties: {grid_position: 'OSHLVW,WIHBNY'}
   components:
@@ -67,8 +67,8 @@ components:
   event_bindings: {change: all_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Time FROM - TO, font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    text: Time FROM - TO, font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: t_from_to
   layout_properties: {grid_position: 'NDJMBI,JCQVTI'}
@@ -80,7 +80,7 @@ components:
   - type: DatePicker
     properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
       placeholder: Date FROM, border: '', enabled: true, foreground: '', visible: true,
-      font_size: null, font: '', spacing_above: small, spacing_below: small, italic: false,
+      font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false,
       date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/%m/%d'}
     name: t_from
     layout_properties: {}
@@ -90,7 +90,7 @@ components:
 - type: DatePicker
   properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
     placeholder: Date TO, border: '', enabled: true, foreground: '', visible: true,
-    font_size: null, font: '', spacing_above: small, spacing_below: small, italic: false,
+    font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false,
     date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/%m/%d'}
   name: t_to
   layout_properties: {grid_position: 'AXUESG,RIPMES'}
@@ -99,8 +99,8 @@ components:
   event_bindings: {change: t_to_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Day ZONE, font_size: null, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    text: Day ZONE, font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: d_zone
   layout_properties: {grid_position: 'LGBALO,RCTBGY'}
@@ -117,8 +117,8 @@ components:
     visible: true
     font_size: null
     font: ''
-    spacing_above: small
-    spacing_below: small
+    spacing_above: none
+    spacing_below: none
     italic: false
     background: ''
     bold: false
@@ -129,12 +129,32 @@ components:
   data_bindings: []
   event_bindings: {change: drop_down_1_change}
 - type: DropDown
-  properties: {}
+  properties:
+    role: null
+    align: full
+    tooltip: ''
+    placeholder: ''
+    border: ''
+    enabled: true
+    foreground: ''
+    items: []
+    visible: true
+    font_size: null
+    font: ''
+    spacing_above: none
+    spacing_below: none
+    italic: false
+    background: ''
+    bold: false
+    underline: false
+    include_placeholder: false
   name: drop_down_2
   layout_properties: {grid_position: 'REPJDC,JFXTWE'}
   event_bindings: {change: drop_down_2_change}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: msg
   layout_properties: {grid_position: 'YIHNMT,WHMSIC'}
 is_package: true

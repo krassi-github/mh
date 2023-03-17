@@ -11,7 +11,7 @@ class imp(impTemplate):
     print(f"Type {type(last_date)}  {last_date}")
     self.label_1.text = "All Records:  " + str(all_recs)
     self.last.text = last_date[1]
-    #self.width = "90%"
+    self.width = "90%"
 
 
   def file_loader_1_change(self, file, **event_args):

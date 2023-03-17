@@ -24,7 +24,8 @@ components:
       name: label_1
       layout_properties: {grid_position: 'INEXFP,SJMPMA'}
     - type: FlowPanel
-      properties: {}
+      properties: {role: null, spacing: medium, align: left, tooltip: '', border: '',
+        foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}
       name: flow_panel_1
       layout_properties: {grid_position: 'HPYIJP,DBMCDD'}
       components:
@@ -46,44 +47,44 @@ components:
         event_bindings: {click: b_dn_click}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: date, font_size: 20, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+        visible: true, text: date, font_size: 20, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
       name: lb_1
       layout_properties: {grid_position: 'XTKGAB,UCFLLP'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: SYS, font_size: 20, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        visible: true, text: SYS, font_size: 20, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_2
       layout_properties: {grid_position: 'XTKGAB,GIBSXC'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: DIA, font_size: 20, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        visible: true, text: DIA, font_size: 20, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_3
       layout_properties: {grid_position: 'XTKGAB,IGQZJU'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: PUL, font_size: 20, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        visible: true, text: PUL, font_size: 20, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_4
       layout_properties: {grid_position: 'XTKGAB,QJVERU'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: MEAN, font_size: 20, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+        visible: true, text: MEAN, font_size: 20, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
       name: lb_5
       layout_properties: {grid_position: 'XTKGAB,EBIYQZ'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: afib, font_size: 20, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+        visible: true, text: afib, font_size: 20, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
       name: lb_6
       layout_properties: {grid_position: 'XTKGAB,FDPAON'}
     - type: Label
@@ -95,83 +96,41 @@ components:
       layout_properties: {grid_position: 'SLLSPA,KMZJLR', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+        visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_22
       layout_properties: {grid_position: 'SLLSPA,GDRUVF', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+        visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_23
       layout_properties: {grid_position: 'SLLSPA,VKKJKM', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+        visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_24
       layout_properties: {grid_position: 'SLLSPA,YCOPYM', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+        visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: true, underline: false,
         icon: ''}
       name: lb_25
       layout_properties: {grid_position: 'SLLSPA,WEEEPH', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
+        visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: true, underline: false,
         icon: ''}
       name: lb_26
       layout_properties: {grid_position: 'SLLSPA,TIWABF', full_width_row: false}
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 20, font: '', spacing_above: large, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: lb_31
-      layout_properties: {grid_position: 'PAUJKU,JGVGHQ', full_width_row: true}
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: lb_32
-      layout_properties: {grid_position: 'PAUJKU,UBEAOY', full_width_row: true}
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: lb_33
-      layout_properties: {grid_position: 'PAUJKU,ICBJUP', full_width_row: true}
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: lb_34
-      layout_properties: {grid_position: 'PAUJKU,UZRLFK', full_width_row: true}
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: true, underline: false,
-        icon: ''}
-      name: lb_35
-      layout_properties: {grid_position: 'PAUJKU,EULLWP', full_width_row: true}
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 48, font: '', spacing_above: small, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: true, underline: false,
-        icon: ''}
-      name: lb_36
-      layout_properties: {grid_position: 'PAUJKU,QRUSTM', full_width_row: true}
     - type: Plot
-      properties: {spacing_above: small, spacing_below: small, height: 450, visible: true,
+      properties: {spacing_above: none, spacing_below: none, height: 450, visible: true,
         tooltip: '', interactive: true}
       name: plot_1
       layout_properties: {grid_position: 'RCKUYH,IDEMKZ', row_background: 'theme:Primary
@@ -195,7 +154,8 @@ components:
     properties:
       role: null
       columns:
-      - {id: LAVQQZ, title: date, data_key: '', $$hashKey: 'object:165558'}
+      - {id: LAVQQZ, title: date, data_key: '', $$hashKey: 'object:165558', width: '100',
+        expand: true}
       - {id: APQHOG, title: SYS, data_key: '', $$hashKey: 'object:165559', width: '',
         expand: false}
       - {id: GCJKIU, title: DIA, data_key: '', $$hashKey: 'object:165560'}
