@@ -21,16 +21,16 @@ class Form1(Form1Template):
     self.column_panel_1.width = "90%"
     self.button_1.width = "60%"
     self.column_panel_2.row_spacing = 4
+    self.color_rows(self.repeating_panel_1)
     self.render_data("1001", 'd')   
   
   def color_rows(self, rep):
     for i, r in enumerate(rep.get_components()):
       if not i%2:
-        r.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'     
+        r.background = "rgba(69,183,249,0.2)"  #'theme:Gray 200'     
 
   def show_summary(self):
     if Data.bp_summary:
-      print(f"bp_summary {Data.bp_summary[0]}")
       self.lb_21.text = Data.bp_summary[0]["date"][:10]
       self.lb_22.text = Data.bp_summary[0]["sys"]
       self.lb_23.text = Data.bp_summary[0]["dia"]

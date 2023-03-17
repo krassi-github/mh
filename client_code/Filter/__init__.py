@@ -32,7 +32,7 @@ class Filter(FilterTemplate):
     self.drop_down_2.items = self.drop_down_2.items
     '''
     self.default_zone(0)
-    self.msg.text = Data.current_zone+' '+Data.zt_beg+' '+Data.zt_end
+    #self.msg.text = Data.current_zone+' '+Data.zt_beg+' '+Data.zt_end
     # Set Form properties and Data Bindings.
     
     self.d.selected = True
