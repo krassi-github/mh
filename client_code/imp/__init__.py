@@ -9,8 +9,8 @@ class imp(impTemplate):
     self.init_components(**properties)
     r1, all_recs, last_date = anvil.server.call("db_status")
     print(f"Type {type(last_date)}  {last_date}")
-    self.label_1.text = str(r) + ' / ' + str(all_recs)
-    self.last.text = last_date
+    self.label_1.text = "All Records:  " + str(all_recs)
+    self.last.text = last_date[1]
     #self.width = "90%"
 
 
