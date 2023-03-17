@@ -25,7 +25,7 @@ class imp(impTemplate):
       self.label_1.text = '.CSV file'
       return(0)
     self.file_loader_1.clear()
-    r, all_recs, last_date = anvil.server.call("db_status")
+    r1, all_recs, last_date = anvil.server.call("db_status")
     self.label_1.text = str(r) + ' / ' + str(all_recs)
     self.last.text = last_date
     Data.load_params()
