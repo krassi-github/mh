@@ -7,6 +7,10 @@ class imp(impTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    r1, all_recs, last_date = anvil.server.call("db_status")
+    print(f"Type {type(last_date)}  {last_date}")
+    self.label_1.text = str(r) + ' / ' + str(all_recs)
+    self.last.text = last_date
     #self.width = "90%"
 
 
@@ -29,7 +33,7 @@ class imp(impTemplate):
     self.label_1.text = str(r) + ' / ' + str(all_recs)
     self.last.text = last_date
     Data.load_params()
-    self.timer_1.interval = 5
+    self.timer_1.interval = 10
 
   def file_loader_1_lost_focus(self, **event_args):
     self.label_1.text = '.CSV file'
