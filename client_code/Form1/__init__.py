@@ -24,7 +24,7 @@ class Form1(Form1Template):
     self.color_rows(self.repeating_panel_1)
     self.render_data("1001", 'd')   
   
-  def color_rows(self, rep):
+  def color_rows(self, rep):    
     for i, r in enumerate(rep.get_components()):
       if not i%2:
         r.background = "rgba(69,183,249,0.2)"  #'theme:Gray 200'     
