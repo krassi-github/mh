@@ -71,6 +71,7 @@ class Form1(Form1Template):
     self.lb_36.text = Data.bp_list[-1]["afib"]
     self.lb_36.foreground = "red"
     '''
+    
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range 
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r:
@@ -86,6 +87,8 @@ class Form1(Form1Template):
       pass    # UI message to be generated
     else:
       self.repeating_panel_1.items = Data.bp_list
+      self.s_from.text = Data.loaded_from[:10]
+      self.s_to.text = "- " + Data.loaded_to[:10]
       self.show_summary()
       self.plot_1_show()
 
@@ -151,15 +154,12 @@ class Form1(Form1Template):
         ),
       )
     )
-    #fig.update_xaxes(title_text='Време')
-    #fig.update_yaxes(title_text='BP mm/Hg')
     self.plot_1.figure = fig
   
 
     
     #  snipets
-    '''    
-          
+    '''          
       layout=go.Layout(       
         title="Артериално налягане",
         yaxis_title="BP mm/Hg",

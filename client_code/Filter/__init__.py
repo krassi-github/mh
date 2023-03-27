@@ -47,8 +47,8 @@ class Filter(FilterTemplate):
     self.drop_down_1.width = "80%"
     self.drop_down_2.width = "80%"
     # Any code you write here will run before the form opens.
-    self.fr = self.item.get("from_date", "Error")
-    self.to = self.item.get("to_date", "Error")  
+    #self.fr = self.item.get("from_date", "Error")
+    #self.to = self.item.get("to_date", "Error")  
 
 
   def default_zone(self, zone_index):
