@@ -163,6 +163,10 @@ color: %color:On Primary Container%;
   margin-bottom: -10px !important;
 }
 
+.anvil-role-0height {        
+  margin-top: -10px !important;
+  margin-bottom: -10px !important;
+}
 /* Page structure: App bar with optional left nav */
 .structure {
 /*   display: flex;
