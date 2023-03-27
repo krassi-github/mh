@@ -155,12 +155,14 @@ color: %color:On Primary Container%;
   padding-bottom: 0;
 }
 
-// 27-03-23 ROLE For eliminating gap between labels
+// 27-03-23 kag ROLE For eliminating gap between labels
 .anvil-role-0margine {        
   margine-left: -10px;
   padding-left: 0;
-  // margin-top: 0px !important;
-  //margin-bottom: -10px !important;
+  margin-top: 0px !important;
+  margin-bottom: -10px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .anvil-role-0height {        

@@ -24,17 +24,20 @@ class RowTemplate1(RowTemplate1Template):
     if not r%2:
       self.color_rows()
     r += 1
-    #print(f"r= {r}")
+    self.row_spacing = 0
+    
+
 
   def color_rows(self):
     #print(self.get_components())
-    return()
-    self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
-    self.lb_2.background = "rgba(69,183,249,0.1)"
-    self.lb_3.background = "rgba(69,183,249,0.1)"
-    self.lb_4.background = "rgba(69,183,249,0.1)"
-    self.lb_5.background = "rgba(69,183,249,0.1)"
-    self.lb_6.background = "rgba(69,183,249,0.1)"
+    #return()
+    self.lb_1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
+    self.lb_2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.lb_3.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.lb_4.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.lb_5.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.lb_6.background = "rgba(0, 0, 0, 0.0)"            #"rgba(69,183,249,0.1)"
+
   '''
   def color_rows(self):
     print(self.get_components())
