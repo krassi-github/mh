@@ -156,9 +156,11 @@ color: %color:On Primary Container%;
 }
 
 // 27-03-23 ROLE For eliminating gap between labels
-.anvil-role-label-margine {        
-  margine-left: 0;
+.anvil-role-0margine {        
+  margine-left: -10px;
   padding-left: 0;
+  margin-top: -10px !important;
+  margin-bottom: -10px !important;
 }
 
 /* Page structure: App bar with optional left nav */
