@@ -159,12 +159,12 @@ color: %color:On Primary Container%;
 .anvil-role-0margine {        
   margine-left: -10px;
   padding-left: 0;
-  margin-top: -10px !important;
-  margin-bottom: -10px !important;
+  // margin-top: 0px !important;
+  //margin-bottom: -10px !important;
 }
 
 .anvil-role-0height {        
-  margin-top: -10px !important;
+  margin-top: 0px !important;
   margin-bottom: -10px !important;
 }
 /* Page structure: App bar with optional left nav */

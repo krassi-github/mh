@@ -52,8 +52,7 @@ roles:
 - name: 0margine
   components: [Label]
   display_in_toolbox: false
-- name: 0height
-  components: [RowPanel]
+- {name: 0height, components: null}
 color_scheme:
   preset_groups:
   - name: Colour Scheme
