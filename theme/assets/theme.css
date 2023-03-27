@@ -155,6 +155,12 @@ color: %color:On Primary Container%;
   padding-bottom: 0;
 }
 
+// 27-03-23 ROLE For eliminating gap between labels
+.anvil-role-label-margine {        
+  margine-left: 0;
+  padding-left: 0;
+}
+
 /* Page structure: App bar with optional left nav */
 .structure {
 /*   display: flex;

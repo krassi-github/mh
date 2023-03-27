@@ -49,6 +49,9 @@ roles:
   components: [TextBox, TextArea, DatePicker, DropDown]
 - name: input-error
   components: [TextBox, TextArea, DatePicker, DropDown]
+- name: label-margine
+  components: [label]
+  display_in_toolbox: false
 color_scheme:
   preset_groups:
   - name: Colour Scheme
