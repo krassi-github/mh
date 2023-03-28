@@ -9,6 +9,7 @@ class RowTemplate1(RowTemplate1Template):
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.row_spacing = 0
     if int(self.lb_2.text) >= Data.params["red_sys"]:
       self.lb_2.foreground = "red"
     elif int(self.lb_2.text) >= Data.params["orange_sys"]:
@@ -22,11 +23,9 @@ class RowTemplate1(RowTemplate1Template):
     if (self.lb_6.text):
       self.lb_6.foreground = "red"    
     if not r%2:
+      pass
       self.color_rows()
-    r += 1
-    self.row_spacing = 0
-    
-
+    r += 1  
 
   def color_rows(self):
     #print(self.get_components())

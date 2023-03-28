@@ -151,7 +151,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values) 
-  bp_list = []
+  bp_list = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
   bp_date = []
   bp_sys = []
   bp_dia = []

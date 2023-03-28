@@ -173,7 +173,7 @@ components:
       layout_properties: {grid_position: 'YDQDXP,ATXMIL'}
   - type: DataGrid
     properties:
-      role: null
+      role: tonal-data-grid
       columns:
       - {id: LAVQQZ, title: date, data_key: '', $$hashKey: 'object:165558', width: '100',
         expand: true}

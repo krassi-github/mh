@@ -166,14 +166,18 @@ color: %color:On Primary Container%;
 }
 
 .anvil-role-0height {        
-  margin-top: 0px !important;
-  margin-bottom: -10px !important;
+  margin-top: 0px !important;    // 28-03-34 kag old value = 0px;
+  margin-bottom: 0px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 70%;              // kag It works well old value= 50%;
 }
+
 /* Page structure: App bar with optional left nav */
 .structure {
 /*   display: flex;
   flex-direction: column; */
-  min-height: 100vh;
+  min-height: 100vh;    //  100vh ;
   min-height: calc(100vh - %anvil-banner-height%);
 /*   height: 0; /* To make flex-grow work in IE */
 }
@@ -1007,20 +1011,22 @@ input[disabled] ~ span {
   font-size: 16px;
 }
 
-/* Data Grids */
+/* Data Grids */  // 28-03-2023 kag old radius = 24px
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header {
   background: linear-gradient(0deg, %color:Primary Overlay 2%, %color:Primary Overlay 2%), %color:Background%;
   border-bottom: 1px solid %color:Surface Variant%;
-  border-radius: 24px 24px 0 0;
+  border-radius: 12px 12px 0 0;    
 }
 
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header div.data-row-col > div {
-  padding: 12px;
+  padding: 2px;      //! 28-03-2023 kag old padding = 12;
   text-align: center !important;
+  font-weight: normal;
+  font-size: 20px;   // 28-03-2023 kag -> new lines on font  
 }
 
 .anvil-role-tonal-data-grid.anvil-data-grid {
-  border-radius: 24px;
+  border-radius: 12px;         // 28-03-2023 kag old radius = 24px
   border: 1px solid %color:Surface Variant%;
 }
 
