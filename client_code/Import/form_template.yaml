@@ -1,8 +1,7 @@
+properties: []
 is_package: true
-container:
-  type: HtmlTemplate
-  properties: {tooltip: '', background: '', foreground: '', border: solid, visible: true,
-    role: null, html: '@theme:standard-page.html'}
+events: []
+custom_component: true
 components:
 - type: Label
   properties: {role: title, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
@@ -51,4 +50,7 @@ components:
     name: file_loader_1
     layout_properties: {}
     event_bindings: {change: file_loader_1_change}
-custom_component: true
+container:
+  type: HtmlTemplate
+  properties: {tooltip: '', background: '', foreground: '', border: solid, visible: true,
+    role: null, html: '@theme:standard-page.html'}
