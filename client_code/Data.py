@@ -42,7 +42,7 @@ current_range = ''
 loaded_from = ""
 loaded_to = ""
 
-bp_dat = []
+# bp_dat = []
 bp_date = []
 bp_sys = []
 bp_dia = []
