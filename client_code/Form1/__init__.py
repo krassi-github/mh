@@ -21,6 +21,7 @@ class Form1(Form1Template):
     self.column_panel_1.width = "90%"
     self.button_1.width = "60%"
     self.column_panel_2.row_spacing = 4
+    self.flow_panel_2.border =  "border-bottom: 6px solid red"  # ""border-top-style: dotted"  # "solid"       #
     self.color_rows(self.repeating_panel_1)
     self.render_data("1001", 'd')   
   
