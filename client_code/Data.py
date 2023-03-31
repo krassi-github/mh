@@ -168,6 +168,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   bp_sys_add = []
   bp_mean = []
   bp_colors = []
+  green_cntr = 0
+  orange_cntr = 0
+  red_cntr = 0
   if not r:       
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        

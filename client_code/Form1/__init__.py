@@ -3,11 +3,10 @@ from ._anvil_designer import Form1Template
 from anvil import *
 import anvil.server
 import plotly.graph_objects as go
-#from dateutil.relativedelta import relativedelta
 from .. import Data
 
 def error_handler(err):
-  alert(str(err), title="An error has occurred")
+  alert(str(err), title="An issue has occurred")
   
 class Form1(Form1Template):  
   def __init__(self, **properties):
@@ -99,7 +98,7 @@ class Form1(Form1Template):
   def show_move(self, direction):
     Tb, Te = anvil.server.call("times_calc", Data.current_range, \
                                Data.loaded_from, Data.loaded_to, direction)
-    self.label_2.text = (f"{Tb}  {Te}  {Data.current_range} ")
+    self.label_2.text = f"{Tb}  {Te}  {Data.current_range} "
     te = datetime.datetime.strptime(Te,  "%Y/%m/%d %H:%M")
     #te -= datetime.timedelta(days=1)
     Te = te.strftime("%Y/%m/%d %H:%M")
