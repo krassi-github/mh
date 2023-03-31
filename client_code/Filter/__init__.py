@@ -55,22 +55,12 @@ class Filter(FilterTemplate):
     zone = Data.zone_items[zone_index][1]
     self.drop_down_1.selected_value = zone
     Data.set_zone(zone)
-  
-  def t_from_change(self, **event_args):
-    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
-    if self.r.selected:
-      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
-  def t_to_change(self, **event_args):
-    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"    
-    if self.r.selected:
-      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
-# Ranges processing
+# Ranges processing  -------------------------------------------------------------------
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):
     Data.current_range = rng
     self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
-
    
   def r_clicked(self, **event_args):        # Range
     if Data.time_from >= Data.time_to:
@@ -102,6 +92,18 @@ class Filter(FilterTemplate):
       Te=Data.loaded_to          # time_to
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
+  # Range time_frame  -------------------------------------------------------------------------- 
+  def t_from_change(self, **event_args):
+    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
+    if self.r.selected:
+      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
+
+  def t_to_change(self, **event_args):
+    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"    
+    if self.r.selected:
+      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
+      
+  # Standard/Custome zone ---------------------------------------------------------------------
   def drop_down_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value
@@ -111,8 +113,3 @@ class Filter(FilterTemplate):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.all_change()
-
-    
-  
-
- 
