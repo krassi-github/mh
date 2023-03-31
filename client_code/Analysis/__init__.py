@@ -1,5 +1,6 @@
 from ._anvil_designer import AnalysisTemplate
 from anvil import *
+import plotly.graph_objects as go
 import anvil.server
 
 class Analysis(AnalysisTemplate):

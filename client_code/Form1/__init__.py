@@ -65,8 +65,11 @@ class Form1(Form1Template):
 
     tot = Data.green_cntr + Data.orange_cntr + Data.red_cntr
     self.lb_31.text = "        "
-    self.lb_33.text = "        "    
+    self.lb_31.background = Data.c_green
+    self.lb_33.text = "        "
+    self.lb_33.background = Data.c_orange
     self.lb_35.text = "        "
+    self.lb_35.background = Data.c_red
     self.lb_32.text = str(round(100*Data.green_cntr/tot)) + "%"
     self.lb_34.text = str(round(100*Data.orange_cntr/tot)) + "%"
     self.lb_36.text = str(round(100*Data.red_cntr/tot)) + "%"
