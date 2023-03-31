@@ -62,15 +62,15 @@ class Form1(Form1Template):
       self.lb_24.text = ''
       self.lb_25.text = ''
       self.lb_26.text = ''
-    '''  
-    self.lb_31.text = Data.bp_list[-1]["date"]
-    self.lb_32.text = Data.bp_list[-1]["sys"]
-    self.lb_33.text = Data.bp_list[-1]["dia"]
-    self.lb_34.text = Data.bp_list[-1]["pul"]
-    self.lb_35.text = Data.bp_list[-1]["mean"]
-    self.lb_36.text = Data.bp_list[-1]["afib"]
-    self.lb_36.foreground = "red"
-    '''
+
+    tot = Data.green_cntr + Data.orange_cntr + Data.red_cntr
+    self.lb_31.text = "        "
+    self.lb_33.text = "        "    
+    self.lb_35.text = "        "
+    self.lb_32.text = str(round(100*Data.green_cntr/tot)) + "%"
+    self.lb_34.text = str(round(100*Data.orange_cntr/tot)) + "%"
+    self.lb_36.text = str(round(100*Data.red_cntr/tot)) + "%"
+
     
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range 
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)

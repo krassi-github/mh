@@ -110,7 +110,7 @@ components:
       layout_properties: {grid_position: 'XTKGAB,FDPAON'}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 20, font: '', spacing_above: large, icon_align: left,
+        visible: true, text: '', font_size: 20, font: '', spacing_above: medium, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_21
@@ -139,17 +139,73 @@ components:
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: true, underline: false,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_25
       layout_properties: {grid_position: 'SLLSPA,WEEEPH', full_width_row: false}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: '', font_size: 48, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: true, underline: false,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: lb_26
       layout_properties: {grid_position: 'SLLSPA,TIWABF', full_width_row: false}
+    - type: FlowPanel
+      properties: {role: null, spacing: large, align: left, tooltip: '', border: '',
+        foreground: '', visible: true, spacing_above: small, spacing_below: small,
+        background: ''}
+      name: flow_panel_2
+      layout_properties: {grid_position: 'RDLPAX,GNMZDI'}
+      components:
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: статистика, font_size: 20, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: lb_30
+        layout_properties: {}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '        ', font_size: 25, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: lightgreen,
+          bold: false, underline: false, icon: ''}
+        name: lb_31
+        layout_properties: {}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: 77%, font_size: 43, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: lb_32
+        layout_properties: {}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '        ', font_size: 25, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: orange,
+          bold: false, underline: false, icon: ''}
+        name: lb_33
+        layout_properties: {}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: 12%, font_size: 43, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: lb_34
+        layout_properties: {}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '        ', font_size: 25, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: 'rgba(255,
+            0, 0, 1.0)', bold: false, underline: false, icon: ''}
+        name: lb_35
+        layout_properties: {}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: 11%, font_size: 43, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: lb_36
+        layout_properties: {}
     - type: Plot
       properties: {spacing_above: none, spacing_below: none, height: 450, visible: true,
         tooltip: '', interactive: true}

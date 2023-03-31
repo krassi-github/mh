@@ -46,7 +46,6 @@ current_range = ''
 loaded_from = ""
 loaded_to = ""
 
-# bp_dat = []
 bp_date = []
 bp_sys = []
 bp_dia = []
@@ -59,6 +58,9 @@ bp_list = []    # main data list [][]
 bp_summary = []
 x_data = []
 y_values = []
+red_cntr = 0
+orange_cntr = 0
+green_cntr = 0
 
 
 def load_params():
@@ -143,6 +145,10 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global zt_beg           # beg of time zone
   global zt_end           # end of time zone
 
+  global red_cntr
+  global orange_cntr
+  global green_cntr
+
   # Retreive data from DB
   if zt_beg == "00:00" and zt_end == "00:00":
     zb = None
@@ -172,11 +178,14 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
         bp_dia.append(y_values[i][3])        
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
         if y_values[i][2] >= params["red_sys"] or y_values[i][3] >= params["red_dia"]:
-          bp_colors.append(c_red)        
+          bp_colors.append(c_red)
+          red_cntr += 1
         elif y_values[i][2] >= params["orange_sys"] or y_values[i][3] >= params["orange_dia"]:
           bp_colors.append(c_orange)
+          orange_cntr += 1
         else:
           bp_colors.append(c_green)
+          green_cntr += 1
         
         if y_values[i][5]:
           bp_mean.append(y_values[i][5])
