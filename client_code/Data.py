@@ -17,6 +17,10 @@ params = {}
 ('red_dia', "diastolic II threshold", 90),
 ('red_mean', "mean pressure threshold", 100)'''
 
+c_red = "rgba(255,0,0, 0.8)"
+c_orange = "rgba(245,195,39, 1.0)"
+c_green = "rgba(0,255,0, 1.0)"
+
 sd_descr = {}     # values = [1] modules names
 sysdata = {}      # values = [2] text messages
 '''INSERT INTO SysData(key, descr, value) values
@@ -168,11 +172,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
         bp_dia.append(y_values[i][3])        
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
         if y_values[i][2] >= params["red_sys"] or y_values[i][3] >= params["red_dia"]:
-          bp_colors.append("rgba(255,0,0, 0.8)")        
+          bp_colors.append(c_red)        
         elif y_values[i][2] >= params["orange_sys"] or y_values[i][3] >= params["orange_dia"]:
-          bp_colors.append("rgba(245,195,39, 1.0)")
+          bp_colors.append(c_orange)
         else:
-          bp_colors.append("rgba(0,255,0, 1.0)")
+          bp_colors.append(c_green)
         
         if y_values[i][5]:
           bp_mean.append(y_values[i][5])
