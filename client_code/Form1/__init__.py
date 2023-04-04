@@ -124,7 +124,7 @@ class Form1(Form1Template):
         go.Bar(
           name="BP-D",
           x=on_x,    # 10-02-2023  x_data
-          y=Data.bp_dia,
+          y=Data.bp_dia,      # , bp_list[2] it works
           offsetgroup=0,
           marker = dict(color = "rgba(10, 10, 10, 0.05)", )
         ),
