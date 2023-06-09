@@ -9,6 +9,7 @@ class RowTemplate1(RowTemplate1Template):
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.link_1.tag = self.lb_1.text
     self.row_spacing = 0
     if int(self.lb_2.text) >= Data.params["red_sys"]:
       self.lb_2.foreground = "red"
@@ -52,10 +53,13 @@ class RowTemplate1(RowTemplate1Template):
 
   def link_1_click(self, **event_args):
     args = []
-    for i, ea enumerate(event_args):
+    args_cont = []
+    for i, ea in enumerate(event_args):
       args.append(ea)
+      #print(f"{event_args[0], event_args[1], event_args[2]}")
+      #args_cont.append(event_args[i])
       
-    alert(content=f"Here's event_args= {event_args}\\n ea_List= {args}; \\n event_args", large=True)
+    alert(content=f"Here's event_args= {event_args}\\n ea_List= {args}; \\n event_args= {args_cont}", large=True)
 
       
 
