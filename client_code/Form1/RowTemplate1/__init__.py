@@ -51,7 +51,11 @@ class RowTemplate1(RowTemplate1Template):
   '''
 
   def link_1_click(self, **event_args):
-    alert("Here's the link")
+    args = []
+    for i, ea enumerate(event_args):
+      args.append(ea)
+      
+    alert(content=f"Here's event_args= {event_args}\\n ea_List= {args}; \\n event_args", large=True)
 
       
 
