@@ -52,15 +52,4 @@ class RowTemplate1(RowTemplate1Template):
   '''
 
   def link_1_click(self, **event_args):
-    args = []
-    args_cont = []
-    for i, ea in enumerate(event_args):
-      args.append(ea)
-      print(f"Link_TAG= {self.link_1.tag}")
-      #print(f"{event_args[0], event_args[1], event_args[2]}")
-      #args_cont.append(event_args[i])
-      
-    alert(content=f"Here's event_args= {event_args}\\n ea_List= {args}; \\n event_args= {args_cont}", large=True)
-
-      
-
+    alert(content=f"Here's the row_date= {self.link_1.tag}", large=True)
