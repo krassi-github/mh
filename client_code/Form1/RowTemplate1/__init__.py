@@ -49,5 +49,9 @@ class RowTemplate1(RowTemplate1Template):
         self.lb_5.background = "rgba(69,183,249,0.1)"
         self.lb_6.background = "rgba(69,183,249,0.1)"
   '''
+
+  def link_1_click(self, **event_args):
+    alert("Here's the link")
+
       
 
