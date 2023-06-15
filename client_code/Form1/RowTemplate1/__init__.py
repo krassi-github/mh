@@ -52,9 +52,13 @@ class RowTemplate1(RowTemplate1Template):
   '''
 
   def link_1_click(self, **event_args):
+    afib_print = []
+    
     afibs = Data.afib_details(self.link_1.tag)
-    if not self.link_1.tag:
-      #alert(content=f"Here's the r= {self.link_1.tag}")
-      pass 
-      
-    alert(content=f"{self.link_1.tag} afibs", large=True)
+    print(type(afibs))
+    if type(afibs) == 'str':
+      afib_print = afibs
+    else:
+      for a in afibs:
+        afib_print.append(f"{str(a)}\\n")      
+    alert(content=f"{self.link_1.tag}\\n {afib_print}", large=True)

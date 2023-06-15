@@ -240,9 +240,11 @@ def afib_details(row_date):
       a = b['afib']
       if a:
         afib_value = int(a[:-2])
-        afibs = anvil.server.call("get_afibs", row_date)
+        r, afibs = anvil.server.call("get_afibs", row_date, afib_value)
       else:
+        r = 0
         afibs = "No AFIB at this row"
-
-
-
+  if not r:
+    return(afibs)
+  else:
+    return(f"DB issue {r}")
