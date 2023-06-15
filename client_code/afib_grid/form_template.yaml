@@ -1,0 +1,37 @@
+container: {type: ColumnPanel}
+components:
+- type: DataGrid
+  properties:
+    role: tonal-data-grid
+    columns:
+    - {id: LAVQQZ, title: date, data_key: '', $$hashKey: 'object:165558', width: '100',
+      expand: true}
+    - {id: APQHOG, title: SYS, data_key: '', $$hashKey: 'object:165559', width: '',
+      expand: false}
+    - {id: GCJKIU, title: DIA, data_key: '', $$hashKey: 'object:165560'}
+    - {id: VZPVKB, title: PUL, data_key: '', $$hashKey: 'object:165601'}
+    - {id: XTQSTS, title: MEAN, data_key: mean, $$hashKey: 'object:165603'}
+    auto_header: true
+    tooltip: ''
+    border: ''
+    foreground: ''
+    rows_per_page: 20
+    visible: true
+    wrap_on: never
+    show_page_controls: true
+    spacing_above: small
+    spacing_below: small
+    background: ''
+  name: data_grid_1
+  layout_properties:
+    col_widths: {}
+    grid_position: OCNUOL,GCTNAD
+  components:
+  - type: RepeatingPanel
+    properties: {role: 0height, tooltip: '', border: '', foreground: '', items: null,
+      visible: true, spacing_above: none, spacing_below: none, item_template: Form1.RowTemplate1,
+      background: ''}
+    name: repeating_panel_1
+    layout_properties: {}
+is_package: true
+custom_component: true

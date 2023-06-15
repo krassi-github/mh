@@ -2,6 +2,7 @@ from ._anvil_designer import RowTemplate1Template
 from anvil import *
 import anvil.server
 from .. import Data
+from ... import afib_grid
 
 r = 0
 class RowTemplate1(RowTemplate1Template):
@@ -60,4 +61,5 @@ class RowTemplate1(RowTemplate1Template):
     else:
       for a in afibs:
         afib_print += (f"{str(a)}\n")      
-    alert(content=f"{self.link_1.tag}\n{afib_print}", large=True)
+    alert(content=afib_grid, large=True, title="AFIB Details")
+    #alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
