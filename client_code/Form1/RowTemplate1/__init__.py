@@ -54,12 +54,10 @@ class RowTemplate1(RowTemplate1Template):
   def link_1_click(self, **event_args):
     afib_print = ""
     
-    afibs = Data.afib_details(self.link_1.tag)
-    print(type(afibs))
+    afibs = Data.afib_details(self.link_1.tag)   
     if type(afibs) == type("str"):
-      print("IS STRING")
       afib_print = str(afibs)
     else:
       for a in afibs:
         afib_print += (f"{str(a)}\n")      
-    alert(content=f"{self.link_1.tag}\n {afib_print}", large=True)
+    alert(content=f"{self.link_1.tag}\n{afib_print}", large=True)
