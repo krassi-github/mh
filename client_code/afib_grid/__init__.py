@@ -1,6 +1,7 @@
 from ._anvil_designer import afib_gridTemplate
 from anvil import *
 import anvil.server
+from .. import Data
 
 class afib_grid(afib_gridTemplate):
   def __init__(self, **properties):
