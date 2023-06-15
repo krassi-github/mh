@@ -56,7 +56,7 @@ class RowTemplate1(RowTemplate1Template):
     
     afibs = Data.afib_details(self.link_1.tag)
     print(type(afibs))
-    if type(afibs) == "<class 'str'>":
+    if type(afibs) == type("str"):
       print("IS STRING")
       afib_print = str(afibs)
     else:
