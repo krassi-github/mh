@@ -56,6 +56,7 @@ bp_n = []
 bp_colors = []
 bp_list = []    # main data list [][]
 bp_summary = []
+afibs = []
 x_data = []
 y_values = []
 red_cntr = 0
@@ -233,7 +234,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
 
 def afib_details(row_date):
   global bp_list
-  afibs = []
+  global afibs
 
   for b in bp_list:
     if b['date'] == row_date:

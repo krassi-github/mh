@@ -10,8 +10,7 @@ components:
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: lb_1
   layout_properties: {column: LAVQQZ}
-  data_bindings:
-  - {property: text, code: 'self.item["date"]'}
+  data_bindings: []
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: 20, font: '', spacing_above: none, icon_align: left,
@@ -19,8 +18,7 @@ components:
     icon: ''}
   name: lb_2
   layout_properties: {column: APQHOG}
-  data_bindings:
-  - {property: text, code: 'self.item[''sys'']'}
+  data_bindings: []
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: 20, font: '', spacing_above: none, icon_align: left,
@@ -28,8 +26,7 @@ components:
     icon: ''}
   name: lb_3
   layout_properties: {column: GCJKIU}
-  data_bindings:
-  - {property: text, code: 'self.item[''dia'']'}
+  data_bindings: []
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: 20, font: '', spacing_above: none, icon_align: left,
@@ -37,8 +34,7 @@ components:
     icon: ''}
   name: lb_4
   layout_properties: {column: VZPVKB}
-  data_bindings:
-  - {property: text, code: 'self.item[''pul'']'}
+  data_bindings: []
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: 20, font: '', spacing_above: none, icon_align: left,
@@ -46,24 +42,5 @@ components:
     icon: ''}
   name: lb_5
   layout_properties: {column: XTQSTS}
-  data_bindings:
-  - {property: text, code: 'self.item[''mean'']'}
-- type: Link
-  properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: none,
-    spacing_above: small, icon_align: left, col_widths: '{}', spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: link_1
-  layout_properties: {column: MDFTDB}
-  event_bindings: {click: link_1_click}
-  components:
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: '  ', font_size: 20, font: '', spacing_above: none, icon_align: left,
-      spacing_below: none, italic: false, background: '', bold: true, underline: false,
-      icon: ''}
-    name: lb_6
-    layout_properties: {column: MDFTDB, grid_position: 'FFNDIU,MDANAH'}
-    data_bindings:
-    - {property: text, code: 'self.item[''afib'']'}
+  data_bindings: []
 is_package: true
