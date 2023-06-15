@@ -6,7 +6,7 @@ components:
   properties:
     role: null
     columns:
-    - {id: KRPNBN, title: Date, data_key: date, width: 170, expand: false, $$hashKey: 'object:16285'}
+    - {id: KRPNBN, title: Date, data_key: date, width: '', expand: false, $$hashKey: 'object:16285'}
     - {id: ZCJQTX, title: SYS, data_key: sys, $$hashKey: 'object:16286'}
     - {id: HXGXZT, title: DIA, data_key: dia, $$hashKey: 'object:16287'}
     - {id: XRPENA, title: PUL, data_key: pul, $$hashKey: 'object:16325'}

@@ -4,6 +4,7 @@ from anvil import *
 import anvil.server
 import plotly.graph_objects as go
 from .. import Data
+from ..afibs_g import afibs_g
 
 def error_handler(err):
   alert(str(err), title="An issue has occurred")

@@ -8,5 +8,5 @@ class RowTemplate2(RowTemplate2Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run before the form opens.
-    print("RowTemplate2 __init__()")
+
+    
