@@ -229,3 +229,20 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
         bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
   return(r)
+
+
+def afib_details(row_date):
+  global bp_list
+  afibs = []
+
+  for b in bp_list:
+    if b['date'] == row_date:
+      a = b['afib']
+      if a:
+        afib_value = int(a[:-2])
+        afibs = anvil.server.call("get_afibs", row_date)
+      else:
+        afibs = "No AFIB at this row"
+
+
+

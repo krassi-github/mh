@@ -52,4 +52,9 @@ class RowTemplate1(RowTemplate1Template):
   '''
 
   def link_1_click(self, **event_args):
-    alert(content=f"Here's the row_date= {self.link_1.tag}", large=True)
+    afibs = Data.afib_details(self.link_1.tag)
+    if not self.link_1.tag:
+      #alert(content=f"Here's the r= {self.link_1.tag}")
+      pass 
+      
+    alert(content=f"{self.link_1.tag} afibs", large=True)
