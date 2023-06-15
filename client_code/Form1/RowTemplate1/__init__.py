@@ -2,7 +2,7 @@ from ._anvil_designer import RowTemplate1Template
 from anvil import *
 import anvil.server
 from .. import Data
-from ...afibs_g import afibs()
+from ... import afibs_g 
 
 r = 0
 class RowTemplate1(RowTemplate1Template):
@@ -61,6 +61,6 @@ class RowTemplate1(RowTemplate1Template):
     else:
       for a in afibs:
         afib_print += (f"{str(a)}\n")
-    modal = afibs_g.afibs()
-    alert(modal, large=True)
+    #modal = afibs_g.__init__("pop_up")    #.__init__("pop_up")
+    alert(afibs_g.__init__("pop_up"), large=True)
     # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True)

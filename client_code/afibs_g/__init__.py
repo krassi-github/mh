@@ -10,3 +10,4 @@ class afibs_g(afibs_gTemplate):
 
     # Any code you write here will run before the form opens.
     self.repeating_panel_1.items = Data.afibs
+    print("afibs_g __init__()")
