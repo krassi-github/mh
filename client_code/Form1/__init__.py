@@ -31,6 +31,7 @@ class Form1(Form1Template):
         r.background = "rgba(69,183,249,0.2)"  #'theme:Gray 200'     
 
   def show_summary(self):
+    tot = 0
     if Data.bp_summary:
       self.lb_21.text = Data.bp_summary[0]["date"][:10]
       self.lb_22.text = Data.bp_summary[0]["sys"]
@@ -65,6 +66,10 @@ class Form1(Form1Template):
       self.lb_26.text = ''
 
     tot = Data.green_cntr + Data.orange_cntr + Data.red_cntr
+    if not tot:
+      print(f"from Forms1.show_summary() {Data.bp_summary}")
+      tot = 1
+
     self.lb_31.text = "        "
     self.lb_31.background = Data.c_green
     self.lb_33.text = "        "
@@ -120,45 +125,50 @@ class Form1(Form1Template):
       on_x = Data.x_data
     else:
       on_x = Data.bp_date
-    fig = go.Figure(
-      data=[
-        go.Bar(
-          name="BP-D",
-          x=on_x,    # 10-02-2023  x_data
-          y=Data.bp_dia,      # , bp_list[2] it works
-          offsetgroup=0,
-          marker = dict(color = "rgba(10, 10, 10, 0.05)", )
-        ),
-        go.Bar(
-          name="BP-S",
-          x=on_x,    # 10-02-2023  x_data
-          y=Data.bp_sys_add,
-          offsetgroup=0,
-          base = Data.bp_dia,          
-          marker = dict(color=Data.bp_colors, )
-        ),
-        go.Scatter(
-          name="BP-M",
-          x=on_x,    # 10-02-2023  x_data
-          y=Data.bp_mean,
-          marker = dict(color = "rgba(0, 0, 200, 0.9)", )
-        ) 
-      ],                
-      layout=go.Layout(       
-        title="Артериално налягане",        
-        yaxis=dict(range=[60, max(Data.bp_sys)], title="BP mm/Hg"),
-        showlegend=False,
-        # xaxis=dict(title="Време"),
-         # expand the graphs
-        margin=dict(
-            l=50, #left margin
-            r=50, #right margin
-            # b=50, #bottom margin
-            t=50, #top margin
-        ),
+
+    if len(Data.bp_list) and len(Data.bp_mean):
+      fig = go.Figure(
+        data=[
+          go.Bar(
+            name="BP-D",
+            x=on_x,    # 10-02-2023  x_data
+            y=Data.bp_dia,      # , bp_list[2] it works
+            offsetgroup=0,
+            marker = dict(color = "rgba(10, 10, 10, 0.05)", )
+          ),
+          go.Bar(
+            name="BP-S",
+            x=on_x,    # 10-02-2023  x_data
+            y=Data.bp_sys_add,
+            offsetgroup=0,
+            base = Data.bp_dia,          
+            marker = dict(color=Data.bp_colors, )
+          ),
+          go.Scatter(
+            name="BP-M",
+            x=on_x,    # 10-02-2023  x_data
+            y=Data.bp_mean,
+            marker = dict(color = "rgba(0, 0, 200, 0.9)", )
+          ) 
+        ],                
+        layout=go.Layout(       
+          title="Артериално налягане",        
+          yaxis=dict(range=[60, max(Data.bp_sys)], title="BP mm/Hg"),
+          showlegend=False,
+          # xaxis=dict(title="Време"),
+          # expand the graphs
+          margin=dict(
+              l=50, #left margin
+              r=50, #right margin
+              # b=50, #bottom margin
+              t=50, #top margin
+          ),
+        )
       )
-    )
-    self.plot_1.figure = fig
+      self.plot_1.figure = fig
+      self.plot_1.visible = True
+    else:
+      self.plot_1.visible = False    # NO data to plot
   
 
     
