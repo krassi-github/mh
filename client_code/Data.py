@@ -2,6 +2,7 @@ import anvil.server
 import datetime
 #    from . import Module1
 all = True    # all - including records without values (measurements)
+#              ijitialized (to False) in __init__() of Filter
 params = {}
 '''INSERT INTO Params(key, descr, value1) values
 ('day1', "fixed ranges start on first day", 1),
