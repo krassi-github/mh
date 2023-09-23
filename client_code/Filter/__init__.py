@@ -8,6 +8,7 @@ class Filter(FilterTemplate):
   
   def __init__(self, **properties):
     self.init_components(**properties)
+    # Data initializing (because this code runs first)
     p = Data.load_params()
     if p:
       self.msg.text += f" load_params= {p}"
