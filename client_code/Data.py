@@ -205,7 +205,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
     # 20-06-2023
     #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
-    
+
+  print(f"set_bp_list() ==> loaded_from {loaded_from}   loaded_to {loaded_to}")
   return(r)
   
 

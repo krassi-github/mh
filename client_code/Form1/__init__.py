@@ -81,7 +81,8 @@ class Form1(Form1Template):
     self.lb_36.text = str(round(100*Data.red_cntr/tot)) + "%"
 
     
-  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range 
+  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range
+    print(f"render_data() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}, Tb {Tb} Te {Te}")
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r:
       self.label_2.text += f"  set_bp_list= {r}"
