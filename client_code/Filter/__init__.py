@@ -84,13 +84,6 @@ class Filter(FilterTemplate):
   def m3_clicked(self, **event_args):
     self.show_range("1001", 'm3')
 
-  def all_change(self, **event_args):
-    Tb = Te = None
-    Data.all = self.all.checked
-    if Data.current_range == 'r':
-      Tb=Data.loaded_from        #time_from
-      Te=Data.loaded_to          # time_to
-    self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
   # Range time_frame  -------------------------------------------------------------------------- 
   def t_from_change(self, **event_args):
@@ -104,6 +97,14 @@ class Filter(FilterTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
       
   # Standard/Custome zone ---------------------------------------------------------------------
+  def all_change(self, **event_args):
+    Tb = Te = None
+    Data.all = self.all.checked
+    if Data.current_range == 'r':
+      Tb=Data.loaded_from        #time_from
+      Te=Data.loaded_to          # time_to
+    self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
+
   def drop_down_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value

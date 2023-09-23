@@ -1,7 +1,7 @@
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"LAWTWX":35,"JCQVTI":40}',
+    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"WIHBNY":25,"JCQVTI":40}',
     spacing_below: small, background: ''}
   event_bindings: {}
 components:
@@ -9,7 +9,7 @@ components:
   properties: {role: null, spacing: tiny, align: left, tooltip: '', border: '', foreground: '',
     visible: true, spacing_above: none, spacing_below: none, background: ''}
   name: flow_panel_2
-  layout_properties: {grid_position: 'HGFGXB,NWXPOO'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ HGFGXB,NWXPOO'}
   components:
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
@@ -47,7 +47,7 @@ components:
   properties: {role: null, spacing: tiny, align: left, tooltip: '', border: '', foreground: '',
     visible: true, spacing_above: none, spacing_below: none, background: ''}
   name: flow_panel_1
-  layout_properties: {grid_position: 'OSHLVW,WIHBNY'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ OSHLVW,WIHBNY'}
   components:
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
@@ -57,25 +57,17 @@ components:
     name: r
     layout_properties: {grid_position: 'JJCFHV,IQWZLZ'}
     event_bindings: {clicked: r_clicked}
-- type: CheckBox
-  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: '',
-    allow_indeterminate: false, visible: true, text: ALL rows, font_size: null, font: '',
-    spacing_above: small, spacing_below: small, italic: false, background: '', bold: false,
-    checked: false, underline: false}
-  name: all
-  layout_properties: {grid_position: 'OSHLVW,LAWTWX'}
-  event_bindings: {change: all_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Time FROM - TO, font_size: null, font: '', spacing_above: none, icon_align: left,
     spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: t_from_to
-  layout_properties: {grid_position: 'NDJMBI,JCQVTI'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ NDJMBI,JCQVTI'}
 - type: LinearPanel
   properties: {}
   name: linear_panel_1
-  layout_properties: {grid_position: 'DEDTVD,TMPOUV'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ DEDTVD,TMPOUV'}
   components:
   - type: DatePicker
     properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
@@ -93,7 +85,7 @@ components:
     font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false,
     date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/%m/%d'}
   name: t_to
-  layout_properties: {grid_position: 'AXUESG,RIPMES'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ AXUESG,RIPMES'}
   data_bindings:
   - {property: date, code: 'self.item[''to_date'']', writeback: true}
   event_bindings: {change: t_to_change}
@@ -103,7 +95,7 @@ components:
     spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
   name: d_zone
-  layout_properties: {grid_position: 'LGBALO,RCTBGY'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ LGBALO,RCTBGY'}
 - type: DropDown
   properties:
     role: null
@@ -125,7 +117,7 @@ components:
     underline: false
     include_placeholder: false
   name: drop_down_1
-  layout_properties: {grid_position: 'GVBMFN,WWZEEE'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ GVBMFN,WWZEEE'}
   data_bindings: []
   event_bindings: {change: drop_down_1_change}
 - type: DropDown
@@ -149,13 +141,21 @@ components:
     underline: false
     include_placeholder: false
   name: drop_down_2
-  layout_properties: {grid_position: 'REPJDC,JFXTWE'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ REPJDC,JFXTWE'}
   event_bindings: {change: drop_down_2_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: msg
-  layout_properties: {grid_position: 'YIHNMT,WHMSIC'}
+  layout_properties: {grid_position: 'SKHQLQ,YLEIDZ YIHNMT,WHMSIC'}
+- type: CheckBox
+  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: '',
+    allow_indeterminate: false, visible: true, text: ALL rows, font_size: null, font: '',
+    spacing_above: small, spacing_below: small, italic: false, background: '', bold: false,
+    checked: false, underline: false}
+  name: all
+  layout_properties: {grid_position: 'SKHQLQ,YLNLBZ'}
+  event_bindings: {change: all_change}
 is_package: true
 custom_component: true
