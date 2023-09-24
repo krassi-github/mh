@@ -96,8 +96,9 @@ class Form1(Form1Template):
       pass    # UI message to be generated
     else:
       self.repeating_panel_1.items = Data.bp_list
-      self.s_from.text = Data.loaded_from #[:10]
-      self.s_to.text = "-     " + Data.loaded_to #[:10]
+      self.s_from.text = Data.loaded_from[:10]
+      self.s_to.text = "-     " + Data.loaded_to[:10]
+      self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
       self.show_summary()
       self.plot_1_show()
 
