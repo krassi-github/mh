@@ -8,6 +8,7 @@ class Filter(FilterTemplate):
   
   def __init__(self, **properties):
     self.init_components(**properties)
+    # Data initializing (because this code runs first)
     p = Data.load_params()
     if p:
       self.msg.text += f" load_params= {p}"
@@ -97,20 +98,26 @@ class Filter(FilterTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
       
   # Standard/Custome zone ---------------------------------------------------------------------
-  def all_change(self, **event_args):
-    Tb = Te = None
+  def zone_change(self, **event_args):
     Data.all = self.all.checked
+    '''
+    Tb = Te = None
     if Data.current_range == 'r':
       Tb=Data.loaded_from        #time_from
       Te=Data.loaded_to          # time_to
+      '''
+    Tb=Data.loaded_from        #time_from
+    Te=Data.loaded_to          # time_to
+    print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
+    
 
   def drop_down_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value
-    self.all_change()
+    self.zone_change()
 
   def drop_down_2_change(self, **event_args):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
-    self.all_change()
+    self.zone_change()

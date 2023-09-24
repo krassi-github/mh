@@ -23,7 +23,7 @@ class Form1(Form1Template):
     self.column_panel_2.row_spacing = 4
     self.flow_panel_2.border =  "border-bottom: 6px solid red"  # ""border-top-style: dotted"  # "solid"       #
     self.color_rows(self.repeating_panel_1)
-    self.render_data("1001", 'd')   
+    self.render_data("1001", 'd')
   
   def color_rows(self, rep):    
     for i, r in enumerate(rep.get_components()):
@@ -81,7 +81,7 @@ class Form1(Form1Template):
     self.lb_36.text = str(round(100*Data.red_cntr/tot)) + "%"
 
     
-  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range 
+  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range    
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r:
       self.label_2.text += f"  set_bp_list= {r}"
@@ -96,8 +96,9 @@ class Form1(Form1Template):
       pass    # UI message to be generated
     else:
       self.repeating_panel_1.items = Data.bp_list
-      self.s_from.text = Data.loaded_from #[:10]
-      self.s_to.text = "-     " + Data.loaded_to #[:10]
+      self.s_from.text = Data.loaded_from[:10]
+      self.s_to.text = "-     " + Data.loaded_to[:10]
+      self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
       self.show_summary()
       self.plot_1_show()
 

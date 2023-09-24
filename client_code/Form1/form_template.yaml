@@ -46,7 +46,7 @@ components:
         layout_properties: {width: 37.38890000000001}
         event_bindings: {click: b_dn_click}
       - type: Label
-        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        properties: {role: 0margine, align: left, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: null, font: '', spacing_above: small,
           icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
           underline: false, icon: ''}
@@ -65,6 +65,10 @@ components:
           icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: s_step
+        layout_properties: {}
+      - type: Label
+        properties: {}
+        name: s_tz
         layout_properties: {}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',

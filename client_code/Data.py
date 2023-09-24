@@ -2,6 +2,7 @@ import anvil.server
 import datetime
 #    from . import Module1
 all = True    # all - including records without values (measurements)
+#              initialized (to False) in __init__() of Filter
 params = {}
 '''INSERT INTO Params(key, descr, value1) values
 ('day1', "fixed ranges start on first day", 1),
@@ -34,9 +35,19 @@ zones = []
 ''' record per zone. elements:
 (type, key, beg, end)'''
 zone_items = []               # [("ALL", "s0"), ("08:00 - 16:00", "c1"),  ("16:00 - 24:00", 2), ("00:00 - 08:00", 3)]
+'''INSERT INTO Zones(type, key, beg, end) values as per 24-09-2023
+("standard", "s_0", "00:00", "00:00"),
+("standard", "s_1", "08:00", "16:00"),
+("standard", "s_2", "16:00", "23:59"),
+("standard", "s_3", "00:00", "08:00"),'''
 custom_zone_items = []
-current_zone = ''
-zt_beg = "08:00"
+'''
+("custom", "c_1", "08:00", "12:00"),
+("custom", "c_2", "11:00", "14:00"),
+("custom", "c_3", "12:00", "17:00"),
+("custom", "c_4", "17:00", "21:00")'''
+current_zone = ''   # current time_zone
+zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
 
 time_from = ""
@@ -46,20 +57,20 @@ current_range = ''
 loaded_from = ""
 loaded_to = ""
 
-bp_date = []
-bp_sys = []
-bp_dia = []
-bp_sys_add = []
-bp_pul = []
-bp_mean = []
+bp_date = []    # operational arrays: date
+bp_sys = []     # systolic
+bp_dia = []     # diastolic
+bp_sys_add = [] # additive for plotting systolic (over the diastolic)
+bp_pul = []     # puls
+bp_mean = []    # mean pressure
 bp_n = []
-bp_colors = []
-bp_list = []    # main data list [][]
-bp_summary = []
-afibs = []
-x_data = []
-y_values = []
-red_cntr = 0
+bp_colors = []   # collors
+bp_list = []     # main data list [][]
+bp_summary = []  # summary
+afibs = []       # afib events
+x_data = []      # time data (X axis)
+y_values = []    # blood pressure values
+red_cntr = 0     # color_counters (correspond to BP ranges)
 orange_cntr = 0
 green_cntr = 0
 
@@ -205,7 +216,6 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
     # 20-06-2023
     #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
-    
   return(r)
   
 
