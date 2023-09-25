@@ -2,10 +2,13 @@ container: {type: DataRowPanel}
 components:
 - type: Label
   properties: {}
-  name: 'No'
+  name: 'no'
   layout_properties: {column: CGASCB}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: 'theme:Primary Container', bold: false, underline: false,
+    icon: ''}
   name: s1
   layout_properties: {column: RDIIXA}
 - type: Label
@@ -13,7 +16,10 @@ components:
   name: s2
   layout_properties: {column: ZTCJOI}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: 'theme:Primary Container', bold: false, underline: false,
+    icon: ''}
   name: d1
   layout_properties: {column: KUYNOT}
 - type: Label
@@ -21,7 +27,10 @@ components:
   name: d2
   layout_properties: {column: FEIZWZ}
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: 'theme:Primary Container', bold: false, underline: false,
+    icon: ''}
   name: p1
   layout_properties: {column: EAWJTH}
 - type: Label

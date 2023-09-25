@@ -57,7 +57,7 @@ current_range = ''
 loaded_from = ""
 loaded_to = ""
 
-bp_date = []    # operational arrays: date
+bp_date = []    # operational arrays for plotting
 bp_sys = []     # systolic
 bp_dia = []     # diastolic
 bp_sys_add = [] # additive for plotting systolic (over the diastolic)
@@ -70,7 +70,8 @@ bp_summary = []  # summary
 afibs = []       # afib events
 x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
-red_cntr = 0     # color_counters (correspond to BP ranges)
+purple_cntr = 0  # color_counters (correspond to BP ranges)
+red_cntr = 0     
 orange_cntr = 0
 green_cntr = 0
 
@@ -162,7 +163,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global green_cntr
 
   # Retreive data from DB
-  if zt_beg == "00:00" and zt_end == "00:00":
+  if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
     ze = None
   else:
@@ -183,6 +184,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   green_cntr = 0
   orange_cntr = 0
   red_cntr = 0
+  purple_cntr = 0
   if not r:       
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        
