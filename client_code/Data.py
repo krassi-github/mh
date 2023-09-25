@@ -57,6 +57,7 @@ current_range = ''
 loaded_from = ""
 loaded_to = ""
 
+# Data set 1
 bp_date = []    # operational arrays for plotting
 bp_sys = []     # systolic
 bp_dia = []     # diastolic
@@ -75,6 +76,24 @@ red_cntr = 0
 orange_cntr = 0
 green_cntr = 0
 
+# Data Set 2
+bp_date2 = []    # operational arrays for plotting
+bp_sys2 = []     # systolic
+bp_dia2 = []     # diastolic
+bp_sys_add2 = [] # additive for plotting systolic (over the diastolic)
+bp_pul2 = []     # puls
+bp_mean2 = []    # mean pressure
+bp_n2 = []
+bp_colors2 = []   # collors
+bp_list2 = []     # main data list [][]
+bp_summary2 = []  # summary
+afibs2 = []       # afib events
+x_data2 = []      # time data (X axis)
+y_values2 = []    # blood pressure values
+purple_cntr2 = 0  # color_counters (correspond to BP ranges)
+red_cntr2 = 0     
+orange_cntr2 = 0
+green_cntr2 = 0
 
 def load_params():
   global params
@@ -157,7 +176,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global loaded_to        # loaded data time stamp TO
   global zt_beg           # beg of time zone
   global zt_end           # end of time zone
-
+  global purple_cntr
   global red_cntr
   global orange_cntr
   global green_cntr
@@ -220,7 +239,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
   return(r)
   
-
+# -------------------------------------------------------------------------------------------------------------------------------
 def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   global bp_summary
   global all
@@ -269,3 +288,24 @@ def afib_details(row_date):
     return(afibs)
   else:
     return(f"DB issue {r}")
+
+# ****************************************************************************************
+# Load Data for Comparison
+def comp_list(user, Tb1, Te1, Tb2, Te2, step):
+  global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
+  bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
+  orange_cntr, green_cntr
+  global bp_date2, bp_sys2, bp_dia2, bp_sys_add2, bp_pul2, bp_mean2, bp_n2, bp_colors2, bp_list2,\
+  bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2
+
+  bp_list2 = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
+  bp_date2 = []
+  bp_sys2 = []
+  bp_dia2 = []
+  bp_sys_add2 = []
+  bp_mean2 = []
+  bp_colors2 = []
+  green_cntr2 = 0
+  orange_cntr2 = 0
+  red_cntr2 = 0
+  purple_cntr2 = 0
