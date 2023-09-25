@@ -309,3 +309,4 @@ def comp_list(user, Tb1, Te1, Tb2, Te2, step):
   orange_cntr2 = 0
   red_cntr2 = 0
   purple_cntr2 = 0
+
