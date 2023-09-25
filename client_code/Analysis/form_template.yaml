@@ -9,13 +9,79 @@ components:
   layout_properties: {slot: default}
   components:
   - type: ColumnPanel
-    properties: {}
+    properties: {col_widths: '{}'}
     name: column_panel_2
-    layout_properties: {grid_position: 'DOXDCO,TVSOTF'}
+    layout_properties: {grid_position: 'DOXDCO,TVSOTF TKGTAE,WNXQLF'}
+    components:
+    - type: Label
+      properties: {}
+      name: label_1
+      layout_properties: {grid_position: 'XGUJVS,CBJBLF'}
   - type: ColumnPanel
-    properties: {}
+    properties: {col_widths: '{}'}
+    name: column_panel_4
+    layout_properties: {grid_position: 'DOXDCO,TVSOTF PVQIGH,ITZKUZ'}
+    components:
+    - type: DataGrid
+      properties:
+        columns:
+        - {id: KMJPWY, title: Column 1, data_key: column_1}
+        - {id: WZIVFJ, title: Column 2, data_key: column_2}
+        - {id: ASTDNJ, title: Column 3, data_key: column_3}
+      name: summary_data
+      layout_properties: {grid_position: 'BMFZKP,ZQTYRJ'}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate5}
+        name: repeating_panel_2
+        layout_properties: {}
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
     name: column_panel_3
-    layout_properties: {grid_position: 'DOXDCO,SUCTIE'}
+    layout_properties: {grid_position: 'DOXDCO,SUCTIE FQHZHA,AGFDCW'}
+    components:
+    - type: Label
+      properties: {}
+      name: label_2
+      layout_properties: {grid_position: 'IFWATQ,CWKLYO'}
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: column_panel_5
+    layout_properties: {grid_position: 'DOXDCO,SUCTIE MAABUC,MUVXZA'}
+    components:
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400'}
+        - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
+        - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
+        - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
+        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
+        - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
+        - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161'}
+        - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163'}
+        - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165'}
+        - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167'}
+        - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169'}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        background: ''
+      name: list_data
+      layout_properties: {grid_position: 'PVHTYH,NAJAKC'}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3}
+        name: repeating_panel_1
+        layout_properties: {}
   - type: FlowPanel
     properties: {}
     name: flow_panel_1
@@ -24,6 +90,76 @@ components:
     properties: {}
     name: plot_1
     layout_properties: {grid_position: 'RLETHD,WYYSNQ'}
+  - type: DataGrid
+    properties:
+      role: null
+      columns:
+      - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400'}
+      - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
+      - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
+      - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
+      - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
+      - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
+      - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161'}
+      - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163'}
+      - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165'}
+      - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167'}
+      - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: data_list_copy
+    layout_properties:
+      col_widths: {}
+      grid_position: JCRYCG,MKSROW
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3}
+      name: repeating_panel_1_copy
+      layout_properties: {}
+  - type: DataGrid
+    properties:
+      role: null
+      columns:
+      - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400'}
+      - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
+      - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
+      - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
+      - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
+      - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
+      - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161'}
+      - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163'}
+      - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165'}
+      - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167'}
+      - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: data_list_copy_2
+    layout_properties:
+      col_widths: {}
+      grid_position: GIZZVQ,OEPOYH
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3}
+      name: repeating_panel_1_copy_2
+      layout_properties: {}
 - type: FlowPanel
   properties: {}
   name: navbar_links

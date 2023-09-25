@@ -1,0 +1,47 @@
+container: {type: DataRowPanel}
+components:
+- type: Label
+  properties: {}
+  name: 'No'
+  layout_properties: {column: CGASCB}
+- type: Label
+  properties: {}
+  name: s1
+  layout_properties: {column: RDIIXA}
+- type: Label
+  properties: {}
+  name: s2
+  layout_properties: {column: ZTCJOI}
+- type: Label
+  properties: {}
+  name: d1
+  layout_properties: {column: KUYNOT}
+- type: Label
+  properties: {}
+  name: d2
+  layout_properties: {column: FEIZWZ}
+- type: Label
+  properties: {}
+  name: p1
+  layout_properties: {column: EAWJTH}
+- type: Label
+  properties: {}
+  name: p2
+  layout_properties: {column: QBWFPX}
+- type: Label
+  properties: {}
+  name: m1
+  layout_properties: {column: BCWXLU}
+- type: Label
+  properties: {}
+  name: m2
+  layout_properties: {column: VNTALA}
+- type: Label
+  properties: {}
+  name: a1
+  layout_properties: {column: MDFGRJ}
+- type: Label
+  properties: {}
+  name: a2
+  layout_properties: {column: ASAZCV}
+is_package: true
