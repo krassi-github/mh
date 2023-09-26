@@ -56,7 +56,10 @@ current_day = ""
 current_range = ''
 loaded_from = ""
 loaded_to = ""
+loaded_from2 = ""
+loaded_to2 = ""
 
+comp_list = []    #[{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
 # Data set 1
 bp_date = []    # operational arrays for plotting
 bp_sys = []     # systolic
@@ -294,14 +297,15 @@ def afib_details(row_date):
 # ****************************************************************************************
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
-def comp_list(str: object, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
+def set_comp_list(str: object, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr
   global bp_date2, bp_sys2, bp_dia2, bp_sys_add2, bp_pul2, bp_mean2, bp_n2, bp_colors2, bp_list2,\
-  bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2
+  bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2,\
+  loaded_from2, loaded_to2
 
-  bp_list2 = []      #[{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
+  bp_list2 = []      
   bp_date2 = []
   bp_sys2 = []
   bp_dia2 = []
@@ -312,12 +316,19 @@ def comp_list(str: object, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
   orange_cntr2 = 0
   red_cntr2 = 0
   purple_cntr2 = 0
-  
+
+  if zt_beg == "00:00" and zt_end == "23:59":
+    zb = None
+    ze = None
+  else:
+    zb = zt_beg
+    ze = zt_end
   Te1, Te2 = anvil.server.call("periods_calc", number, uom, Step, Tb1, Tb2 )
-
-  р = anvil.server.call("prep_plot", "1001", )
-
-    
+  
+  # prep data Block 2
+  р2, x_data, y_values = anvil.server.call("prep_plot", oject, Tb=Tb2, Te=Te2, Step=Step, t_beg=zb, zt_end=ze)
+  x_data2 = x_data
+  y_values2 = y_values
   bp_list2 = bp_list
   bp_date2 = bp_date
   bp_sys2 = bp_sys
@@ -329,4 +340,22 @@ def comp_list(str: object, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
   orange_cntr2 = orange_cntr
   red_cntr2 = red_cntr
   purple_cntr2 = purple_cntr
+  loaded_from2 = loaded_from
+  loaded_to2 = loaded_to
   
+  # prep Data Block 1
+  р1, x_data, y_values = anvil.server.call("prep_plot", oject, Tb=Tb1, Te=Te1, Step=Step, t_beg=zb, zt_end=ze)
+  if p2 or p1:
+    # Data prep error
+    m = f"set_comp_list() p2= {p2}  p1= {p1}"
+    mh_log(-901, m)
+    return(-901)
+
+  # Generate comp_list  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
+  for i in range(len(y_values)):      
+    if all or y_values[i][2]:    #        
+      comp_list.append({"no": y_values[i][1], "s1":y_values[i][2], "s2":y_values2[i][2], "d1":y_values[i][3],\
+                        "d2":y_values2[i][3], "p1":y_values[i][4], "p2":y_values2[i][4],"m1":y_values[i][5],\
+                        "m2":y_values2[i][5], "a1":y_values[i][6], "a2":y_values2[i][6]})        
+
+  return(0)
