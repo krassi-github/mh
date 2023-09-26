@@ -297,7 +297,7 @@ def afib_details(row_date):
 # ****************************************************************************************
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
-def set_comp_list(object: str, inumber: int, uom: str, Step: int, Tb1, Tb2) -> int:
+def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: str) -> int:
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr
@@ -316,6 +316,7 @@ def set_comp_list(object: str, inumber: int, uom: str, Step: int, Tb1, Tb2) -> i
   orange_cntr2 = 0
   red_cntr2 = 0
   purple_cntr2 = 0
+  p1 = 0; p2 = 0
 
   if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
@@ -326,7 +327,7 @@ def set_comp_list(object: str, inumber: int, uom: str, Step: int, Tb1, Tb2) -> i
   Te1, Te2 = anvil.server.call("periods_calc", number, uom, Step, Tb1, Tb2 )
   
   # prep data Block 2
-  р2, x_data, y_values = anvil.server.call("prep_plot", oject, Tb=Tb2, Te=Te2, Step=Step, t_beg=zb, zt_end=ze)
+  р2, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb2, Te=Te2, Step=Step, zt_beg=zb, zt_end=ze)
   x_data2 = x_data
   y_values2 = y_values
   bp_list2 = bp_list
@@ -344,7 +345,7 @@ def set_comp_list(object: str, inumber: int, uom: str, Step: int, Tb1, Tb2) -> i
   loaded_to2 = loaded_to
   
   # prep Data Block 1
-  р1, x_data, y_values = anvil.server.call("prep_plot", oject, Tb=Tb1, Te=Te1, Step=Step, t_beg=zb, zt_end=ze)
+  р1, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb1, Te=Te1, Step=Step, zt_beg=zb, zt_end=ze)
   if p2 or p1:
     # Data prep error
     m = f"set_comp_list() p2= {p2}  p1= {p1}"

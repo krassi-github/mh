@@ -7,6 +7,7 @@ from ... afibs_g import afibs_g
 r = 0
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
+    print("RowTemplate1 -----------------------------------")
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

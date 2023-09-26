@@ -11,6 +11,8 @@ components:
     icon: ''}
   name: s1
   layout_properties: {column: RDIIXA}
+  data_bindings:
+  - {property: text, code: 'self.item[''s1'']'}
 - type: Label
   properties: {}
   name: s2

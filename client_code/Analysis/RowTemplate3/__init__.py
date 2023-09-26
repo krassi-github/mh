@@ -3,14 +3,27 @@ from anvil import *
 import anvil.server
 from .. import Data
 from ... afibs_g import afibs_g
+import time
 
 r = 0
 class RowTemplate3(RowTemplate3Template):
   def __init__(self, **properties):
+    print("RowTemplate3 ///////////////////////////////////////")
+    print(f"RT_3 self.item= {self.item}  ")
+    self.s1.text = self.item['s1']
+    self.s2.text = self.item["s2"]
+    self.d1.text = self.item["d1"]
+    self.d2.text = self.item["d2"]
+    self.m1.text = self.item["m1"]
+    self.m2.text = self.item["m2"]
+
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
     self.row_spacing = 0
+
+    print(f"s1 label text= {self.s1.text}")
     # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
       self.s1.foreground = "red"
@@ -71,3 +84,5 @@ class RowTemplate3(RowTemplate3Template):
 
   def L2_click(self, **event_args):
     afib_print = ""
+
+
