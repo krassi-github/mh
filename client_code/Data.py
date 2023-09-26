@@ -66,7 +66,7 @@ bp_pul = []     # puls
 bp_mean = []    # mean pressure
 bp_n = []
 bp_colors = []   # collors
-bp_list = []     # main data list [][]
+bp_list = []     # main data list [{}]
 bp_summary = []  # summary
 afibs = []       # afib events
 x_data = []      # time data (X axis)
@@ -85,7 +85,8 @@ bp_pul2 = []     # puls
 bp_mean2 = []    # mean pressure
 bp_n2 = []
 bp_colors2 = []   # collors
-bp_list2 = []     # main data list [][]
+# data row [{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
+bp_list2 = []     # main data list [{}]
 bp_summary2 = []  # summary
 afibs2 = []       # afib events
 x_data2 = []      # time data (X axis)
@@ -158,7 +159,8 @@ def set_zone(zone):
       zt_end = i[3]   
 
 # *************************************************************************************    
-# Load data funcs  
+# Load data funcs
+# Data Block 1 filled
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
@@ -291,14 +293,15 @@ def afib_details(row_date):
 
 # ****************************************************************************************
 # Load Data for Comparison
-def comp_list(user, Tb1, Te1, Tb2, Te2, step):
+# Data Blocks 1 and 2 filled
+def comp_list(str: user_id, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr
   global bp_date2, bp_sys2, bp_dia2, bp_sys_add2, bp_pul2, bp_mean2, bp_n2, bp_colors2, bp_list2,\
   bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2
 
-  bp_list2 = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
+  bp_list2 = []      #[{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
   bp_date2 = []
   bp_sys2 = []
   bp_dia2 = []
@@ -310,3 +313,18 @@ def comp_list(user, Tb1, Te1, Tb2, Te2, step):
   red_cntr2 = 0
   purple_cntr2 = 0
 
+  р = anvil.server.call("prep_plot", "1001", )
+
+    
+  bp_list2 = bp_list
+  bp_date2 = bp_date
+  bp_sys2 = bp_sys
+  bp_dia2 = bp_dia
+  bp_sys_add2 = bp_sys_add
+  bp_mean2 = bp_mean
+  bp_colors2 = bp_colors
+  green_cntr2 = green_cntr
+  orange_cntr2 = orange_cntr
+  red_cntr2 = red_cntr
+  purple_cntr2 = purple_cntr
+  
