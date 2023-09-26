@@ -46,25 +46,17 @@ class RowTemplate3(RowTemplate3Template):
   def color_rows(self):
     #print(self.get_components())
     #return()
-    self.lb_1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
-    self.lb_2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_3.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_4.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_5.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_6.background = "rgba(0, 0, 0, 0.0)"            #"rgba(69,183,249,0.1)"
-
-  '''
-  def color_rows(self):
-    print(self.get_components())
-    for i, r in enumerate(self.get_components()):
-      if not i%2:
-        self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
-        self.lb_2.background = "rgba(69,183,249,0.1)"
-        self.lb_3.background = "rgba(69,183,249,0.1)"
-        self.lb_4.background = "rgba(69,183,249,0.1)"
-        self.lb_5.background = "rgba(69,183,249,0.1)"
-        self.lb_6.background = "rgba(69,183,249,0.1)"
-  '''
+    self.no.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
+    self.s1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.s2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.d1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.d2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.p1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
+    self.p2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.m1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.m2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.a1.background = "rgba(0, 0, 0, 0.0)"            #"rg
+    self.a2.background = "rgba(0, 0, 0, 0.0)" 
 
   def link_1_click(self, **event_args):
     afib_print = ""
