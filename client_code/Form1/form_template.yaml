@@ -281,6 +281,7 @@ components:
       underline: false, icon: ''}
     name: button_1
     layout_properties: {grid_position: 'VONSXA,WHAFCH'}
+    event_bindings: {click: button_1_click}
   - type: form:Filter
     properties: {}
     name: filter_1

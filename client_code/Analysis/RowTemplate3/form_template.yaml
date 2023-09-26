@@ -45,20 +45,24 @@ components:
   properties: {}
   name: m2
   layout_properties: {column: VNTALA}
-- type: Label
-  properties: {}
-  name: a1
-  layout_properties: {column: MDFGRJ}
 - type: Link
-  properties: {}
+  properties: {col_widths: '{}'}
   name: L1
   layout_properties: {column: MDFGRJ}
-- type: Label
-  properties: {}
-  name: a2
-  layout_properties: {column: ASAZCV}
+  components:
+  - type: Label
+    properties: {}
+    name: a1
+    layout_properties: {column: MDFGRJ, grid_position: 'VACVTG,SEOWAR'}
+  event_bindings: {click: L1_click}
 - type: Link
-  properties: {}
+  properties: {col_widths: '{}'}
   name: L2
   layout_properties: {column: ASAZCV}
+  components:
+  - type: Label
+    properties: {}
+    name: a2
+    layout_properties: {column: ASAZCV, grid_position: 'SKCQKE,IOIZXK'}
+  event_bindings: {click: L2_click}
 is_package: true

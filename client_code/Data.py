@@ -297,7 +297,7 @@ def afib_details(row_date):
 # ****************************************************************************************
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
-def set_comp_list(str: object, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
+def set_comp_list(object: str, inumber: int, uom: str, Step: int, Tb1, Tb2) -> int:
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr

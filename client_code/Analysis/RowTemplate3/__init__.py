@@ -58,7 +58,7 @@ class RowTemplate3(RowTemplate3Template):
     self.a1.background = "rgba(0, 0, 0, 0.0)"            #"rg
     self.a2.background = "rgba(0, 0, 0, 0.0)" 
 
-  def link_1_click(self, **event_args):
+  def L1_click(self, **event_args):
     afib_print = ""
     
     afibs = Data.afib_details(self.link_1.tag)   
@@ -69,3 +69,5 @@ class RowTemplate3(RowTemplate3Template):
       alert(afibs_g(), large=True, title="AFIB Details")
       # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
 
+  def L2_click(self, **event_args):
+    afib_print = ""
