@@ -5,15 +5,6 @@ components:
   name: 'no'
   layout_properties: {column: CGASCB}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: 'theme:Primary Container', bold: false, underline: false,
-    icon: ''}
-  name: s1
-  layout_properties: {column: RDIIXA}
-  data_bindings:
-  - {property: text, code: 'self.item[''s1'']'}
-- type: Label
   properties: {}
   name: s2
   layout_properties: {column: ZTCJOI}
