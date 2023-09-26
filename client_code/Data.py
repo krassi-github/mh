@@ -294,7 +294,7 @@ def afib_details(row_date):
 # ****************************************************************************************
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
-def comp_list(str: user_id, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
+def comp_list(str: object, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr
@@ -312,6 +312,8 @@ def comp_list(str: user_id, int: number, str: uom, str: Step, Tb1, Tb2) -> int:
   orange_cntr2 = 0
   red_cntr2 = 0
   purple_cntr2 = 0
+  
+  Te1, Te2 = anvil.server.call("periods_calc", number, uom, Step, Tb1, Tb2 )
 
   р = anvil.server.call("prep_plot", "1001", )
 
