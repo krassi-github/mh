@@ -58,4 +58,8 @@ components:
     name: a2
     layout_properties: {column: ASAZCV, grid_position: 'SKCQKE,IOIZXK'}
   event_bindings: {click: L2_click}
+- type: Label
+  properties: {}
+  name: s1
+  layout_properties: {column: RDIIXA}
 is_package: true
