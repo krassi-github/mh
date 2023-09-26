@@ -49,8 +49,16 @@ components:
   properties: {}
   name: a1
   layout_properties: {column: MDFGRJ}
+- type: Link
+  properties: {}
+  name: L1
+  layout_properties: {column: MDFGRJ}
 - type: Label
   properties: {}
   name: a2
+  layout_properties: {column: ASAZCV}
+- type: Link
+  properties: {}
+  name: L2
   layout_properties: {column: ASAZCV}
 is_package: true
