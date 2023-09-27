@@ -372,8 +372,8 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
 
 # ----------------------------------------------------------------------------------------------
 def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: str) -> int:
-  global comp_summary, bp_summary, bp_summary2
-  global all
+  global comp_summary, bp_summary, bp_summary2, bp_sys, bp_dia, bp_pul, bp_mean, bp_afib
+  global all, bp_sys2, bp_dia2, bp_pul2, bp_mean2, bp_afib2
   global zt_beg  # beg of time zone
   global zt_end  # end of time zone
   x_data = []
@@ -430,4 +430,45 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
       comp_summary.append({"no": "Average", "s1":bp_summary[i]["sys"], "s2":bp_summary2[i]["sys"], "d1":bp_summary[i]["dia"],
                         "d2":bp_summary2[i]["dia"], "p1":bp_summary[i]["pul"], "p2":bp_summary2[i]["pul"],"m1":bp_summary[i]["mean"],
                         "m2":bp_summary2[i]["mean"], "a1":bp_summary[i]["afib"], "a2":bp_summary2[i]["afib"]})
+
+  
+  # MAX row
+  p2 = set_bp_list(object, Tb=Tb2, Te=Te2, Step=Step)
+  x_data2 = x_data
+  y_values2 = y_values
+  bp_list2 = bp_list
+  bp_date2 = bp_date
+  bp_sys2 = bp_sys
+  bp_dia2 = bp_dia
+  bp_mean2 = bp_mean
+  p1 = set_bp_list(object, Tb=Tb1, Te=Te1, Step=Step)
+  if p2 or p1:
+    # Data prep error
+    m = f"set_comp_summary() p2= {p2}  p1= {p1}"
+    anvil.server.call("mh_log", -903, m)
+    return (-903)
+
+  max_row = {"no":"MAX", "s1": None, "s2": None, "d1": None, "d2": None, 
+             "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}
+  max_row["s1"] = max(bp_sys); max_row["s2"] = max(bp_sys2)
+  max_row["d1"] = max(bp_dia); max_row["d2"] = max(bp_dia2)
+  max_row["p1"] = max(bp_pul); 
+  max_row["p2"] = max(bp_pul2)
+  max_row["m1"] = max(bp_mean); max_row["m2"] = max(bp_mean2)
+  max_row["a1"] = max(bp_afib); max_row["a2"] = max(bp_afib2)
+
+  # MIN row
+  min_row = {"no": "MIN", "s1": None, "s2": None, "d1": None, "d2": None,
+            "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}                      
+  min_row["s1"] = min(bp_sys); min_row["s2"] = min(bp_sys2)
+  min_row["d1"] = min(bp_dia); min_row["d2"] = min(bp_dia2)
+  min_row["p1"] = min(bp_pul); min_row["p2"] = min(bp_pul2)
+  min_row["m1"] = min(bp_mean); min_row["m2"] = min(bp_mean2)
+  min_row["a1"] = min(bp_afib); min_row["a2"] = min(bp_afib2)
+
+  comp_summary.append(max_row)
+  comp_summary.append(min_row)
+  
+  
+  
   return (0)
