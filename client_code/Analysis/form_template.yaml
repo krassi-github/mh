@@ -23,7 +23,7 @@ components:
       layout_properties: {grid_position: 'GVPBXS,ZSAFDF'}
     - type: DataGrid
       properties:
-        role: null
+        role: tonal-data-grid
         columns:
         - {id: KMJPWY, title: '', data_key: '', $$hashKey: 'object:34633'}
         - {id: WZIVFJ, title: S1, data_key: '', $$hashKey: 'object:34634'}
