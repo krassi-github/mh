@@ -4,24 +4,23 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: small,
+    background: ''}
   name: content_panel
   layout_properties: {slot: default}
   components:
   - type: ColumnPanel
-    properties: {col_widths: '{}'}
-    name: column_panel_2
-    layout_properties: {grid_position: 'DOXDCO,TVSOTF TKGTAE,WNXQLF'}
+    properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
+      spacing_below: small, background: ''}
+    name: column_panel_L
+    layout_properties: {grid_position: 'DOXDCO,TVSOTF'}
     components:
     - type: Label
       properties: {}
       name: label_1
-      layout_properties: {grid_position: 'XGUJVS,CBJBLF'}
-  - type: ColumnPanel
-    properties: {col_widths: '{}'}
-    name: column_panel_4
-    layout_properties: {grid_position: 'DOXDCO,TVSOTF PVQIGH,ITZKUZ'}
-    components:
+      layout_properties: {grid_position: 'GVPBXS,ZSAFDF'}
     - type: DataGrid
       properties:
         columns:
@@ -36,24 +35,22 @@ components:
         name: repeating_panel_2
         layout_properties: {}
   - type: ColumnPanel
-    properties: {col_widths: '{}'}
-    name: column_panel_3
-    layout_properties: {grid_position: 'DOXDCO,SUCTIE FQHZHA,AGFDCW'}
+    properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true,
+      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
+      spacing_below: small, background: ''}
+    name: column_panel_R
+    layout_properties: {grid_position: 'DOXDCO,SUCTIE'}
     components:
     - type: Label
       properties: {}
       name: label_2
-      layout_properties: {grid_position: 'IFWATQ,CWKLYO'}
-  - type: ColumnPanel
-    properties: {col_widths: '{}'}
-    name: column_panel_5
-    layout_properties: {grid_position: 'DOXDCO,SUCTIE MAABUC,MUVXZA'}
-    components:
+      layout_properties: {grid_position: 'ZCLYNA,JCQPUD'}
     - type: DataGrid
       properties:
-        role: null
+        role: tonal-data-grid
         columns:
-        - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400'}
+        - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400', expand: true,
+          width: '100'}
         - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
         - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
         - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
@@ -79,7 +76,9 @@ components:
       layout_properties: {grid_position: 'PVHTYH,NAJAKC'}
       components:
       - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3}
+        properties: {role: 0height, tooltip: '', border: '', foreground: '', items: null,
+          visible: true, spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3,
+          background: ''}
         name: repeating_panel_1
         layout_properties: {}
   - type: FlowPanel
@@ -90,76 +89,6 @@ components:
     properties: {}
     name: plot_1
     layout_properties: {grid_position: 'RLETHD,WYYSNQ'}
-  - type: DataGrid
-    properties:
-      role: null
-      columns:
-      - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400'}
-      - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
-      - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
-      - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
-      - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
-      - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
-      - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161'}
-      - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163'}
-      - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165'}
-      - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167'}
-      - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169'}
-      auto_header: true
-      tooltip: ''
-      border: ''
-      foreground: ''
-      rows_per_page: 20
-      visible: true
-      wrap_on: never
-      show_page_controls: true
-      spacing_above: small
-      spacing_below: small
-      background: ''
-    name: data_list_copy
-    layout_properties:
-      col_widths: {}
-      grid_position: JCRYCG,MKSROW
-    components:
-    - type: RepeatingPanel
-      properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3}
-      name: repeating_panel_1_copy
-      layout_properties: {}
-  - type: DataGrid
-    properties:
-      role: null
-      columns:
-      - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400'}
-      - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
-      - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
-      - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
-      - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
-      - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
-      - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161'}
-      - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163'}
-      - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165'}
-      - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167'}
-      - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169'}
-      auto_header: true
-      tooltip: ''
-      border: ''
-      foreground: ''
-      rows_per_page: 20
-      visible: true
-      wrap_on: never
-      show_page_controls: true
-      spacing_above: small
-      spacing_below: small
-      background: ''
-    name: data_list_copy_2
-    layout_properties:
-      col_widths: {}
-      grid_position: GIZZVQ,OEPOYH
-    components:
-    - type: RepeatingPanel
-      properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3}
-      name: repeating_panel_1_copy_2
-      layout_properties: {}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -172,6 +101,15 @@ components:
   name: form_title
   layout_properties: {slot: title}
 - type: ColumnPanel
-  properties: {}
+  properties: {col_widths: '{}'}
   name: column_panel_1
   layout_properties: {slot: left-nav}
+  components:
+  - type: Button
+    properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: return, font_size: 20, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: back
+    layout_properties: {grid_position: 'PKLECC,JBTGRJ'}
+    event_bindings: {click: back_click}

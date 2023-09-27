@@ -1,4 +1,8 @@
-container: {type: DataRowPanel}
+container:
+  type: DataRowPanel
+  properties: {role: 0height, align: center, tooltip: '', border: '', foreground: '',
+    auto_display_data: true, visible: true, font_size: 20, font: '', spacing_above: none,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false}
 components:
 - type: Label
   properties: {}
