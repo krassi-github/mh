@@ -67,6 +67,7 @@ bp_dia = []     # diastolic
 bp_sys_add = [] # additive for plotting systolic (over the diastolic)
 bp_pul = []     # puls
 bp_mean = []    # mean pressure
+bp_afib = []
 bp_n = []
 bp_colors = []   # collors
 bp_list = []     # main data list [{}]
@@ -87,6 +88,7 @@ bp_dia2 = []     # diastolic
 bp_sys_add2 = [] # additive for plotting systolic (over the diastolic)
 bp_pul2 = []     # puls
 bp_mean2 = []    # mean pressure
+bp_afib2 = []
 bp_n2 = []
 bp_colors2 = []   # collors
 # data row [{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
@@ -174,6 +176,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   global bp_date
   global bp_sys
   global bp_dia
+  global bp_pul
   global bp_sys_add
   global bp_mean
   global bp_colors
@@ -203,6 +206,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
   bp_date = []
   bp_sys = []
   bp_dia = []
+  bp_pul = []
   bp_sys_add = []
   bp_mean = []
   bp_colors = []
@@ -217,7 +221,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})        
         bp_date.append(y_values[i][1])
         bp_sys.append(y_values[i][2])
-        bp_dia.append(y_values[i][3])        
+        bp_dia.append(y_values[i][3])
+        bp_pul.append(y_values[i][4])
         bp_sys_add.append(y_values[i][2] - y_values[i][3])
         if y_values[i][2] >= params["red_sys"] or y_values[i][3] >= params["red_dia"]:
           bp_colors.append(c_red)
@@ -301,19 +306,22 @@ def afib_details(row_date):
 def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: str) -> int:
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
-  orange_cntr, green_cntr
+  orange_cntr, green_cntr, bp_pul
   global bp_date2, bp_sys2, bp_dia2, bp_sys_add2, bp_pul2, bp_mean2, bp_n2, bp_colors2, bp_list2,\
   bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2,\
   loaded_from2, loaded_to2
   global comp_list
+  global bp_afib, bp_afib2
 
   comp_list = []
   bp_list2 = []      
   bp_date2 = []
   bp_sys2 = []
   bp_dia2 = []
+  bp_pul2 = []
   bp_sys_add2 = []
   bp_mean2 = []
+  bp_afib2 = []
   bp_colors2 = []
   green_cntr2 = 0
   orange_cntr2 = 0
@@ -337,8 +345,10 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   bp_date2 = bp_date
   bp_sys2 = bp_sys
   bp_dia2 = bp_dia
+  bp_pul2 = bp_pul
   bp_sys_add2 = bp_sys_add
   bp_mean2 = bp_mean
+  bp_afib2 = bp_afib
   bp_colors2 = bp_colors
   green_cntr2 = green_cntr
   orange_cntr2 = orange_cntr
@@ -402,7 +412,6 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
   #print(f"Summ Block_2  {Tb2} !! {Te2}  X= {x_data2} #  Y= {y_values2}")
 
   if not p2:
-    print
     for i in range(len(y_values2)):
       if y_values2[i][2]:  #
         bp_summary2.append({"date": y_values2[i][1], "sys": y_values2[i][2], "dia": y_values2[i][3], \
@@ -411,7 +420,7 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
   # prep data Block 1
   р1, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb1, Te=Te1, Step=Step,
                                            Average=True, zt_beg=zb, zt_end=ze)
-  print(f"Summ Block_1  {Tb1} !! {Te1}  X= {x_data} #  Y= {y_values}")
+  #print(f"Summ Block_1  {Tb1} !! {Te1}  X= {x_data} #  Y= {y_values}")
   if not p1:
     for i in range(len(y_values)):
       if y_values[i][2]:  #
@@ -427,7 +436,7 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
   for i in range(len(bp_summary)):
     print(i, end=' ')
     if all or bp_summary[i]["date"]:
-      comp_summary.append({"no": "Average", "s1":bp_summary[i]["sys"], "s2":bp_summary2[i]["sys"], "d1":bp_summary[i]["dia"],
+      comp_summary.append({"no": "AVRG", "s1":bp_summary[i]["sys"], "s2":bp_summary2[i]["sys"], "d1":bp_summary[i]["dia"],
                         "d2":bp_summary2[i]["dia"], "p1":bp_summary[i]["pul"], "p2":bp_summary2[i]["pul"],"m1":bp_summary[i]["mean"],
                         "m2":bp_summary2[i]["mean"], "a1":bp_summary[i]["afib"], "a2":bp_summary2[i]["afib"]})
 
@@ -448,14 +457,17 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
     anvil.server.call("mh_log", -903, m)
     return (-903)
 
+  print(f"puls data 1  {bp_pul}   2  {bp_pul}")
   max_row = {"no":"MAX", "s1": None, "s2": None, "d1": None, "d2": None, 
              "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}
   max_row["s1"] = max(bp_sys); max_row["s2"] = max(bp_sys2)
   max_row["d1"] = max(bp_dia); max_row["d2"] = max(bp_dia2)
-  max_row["p1"] = max(bp_pul); 
-  max_row["p2"] = max(bp_pul2)
+  max_row["p1"] = max(bp_pul); max_row["p2"] = max(bp_pul2)
   max_row["m1"] = max(bp_mean); max_row["m2"] = max(bp_mean2)
-  max_row["a1"] = max(bp_afib); max_row["a2"] = max(bp_afib2)
+  if bp_afib:
+    max_row["a1"] = max(bp_afib); 
+  if bp_afib2:
+    max_row["a2"] = max(bp_afib2)
 
   # MIN row
   min_row = {"no": "MIN", "s1": None, "s2": None, "d1": None, "d2": None,
@@ -464,7 +476,10 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
   min_row["d1"] = min(bp_dia); min_row["d2"] = min(bp_dia2)
   min_row["p1"] = min(bp_pul); min_row["p2"] = min(bp_pul2)
   min_row["m1"] = min(bp_mean); min_row["m2"] = min(bp_mean2)
-  min_row["a1"] = min(bp_afib); min_row["a2"] = min(bp_afib2)
+  if bp_afib:
+    min_row["a1"] = min(bp_afib); 
+  if bp_afib2:
+    min_row["a2"] = min(bp_afib2)
 
   comp_summary.append(max_row)
   comp_summary.append(min_row)
