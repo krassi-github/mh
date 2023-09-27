@@ -11,14 +11,12 @@ class Analysis(AnalysisTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens
-    print(f"CP right.width= {self.column_panel_R.width}")
-    self.column_panel_R.width = "auto"
     self.data_render()
     
   def data_render(self):
     r = Data.set_comp_list("1001", 2, 'd', 360, "2023/08/01 00:00", "2023/08/11 00:00")
     self.repeating_panel_1.items = Data.comp_list
-    #print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
+    print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
 
   def back_click(self, **event_args):
     """This method is called when the button is clicked"""

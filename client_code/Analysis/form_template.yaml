@@ -15,7 +15,7 @@ components:
       wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
       spacing_below: small, background: ''}
     name: column_panel_L
-    layout_properties: {grid_position: 'DOXDCO,TVSOTF'}
+    layout_properties: {grid_position: 'DOXDCO,TVSOTF', full_width_row: true}
     components:
     - type: Label
       properties: {}
@@ -39,7 +39,7 @@ components:
       wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
       spacing_below: small, background: ''}
     name: column_panel_R
-    layout_properties: {grid_position: 'DOXDCO,SUCTIE'}
+    layout_properties: {grid_position: 'DOXDCO,SUCTIE', full_width_row: true}
     components:
     - type: Label
       properties: {}
@@ -49,18 +49,18 @@ components:
       properties:
         role: tonal-data-grid
         columns:
-        - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400', expand: true,
+        - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400', expand: false,
           width: '180'}
-        - {id: RDIIXA, title: 12S1, data_key: '', $$hashKey: 'object:13401', width: '60'}
-        - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402', width: '60'}
-        - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171', width: '60'}
-        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157', width: '60'}
-        - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159', width: '60'}
-        - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161', width: '60'}
-        - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163', width: '60'}
-        - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165', width: '60'}
-        - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167', width: '60'}
-        - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169', width: '60'}
+        - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401', width: ''}
+        - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402', width: ''}
+        - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171', width: ''}
+        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157', width: ''}
+        - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159', width: ''}
+        - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161', width: ''}
+        - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163', width: ''}
+        - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165', width: ''}
+        - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167', width: ''}
+        - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169', width: ''}
         auto_header: true
         tooltip: ''
         border: ''
@@ -73,7 +73,7 @@ components:
         spacing_below: small
         background: ''
       name: list_data
-      layout_properties: {grid_position: 'PVHTYH,NAJAKC'}
+      layout_properties: {grid_position: 'PVHTYH,NAJAKC', full_width_row: false}
       components:
       - type: RepeatingPanel
         properties: {role: 0height, tooltip: '', border: '', foreground: '', items: null,
