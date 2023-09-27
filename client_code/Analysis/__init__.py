@@ -8,11 +8,12 @@ from ..afibs_g import afibs_g
 
 class Analysis(AnalysisTemplate):
   def __init__(self, **properties):
-    print("Analysis  __init__")
-    self.data_render()
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens
+    print(f"CP right.width= {self.column_panel_R.width}")
+    self.column_panel_R.width = "150%"
+    self.data_render()
     
   def data_render(self):
     r = Data.set_comp_list("1001", 2, 'd', 360, "2023/08/01 00:00", "2023/08/11 00:00")

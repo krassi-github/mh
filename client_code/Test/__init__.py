@@ -7,6 +7,9 @@ class Test(TestTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.column_panel_2.width = 550
+    print(f"DG.width=  {self.data_grid_2.width}")
+    self.data_grid_2.width = 500
 
     data = {
         "original":[15, 23, 32, 10, 23],
@@ -50,7 +53,7 @@ class Test(TestTemplate):
         )
     )
     # !!! GO through "figure"
-    self.plot_1.figure = fig3
+    #self.plot_1.figure = fig3
  
 #    The basic form is how to create a list of colors for the x-axis, so there are many different approaches. 
 # I suggest this as an example of how to make a color list with conditions.

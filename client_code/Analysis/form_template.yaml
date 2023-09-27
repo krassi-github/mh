@@ -50,17 +50,17 @@ components:
         role: tonal-data-grid
         columns:
         - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400', expand: true,
-          width: '100'}
-        - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
-        - {id: ZTCJOI, title: ..S2.., data_key: '', $$hashKey: 'object:13402'}
-        - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
-        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
-        - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
-        - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161'}
-        - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163'}
-        - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165'}
-        - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167'}
-        - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169'}
+          width: '180'}
+        - {id: RDIIXA, title: 12S1, data_key: '', $$hashKey: 'object:13401', width: '60'}
+        - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402', width: '60'}
+        - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171', width: '60'}
+        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157', width: '60'}
+        - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159', width: '60'}
+        - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161', width: '60'}
+        - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163', width: '60'}
+        - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165', width: '60'}
+        - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167', width: '60'}
+        - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169', width: '60'}
         auto_header: true
         tooltip: ''
         border: ''
@@ -107,9 +107,9 @@ components:
   components:
   - type: Button
     properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: return, font_size: 20, font: '', spacing_above: small,
+      foreground: '', visible: true, text: back, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     name: back
-    layout_properties: {grid_position: 'PKLECC,JBTGRJ'}
+    layout_properties: {grid_position: 'BEJSSM,EPUQNY'}
     event_bindings: {click: back_click}
