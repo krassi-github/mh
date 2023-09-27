@@ -483,7 +483,6 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
 
   comp_summary.append(max_row)
   comp_summary.append(min_row)
-  
-  
+  print(bp_sys2)
   
   return (0)
