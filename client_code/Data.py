@@ -263,7 +263,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
                         Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
-  print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
+  # ======= print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
   if not r:       
     for i in range(len(y_values)):      
       if y_values[i][2]:    #        
@@ -304,8 +304,9 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   global bp_date2, bp_sys2, bp_dia2, bp_sys_add2, bp_pul2, bp_mean2, bp_n2, bp_colors2, bp_list2,\
   bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2,\
   loaded_from2, loaded_to2
+  global comp_list
 
-  #comp_list = []
+  comp_list = []
   bp_list2 = []      
   bp_date2 = []
   bp_sys2 = []
@@ -354,7 +355,14 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
     return(-901)
 
   # Generate comp_list  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
-  for i in range(len(y_values)):      
+  print(f"set_comp_list() => Len1= {len(y_values)}  Len2= {len(y_values2)}")
+  len1= len(y_values);  len2= len(y_values)
+  if len1 >= len2:
+    min_len = len2-1
+  else:
+    min_len = len1-1
+  for i in range(min_len):
+    print(i, end=' ')
     if all or y_values[i][2]:    #        
       comp_list.append({"no": y_values[i][1], "s1":y_values[i][2], "s2":y_values2[i][2], "d1":y_values[i][3],\
                         "d2":y_values2[i][3], "p1":y_values[i][4], "p2":y_values2[i][4],"m1":y_values[i][5],\

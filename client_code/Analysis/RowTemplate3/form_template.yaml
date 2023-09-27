@@ -5,41 +5,59 @@ container:
     spacing_below: none, italic: false, background: '', bold: false, underline: false}
 components:
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: 'no'
   layout_properties: {column: CGASCB}
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: s2
   layout_properties: {column: ZTCJOI}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: 'theme:Primary Container', bold: false, underline: false,
-    icon: ''}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: 'theme:Primary Container', bold: false,
+    underline: false, icon: ''}
   name: d1
   layout_properties: {column: KUYNOT}
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: d2
   layout_properties: {column: FEIZWZ}
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: 'theme:Primary Container', bold: false, underline: false,
-    icon: ''}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: 'theme:Primary Container', bold: false,
+    underline: false, icon: ''}
   name: p1
   layout_properties: {column: EAWJTH}
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: p2
   layout_properties: {column: QBWFPX}
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: 'theme:Primary Container', bold: false,
+    underline: false, icon: ''}
   name: m1
   layout_properties: {column: BCWXLU}
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: m2
   layout_properties: {column: VNTALA}
 - type: Link
@@ -48,7 +66,10 @@ components:
   layout_properties: {column: MDFGRJ}
   components:
   - type: Label
-    properties: {}
+    properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+      spacing_below: none, italic: false, background: 'theme:Primary Container', bold: false,
+      underline: false, icon: ''}
     name: a1
     layout_properties: {column: MDFGRJ, grid_position: 'VACVTG,SEOWAR'}
   event_bindings: {click: L1_click}
@@ -58,12 +79,18 @@ components:
   layout_properties: {column: ASAZCV}
   components:
   - type: Label
-    properties: {}
+    properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+      spacing_below: none, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
     name: a2
     layout_properties: {column: ASAZCV, grid_position: 'SKCQKE,IOIZXK'}
   event_bindings: {click: L2_click}
 - type: Label
-  properties: {}
+  properties: {role: 0height, align: left, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   name: s1
   layout_properties: {column: RDIIXA}
 is_package: true
