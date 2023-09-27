@@ -352,7 +352,7 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   if p2 or p1:
     # Data prep error
     m = f"set_comp_list() p2= {p2}  p1= {p1}"
-    mh_log(-901, m)
+    anvil.serrver.call("mh_log", -901, m)
     return(-901)
 
   # Generate comp_list  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
@@ -363,10 +363,65 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   else:
     min_len = len1-1
   for i in range(min_len):
-    print(i, end=' ')
     if all or y_values[i][2]:    #        
       comp_list.append({"no": y_values[i][1], "s1":y_values[i][2], "s2":y_values2[i][2], "d1":y_values[i][3],\
                         "d2":y_values2[i][3], "p1":y_values[i][4], "p2":y_values2[i][4],"m1":y_values[i][5],\
                         "m2":y_values2[i][5], "a1":y_values[i][6], "a2":y_values2[i][6]})        
 
   return(0)
+
+# ----------------------------------------------------------------------------------------------
+def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: str) -> int:
+  global comp_summary, bp_summary, bp_summary2
+  global all
+  global zt_beg  # beg of time zone
+  global zt_end  # end of time zone
+  x_data = []
+  y_values = []
+  p1 = 0; p2 = 0
+
+  # Retreive data from DB
+  comp_summary = []
+  if zt_beg == "00:00" and zt_end == "23:59":
+    zb = None
+    ze = None
+  else:
+    zb = zt_beg
+    ze = zt_end
+
+  Te1, Te2 = anvil.server.call("periods_calc", number, uom, Step, Tb1, Tb2)
+
+  # prep data Block 2
+  р2, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb2, Te=Te2, Step=Step,
+                                           Average=True, zt_beg=zb, zt_end=ze)
+
+  print(f"Summ Block_1  {Tb1} !! {Te1}  X= {x_data} #  Y= {y_values}")
+  if not p2:
+    for i in range(len(y_values)):
+      if y_values[i][2]:  #
+        bp_summary2.append({"date": y_values[i][1], "sys": y_values[i][2], "dia": y_values[i][3], \
+                           "pul": y_values[i][4], "mean": y_values[i][5], "afib": y_values[i][6]})
+
+  # prep data Block 1
+  р1, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb2, Te=Te2, Step=Step,
+                                           Average=True, zt_beg=zb, zt_end=ze)
+
+  if not p1:
+    for i in range(len(y_values)):
+      if y_values[i][2]:  #
+        bp_summary.append({"date": y_values[i][1], "sys": y_values[i][2], "dia": y_values[i][3], \
+                           "pul": y_values[i][4], "mean": y_values[i][5], "afib": y_values[i][6]})
+  if p2 or p1:
+    # Data prep error
+    m = f"set_summary() p2= {p2}  p1= {p1}"
+    anvil.server.call("mh_log", -902, m)
+    return(-902)
+
+  # Generate comp_summary  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
+  for i in range(len(bp_summary)):
+    print(i, end=' ')
+    if all or y_values[i][2]:
+      comp_summary.append({"no": "Average", "s1":y_values[i][2], "s2":y_values2[i][2], "d1":y_values[i][3],
+                        "d2":y_values2[i][3], "p1":y_values[i][4], "p2":y_values2[i][4],"m1":y_values[i][5],
+                        "m2":y_values2[i][5], "a1":y_values[i][6], "a2":y_values2[i][6]})
+  return (0)

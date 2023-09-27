@@ -17,8 +17,14 @@ class Analysis(AnalysisTemplate):
     
   def data_render(self):
     r = Data.set_comp_list("1001", 1, 'm', 360*4, "2023/07/01 00:00", "2023/08/01 00:00")
-    self.repeating_panel_1.items = Data.comp_list
-    #print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
+    r1 = Data.set_comp_summary("1001", 1, 'm', 360*4, "2023/07/01 00:00", "2023/08/01 00:00")
+    if r or r1:
+      self.label_R.text = f"No Data {r}   { r1}"
+      self.label_R.foreground = "red"
+    else:
+      self.repeating_panel_1.items = Data.comp_list
+      self.repeating_panel_2.items = Data.comp_summary
+      #print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
 
   def back_click(self, **event_args):
     """This method is called when the button is clicked"""

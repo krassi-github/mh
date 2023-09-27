@@ -5,7 +5,7 @@ components:
     text: Average, font_size: 20, font: '', spacing_above: small, icon_align: left,
     spacing_below: small, italic: false, background: '', bold: false, underline: false,
     icon: ''}
-  name: row
+  name: 'no'
   layout_properties: {column: KMJPWY}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
