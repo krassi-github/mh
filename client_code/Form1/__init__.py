@@ -11,7 +11,6 @@ def error_handler(err):
   
 class Form1(Form1Template):  
   def __init__(self, **properties):
-    print("Form1 __init__()")
     set_default_error_handling(error_handler)   # for TESTING
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

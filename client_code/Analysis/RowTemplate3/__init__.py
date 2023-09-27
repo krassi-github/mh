@@ -61,8 +61,6 @@ class RowTemplate3(RowTemplate3Template):
     r += 1  
 
   def color_rows(self):
-    #print(self.get_components())
-    #return()
     self.no.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
     self.s1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
     self.s2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"

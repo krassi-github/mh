@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: small,
     background: ''}
   name: content_panel
@@ -52,7 +52,7 @@ components:
         - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400', expand: true,
           width: '100'}
         - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401'}
-        - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402'}
+        - {id: ZTCJOI, title: ..S2.., data_key: '', $$hashKey: 'object:13402'}
         - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171'}
         - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
         - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
