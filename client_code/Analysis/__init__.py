@@ -12,7 +12,7 @@ class Analysis(AnalysisTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens
     print(f"CP right.width= {self.column_panel_R.width}")
-    self.column_panel_R.width = "150%"
+    self.column_panel_R.width = "auto"
     self.data_render()
     
   def data_render(self):

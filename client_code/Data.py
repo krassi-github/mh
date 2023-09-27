@@ -305,6 +305,7 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2,\
   loaded_from2, loaded_to2
 
+  comp_list = []
   bp_list2 = []      
   bp_date2 = []
   bp_sys2 = []
