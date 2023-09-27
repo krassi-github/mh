@@ -12,16 +12,20 @@ class RowTemplate3(RowTemplate3Template):
     print("RowTemplate3 ///////////////////////////////////////")
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
     self.row_spacing = 0
     # Test of assignment instead of binding
+    self.no.text = self.item["no"]
     self.s1.text = self.item['s1']
     self.s2.text = self.item["s2"]
     self.d1.text = self.item["d1"]
     self.d2.text = self.item["d2"]
+    self.p1.text = self.item["p1"]
+    self.p2.text = self.item["p2"]
     self.m1.text = self.item["m1"]
     self.m2.text = self.item["m2"]
-    print(f"s1 label text= {self.s1.text}")
+    self.a1.text = self.item["a1"]
+    self.a2.text = self.item["a2"]
+
     # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
       self.s1.foreground = "red"
