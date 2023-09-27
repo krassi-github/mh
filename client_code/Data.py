@@ -80,6 +80,7 @@ orange_cntr = 0
 green_cntr = 0
 
 # Data Set 2
+comp_summary = []  #[{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
 bp_date2 = []    # operational arrays for plotting
 bp_sys2 = []     # systolic
 bp_dia2 = []     # diastolic
@@ -255,7 +256,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   
   # Retreive data from DB
   bp_summary = []
-  if zt_beg == "00:00" and zt_end == "00:00":
+  if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
     ze = None
   else:
