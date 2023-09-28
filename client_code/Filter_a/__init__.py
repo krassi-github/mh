@@ -3,6 +3,8 @@ from anvil import *
 import anvil.server
 from .. import Data
 
+max_number = (99, )    # max value of number (in period length)
+
 class Filter_a(Filter_aTemplate):
   # for binding !!! item = {"from_date": Data.time_from, "to_date": Data.time_to}
 
@@ -70,16 +72,7 @@ class Filter_a(Filter_aTemplate):
     self.show_range("1001", 'm3')
 
 
-  # Range time_frame  --------------------------------------------------------------------------
-  def t_from_change(self, **event_args):
-    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
-    if self.r.selected:
-      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
-  def t_to_change(self, **event_args):
-    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"
-    if self.r.selected:
-      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   # Standard/Custome zone ---------------------------------------------------------------------
   def zone_change(self, **event_args):
@@ -96,12 +89,19 @@ class Filter_a(Filter_aTemplate):
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
   # Period parameters setting  ---------------------------------------------------------------
-  def uom_change(self, **event_args):
-
+  def period_len(self):
     pass
+  def uom_change(self, **event_args):
+    self.t_unit.text = self.oum.selected_value
+    Data.uom = self.oum.selected_value
 
   def number_change(self, **event_args):
-
+    global max_number
+    if self.number.text > max_number:
+      
+      
+    self.period.text = self.number.text
+    Data.period = self.number.text
      pass
 
   def number_pressed_enter(self, **event_args):
