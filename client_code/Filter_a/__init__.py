@@ -28,9 +28,8 @@ class Filter_a(Filter_aTemplate):
     self.drop_down_2.items = self.drop_down_2.items
     '''
     #self.default_zone(0)
-
-    self.d.selected = True
-
+    #self.d.selected = True
+    input(f"We're in Filter_a FORM")
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.t_from.width = "80%"
