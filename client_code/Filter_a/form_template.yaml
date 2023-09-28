@@ -16,6 +16,7 @@ components:
     properties: {}
     name: uom
     layout_properties: {}
+    event_bindings: {change: uom_change}
   - type: Label
     properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
       visible: true, text: '  *  ', font_size: 20, font: '', spacing_above: small,

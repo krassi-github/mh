@@ -10,7 +10,8 @@ class Filter_a(Filter_aTemplate):
     self.init_components(**properties)
 
     #input("Check and GO ")
-    self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
+    # ?? self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
+    self.uom.items = Data.uom_items
     self.drop_down_1.items = Data.zone_items
     self.drop_down_2.items = Data.custom_zone_items
 
@@ -20,9 +21,7 @@ class Filter_a(Filter_aTemplate):
     self.drop_down_2.selected_value = None
     self.drop_down_2.items = self.drop_down_2.items
     '''
-    self.default_zone(0)
-
-    # Set Form properties and Data Bindings.
+    #self.default_zone(0)
 
     self.d.selected = True
 
@@ -96,6 +95,19 @@ class Filter_a(Filter_aTemplate):
     print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
+  # Period parameters setting  ---------------------------------------------------------------
+  def uom_change(self, **event_args):
+
+    pass
+
+  def number_change(self, **event_args):
+
+     pass
+
+  def number_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+    
   def period_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value
@@ -106,12 +118,9 @@ class Filter_a(Filter_aTemplate):
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
 
-  def number_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    pass
 
-  def number_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    pass
+
+
+
 
 
