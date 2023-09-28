@@ -53,6 +53,7 @@ zt_end = "16:00"
 # filter_a (Analysis Form) Data
 uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
 uom = ''
+max_number = (99, )    # max value of number (in period length)
 number = 0
 step = 0
 Tb1 = ""

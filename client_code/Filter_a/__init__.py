@@ -3,8 +3,6 @@ from anvil import *
 import anvil.server
 from .. import Data
 
-max_number = (99, )    # max value of number (in period length)
-
 class Filter_a(Filter_aTemplate):
   # for binding !!! item = {"from_date": Data.time_from, "to_date": Data.time_to}
 
@@ -60,9 +58,11 @@ class Filter_a(Filter_aTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   def d_clicked(self, **event_args):
+    Data.step = 24 * 60
     self.show_range("1001", 'd')
 
   def w_clicked(self, **event_args):
+    Data.step = 24 * 60
     self.show_range("1001", 'w')
 
   def h2_clicked(self, **event_args):
@@ -92,21 +92,26 @@ class Filter_a(Filter_aTemplate):
   def period_len(self):
     pass
   def uom_change(self, **event_args):
-    self.t_unit.text = self.oum.selected_value
+    sv = self.uom.selected_value
+    if sv == 'd':
+      self.t_unit.text = "day"
+    elif sv == 'w':
+      self.t_unit.text = "week"
+    else:
+      self.t_unit.text = "month"  
     Data.uom = self.oum.selected_value
 
   def number_change(self, **event_args):
-    global max_number
-    if self.number.text > max_number:
-      
-      
+    if self.number.text > Data.max_number[0]:
+      alert("The number must positive integer less than 100. \\nPlease, try again!", title="ERROR message")
+      return      
     self.period.text = self.number.text
-    Data.period = self.number.text
-     pass
+    Data.period = self.number.text    
 
   def number_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
-    pass
+    self.number.change()
+
+  
     
   def period_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
