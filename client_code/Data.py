@@ -376,7 +376,7 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
     return(-901)
 
   # Generate comp_list  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
-  print(f"set_comp_list() => Len1= {len(y_values)}  Len2= {len(y_values2)}")
+  #print(f"set_comp_list() => Len1= {len(y_values)}  Len2= {len(y_values2)}")
   len1= len(y_values);  len2= len(y_values)
   if len1 >= len2:
     min_len = len2-1
@@ -444,7 +444,6 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
 
   # Generate comp_summary  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}] 
   for i in range(len(bp_summary)):
-    print(i, end=' ')
     if all or bp_summary[i]["date"]:
       comp_summary.append({"no": "AVRG", "s1":bp_summary[i]["sys"], "s2":bp_summary2[i]["sys"], "d1":bp_summary[i]["dia"],
                         "d2":bp_summary2[i]["dia"], "p1":bp_summary[i]["pul"], "p2":bp_summary2[i]["pul"],"m1":bp_summary[i]["mean"],
@@ -467,7 +466,7 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
     anvil.server.call("mh_log", -903, m)
     return (-903)
 
-  print(f"puls data 1  {bp_pul}   2  {bp_pul}")
+  #print(f"puls data 1  {bp_pul}   2  {bp_pul}")
   max_row = {"no":"MAX", "s1": None, "s2": None, "d1": None, "d2": None, 
              "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}
   max_row["s1"] = max(bp_sys); max_row["s2"] = max(bp_sys2)
@@ -493,6 +492,5 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
 
   comp_summary.append(max_row)
   comp_summary.append(min_row)
-  print(bp_sys2)
   
   return (0)

@@ -17,10 +17,11 @@ class Analysis(AnalysisTemplate):
     #self.data_render()
     
   def data_render(self):
+    #print(f"n= {Data.number} uom= {Data.uom}, s= {Data.step} Tb1= {Data.Tb1} Tb2= {Data.Tb2}")
     r = Data.set_comp_list("1001", Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
     r1 = Data.set_comp_summary("1001", Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
-    '''    r = Data.set_comp_list("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
-    r1 = Data.set_comp_summary("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")'''
+    # r = Data.set_comp_list("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
+    # r1 = Data.set_comp_summary("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
     if r or r1:
       self.label_R.text = f"No Data {r}   { r1}"
       self.label_R.foreground = "red"

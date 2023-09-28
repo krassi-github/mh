@@ -8,8 +8,8 @@ class RowTemplate5(RowTemplate5Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.row_spacing = 0
-    # print(f"Data.comp_summary  {Data.comp_summary}")
-    print(f" Locally  {self.item}")
+
+    #print(f" Locally  {self.item}")
     self.no.text = self.item["no"]
     self.s1.text = self.item['s1']
     self.s2.text = self.item["s2"]

@@ -37,8 +37,7 @@ class Filter_a(Filter_aTemplate):
     self.drop_down_1.width = "80%"
     self.drop_down_2.width = "80%"
     # Any code you write here will run before the form opens.
-    #self.fr = self.item.get("from_date", "Error")
-    #self.to = self.item.get("to_date", "Error")
+    self.uom_change()
 
 
   def default_zone(self, zone_index):
@@ -66,14 +65,21 @@ class Filter_a(Filter_aTemplate):
       self.t_unit.text = "week"
     else:
       self.t_unit.text = "month"  
-    Data.uom = self.oum.selected_value
+    Data.uom = self.uom.selected_value
+
+  def uom_show(self, **event_args):
+    self.uom_change(**event_args)
+
 
   def number_change(self, **event_args):
-    if self.number.text > Data.max_number[0]:
+    if not self.number.text:
+      # to prevent TypeError: '>' not supported between instances of 'NoneType' and 'int'
+      return
+    if self.number.text > Data.max_number[0] or self.number.text <= 0:
       alert("The number must positive integer less than 100. \\nPlease, try again!", title="ERROR message")
       return      
     self.period.text = self.number.text
-    Data.period = self.number.text    
+    Data.number = self.number.text    
 
   def number_pressed_enter(self, **event_args):
     self.number.change()
@@ -103,7 +109,7 @@ class Filter_a(Filter_aTemplate):
     
   def period_1_change(self, **event_args):    
     global tb1, Tb1, Tb2
-    Tb1 = str(self.period_1.date) + ' ' + "00:00"
+    Tb1 = (str(self.period_1.date)).replace('-', '/') + ' ' + "00:00"
     Te1, dummy = anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb1)
     r = anvil.server.call("check_data", "1001", Tb1, Te1)
     if not r:
@@ -112,7 +118,7 @@ class Filter_a(Filter_aTemplate):
 
   def period_2_change(self, **event_args):
     global tb2, Tb1, Tb2
-    Tb2 = str(self.period_2.date) + ' ' + "00:00"
+    Tb2 = (str(self.period_2.date)).replace('-', '/') + ' ' + "00:00"
     dummy, Te2 =  anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb2)
     r = anvil.server.call("check_data", "1001", Tb2, Te2)
     if not r:
@@ -145,8 +151,11 @@ class Filter_a(Filter_aTemplate):
 
 # Start Comparison procedure
   def start_button_click(self, **event_args):
-    self.parent.parent.render_data()
+    self.parent.parent.data_render()
     pass
+
+
+
 
 
 
