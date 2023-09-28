@@ -8,19 +8,7 @@ class Filter_a(Filter_aTemplate):
 
   def __init__(self, **properties):
     self.init_components(**properties)
-    # Data initializing (because this code runs first)
-    p = Data.load_params()
-    if p:
-      self.msg.text += f" load_params= {p}"
-      self.msg.foreground = "red"
-    p = Data.load_sysdata()
-    if p:
-      self.msg.text +=  f" load_sysdata= {p}"
-      self.msg.foreground = "red"
-    p = Data.load_zones()
-    if p:
-      self.msg.text +=  f" load_zones= {p}"
-      self.msg.foreground = "red"
+
     #input("Check and GO ")
     self.item = {"from_date": Data.time_from[:10], "to_date": Data.time_to[:10]}
     self.drop_down_1.items = Data.zone_items
@@ -111,13 +99,12 @@ class Filter_a(Filter_aTemplate):
     print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
-
-  def drop_down_1_change(self, **event_args):
+  def period_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value
     self.zone_change()
 
-  def drop_down_2_change(self, **event_args):
+  def period_2_change(self, **event_args):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()

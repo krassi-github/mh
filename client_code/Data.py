@@ -50,6 +50,10 @@ current_zone = ''   # current time_zone
 zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
 
+# filter_a (Analysis Form) Data
+uom_items = [('Day', "u_day"), ("Week", "u_week"), ("Month", "u_month")]
+
+
 time_from = ""
 time_to = ""
 current_day = ""
