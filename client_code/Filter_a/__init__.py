@@ -3,6 +3,10 @@ from anvil import *
 import anvil.server
 from .. import Data
 
+# Class's globals (for internal usage)
+bt1 = ""
+bt2 = ""
+
 class Filter_a(Filter_aTemplate):
   # for binding !!! item = {"from_date": Data.time_from, "to_date": Data.time_to}
 
@@ -57,38 +61,9 @@ class Filter_a(Filter_aTemplate):
     else:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
-  def d_clicked(self, **event_args):
-    Data.step = 24 * 60
-    self.show_range("1001", 'd')
 
-  def w_clicked(self, **event_args):
-    Data.step = 24 * 60
-    self.show_range("1001", 'w')
-
-  def h2_clicked(self, **event_args):
-    self.show_range("1001", 'm')
-
-  def h6_clicked(self, **event_args):
-    self.show_range("1001", 'm3')
-
-
-
-
-  # Standard/Custome zone ---------------------------------------------------------------------
-  def zone_change(self, **event_args):
-    Data.all = self.all.checked
-    '''
-    Tb = Te = None
-    if Data.current_range == 'r':
-      Tb=Data.loaded_from        #time_from
-      Te=Data.loaded_to          # time_to
-      '''
-    Tb=Data.loaded_from        #time_from
-    Te=Data.loaded_to          # time_to
-    print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
-    self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
-
-  # Period parameters setting  ---------------------------------------------------------------
+# Period parameters setting  ---------------------------------------------------------------
+# Period length entry ---------------
   def period_len(self):
     pass
   def uom_change(self, **event_args):
@@ -111,21 +86,59 @@ class Filter_a(Filter_aTemplate):
   def number_pressed_enter(self, **event_args):
     self.number.change()
 
-  
-    
+# Steps slection   --------------- 
+  def h2_clicked(self, **event_args):
+    Data.step = 2 * 60
+
+  def h6_clicked(self, **event_args):
+    Data.step = 6 * 60
+
+  def d_clicked(self, **event_args):
+    Data.step = 24 * 60
+    # self.show_range("1001", 'd')
+
+  def w_clicked(self, **event_args):
+    Data.step = 7 * 24 * 60
+
+  def m_clicked(self, **event_args):
+    Data.step = 30 * 24 * 60
+
+# Start points  ----------------
   def period_1_change(self, **event_args):
+    global bt1
+    bt1 = self.period_1.date
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value
-    self.zone_change()
+
 
   def period_2_change(self, **event_args):
+    global bt2
+    bt2 = self.period_2.date
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
 
 
+# Standard/Custome zone ---------------------------------------------------------------------
+  def zone_change(self, **event_args):
+    Data.all = self.all.checked
+    '''
+    Tb = Te = None
+    if Data.current_range == 'r':
+      Tb=Data.loaded_from        #time_from
+      Te=Data.loaded_to          # time_to
+      '''
+    Tb=Data.loaded_from        #time_from
+    Te=Data.loaded_to          # time_to
+    print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
+    self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
 
+  def drop_down_1_change(self, **event_args):
+    Data.set_zone(self.drop_down_1.selected_value)
+    self.msg.text = self.drop_down_1.selected_value
+    self.zone_change()
 
-
-
-
+  def drop_down_2_change(self, **event_args):
+    Data.set_zone(self.drop_down_2.selected_value)
+    self.msg.text = self.drop_down_2.selected_value
+    self.zone_change()
