@@ -133,3 +133,7 @@ components:
     name: back
     layout_properties: {grid_position: 'BEJSSM,EPUQNY'}
     event_bindings: {click: back_click}
+  - type: form:Filter_a
+    properties: {}
+    name: filter_a_1
+    layout_properties: {grid_position: 'UZQEWY,FTUUVR'}

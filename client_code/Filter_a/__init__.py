@@ -4,8 +4,10 @@ import anvil.server
 from .. import Data
 
 # Class's globals (for internal usage)
-bt1 = ""
-bt2 = ""
+tb1 = ""
+tb2 = ""
+Tb1 = ""
+Tb2 = ""
 
 class Filter_a(Filter_aTemplate):
   # for binding !!! item = {"from_date": Data.time_from, "to_date": Data.time_to}
@@ -51,15 +53,6 @@ class Filter_a(Filter_aTemplate):
     Data.current_range = rng
     self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
 
-  def r_clicked(self, **event_args):        # Range
-    if Data.time_from >= Data.time_to:
-      a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
-      \n Do you want to correct date(s)?")
-      if not a:
-        self.r.selected = False
-        return()
-    else:
-      self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
 
 # Period parameters setting  ---------------------------------------------------------------
@@ -104,20 +97,28 @@ class Filter_a(Filter_aTemplate):
     Data.step = 30 * 24 * 60
 
 # Start points  ----------------
-  def period_1_change(self, **event_args):
-    global bt1
-    bt1 = self.period_1.date
-    Data.set_zone(self.drop_down_1.selected_value)
-    self.msg.text = self.drop_down_1.selected_value
-
+  def periods_verification(self):
+    global Tb1, Tb2
+    Te1, Te2 = anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb1, Tb2)
+    
+    
+  def period_1_change(self, **event_args):    
+    global tb1, Tb1, Tb2
+    Tb1 = self.period_1.date + "00:00"
+    Te1, dummy = anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb1)
+    r = anvil.server.call("check_data", "1001", Tb1, Te1)
+    if not r:
+      alert(f"No DATA in period {Tb1} -- {Te1}", title="WARNING")
+    Data.Tb1 = Tb1
 
   def period_2_change(self, **event_args):
-    global bt2
-    bt2 = self.period_2.date
-    Data.set_zone(self.drop_down_2.selected_value)
-    self.msg.text = self.drop_down_2.selected_value
-    self.zone_change()
-
+    global tb2, Tb1, Tb2
+    Tb2 = self.period_2.date + "00:00"
+    dummy, Te2 =  anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb2)
+    r = anvil.server.call("check_data", "1001", Tb2, Te2)
+    if not r:
+      alert(f"No DATA in period {Tb2} -- {Te2}", title="WARNING")
+    Data.Tb2 = Tb2
 
 # Standard/Custome zone ---------------------------------------------------------------------
   def zone_change(self, **event_args):
@@ -142,3 +143,11 @@ class Filter_a(Filter_aTemplate):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
+
+# Start Comparison procedure
+  def start_button_click(self, **event_args):
+    self.parent.parent.render_data()
+    pass
+
+
+
