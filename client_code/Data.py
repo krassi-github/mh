@@ -51,7 +51,12 @@ zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
 
 # filter_a (Analysis Form) Data
-uom_items = [('Day', "u_day"), ("Week", "u_week"), ("Month", "u_month")]
+uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
+uom = ''
+number = 0
+step = 0
+Tb1 = ""
+Tb2 = ""
 
 
 time_from = ""

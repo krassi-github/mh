@@ -21,14 +21,11 @@ class Filter_a(Filter_aTemplate):
     self.drop_down_2.items = self.drop_down_2.items
     '''
     self.default_zone(0)
-    #self.msg.text = Data.current_zone+' '+Data.zt_beg+' '+Data.zt_end
+
     # Set Form properties and Data Bindings.
 
     self.d.selected = True
-    Data.current_range = 'd'
-    self.all.checked = False
-    Data.all = self.all.checked
-    self.drop_down_1.items = Data.zone_items
+
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.t_from.width = "80%"
@@ -67,10 +64,10 @@ class Filter_a(Filter_aTemplate):
   def w_clicked(self, **event_args):
     self.show_range("1001", 'w')
 
-  def m_clicked(self, **event_args):
+  def h2_clicked(self, **event_args):
     self.show_range("1001", 'm')
 
-  def m3_clicked(self, **event_args):
+  def h6_clicked(self, **event_args):
     self.show_range("1001", 'm3')
 
 
@@ -108,3 +105,13 @@ class Filter_a(Filter_aTemplate):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
+
+  def number_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def number_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
+    pass
+
+
