@@ -29,11 +29,11 @@ class Filter_a(Filter_aTemplate):
     '''
     #self.default_zone(0)
     #self.d.selected = True
-    input(f"We're in Filter_a FORM")
+    #input(f"We're in Filter_a FORM")
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
-    self.t_from.width = "80%"
-    self.t_to.width = "80%"
+    self.period_1.width = "80%"
+    self.period_2.width = "80%"
     self.drop_down_1.width = "80%"
     self.drop_down_2.width = "80%"
     # Any code you write here will run before the form opens.

@@ -13,7 +13,8 @@ class Analysis(AnalysisTemplate):
     # Any code you write here will run before the form opens
     self.column_panel_L.row_spacing = 4
     self.column_panel_R.row_spacing = 4
-    self.data_render()
+    #Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2
+    #self.data_render()
     
   def data_render(self):
     r = Data.set_comp_list("1001", Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)

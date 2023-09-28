@@ -140,7 +140,7 @@ components:
     placeholder: START Period 2, border: '', enabled: true, foreground: '', visible: true,
     font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false,
     date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/%m/%d'}
-  name: perioid_2
+  name: period_2
   layout_properties: {grid_position: 'AXUESG,RIPMES'}
   data_bindings: []
   event_bindings: {change: period_2_change}
