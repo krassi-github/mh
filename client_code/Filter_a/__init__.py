@@ -49,7 +49,7 @@ class Filter_a(Filter_aTemplate):
 # Ranges processing  -------------------------------------------------------------------
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):
     Data.current_range = rng
-    self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
+    self.parent.parent.data_render(user, rng, Tb=Tb, Te=Te, Step=Step)
 
 
 
