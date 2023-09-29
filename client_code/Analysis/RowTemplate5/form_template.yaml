@@ -21,13 +21,13 @@ components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: 20, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: '', bold: true, underline: false, icon: ''}
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: d1
   layout_properties: {column: ASTDNJ}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: 20, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: '', bold: true, underline: false, icon: ''}
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: d2
   layout_properties: {column: GBPAUZ}
 - type: Label

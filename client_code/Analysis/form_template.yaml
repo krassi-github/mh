@@ -19,8 +19,20 @@ components:
     components:
     - type: Label
       properties: {}
-      name: label_L
+      name: ser_1
       layout_properties: {grid_position: 'GVPBXS,ZSAFDF'}
+    - type: Label
+      properties: {}
+      name: ser_2
+      layout_properties: {grid_position: 'GVPBXS,SMKEEC'}
+    - type: Label
+      properties: {}
+      name: step_v
+      layout_properties: {grid_position: 'GVPBXS,DRTKPD'}
+    - type: Label
+      properties: {}
+      name: t_zone
+      layout_properties: {grid_position: 'GVPBXS,VDBNVA'}
     - type: DataGrid
       properties:
         role: tonal-data-grid

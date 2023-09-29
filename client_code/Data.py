@@ -58,6 +58,8 @@ number = 0
 step = 0
 Tb1 = ""
 Tb2 = ""
+Te1 = ""
+Te2 = ""
 
 
 time_from = ""
@@ -314,13 +316,14 @@ def afib_details(row_date):
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
 def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: str) -> int:
+  
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr, bp_pul
   global bp_date2, bp_sys2, bp_dia2, bp_sys_add2, bp_pul2, bp_mean2, bp_n2, bp_colors2, bp_list2,\
   bp_summary2, afibs2, x_data2, y_values2, purple_cntr2, red_cntr2, orange_cntr2, green_cntr2,\
   loaded_from2, loaded_to2
-  global comp_list
+  global comp_list, Te1, Te2
   global bp_afib, bp_afib2
 
   comp_list = []

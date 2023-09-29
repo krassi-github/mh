@@ -28,6 +28,10 @@ class Analysis(AnalysisTemplate):
     else:
       self.repeating_panel_1.items = Data.comp_list
       self.repeating_panel_2.items = Data.comp_summary
+      self.ser_1.text = Data.Tb1[:10] + " - " + Data.Te1[:10]
+      self.ser_2.text = Data.Tb2[:10] + " - " + Data.Te2[:10]
+      self.step_v.text = Data.step
+      self.t_zone.text = Data.zt_beg + " - " + Data.zt_end
       #print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
 
   def back_click(self, **event_args):
