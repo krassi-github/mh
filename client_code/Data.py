@@ -343,6 +343,7 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   p1 = 0; p2 = 0
 
   if zt_beg == "00:00" and zt_end == "23:59":
+
     zb = None
     ze = None
   else:
