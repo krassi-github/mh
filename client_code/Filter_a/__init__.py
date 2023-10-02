@@ -109,7 +109,7 @@ class Filter_a(Filter_aTemplate):
   def period_1_change(self, **event_args):    
     global tb1, Tb1, Tb2
     Tb1 = (str(self.period_1.date)).replace('-', '/') + ' ' + "00:00"
-    Te1, dummy = anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb1)
+    Te1, dummy = anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb1=Tb1)
     r = anvil.server.call("check_data", "1001", Tb1, Te1)
     if not r:
       alert(f"No DATA in period {Tb1} -- {Te1}", title="WARNING")
@@ -118,7 +118,7 @@ class Filter_a(Filter_aTemplate):
   def period_2_change(self, **event_args):
     global tb2, Tb1, Tb2
     Tb2 = (str(self.period_2.date)).replace('-', '/') + ' ' + "00:00"
-    dummy, Te2 =  anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb2)
+    dummy, Te2 =  anvil.server.call("periods_calc", Data.number, Data.uom, Data.step, Tb2=Tb2)
     r = anvil.server.call("check_data", "1001", Tb2, Te2)
     if not r:
       alert(f"No DATA in period {Tb2} -- {Te2}", title="WARNING")
