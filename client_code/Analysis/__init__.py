@@ -35,6 +35,5 @@ class Analysis(AnalysisTemplate):
       #print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
 
   def back_click(self, **event_args):
-    """This method is called when the button is clicked"""
     open_form('Form1')
 
