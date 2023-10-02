@@ -75,7 +75,7 @@ class Filter_a(Filter_aTemplate):
       # to prevent TypeError: '>' not supported between instances of 'NoneType' and 'int'
       return
     if self.number.text > Data.max_number[0] or self.number.text <= 0:
-      alert("The number must positive integer less than 100. \\nPlease, try again!", title="ERROR message")
+      alert("The number must be positive integer less than 100. \\nPlease, try again!", title="ERROR message")
       return      
     self.period.text = self.number.text
     Data.number = self.number.text    
