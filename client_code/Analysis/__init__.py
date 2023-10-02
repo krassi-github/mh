@@ -14,12 +14,12 @@ class Analysis(AnalysisTemplate):
     self.column_panel_L.row_spacing = 4
     self.column_panel_R.row_spacing = 4
     #Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2
-    #self.data_render()
+    #self.data_render("1001")
     
-  def data_render(self):
+  def data_render(self, object):
     #print(f"n= {Data.number} uom= {Data.uom}, s= {Data.step} Tb1= {Data.Tb1} Tb2= {Data.Tb2}")
-    r = Data.set_comp_list("1001", Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
-    r1 = Data.set_comp_summary("1001", Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
+    r = Data.set_comp_list(object, Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
+    r1 = Data.set_comp_summary(object, Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
     # r = Data.set_comp_list("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
     # r1 = Data.set_comp_summary("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
     if r or r1:

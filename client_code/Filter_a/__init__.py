@@ -47,9 +47,8 @@ class Filter_a(Filter_aTemplate):
 
 
 # Ranges processing  -------------------------------------------------------------------
-  def show_range(self, user, rng, Tb=None, Te=None, Step=None):
-    Data.current_range = rng
-    self.parent.parent.data_render(user, rng, Tb=Tb, Te=Te, Step=Step)
+  def show_range(self, object):
+    self.parent.parent.data_render(object)
 
 
 
@@ -136,8 +135,7 @@ class Filter_a(Filter_aTemplate):
       '''
     Tb=Data.loaded_from        #time_from
     Te=Data.loaded_to          # time_to
-    print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
-    self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
+    self.show_range("1001")    # , Data.current_range, Tb=Tb, Te=Te
 
   def drop_down_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
@@ -151,11 +149,4 @@ class Filter_a(Filter_aTemplate):
 
 # Start Comparison procedure
   def start_button_click(self, **event_args):
-    self.parent.parent.data_render()
-    pass
-
-
-
-
-
-
+    self.parent.parent.data_render("1001")
