@@ -381,7 +381,7 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
 
   # Generate comp_list  #[{"no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
   #print(f"set_comp_list() => Len1= {len(y_values)}  Len2= {len(y_values2)}")
-  len1= len(y_values);  len2= len(y_values)
+  len1= len(y_values);  len2= len(y_values2)
   if len1 >= len2:
     min_len = len2-1
   else:
