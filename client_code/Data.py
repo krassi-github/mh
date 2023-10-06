@@ -456,14 +456,14 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
   
   # MAX row   MAX(sys), MAX(dia), MAX(pul), MAX(mean), MAX(afib)
   # max_row1=[]; min_row1=[]; max_row2=[]; min_row2=[]
-  p1, max_row1, min_row1 = anvil.server.call("get_max_min", object, Tb1, Te1, zt_beg=zt_beg, zt_end=zt_end)
-  p2, max_row2, min_row2 = anvil.server.call("get_max_min", object, Tb2, Te2, zt_beg=zt_beg, zt_end=zt_end)
+  p1, max_row1, min_row1 = anvil.server.call("get_max_min", object, Tb1, Te1, zt_beg=zb, zt_end=ze)
+  p2, max_row2, min_row2 = anvil.server.call("get_max_min", object, Tb2, Te2, zt_beg=zb, zt_end=ze)
   if p2 or p1:
     # Data prep error
     m = f"set_comp_summary() p2= {p2}  p1= {p1}"
     anvil.server.call("mh_log", -903, m)
   print(f"max1= {max_row1}  ######  min1= {min_row1}")
-  input("See the max min ")
+  
   max_row = {"no":"MAX", "s1": None, "s2": None, "d1": None, "d2": None, 
              "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}
   max_row["s1"] = max_row1[0]; max_row["s2"] = max_row2[0]
