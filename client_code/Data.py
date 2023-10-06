@@ -454,45 +454,32 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
                         "m2":bp_summary2[i]["mean"], "a1":bp_summary[i]["afib"], "a2":bp_summary2[i]["afib"]})
 
   
-  # MAX row
-  p2 = set_bp_list(object, Tb=Tb2, Te=Te2, Step=Step)
-  x_data2 = x_data
-  y_values2 = y_values
-  bp_list2 = bp_list
-  bp_date2 = bp_date
-  bp_sys2 = bp_sys
-  bp_dia2 = bp_dia
-  bp_mean2 = bp_mean
-  p1 = set_bp_list(object, Tb=Tb1, Te=Te1, Step=Step)
+  # MAX row   MAX(sys), MAX(dia), MAX(pul), MAX(mean), MAX(afib)
+  # max_row1=[]; min_row1=[]; max_row2=[]; min_row2=[]
+  p1, max_row1, min_row1 = anvil.server.call("get_max_min", object, Tb1, Te1, zt_beg=zt_beg, zt_end=zt_end)
+  p2, max_row2, min_row2 = anvil.server.call("get_max_min", object, Tb2, Te2, zt_beg=zt_beg, zt_end=zt_end)
   if p2 or p1:
     # Data prep error
     m = f"set_comp_summary() p2= {p2}  p1= {p1}"
     anvil.server.call("mh_log", -903, m)
-    return (-903)
-
-  #print(f"puls data 1  {bp_pul}   2  {bp_pul}")
+  print(f"max1= {max_row1}  ######  min1= {min_row1}")
+  input("See the max min ")
   max_row = {"no":"MAX", "s1": None, "s2": None, "d1": None, "d2": None, 
              "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}
-  max_row["s1"] = max(bp_sys); max_row["s2"] = max(bp_sys2)
-  max_row["d1"] = max(bp_dia); max_row["d2"] = max(bp_dia2)
-  max_row["p1"] = max(bp_pul); max_row["p2"] = max(bp_pul2)
-  max_row["m1"] = max(bp_mean); max_row["m2"] = max(bp_mean2)
-  if bp_afib:
-    max_row["a1"] = max(bp_afib); 
-  if bp_afib2:
-    max_row["a2"] = max(bp_afib2)
+  max_row["s1"] = max_row1[0]; max_row["s2"] = max_row2[0]
+  max_row["d1"] = max_row1[1]; max_row["d2"] = max_row2[1]
+  max_row["p1"] = max_row1[2]; max_row["p2"] = max_row2[2]
+  max_row["m1"] = max_row1[3]; max_row["m2"] = max_row2[3]
+  max_row["a1"] = max_row1[4]; max_row["a2"] = max_row2[4]
 
   # MIN row
   min_row = {"no": "MIN", "s1": None, "s2": None, "d1": None, "d2": None,
             "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}                      
-  min_row["s1"] = min(bp_sys); min_row["s2"] = min(bp_sys2)
-  min_row["d1"] = min(bp_dia); min_row["d2"] = min(bp_dia2)
-  min_row["p1"] = min(bp_pul); min_row["p2"] = min(bp_pul2)
-  min_row["m1"] = min(bp_mean); min_row["m2"] = min(bp_mean2)
-  if bp_afib:
-    min_row["a1"] = min(bp_afib); 
-  if bp_afib2:
-    min_row["a2"] = min(bp_afib2)
+  min_row["s1"] = min_row1[0]; min_row["s2"] = min_row2[0]
+  min_row["d1"] = min_row1[1]; min_row["d2"] = min_row2[1]
+  min_row["p1"] = min_row1[2]; min_row["p2"] = min_row2[2]
+  min_row["m1"] = min_row1[3]; min_row["m2"] = min_row2[3]
+  min_row["a1"] = min_row1[4]; min_row["a2"] = min_row2[4]
 
   comp_summary.append(max_row)
   comp_summary.append(min_row)
