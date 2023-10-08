@@ -84,6 +84,9 @@ class Filter_a(Filter_aTemplate):
     self.number.change()
 
 # Steps slection   --------------- 
+  def h0_clicked(self, **event_args):
+    Data.step = 2
+
   def h2_clicked(self, **event_args):
     Data.step = 2 * 60
 
