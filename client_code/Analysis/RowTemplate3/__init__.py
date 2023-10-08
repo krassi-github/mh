@@ -38,18 +38,18 @@ class RowTemplate3(RowTemplate3Template):
       self.s2.foreground = "orange"
       
     if int(self.d1.text) >= Data.params["red_sys"]:
-      self.s1.foreground = "red"
+      self.d1.foreground = "red"
     elif int(self.d1.text) >= Data.params["orange_sys"]:
       self.d1.foreground = "orange"
     if int(self.d2.text) >= Data.params["red_sys"]:
-      self.s1.foreground = "red"
+      self.d1.foreground = "red"
     elif int(self.d2.text) >= Data.params["orange_sys"]:
       self.d2.foreground = "orange"
 
     if int(self.m1.text) >= Data.params["red_sys"]:
       self.m1.foreground = "red"
     if int(self.m2.text) >= Data.params["red_sys"]:
-      self.m1.foreground = "red"
+      self.m2.foreground = "red"
     
     if (self.a1.text):
       self.a1.foreground = "red"

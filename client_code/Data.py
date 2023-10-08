@@ -462,7 +462,6 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
     # Data prep error
     m = f"set_comp_summary() p2= {p2}  p1= {p1}"
     anvil.server.call("mh_log", -903, m)
-  print(f"max1= {max_row1}  ######  min1= {min_row1}")
   
   max_row = {"no":"MAX", "s1": None, "s2": None, "d1": None, "d2": None, 
              "p1": None, "p2": None, "m1": None, "m2": None, "a1": None, "a2": None}
