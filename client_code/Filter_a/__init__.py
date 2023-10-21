@@ -84,8 +84,6 @@ class Filter_a(Filter_aTemplate):
     self.number.change()
 
 # Steps slection   --------------- 
-  def h0_clicked(self, **event_args):
-    Data.step = 2
 
   def h2_clicked(self, **event_args):
     Data.step = 2 * 60
@@ -102,6 +100,16 @@ class Filter_a(Filter_aTemplate):
 
   def m_clicked(self, **event_args):
     Data.step = 30 * 24 * 60
+
+  # Special cases:
+  # 1) To get raw data records
+  def h0_clicked(self, **event_args):
+    Data.step = -1
+    
+  # 2) To get averaged data records
+  def ha_clicked(self, **event_args):
+    Data.step = -2
+
 
 # Start points  ----------------
   def periods_verification(self):

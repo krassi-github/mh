@@ -25,19 +25,19 @@ class RowTemplate5(RowTemplate5Template):
         # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
       self.s1.foreground = "red"
-    if int(self.s2.text) >= Data.params["red_sys"]:
-      self.s2.foreground = "red"
     elif int(self.s1.text) >= Data.params["orange_sys"]:
       self.s1.foreground = "orange"
+    if int(self.s2.text) >= Data.params["red_sys"]:
+      self.s2.foreground = "red"
     elif int(self.s2.text) >= Data.params["orange_sys"]:      
       self.s2.foreground = "orange"
-      
+           
     if int(self.d1.text) >= Data.params["red_dia"]:
       self.d1.foreground = "red"
-    if int(self.d2.text) >= Data.params["red_dia"]:
-      self.d2.foreground = "red"
     elif int(self.d1.text) >= Data.params["orange_dia"]:
       self.d1.foreground = "orange"
+    if int(self.d2.text) >= Data.params["red_dia"]:
+      self.d1.foreground = "red"
     elif int(self.d2.text) >= Data.params["orange_dia"]:
       self.d2.foreground = "orange"
 
