@@ -349,14 +349,14 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   red_cntr2 = 0
   purple_cntr2 = 0
   p1 = 0; p2 = 0
-
+  '''
   if zt_beg == "00:00" and zt_end == "23:59":
-
     zb = None
     ze = None
   else:
     zb = zt_beg
-    ze = zt_end
+    ze = zt_end 
+  '''
   Te1, Te2 = anvil.server.call("periods_calc", number, uom, Step, Tb1=Tb1, Tb2=Tb2 )
   
   # prep data Block 2
@@ -381,7 +381,8 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   loaded_to2 = loaded_to
   
   # prep Data Block 1
-  р1, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb1, Te=Te1, Step=Step, zt_beg=zb, zt_end=ze)
+  # р1, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb1, Te=Te1, Step=Step, zt_beg=zb, zt_end=ze)
+  p1 = set_bp_list(object, fr=None, Tb=Tb1, Te=Te1, Step=Step, crawl=False)
   if p2 or p1:
     # Data prep error
     m = f"set_comp_list() p2= {p2}  p1= {p1}"
