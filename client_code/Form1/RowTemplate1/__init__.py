@@ -10,7 +10,7 @@ class RowTemplate1(RowTemplate1Template):
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.link_1.tag = self.lb_1.text      # 09-06-2023 test
+    self.link_1.tag = self.lb_1.text     # 09-06-2023 test
     self.row_spacing = 0
     if int(self.lb_2.text) >= Data.params["red_sys"]:
       self.lb_2.foreground = "red"
