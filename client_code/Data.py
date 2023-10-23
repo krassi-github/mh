@@ -360,7 +360,8 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   Te1, Te2 = anvil.server.call("periods_calc", number, uom, Step, Tb1=Tb1, Tb2=Tb2 )
   
   # prep data Block 2
-  р2, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb2, Te=Te2, Step=Step, zt_beg=zb, zt_end=ze)
+  # р2, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb2, Te=Te2, Step=Step, zt_beg=zb, zt_end=ze)
+  p2 = set_bp_list(object, fr=None, Tb=Tb2, Te=Te2, Step=Step, crawl=False)
   x_data2 = x_data
   y_values2 = y_values
   bp_list2 = bp_list
