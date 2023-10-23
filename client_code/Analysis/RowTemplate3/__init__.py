@@ -14,7 +14,7 @@ class RowTemplate3(RowTemplate3Template):
     self.init_components(**properties)
     self.row_spacing = 0
     # Test of assignment instead of binding
-    #print(f"RT3  =>  item= {self.item}")
+    # print(f"RT3  => {r}  item= {self.item}")
     self.no.text = self.item["no"]
     self.s1.text = self.item['s1']
     self.s2.text = self.item["s2"]
@@ -27,8 +27,8 @@ class RowTemplate3(RowTemplate3Template):
     self.a1.text = self.item["a1"]
     self.a2.text = self.item["a2"]
 
-    self.L1.tag = self.no.text     # 23-10-2023 on afib implementation
-    self.L2.tag = self.no.text
+    self.L1.tag = self.item["no"]    # 23-10-2023 on afib implementation
+    self.L2.tag = self.item["no"]
 
     # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
@@ -80,7 +80,8 @@ class RowTemplate3(RowTemplate3Template):
   def L1_click(self, **event_args):
     afib_print = ""
     print(f"L1.tag= {self.L1.tag}")
-    afibs = Data.afib_details(self.L1.tag, L1=True)   
+
+    afibs = Data.afib_details(self.item["no"], L1=self.item["n"])   
     if type(afibs) == type("str"):
       afib_print = str(afibs)
       alert(content=f"{self.L1.tag}    {afib_print}", large=True, title="AFIB Details")
@@ -91,7 +92,7 @@ class RowTemplate3(RowTemplate3Template):
   def L2_click(self, **event_args):
     afib_print = ""
   
-    afibs = Data.afib_details(self.L2.tag, L2=True)   
+    afibs = Data.afib_details(self.item["no"], L2=self.item["n"])   
     if type(afibs) == type("str"):
       afib_print = str(afibs)
       alert(content=f"{self.L2.tag}    {afib_print}", large=True, title="AFIB Details")
