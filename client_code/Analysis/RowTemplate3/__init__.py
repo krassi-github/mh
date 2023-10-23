@@ -27,6 +27,9 @@ class RowTemplate3(RowTemplate3Template):
     self.a1.text = self.item["a1"]
     self.a2.text = self.item["a2"]
 
+    self.L_1.tag = self.no.text     # 23-10-2023 on afib implementation
+    self.L_2.tag = self.no.text
+
     # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
       self.s1.foreground = "red"
