@@ -77,7 +77,7 @@ class RowTemplate3(RowTemplate3Template):
   def L1_click(self, **event_args):
     afib_print = ""
     
-    afibs = Data.afib_details(self.link_1.tag)   
+    afibs = Data.afib_details(self.L1.tag)   
     if type(afibs) == type("str"):
       afib_print = str(afibs)
       alert(content=f"{self.link_1.tag}    {afib_print}", large=True, title="AFIB Details")
