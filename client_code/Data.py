@@ -296,6 +296,8 @@ def afib_details(row_date, L1=None, L2=None):
 
   if L2:
     bp_ = bp_list2
+    #index = bp_list[1].index(row_date)
+    #row_date = 
   else:
     bp_ = bp_list
     

@@ -79,7 +79,7 @@ class RowTemplate3(RowTemplate3Template):
 
   def L1_click(self, **event_args):
     afib_print = ""
-    
+    print(f"L1.tag= {self.L1.tag}")
     afibs = Data.afib_details(self.L1.tag, L1=True)   
     if type(afibs) == type("str"):
       afib_print = str(afibs)
