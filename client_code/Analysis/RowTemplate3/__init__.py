@@ -27,8 +27,8 @@ class RowTemplate3(RowTemplate3Template):
     self.a1.text = self.item["a1"]
     self.a2.text = self.item["a2"]
 
-    self.L_1.tag = self.no.text     # 23-10-2023 on afib implementation
-    self.L_2.tag = self.no.text
+    self.L1.tag = self.no.text     # 23-10-2023 on afib implementation
+    self.L2.tag = self.no.text
 
     # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
@@ -80,16 +80,24 @@ class RowTemplate3(RowTemplate3Template):
   def L1_click(self, **event_args):
     afib_print = ""
     
-    afibs = Data.afib_details(self.L1.tag)   
+    afibs = Data.afib_details(self.L1.tag, L1=True)   
     if type(afibs) == type("str"):
       afib_print = str(afibs)
-      alert(content=f"{self.link_1.tag}    {afib_print}", large=True, title="AFIB Details")
+      alert(content=f"{self.L1.tag}    {afib_print}", large=True, title="AFIB Details")
     else:
       alert(afibs_g(), large=True, title="AFIB Details")
       # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
 
   def L2_click(self, **event_args):
     afib_print = ""
+  
+    afibs = Data.afib_details(self.L2.tag, L2=True)   
+    if type(afibs) == type("str"):
+      afib_print = str(afibs)
+      alert(content=f"{self.L2.tag}    {afib_print}", large=True, title="AFIB Details")
+    else:
+      alert(afibs_g(), large=True, title="AFIB Details")
+      # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
 
 
 '''    self.parent.parent.repeating_panel_1.items = Data.comp_list

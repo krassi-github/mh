@@ -290,12 +290,18 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   return(r)
 
 
-def afib_details(row_date):
-  global bp_list
+def afib_details(row_date, L1=None, L2=None):
+  global bp_list, bp_list2
   global afibs
 
-  afibs = []
-  for b in bp_list:
+  if L2:
+    bp_ = bp_list2
+  else:
+    bp_ = bp_list
+    
+  afibs = []; r = 0
+  print(f"len bp_ {len(bp_)}"); print(bp_)
+  for b in bp_:
     if b['date'] == row_date:
       a = b['afib']
       if a:

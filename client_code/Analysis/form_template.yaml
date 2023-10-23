@@ -86,7 +86,7 @@ components:
         - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401', width: ''}
         - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402', width: ''}
         - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171', width: ''}
-        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157', width: ''}
+        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
         - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159', width: ''}
         - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161', width: ''}
         - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163', width: ''}
