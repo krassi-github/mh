@@ -296,7 +296,7 @@ def afib_details(row_date, L1=None, L2=None):
 
   if L2:
     bp_ = bp_list2
-    row_date = bp_date2[L2]
+    row_date = L2
   else:
     bp_ = bp_list
   print(f"row_date=  {row_date}")  
@@ -388,7 +388,7 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
     anvil.serrver.call("mh_log", -901, m)
     return(-901)
 
-  # Generate comp_list  #[{"n", "no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
+  # Generate comp_list  #[{"n", "no", "date2", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
   len1= len(y_values);  len2= len(y_values2)
   if len1 >= len2:
     min_len = len2-1
@@ -397,9 +397,9 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   # print(f"set_comp_list() => Len1= {len(y_values)}  Len2= {len(y_values2)} min_len= {min_len}")
   for i in range(min_len):
     if all or y_values[i][2]:    #
-      comp_list.append({"n": i, "no": y_values[i][1], "s1":y_values[i][2], "s2":y_values2[i][2], "d1":y_values[i][3],\
-                        "d2":y_values2[i][3], "p1":y_values[i][4], "p2":y_values2[i][4],"m1":y_values[i][5],\
-                        "m2":y_values2[i][5], "a1":y_values[i][6], "a2":y_values2[i][6]})        
+      comp_list.append({"n": i, "no": y_values[i][1], "date2": y_values2[i][1], "s1":y_values[i][2],\ 
+                        "s2":y_values2[i][2], "d1":y_values[i][3],  "d2":y_values2[i][3], "p1":y_values[i][4], \
+                        "p2":y_values2[i][4],"m1":y_values[i][5], "m2":y_values2[i][5], "a1":y_values[i][6], "a2":y_values2[i][6]})        
 
   return(0)
 
