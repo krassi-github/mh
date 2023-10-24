@@ -299,7 +299,7 @@ def afib_details(row_date, L1=None, L2=None):
     row_date = L2
   else:
     bp_ = bp_list
-  print(f"row_date=  {row_date}")  
+
   afibs = []; r = 0
   #print(f"len bp_ {len(bp_)}"); print(bp_)
   for b in bp_:
