@@ -44,12 +44,14 @@ class Analysis(AnalysisTemplate):
       # Remember the details of the hidden column
       self.hidden_columns.append(column)      
       # Remove it from the Data Grid's column list
-      self.list_data.columns.remove(column)
+      #self.list_data.columns.remove(column)
+      print(f"Column= {column}")
+      self.list_data.columns.column["title"] = '' 
       column = [c for c in self.list_data.columns if c['title'] == 'A2'][0]      
       # Remember the details of the hidden column
       self.hidden_columns.append(column)      
       # Remove it from the Data Grid's column list
-      self.list_data.columns.remove(column)
+      #self.list_data.columns.remove(column)
       # Make the change live
       self.list_data.columns = self.list_data.columns
 
