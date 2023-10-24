@@ -244,7 +244,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           orange_cntr += 1
         else:
           bp_colors.append(c_green)
-          green_cntr += 1
+          if y_values[i][2] > 0:
+            green_cntr += 1
         
         if y_values[i][5]:
           bp_mean.append(y_values[i][5])
