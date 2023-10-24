@@ -6,7 +6,9 @@ from .. import Data
 from ..afibs_g import afibs_g
 
 
+
 class Analysis(AnalysisTemplate):
+  hidden_columns = []
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -17,6 +19,7 @@ class Analysis(AnalysisTemplate):
     #self.data_render("1001")
     
   def data_render(self, object):
+    global hidden_columns
     #print(f"n= {Data.number} uom= {Data.uom}, s= {Data.step} Tb1= {Data.Tb1} Tb2= {Data.Tb2}")
     r = Data.set_comp_list(object, Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
     r1 = Data.set_comp_summary(object, Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
@@ -33,6 +36,23 @@ class Analysis(AnalysisTemplate):
       self.step_v.text = Data.step
       self.t_zone.text = Data.zt_beg + " - " + Data.zt_end
       #print(f"data_render()  ==> Analysis RP items= {self.repeating_panel_1.items}")
+
+    if Data.step == -2:
+      # averaged rows to be shown
+      # Filter the column with title 'A1'
+      column = [c for c in self.list_data.columns if c['title'] == 'A1'][0]      
+      # Remember the details of the hidden column
+      self.hidden_columns.append(column)      
+      # Remove it from the Data Grid's column list
+      self.list_data.columns.remove(column)
+      column = [c for c in self.list_data.columns if c['title'] == 'A2'][0]      
+      # Remember the details of the hidden column
+      self.hidden_columns.append(column)      
+      # Remove it from the Data Grid's column list
+      self.list_data.columns.remove(column)
+      # Make the change live
+      self.list_data.columns = self.list_data.columns
+
 
   def back_click(self, **event_args):
     open_form('Form1')
