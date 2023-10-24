@@ -9,6 +9,8 @@ from ..afibs_g import afibs_g
 
 class Analysis(AnalysisTemplate):
   hidden_columns = []
+  id_a1 = ''
+  id_a2 = '' 
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -17,6 +19,12 @@ class Analysis(AnalysisTemplate):
     self.column_panel_R.row_spacing = 4
     #Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2
     #self.data_render("1001")
+    clm_a1 = [c for c in self.list_data.columns if c['title'] == 'A1'][0]
+    clm_a2 = [c for c in self.list_data.columns if c['title'] == 'A2'][0]
+    self.id_a1 = clm_a1["id"]
+    self.id_a2 = clm_a2["id"]
+    self.label_R.text = ' '
+    self.ser_1.text = ' '
     
   def data_render(self, object):
     global hidden_columns
@@ -39,21 +47,34 @@ class Analysis(AnalysisTemplate):
 
     if Data.step == -2:
       # averaged rows to be shown
-      # Filter the column with title 'A1'
-      column = [c for c in self.list_data.columns if c['title'] == 'A1'][0]      
-      # Remember the details of the hidden column
-      self.hidden_columns.append(column)      
-      # Remove it from the Data Grid's column list
-      #self.list_data.columns.remove(column)
-      print(f"Column= {column}")
-      self.list_data.columns.column["title"] = '' 
-      column = [c for c in self.list_data.columns if c['title'] == 'A2'][0]      
-      # Remember the details of the hidden column
-      self.hidden_columns.append(column)      
-      # Remove it from the Data Grid's column list
-      #self.list_data.columns.remove(column)
-      # Make the change live
-      self.list_data.columns = self.list_data.columns
+      for i, c in enumerate(self.list_data.columns):
+        if c["id"] == self.id_a1 or c["id"] == self.id_a2:
+          self.list_data.columns[i]["title"] = ''
+    else:
+      for i, c in enumerate(self.list_data.columns):
+        if c["id"] == self.id_a1:
+          self.list_data.columns[i]["title"] = 'A1'
+        if c["id"] == self.id_a2:
+          self.list_data.columns[i]["title"] = 'A2' 
+    self.list_data.columns = self.list_data.columns   
+      
+    '''
+    # Filter the column with title 'A1'
+    column = [c for c in self.list_data.columns if c['title'] == 'A1'][0]      
+    # Remember the details of the hidden column
+    self.hidden_columns.append(column)      
+    # Remove it from the Data Grid's column list
+    #self.list_data.columns.remove(column)
+    print(f"Column= {column}")
+    self.list_data.columns.column["title"] = '' 
+    column = [c for c in self.list_data.columns if c['title'] == 'A2'][0]      
+    # Remember the details of the hidden column
+    self.hidden_columns.append(column)      
+    # Remove it from the Data Grid's column list
+    #self.list_data.columns.remove(column)
+    # Make the change live
+    self.list_data.columns = self.list_data.columns
+    '''
 
 
   def back_click(self, **event_args):

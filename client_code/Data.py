@@ -179,7 +179,7 @@ def set_zone(zone):
 # *************************************************************************************    
 # Load data funcs
 # Data Block 1 filled
-def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
+def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
   global params
@@ -210,7 +210,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False):
     zb = zt_beg
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                        Average=False, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
+                        Average=False, fill_empty=fill_empty, crawl=crawl, zt_beg=zb, zt_end=ze)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values) 
