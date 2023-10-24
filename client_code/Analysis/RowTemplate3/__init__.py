@@ -78,28 +78,22 @@ class RowTemplate3(RowTemplate3Template):
     self.a2.background = "rgba(0, 0, 0, 0.0)" 
 
   def L1_click(self, **event_args):
-    afib_print = ""
-    print(f"L1.tag= {self.L1.tag}")
-
-    afibs = Data.afib_details(self.item["no"])
-    if type(afibs) == type("str"):
-      afib_print = str(afibs)
-      alert(content=f"{self.L1.tag}    {afib_print}", large=True, title="AFIB Details")
+    afibs = Data.afib_details(self.L1.tag)
+    if type(afibs) == str:
+      # No afibs
+      alert(content=f"{self.L1.tag}    {afibs}", large=True, title="AFIB Details")
     else:
       alert(afibs_g(), large=True, title="AFIB Details")
       # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
 
   def L2_click(self, **event_args):
-    afib_print = ""
-  
-    afibs = Data.afib_details(self.item["no"], L2=self.L2.tag)   
-    if type(afibs) == type("str"):
-      afib_print = str(afibs)
-      alert(content=f"{self.L2.tag}    {afib_print}", large=True, title="AFIB Details")
+    afibs = Data.afib_details(self.L1.tag, L2=self.L2.tag)
+    if type(afibs) == str:
+      # No afibs
+      alert(content=f"{self.L2.tag}    {afibs}", large=True, title="AFIB Details")
     else:
       alert(afibs_g(), large=True, title="AFIB Details")
-      # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
-
+    
 
 '''    self.parent.parent.repeating_panel_1.items = Data.comp_list
     print(f"RT_3 self.item= {self.item}  ")

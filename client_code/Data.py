@@ -306,14 +306,14 @@ def afib_details(row_date, L1=None, L2=None):
     if b['date'] == row_date:
       a = b['afib']
       if a:
-        afib_value = int(a[:-2])
+        afib_value = 1 if a == "AFIB" else int(a[:-2])    # more afibs are possible
         r, afib_rows = anvil.server.call("get_afibs", row_date, afib_value)
         for i in range(len(afib_rows)):
           afibs.append({"date": afib_rows[i][0], "sys":afib_rows[i][1], "dia":afib_rows[i][2],\
                   "pul":afib_rows[i][3], "mean":afib_rows[i][4]})
       else:
         r = 0
-        afibs = "No AFIB at this row"
+        afibs = "No AFIB on this row"
   if not r:
     return(afibs)
   else:
