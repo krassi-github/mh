@@ -37,7 +37,7 @@ class RowTemplate5(RowTemplate5Template):
     elif int(self.d1.text) >= Data.params["orange_dia"]:
       self.d1.foreground = "orange"
     if int(self.d2.text) >= Data.params["red_dia"]:
-      self.d1.foreground = "red"
+      self.d2.foreground = "red"
     elif int(self.d2.text) >= Data.params["orange_dia"]:
       self.d2.foreground = "orange"
 
