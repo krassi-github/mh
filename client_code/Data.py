@@ -49,6 +49,7 @@ custom_zone_items = []
 current_zone = ''   # current time_zone
 zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
+slice_step = None
 
 # filter_a (Analysis Form) Data
 uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
