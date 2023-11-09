@@ -26,11 +26,11 @@ components:
     layout_properties: {}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: Enter integer Number,
-      placeholder: '#', border: '', enabled: true, foreground: '', visible: true,
-      text: '', font_size: 20, font: '', spacing_above: small, type: number, spacing_below: small,
+      placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '',
+      font_size: 20, font: '', spacing_above: small, type: number, spacing_below: small,
       italic: false, background: '', bold: false, underline: false}
     name: number
-    layout_properties: {width: 64, expand: false}
+    layout_properties: {width: 5, expand: false}
     event_bindings: {change: number_change, pressed_enter: number_pressed_enter}
   - type: Label
     properties: {role: null, align: center, tooltip: '', border: '', foreground: '',

@@ -28,8 +28,9 @@ class Filter_a(Filter_aTemplate):
     self.drop_down_2.items = self.drop_down_2.items
     '''
     #self.default_zone(0)
-    #self.d.selected = True
-    #input(f"We're in Filter_a FORM")
+    if not Data.step:
+      self.d.selected = True
+      self.d_clicked()
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.period_1.width = "80%"
@@ -82,7 +83,7 @@ class Filter_a(Filter_aTemplate):
   def number_pressed_enter(self, **event_args):
     self.number.change()
 
-# Steps slection   --------------- 
+# Steps selection   --------------- 
   def h2_clicked(self, **event_args):
     Data.step = 2 * 60
 
