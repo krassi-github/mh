@@ -1,6 +1,9 @@
 import anvil.server
 import datetime
 #    from . import Module1
+
+# LOCAL Data Layer
+
 all = True    # all - including records without values (measurements)
 #              initialized (to False) in __init__() of Filter
 params = {}
@@ -49,8 +52,8 @@ custom_zone_items = []
 current_zone = ''   # current time_zone
 zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
-slice_mode = False
-slice_step = None
+slice_mode = False  # on True Saily Data is sliced
+slice_step = None   # Slice step (time) in hours
 
 # filter_a (Analysis Form) Data
 uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
@@ -115,6 +118,8 @@ red_cntr2 = 0
 orange_cntr2 = 0
 green_cntr2 = 0
 
+# ******************************************************************************
+# Load parameters funcs
 def load_params():
   global params
   global time_to
@@ -179,6 +184,7 @@ def set_zone(zone):
 
 # *************************************************************************************    
 # Load data funcs
+# set_bp_list()  ----------------------------------------------------------------------
 # Data Block 1 filled
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
@@ -214,7 +220,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                         Average=False, fill_empty=fill_empty, crawl=crawl, zt_beg=zb, zt_end=ze)
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
-  #print(y_values) 
+  #print(y_values)
+  
+  # Prepare local data 
   bp_list = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
   bp_date = []
   bp_sys = []
