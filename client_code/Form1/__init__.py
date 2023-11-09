@@ -83,16 +83,16 @@ class Form1(Form1Template):
     
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range    
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
-    if r:
+    if r < 0:
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
       self.label_2.boldface = True
     r1 = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te, crawl=crawl)
-    if r1:
+    if r1 < 0:
       self.label_2.text += f"  set_summary= {r1} "
       self.label_2.foreground = "red"
       self.label_2.boldface = True
-    if r or r1:
+    if r < 0 or r1 < 0:
       pass    # UI message to be generated
     else:
       self.repeating_panel_1.items = Data.bp_list

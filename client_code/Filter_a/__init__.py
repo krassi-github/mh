@@ -51,7 +51,6 @@ class Filter_a(Filter_aTemplate):
     self.parent.parent.data_render(object)
 
 
-
 # Period parameters setting  ---------------------------------------------------------------
 # Period length entry ---------------
   def period_len(self):
