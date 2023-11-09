@@ -208,8 +208,39 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global red_cntr
   global orange_cntr
   global green_cntr
+  global slice_mode
+  global slice_step
 
   # Retreive data from DB
+    # Retreive data from DB
+  if slice_mode:
+    for z in range(0, 24, slice_step):
+      zb = str(z).zfill(2) + ":00"     # the time zone beginning
+      hr = z + slice_step
+      if hr == 24:
+        ze = "23:59"
+      else:
+        ze = str(hr).zfill(2) + ":00"
+      # Retreive a single record (the summary) for the range
+      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                        Average=True, fill_empty=fill_empty,
+                                        crawl=crawl, zt_beg=zb, zt_end=ze)
+      # ToDo Processing on r= no data
+      y_values.append(y_val)
+      x_data.append(zb)
+  
+  else:
+    # Regular retreive
+    if zt_beg == "00:00" and zt_end == "23:59":
+      zb = None
+      ze = None
+    else:
+      zb = zt_beg
+      ze = zt_end
+    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                            Average=False, fill_empty=fill_empty,
+                                            crawl=crawl, zt_beg=zb, zt_end=ze)
+  '''
   if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
     ze = None
@@ -218,6 +249,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                         Average=False, fill_empty=fill_empty, crawl=crawl, zt_beg=zb, zt_end=ze)
+  '''
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values)
@@ -270,6 +302,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     # 20-06-2023
     #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
+  print(f"Second print  ========== {slice_mode}     {slice_step}")
+  print(x_data)
+  print(bp_list)
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
