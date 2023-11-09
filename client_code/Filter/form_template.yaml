@@ -151,11 +151,23 @@ components:
   name: drop_down_2
   layout_properties: {grid_position: 'REPJDC,JFXTWE'}
   event_bindings: {change: drop_down_2_change}
+- name: label_1
+  properties: {text: Slice Time, spacing_above: none, spacing_below: none}
+  type: Label
+  layout_properties: {grid_position: 'TOLMYY,CBSADS'}
+- name: slice_time
+  properties:
+    items: [None, '1', '2', '3', '4', '6']
+    spacing_above: none
+    spacing_below: none
+  type: DropDown
+  layout_properties: {grid_position: 'ALYYSX,KONRIS'}
+  event_bindings: {change: slice_time_change, show: slice_time_show}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: msg
-  layout_properties: {grid_position: 'YIHNMT,WHMSIC'}
+  layout_properties: {grid_position: 'PUGOQO,DBXZOP'}
 is_package: true
 custom_component: true

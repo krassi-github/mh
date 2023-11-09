@@ -49,6 +49,7 @@ custom_zone_items = []
 current_zone = ''   # current time_zone
 zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
+slice_mode = False
 slice_step = None
 
 # filter_a (Analysis Form) Data
@@ -61,7 +62,6 @@ Tb1 = ""
 Tb2 = ""
 Te1 = ""
 Te2 = ""
-
 
 time_from = ""
 time_to = ""

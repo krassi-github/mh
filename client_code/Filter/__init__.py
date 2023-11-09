@@ -121,3 +121,15 @@ class Filter(FilterTemplate):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
+
+  def slice_time_show(self, **event_args):
+    if self.slice_time.selected_value:
+      Data.slice_time = str(self.slice_time.selected_value)
+      Data_slice_mode = True
+    else:
+      Data.slice_time = 0
+      Data_slice_mode = False
+
+  def slice_time_change(self, **event_args):
+    self.slice_time_show(**event_args)
+    
