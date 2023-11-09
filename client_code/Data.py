@@ -384,10 +384,10 @@ def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: 
   # prep Data Block 1
   # р1, x_data, y_values = anvil.server.call("prep_plot", object, Tb=Tb1, Te=Te1, Step=Step, zt_beg=zb, zt_end=ze)
   p1 = set_bp_list(object, fr=None, Tb=Tb1, Te=Te1, Step=Step, crawl=False)
-  if p2 or p1:
+  if p2 < 0 or p1 < 0:
     # Data prep error
     m = f"set_comp_list() p2= {p2}  p1= {p1}"
-    anvil.serrver.call("mh_log", -901, m)
+    anvil.server.call("mh_log", -901, m)
     return(-901)
 
   # Generate comp_list  #[{"n", "no", "date2", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
