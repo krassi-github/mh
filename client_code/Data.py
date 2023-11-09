@@ -227,7 +227,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   orange_cntr = 0
   red_cntr = 0
   purple_cntr = 0
-  if not r:       
+  if r >= 0:       
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
@@ -284,7 +284,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
                         Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
   # ======= print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
-  if not r:       
+  if r >= 0:       
     for i in range(len(y_values)):      
       if y_values[i][2]:    #        
         bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
