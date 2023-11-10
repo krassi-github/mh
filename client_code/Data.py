@@ -229,6 +229,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       y_val[0][1] = zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
+    loaded_from = str(x_data[0])
+    loaded_to = str(x_dat[-1][:10]) + ' ' + ze
+    print(f" in SLICE  from= {loaded_from} to= {loaded_to}")
   else:
     # Regular retreive
     if zt_beg == "00:00" and zt_end == "23:59":
@@ -240,21 +243,10 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                             Average=False, fill_empty=fill_empty,
                                             crawl=crawl, zt_beg=zb, zt_end=ze)
-  '''
-  # Retreive data from DB
-  if zt_beg == "00:00" and zt_end == "23:59":
-    zb = None
-    ze = None
-  else:
-    zb = zt_beg
-    ze = zt_end
-  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                        Average=False, fill_empty=fill_empty, crawl=crawl, zt_beg=zb, zt_end=ze)
-  '''
-  #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
-  #print(x_data)
-  #print(y_values)
-  
+    loaded_from = x_data[0]     # test x_data alternatively
+    loaded_to = x_data[-1]      
+      
+  #data format: ["          ", "                ", (s); (d); (p); (m); (a)] 
   # Prepare local data 
   bp_list = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
   bp_date = []
@@ -298,11 +290,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
               break
         elif not len(bp_mean):
           bp_mean.append(None)
-    loaded_from = x_data[0]     # test x_data alternatively
-    loaded_to = x_data[-1]
-    # 20-06-2023
-    #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
-    #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
+
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
