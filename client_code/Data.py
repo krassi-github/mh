@@ -208,49 +208,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global red_cntr
   global orange_cntr
   global green_cntr
-  global slice_mode
-  global slice_step
 
   # Retreive data from DB
-    # Retreive data from DB
-  x_data = []
-  y_values = []
-  if slice_mode:
-    for z in range(0, 24, slice_step):
-      zb = str(z).zfill(2) + ":00"     # the time zone beginning
-      hr = z + slice_step
-      if hr == 24:
-        ze = "23:59"
-      else:
-        ze = str(hr).zfill(2) + ":00"
-      # Retreive a single record (the summary) for the range
-      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                        Average=True, fill_empty=fill_empty,
-                                        crawl=crawl, zt_beg=zb, zt_end=ze)
-      # ToDo Processing on r= no data
-      zb = str(x_dat[0][:10]) + ' ' + zb
-      print(f"z= {z}  zb= {zb}  Xz= {x_dat}  y_val= {y_val}  [1]= {y_val[0][1]}")
-      x_data.append(zb)
-      y_val[0][1] = zb         # replace date (from prep_plot()) with slice beginning date
-      y_values.extend(y_val)
-    #ze = str(x_dat[-1][:10]) + ' ' + ze
-    #x_data.append(ze)
-    print(f"SLICE  X= {x_data}")
-    print(f"SLICE  Y= {y_values}")
-  
-  else:
-    # Regular retreive
-    if zt_beg == "00:00" and zt_end == "23:59":
-      zb = None
-      ze = None
-    else:
-      zb = zt_beg
-      ze = zt_end
-    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                            Average=False, fill_empty=fill_empty,
-                                            crawl=crawl, zt_beg=zb, zt_end=ze)
-
-  '''
   if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
     ze = None
@@ -259,7 +218,6 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                         Average=False, fill_empty=fill_empty, crawl=crawl, zt_beg=zb, zt_end=ze)
-  '''
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values)
@@ -277,13 +235,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   orange_cntr = 0
   red_cntr = 0
   purple_cntr = 0
-  if r >= 0:
-    print(f"len(y_value)s=  {len(y_values)}", end="---  ")
-    if slice_mode:
-      print(y_values); print()
-    for i in range(len(y_values)):
-      if all or y_values[i][2]:    # 
-        print(i, end=" ")
+  if r >= 0:       
+    for i in range(len(y_values)):      
+      if all or y_values[i][2]:    #        
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})        
         bp_date.append(y_values[i][1])
@@ -316,7 +270,6 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     # 20-06-2023
     #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
-
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
@@ -339,7 +292,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
                         Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
   # ======= print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
-  if r >= 0:
+  if r >= 0:       
     for i in range(len(y_values)):      
       if y_values[i][2]:    #        
         bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
