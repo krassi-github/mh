@@ -228,9 +228,13 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                         Average=True, fill_empty=fill_empty,
                                         crawl=crawl, zt_beg=zb, zt_end=ze)
       # ToDo Processing on r= no data
-      print(f"z= {z}  zb= {zb}", end=" I ")
-      y_values.extend(y_val)
+      zb = str(x_dat[0][:10]) + ' ' + zb
+      print(f"z= {z}  zb= {zb}  Xz= {x_dat}  y_val= {y_val}  [1]= {y_val[0][1]}")
       x_data.append(zb)
+      y_val[0][1] = zb         # replace date (from prep_plot()) with slice beginning date
+      y_values.extend(y_val)
+    #ze = str(x_dat[-1][:10]) + ' ' + ze
+    #x_data.append(ze)
     print(f"SLICE  X= {x_data}")
     print(f"SLICE  Y= {y_values}")
   
@@ -245,6 +249,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                             Average=False, fill_empty=fill_empty,
                                             crawl=crawl, zt_beg=zb, zt_end=ze)
+
   '''
   if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
@@ -334,7 +339,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
                         Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
   # ======= print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
-  if r >= 0:       
+  if r >= 0:
     for i in range(len(y_values)):      
       if y_values[i][2]:    #        
         bp_summary.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
