@@ -228,6 +228,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       # ToDo Processing on r= no data
       y_values.append(y_val)
       x_data.append(zb)
+    print(f"SLICE  X= {x_data}")
+    print(f"SLICE  Y= {y_values}")
   
   else:
     # Regular retreive
@@ -267,9 +269,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   orange_cntr = 0
   red_cntr = 0
   purple_cntr = 0
-  if r >= 0:       
+  if r >= 0:
+    print(f"len(y_value)s=  {len(y_values)}", end="---  ")
+    if slice_mode:
+      print(y_values); print()
     for i in range(len(y_values)):
-      print(f"len(y_values=  {len(y_values)})", end="*** ")
       if all or y_values[i][2]:    # 
         print(i, end=" ")
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
@@ -305,8 +309,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
   print(f"Second print  ========== {slice_mode}     {slice_step}")
-  print(x_data)
-  print(bp_list)
+  if slice_mode:
+    print(x_data)
+    print(bp_list)
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
