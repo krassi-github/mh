@@ -229,7 +229,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                         crawl=crawl, zt_beg=zb, zt_end=ze)
       # ToDo Processing on r= no data
       print(f"z= {z}  zb= {zb}", end=" I ")
-      y_values.append(y_val)
+      y_values.extend(y_val)
       x_data.append(zb)
     print(f"SLICE  X= {x_data}")
     print(f"SLICE  Y= {y_values}")
@@ -311,10 +311,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     # 20-06-2023
     #loaded_to = datetime.datetime.strptime(loaded_to, "%Y/%m/%d %H:%M") - datetime.timedelta(minutes=1)
     #loaded_to = datetime.datetime.strftime(loaded_to, "%Y/%m/%d %H:%M")
-  print(f"Second print  ========== {slice_mode}     {slice_step}")
-  if slice_mode:
-    print(x_data)
-    print(bp_list)
+
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
