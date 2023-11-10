@@ -209,6 +209,38 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global orange_cntr
   global green_cntr
 
+    # Retreive data from DB
+  if slice_mode:
+    x_data = []
+    y_values = []
+    for z in range(0, 24, slice_step):
+      zb = str(z).zfill(2) + ":00"     # the time zone beginning
+      hr = z + slice_step
+      if hr == 24:
+        ze = "23:59"
+      else:
+        ze = str(hr).zfill(2) + ":00"
+      # Retreive a single record (the summary) for the range
+      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                        Average=True, fill_empty=fill_empty,
+                                        crawl=crawl, zt_beg=zb, zt_end=ze)     
+      # ToDo Processing on r= no data
+      zb = str(x_dat[0][:10]) + ' ' + zb
+      y_val[0][1] = zb
+      y_values.extend(y_val)    # append ? changed on the recovery process
+      x_data.append(zb)
+  else:
+    # Regular retreive
+    if zt_beg == "00:00" and zt_end == "23:59":
+      zb = None
+      ze = None
+    else:
+      zb = zt_beg
+      ze = zt_end
+    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                            Average=False, fill_empty=fill_empty,
+                                            crawl=crawl, zt_beg=zb, zt_end=ze)
+  '''
   # Retreive data from DB
   if zt_beg == "00:00" and zt_end == "23:59":
     zb = None
@@ -218,6 +250,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                         Average=False, fill_empty=fill_empty, crawl=crawl, zt_beg=zb, zt_end=ze)
+  '''
   #data format: ["          ", "                ", (s); (d); (p); (m); (a)]
   #print(x_data)
   #print(y_values)
