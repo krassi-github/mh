@@ -213,6 +213,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
 
   # Retreive data from DB
     # Retreive data from DB
+  x_data = []
+  y_values = []
   if slice_mode:
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"     # the time zone beginning
@@ -226,6 +228,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                         Average=True, fill_empty=fill_empty,
                                         crawl=crawl, zt_beg=zb, zt_end=ze)
       # ToDo Processing on r= no data
+      print(f"z= {z}  zb= {zb}", end=" I ")
       y_values.append(y_val)
       x_data.append(zb)
     print(f"SLICE  X= {x_data}")
