@@ -268,8 +268,10 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   red_cntr = 0
   purple_cntr = 0
   if r >= 0:       
-    for i in range(len(y_values)):      
-      if all or y_values[i][2]:    #        
+    for i in range(len(y_values)):
+      print(f"len(y_values=  {len(y_values)})", end="*** ")
+      if all or y_values[i][2]:    # 
+        print(i, end=" ")
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})        
         bp_date.append(y_values[i][1])
