@@ -100,6 +100,10 @@ class Form1(Form1Template):
       self.s_from.text = Data.loaded_from[:10]
       self.s_to.text = "-     " + Data.loaded_to[:10]
       self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
+      if Data.slice_step:
+        self.s_step.text = Data.slice_step    
+      if Data.slice_mode:
+        self.data_grid_1.columns({})
       self.show_summary()
       self.plot_1_show()
 
