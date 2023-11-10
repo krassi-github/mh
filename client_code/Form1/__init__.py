@@ -9,12 +9,15 @@ from ..afibs_g import afibs_g
 def error_handler(err):
   alert(str(err), title="An issue has occurred")
   
-class Form1(Form1Template):  
+class Form1(Form1Template):
+  id_title = ''
   def __init__(self, **properties):
     set_default_error_handling(error_handler)   # for TESTING
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # Any code you write here will run before the form opens.    
+    # Any code you write here will run before the form opens. 
+    clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
+    self.id_title = clm_date["id"]
     #self.b_up.width = "80"
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
@@ -101,9 +104,14 @@ class Form1(Form1Template):
       self.s_to.text = "-     " + Data.loaded_to[:10]
       self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
       if Data.slice_step:
-        self.s_step.text = Data.slice_step    
-      if Data.slice_mode:
-        self.data_grid_1.columns({})
+        self.s_step.text = Data.slice_step
+      for i, c in enumerate(self.data_grid_1.columns):
+        if c["id"] == self.id_title:
+          if Data.slice_mode:
+            self.data_grid_1.columns[i]["title"] = 'SLICE'
+          else:
+            self.data_grid_1.columns[i]["title"] = 'DATE'
+      self.data_grid_1.columns = self.data_grid_1.columns 
       self.show_summary()
       self.plot_1_show()
 
