@@ -225,8 +225,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                         Average=True, fill_empty=fill_empty,
                                         crawl=crawl, zt_beg=zb, zt_end=ze)     
       # ToDo Processing on r= no data
+      y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
-      y_val[0][1] = zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
     loaded_from = str(x_data[0])
