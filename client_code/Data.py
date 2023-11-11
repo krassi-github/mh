@@ -243,11 +243,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                             Average=False, fill_empty=fill_empty,
                                             crawl=crawl, zt_beg=zb, zt_end=ze)
-    loaded_from = x_data[0]     # test x_data alternatively
-    loaded_to = x_data[-1]      
+    if x_data and r > 0:
+      # data is available
+      loaded_from = x_data[0]     # test x_data alternatively
+      loaded_to = x_data[-1]
       
-  #data format: ["          ", "                ", (s); (d); (p); (m); (a)] 
-  # Prepare local data 
   bp_list = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
   bp_date = []
   bp_sys = []
