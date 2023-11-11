@@ -26,11 +26,11 @@ components:
     layout_properties: {}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: Enter integer Number,
-      placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '',
+      placeholder: _, border: '', enabled: true, foreground: '', visible: true, text: '1',
       font_size: 20, font: '', spacing_above: small, type: number, spacing_below: small,
       italic: false, background: '', bold: false, underline: false}
     name: number
-    layout_properties: {width: 5, expand: false}
+    layout_properties: {width: 41}
     event_bindings: {change: number_change, pressed_enter: number_pressed_enter}
   - type: Label
     properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
@@ -38,21 +38,18 @@ components:
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: eq_lbl
-    layout_properties: {}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: 20, font: '', spacing_above: small, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: true, underline: false,
       icon: ''}
     name: period
-    layout_properties: {}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: 20, font: '', spacing_above: small, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: true, underline: false,
       icon: ''}
     name: t_unit
-    layout_properties: {}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Step, font_size: null, font: '', spacing_above: small, icon_align: left,

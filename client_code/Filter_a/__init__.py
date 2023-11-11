@@ -81,7 +81,7 @@ class Filter_a(Filter_aTemplate):
     Data.number = self.number.text    
 
   def number_pressed_enter(self, **event_args):
-    self.number.change()
+    self.number_change()
 
 # Steps selection   --------------- 
   def h2_clicked(self, **event_args):
