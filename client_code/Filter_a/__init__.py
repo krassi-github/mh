@@ -31,6 +31,7 @@ class Filter_a(Filter_aTemplate):
     if not Data.step:
       self.d.selected = True
       self.d_clicked()
+    self.number.text = 1
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
     self.period_1.width = "80%"
@@ -39,6 +40,7 @@ class Filter_a(Filter_aTemplate):
     self.drop_down_2.width = "80%"
     # Any code you write here will run before the form opens.
     self.uom_change()
+    self.number_change()
 
 
   def default_zone(self, zone_index):

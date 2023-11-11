@@ -26,7 +26,7 @@ components:
     layout_properties: {}
   - type: TextBox
     properties: {role: null, align: left, hide_text: false, tooltip: Enter integer Number,
-      placeholder: _, border: '', enabled: true, foreground: '', visible: true, text: '1',
+      placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '',
       font_size: 20, font: '', spacing_above: small, type: number, spacing_below: small,
       italic: false, background: '', bold: false, underline: false}
     name: number
