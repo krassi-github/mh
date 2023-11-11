@@ -74,11 +74,11 @@ class Filter_a(Filter_aTemplate):
     if not self.number.text:
       # to prevent TypeError: '>' not supported between instances of 'NoneType' and 'int'
       return
-    if self.number.text > Data.max_number[0] or self.number.text <= 0:
+    if int(self.number.text) > Data.max_number[0] or int(self.number.text) <= 0:
       alert("The number must be positive integer less than 100. \\nPlease, try again!", title="ERROR message")
       return      
     self.period.text = self.number.text
-    Data.number = self.number.text    
+    Data.number = int(self.number.text)
 
   def number_pressed_enter(self, **event_args):
     self.number_change()
