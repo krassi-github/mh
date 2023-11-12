@@ -86,6 +86,9 @@ class Filter(FilterTemplate):
   def m3_clicked(self, **event_args):
     self.show_range("1001", 'm3')
 
+  def h0_clicked(self, **event_args):
+    Data.step = -1
+
 
   # Range time_frame  -------------------------------------------------------------------------- 
   def t_from_change(self, **event_args):
