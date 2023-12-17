@@ -140,15 +140,16 @@ components:
   - type: Button
     properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: 'fa:arrow-left'}
     name: back
     layout_properties: {grid_position: 'BEJSSM,EPUQNY'}
     event_bindings: {click: back_click}
   - type: Button
-    properties: {text: button_1}
-    name: button_1
+    properties: {text: '', icon_align: top, icon: 'fa:download', role: filled-button}
+    name: export
     layout_properties: {grid_position: 'BEJSSM,DXILQA'}
+    event_bindings: {click: export_click}
   - type: form:Filter_a
     properties: {}
     name: filter_a_1

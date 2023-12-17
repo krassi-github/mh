@@ -80,3 +80,12 @@ class Analysis(AnalysisTemplate):
   def back_click(self, **event_args):
     open_form('Form1')
 
+  def export_click(self, **event_args):
+    r, fn  = Data.comp_list_export()
+    if r < 0:
+      m = f"No data  r= {r}"
+    else:
+      m = f"Export successful to {fn}"
+    alert(m)
+      
+

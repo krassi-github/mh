@@ -75,7 +75,7 @@ loaded_to = ""
 loaded_from2 = ""
 loaded_to2 = ""
 
-comp_list = []    #[{"n", "no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
+comp_list = []    #[{"n", "no", "date2", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
 # Data set 1
 bp_date = []    # operational arrays for plotting
 bp_sys = []     # systolic
@@ -181,6 +181,14 @@ def set_zone(zone):
     if i[1] == zone:    # search the zone_keys
       zt_beg = i[2]
       zt_end = i[3]   
+
+
+# MIX
+def comp_list_export():
+  global comp_list
+  
+  return(anvil.server.call("comp_list_export", comp_list))
+
 
 # *************************************************************************************    
 # Load data funcs
@@ -349,35 +357,6 @@ def afib_details(row_date, L1=None, L2=None):
     return(afibs)
   else:
     return(f"DB issue {r}")
-
-
-# ****************************************************************************************
-# MIX 
-# comp_list_export()
-def comp_list_export():
-  global comp_list
-
-  data = comp_list     #   # list of dictionaries (must be loaded already)
-  if not data:
-    
-  
-  # Specify the keys for the columns
-  keys = ["n", "no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"]
-  
-  # Define the output file name
-  output_file = "comp_list-" + anvil_server    + .txt"
-  
-  # Writing data to a tab-delimited text file
-  with open(output_file, "w", newline="") as file:
-      writer = csv.DictWriter(file, delimiter='\t', fieldnames=keys)
-      
-      # Write header
-      writer.writeheader()
-      
-      # Write data rows
-      writer.writerows(data)
-  
-  print(f"Data exported to {output_file}")
 
 
 # ****************************************************************************************
