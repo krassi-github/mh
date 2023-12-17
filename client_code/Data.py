@@ -350,6 +350,36 @@ def afib_details(row_date, L1=None, L2=None):
   else:
     return(f"DB issue {r}")
 
+
+# ****************************************************************************************
+# MIX 
+# comp_list_export()
+def comp_list_export():
+  global comp_list
+
+  data = comp_list     #   # list of dictionaries (must be loaded already)
+  if not data:
+    
+  
+  # Specify the keys for the columns
+  keys = ["n", "no", "s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"]
+  
+  # Define the output file name
+  output_file = "comp_list-" + anvil_server    + .txt"
+  
+  # Writing data to a tab-delimited text file
+  with open(output_file, "w", newline="") as file:
+      writer = csv.DictWriter(file, delimiter='\t', fieldnames=keys)
+      
+      # Write header
+      writer.writeheader()
+      
+      # Write data rows
+      writer.writerows(data)
+  
+  print(f"Data exported to {output_file}")
+
+
 # ****************************************************************************************
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
