@@ -30,7 +30,7 @@ components:
       font_size: 20, font: '', spacing_above: small, type: number, spacing_below: small,
       italic: false, background: '', bold: false, underline: false}
     name: number
-    layout_properties: {width: 41}
+    layout_properties: {width: 51.066650390625}
     event_bindings: {change: number_change, pressed_enter: number_pressed_enter}
   - type: Label
     properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
