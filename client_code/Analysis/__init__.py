@@ -33,7 +33,7 @@ class Analysis(AnalysisTemplate):
     r1 = Data.set_comp_summary(object, Data.number, Data.uom, Data.step, Data.Tb1, Data.Tb2)
     # r = Data.set_comp_list("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
     # r1 = Data.set_comp_summary("1001", 2, 'm', 360*4, "2023/06/01 00:00", "2023/08/01 00:00")
-    print(f"COMP_LIST  {Data.}")
+    print(f"COMP_LIST  {Data.comp_list}")
     if r or r1:
       self.label_R.text = f"No Data {r}   { r1}"
       self.label_R.foreground = "red"
