@@ -3,77 +3,104 @@ from anvil import *
 import anvil.server
 from .. import Data
 from ... afibs_g import afibs_g
+import time
 
-r = 0
+r = 0  # global r
 class RowTemplate3(RowTemplate3Template):
   def __init__(self, **properties):
     global r
+    #print("RowTemplate3 ///////////////////////////////////////")
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.row_spacing = 0
+    # Test of assignment instead of binding
+    # print(f"RT3  => {r}  item= {self.item}")
+    self.no.text = self.item["no"]
+    self.s1.text = self.item['s1']
+    self.s2.text = self.item["s2"]
+    self.d1.text = self.item["d1"]
+    self.d2.text = self.item["d2"]
+    self.p1.text = self.item["p1"]
+    self.p2.text = self.item["p2"]
+    self.m1.text = self.item["m1"]
+    self.m2.text = self.item["m2"]
+    self.a1.text = self.item["a1"]
+    self.a2.text = self.item["a2"]
+
+    self.L1.tag = self.item["no"]    
+    self.L2.tag = self.item["date2"]
+
     # Colorizing  the sys, dia, mean, afib values
     if int(self.s1.text) >= Data.params["red_sys"]:
       self.s1.foreground = "red"
-    if int(self.s2.text) >= Data.params["red_sys"]:
-      self.s2.foreground = "red"
     elif int(self.s1.text) >= Data.params["orange_sys"]:
       self.s1.foreground = "orange"
+    if int(self.s2.text) >= Data.params["red_sys"]:
+      self.s2.foreground = "red"
     elif int(self.s2.text) >= Data.params["orange_sys"]:      
       self.s2.foreground = "orange"
-      
-    if int(self.d1.text) >= Data.params["red_sys"]:
-      self.s1.foreground = "red"
-    if int(self.d2.text) >= Data.params["red_sys"]:
-      self.s1.foreground = "red"
-    elif int(self.d1.text) >= Data.params["orange_sys"]:
+           
+    if int(self.d1.text) >= Data.params["red_dia"]:
+      self.d1.foreground = "red"
+    elif int(self.d1.text) >= Data.params["orange_dia"]:
       self.d1.foreground = "orange"
-    elif int(self.d2.text) >= Data.params["orange_sys"]:
+    if int(self.d2.text) >= Data.params["red_dia"]:
+      self.d1.foreground = "red"
+    elif int(self.d2.text) >= Data.params["orange_dia"]:
       self.d2.foreground = "orange"
 
-    if int(self.m1.text) >= Data.params["red_sys"]:
+    if int(self.m1.text) >= Data.params["red_mean"]:
       self.m1.foreground = "red"
-    if int(self.m2.text) >= Data.params["red_sys"]:
-      self.m1.foreground = "red"
+    if int(self.m2.text) >= Data.params["red_mean"]:
+      self.m2.foreground = "red"
     
-    if (self.a.text):
-      self.a.foreground = "red"
-      
+    if (self.a1.text):
+      self.a1.foreground = "red"
+    if (self.a2.text):
+      self.a2.foreground = "red"
+    
     if not r%2:
       pass
       self.color_rows()
     r += 1  
 
   def color_rows(self):
-    #print(self.get_components())
-    #return()
-    self.lb_1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
-    self.lb_2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_3.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_4.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_5.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
-    self.lb_6.background = "rgba(0, 0, 0, 0.0)"            #"rgba(69,183,249,0.1)"
+    self.no.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
+    self.s1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.s2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.d1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.d2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.p1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"  #'theme:Gray 200'
+    self.p2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.m1.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.m2.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
+    self.a1.background = "rgba(0, 0, 0, 0.0)"            #"rg
+    self.a2.background = "rgba(0, 0, 0, 0.0)" 
 
-  '''
-  def color_rows(self):
-    print(self.get_components())
-    for i, r in enumerate(self.get_components()):
-      if not i%2:
-        self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
-        self.lb_2.background = "rgba(69,183,249,0.1)"
-        self.lb_3.background = "rgba(69,183,249,0.1)"
-        self.lb_4.background = "rgba(69,183,249,0.1)"
-        self.lb_5.background = "rgba(69,183,249,0.1)"
-        self.lb_6.background = "rgba(69,183,249,0.1)"
-  '''
-
-  def link_1_click(self, **event_args):
-    afib_print = ""
-    
-    afibs = Data.afib_details(self.link_1.tag)   
-    if type(afibs) == type("str"):
-      afib_print = str(afibs)
-      alert(content=f"{self.link_1.tag}    {afib_print}", large=True, title="AFIB Details")
+  def L1_click(self, **event_args):
+    afibs = Data.afib_details(self.L1.tag)
+    if type(afibs) == str:
+      # No afibs
+      alert(content=f"{self.L1.tag}    {afibs}", large=True, title="AFIB Details")
     else:
       alert(afibs_g(), large=True, title="AFIB Details")
       # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
 
+  def L2_click(self, **event_args):
+    afibs = Data.afib_details(self.L1.tag, L2=self.L2.tag)
+    if type(afibs) == str:
+      # No afibs
+      alert(content=f"{self.L2.tag}    {afibs}", large=True, title="AFIB Details")
+    else:
+      alert(afibs_g(), large=True, title="AFIB Details")
+    
+
+'''    self.parent.parent.repeating_panel_1.items = Data.comp_list
+    print(f"RT_3 self.item= {self.item}  ")
+    print(f"item['s1']=  {self.item['s1']}")
+    self.s1.text = self.item['s1']
+    self.s2.text = self.item["s2"]
+    self.d1.text = self.item["d1"]
+    self.d2.text = self.item["d2"]
+    self.m1.text = self.item["m1"]
+    self.m2.text = self.item["m2"]'''

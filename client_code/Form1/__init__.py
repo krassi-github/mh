@@ -9,12 +9,15 @@ from ..afibs_g import afibs_g
 def error_handler(err):
   alert(str(err), title="An issue has occurred")
   
-class Form1(Form1Template):  
+class Form1(Form1Template):
+  id_title = ''
   def __init__(self, **properties):
     set_default_error_handling(error_handler)   # for TESTING
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # Any code you write here will run before the form opens.    
+    # Any code you write here will run before the form opens. 
+    clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
+    self.id_title = clm_date["id"]
     #self.b_up.width = "80"
     #self.b_up.text = "   "
     #self.b_dn.width = "60"
@@ -83,22 +86,32 @@ class Form1(Form1Template):
     
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range    
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
-    if r:
+    if r < 0:
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
       self.label_2.boldface = True
     r1 = Data.set_summary(user, fr=rng, Tb=Tb, Te=Te, crawl=crawl)
-    if r1:
+    if r1 < 0:
       self.label_2.text += f"  set_summary= {r1} "
       self.label_2.foreground = "red"
       self.label_2.boldface = True
-    if r or r1:
+    if r < 0 or r1 < 0:
       pass    # UI message to be generated
     else:
       self.repeating_panel_1.items = Data.bp_list
+      # print(f"RP.items = {self.repeating_panel_1.items}")
       self.s_from.text = Data.loaded_from[:10]
       self.s_to.text = "-     " + Data.loaded_to[:10]
       self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
+      if Data.slice_step:
+        self.s_step.text = Data.slice_step
+      for i, c in enumerate(self.data_grid_1.columns):
+        if c["id"] == self.id_title:
+          if Data.slice_mode:
+            self.data_grid_1.columns[i]["title"] = 'SLICE'
+          else:
+            self.data_grid_1.columns[i]["title"] = 'DATE'
+      self.data_grid_1.columns = self.data_grid_1.columns 
       self.show_summary()
       self.plot_1_show()
 
@@ -215,4 +228,9 @@ class Form1(Form1Template):
     ), 
     ]
     '''
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Analysis')
+
   

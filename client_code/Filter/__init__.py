@@ -47,6 +47,7 @@ class Filter(FilterTemplate):
     self.t_to.width = "80%"
     self.drop_down_1.width = "80%"
     self.drop_down_2.width = "80%"
+    self.slice_time.width = "80%"
     # Any code you write here will run before the form opens.
     #self.fr = self.item.get("from_date", "Error")
     #self.to = self.item.get("to_date", "Error")  
@@ -85,6 +86,9 @@ class Filter(FilterTemplate):
   def m3_clicked(self, **event_args):
     self.show_range("1001", 'm3')
 
+  def h0_clicked(self, **event_args):
+    Data.step = -1
+
 
   # Range time_frame  -------------------------------------------------------------------------- 
   def t_from_change(self, **event_args):
@@ -121,3 +125,17 @@ class Filter(FilterTemplate):
     Data.set_zone(self.drop_down_2.selected_value)
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
+
+  def slice_time_show(self, **event_args):
+    if self.slice_time.selected_value  != "None":
+      Data.slice_step = int(self.slice_time.selected_value)
+      Data.slice_mode = True
+    else:
+      Data.slice_step = 0
+      Data.slice_mode = False
+
+  def slice_time_change(self, **event_args):
+    self.slice_time_show(**event_args)
+    print(f"slice.time_change()  ==>  {Data.slice_mode}   {Data.slice_step}")
+    self.zone_change()
+    

@@ -6,6 +6,60 @@ container:
   event_bindings: {}
 components:
 - type: FlowPanel
+  properties: {role: null, vertical_align: full, spacing: none, align: left, tooltip: '',
+    border: '', foreground: '', visible: true, spacing_above: small, spacing_below: small,
+    background: ''}
+  name: flow_panel_3
+  layout_properties: {grid_position: 'UJNLPK,QDSVEQ'}
+  components:
+  - type: DropDown
+    properties: {tooltip: Select Time Unit}
+    name: uom
+    layout_properties: {}
+    event_bindings: {change: uom_change, show: uom_show}
+  - type: Label
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: '  *  ', font_size: 20, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+      underline: false, icon: ''}
+    name: sign_lbl
+    layout_properties: {}
+  - type: TextBox
+    properties: {role: null, align: left, hide_text: false, tooltip: Enter integer Number,
+      placeholder: '', border: '', enabled: true, foreground: '', visible: true, text: '',
+      font_size: 20, font: '', spacing_above: small, type: number, spacing_below: small,
+      italic: false, background: '', bold: false, underline: false}
+    name: number
+    layout_properties: {width: 51.066650390625}
+    event_bindings: {change: number_change, pressed_enter: number_pressed_enter}
+  - type: Label
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      visible: true, text: '=', font_size: 20, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: eq_lbl
+  - type: Label
+    properties: {role: 0margine, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: 20, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: period
+    layout_properties: {}
+  - type: Label
+    properties: {role: 0margine, align: left, tooltip: '', border: '', foreground: '',
+      visible: true, text: '', font_size: 20, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: ''}
+    name: t_unit
+    layout_properties: {}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: Step, font_size: null, font: '', spacing_above: small, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: step_lbl
+  layout_properties: {grid_position: 'TXAVVN,XEIXLY'}
+- type: FlowPanel
   properties: {role: null, spacing: tiny, align: left, tooltip: '', border: '', foreground: '',
     visible: true, spacing_above: none, spacing_below: none, background: ''}
   name: flow_panel_2
@@ -37,12 +91,12 @@ components:
     event_bindings: {clicked: m_clicked}
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
-      enabled: true, foreground: '', value: '', visible: true, text: 3m, font_size: null,
+      enabled: true, foreground: '', value: '', visible: true, text: 2h, font_size: null,
       font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
       bold: false, group_name: fix_range, underline: false}
-    name: m3
+    name: h2
     layout_properties: {grid_position: 'JJCFHV,LXPTVL'}
-    event_bindings: {clicked: m3_clicked}
+    event_bindings: {clicked: h2_clicked}
 - type: FlowPanel
   properties: {role: null, spacing: tiny, align: left, tooltip: '', border: '', foreground: '',
     visible: true, spacing_above: none, spacing_below: none, background: ''}
@@ -51,17 +105,28 @@ components:
   components:
   - type: RadioButton
     properties: {role: null, selected: false, align: left, tooltip: '', border: '',
-      enabled: true, foreground: '', value: '', visible: true, text: range, font_size: null,
+      enabled: true, foreground: '', value: '', visible: true, text: 6h, font_size: null,
       font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
       bold: false, group_name: fix_range, underline: false}
-    name: r
+    name: h6
     layout_properties: {grid_position: 'JJCFHV,IQWZLZ'}
-    event_bindings: {clicked: r_clicked}
-  - name: h0
-    properties: {text: '0', group_name: fix_range}
-    type: RadioButton
+    event_bindings: {clicked: h6_clicked}
+  - type: RadioButton
+    properties: {role: null, selected: false, align: left, tooltip: '', border: '',
+      enabled: true, foreground: '', value: '', visible: true, text: '0', font_size: null,
+      font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, group_name: fix_range, underline: false}
+    name: h0
     layout_properties: {}
     event_bindings: {clicked: h0_clicked}
+  - type: RadioButton
+    properties: {role: null, selected: false, align: left, tooltip: '', border: '',
+      enabled: true, foreground: '', value: '', visible: true, text: а, font_size: null,
+      font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
+      bold: false, group_name: fix_range, underline: false}
+    name: ha
+    layout_properties: {}
+    event_bindings: {clicked: ha_clicked}
   - type: CheckBox
     properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
       foreground: '', allow_indeterminate: false, visible: true, text: ALL, font_size: null,
@@ -72,10 +137,10 @@ components:
     event_bindings: {change: zone_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: Time FROM - TO, font_size: null, font: '', spacing_above: none, icon_align: left,
+    text: Start Times, font_size: null, font: '', spacing_above: none, icon_align: left,
     spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
-  name: t_from_to
+  name: times
   layout_properties: {grid_position: 'NDJMBI,JCQVTI'}
 - type: LinearPanel
   properties: {}
@@ -84,30 +149,28 @@ components:
   components:
   - type: DatePicker
     properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
-      placeholder: Date FROM, border: '', enabled: true, foreground: '', visible: true,
+      placeholder: START Period 1, border: '', enabled: true, foreground: '', visible: true,
       font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false,
       date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/%m/%d'}
-    name: t_from
+    name: period_1
     layout_properties: {}
-    data_bindings:
-    - {property: date, code: 'self.item[''from_date'']', writeback: true}
-    event_bindings: {change: t_from_change}
+    data_bindings: []
+    event_bindings: {change: period_1_change}
 - type: DatePicker
   properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
-    placeholder: Date TO, border: '', enabled: true, foreground: '', visible: true,
+    placeholder: START Period 2, border: '', enabled: true, foreground: '', visible: true,
     font_size: null, font: '', spacing_above: none, spacing_below: none, italic: false,
     date: '', min_date: '', background: '', bold: false, underline: false, format: '%Y/%m/%d'}
-  name: t_to
+  name: period_2
   layout_properties: {grid_position: 'AXUESG,RIPMES'}
-  data_bindings:
-  - {property: date, code: 'self.item[''to_date'']', writeback: true}
-  event_bindings: {change: t_to_change}
+  data_bindings: []
+  event_bindings: {change: period_2_change}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Time ZONE, font_size: null, font: '', spacing_above: none, icon_align: left,
     spacing_below: none, italic: false, background: '', bold: false, underline: false,
     icon: ''}
-  name: d_zone
+  name: d_zone_lbl
   layout_properties: {grid_position: 'LGBALO,RCTBGY'}
 - type: DropDown
   properties:
@@ -156,23 +219,19 @@ components:
   name: drop_down_2
   layout_properties: {grid_position: 'REPJDC,JFXTWE'}
   event_bindings: {change: drop_down_2_change}
-- name: label_1
-  properties: {text: Slice Time, spacing_above: none, spacing_below: none}
-  type: Label
-  layout_properties: {grid_position: 'TOLMYY,CBSADS'}
-- name: slice_time
-  properties:
-    items: [None, '1', '2', '3', '4', '6']
-    spacing_above: none
-    spacing_below: none
-  type: DropDown
-  layout_properties: {grid_position: 'ALYYSX,KONRIS'}
-  event_bindings: {change: slice_time_change, show: slice_time_show}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: msg
-  layout_properties: {grid_position: 'PUGOQO,DBXZOP'}
+  layout_properties: {grid_position: 'YIHNMT,WHMSIC'}
+- type: Button
+  properties: {role: outlined-button, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Start button, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: ''}
+  name: start_button
+  layout_properties: {grid_position: 'FDGNJA,KRTBVQ'}
+  event_bindings: {click: start_button_click}
 is_package: true
 custom_component: true
