@@ -13,7 +13,7 @@ components:
   layout_properties: {grid_position: 'UJNLPK,QDSVEQ'}
   components:
   - type: DropDown
-    properties: {}
+    properties: {tooltip: Select Time Unit}
     name: uom
     layout_properties: {}
     event_bindings: {change: uom_change, show: uom_show}
@@ -39,17 +39,19 @@ components:
       icon: ''}
     name: eq_lbl
   - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+    properties: {role: 0margine, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: 20, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: true, underline: false,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: period
+    layout_properties: {}
   - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+    properties: {role: 0margine, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: '', font_size: 20, font: '', spacing_above: small, icon_align: left,
-      spacing_below: small, italic: false, background: '', bold: true, underline: false,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: t_unit
+    layout_properties: {}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: Step, font_size: null, font: '', spacing_above: small, icon_align: left,

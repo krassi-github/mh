@@ -61,11 +61,11 @@ class Filter_a(Filter_aTemplate):
   def uom_change(self, **event_args):
     sv = self.uom.selected_value
     if sv == 'd':
-      self.t_unit.text = "day"
+      self.t_unit.text = "d"  # "day"
     elif sv == 'w':
-      self.t_unit.text = "week"
+      self.t_unit.text = "w"  # "week"
     else:
-      self.t_unit.text = "month"  
+      self.t_unit.text = "m"    # "month"
     Data.uom = self.uom.selected_value
 
   def uom_show(self, **event_args):
