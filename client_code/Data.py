@@ -363,9 +363,6 @@ def afib_details(row_date, L1=None, L2=None):
 # Load Data for Comparison
 # Data Blocks 1 and 2 filled
 def set_comp_list(object: str, number: int, uom: str, Step: int, Tb1: str, Tb2: str) -> int:
-
-  print(object, number, uom, Step, Tb1, Tb2, sep='  ')
-  input("Test STOP ")
   global x_data, y_values, params, all, bp_list, bp_date, bp_sys, bp_dia, bp_sys_add, bp_mean,\
   bp_colors, current_range, loaded_from, loaded_to, zt_beg, zt_end, purple_cntr, red_cntr,\
   orange_cntr, green_cntr, bp_pul

@@ -161,4 +161,7 @@ class Filter_a(Filter_aTemplate):
 
 # Start Comparison procedure
   def start_button_click(self, **event_args):
+    if Data.Tb1 == "" or Data.Tb2 == "":
+      alert("Start times of two periods not available!\n Please CHECK!", title="WARNING")
+      return()
     self.parent.parent.data_render("1001")
