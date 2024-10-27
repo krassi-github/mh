@@ -26,6 +26,14 @@ components:
     visible: true
     wrap_on: never
   type: DataGrid
+- layout_properties: {grid_position: 'RVAYOA,OMECDZ'}
+  name: column_panel_1
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {grid_position: 'RVAYOA,JDBGFE'}
+  name: column_panel_2
+  properties: {}
+  type: ColumnPanel
 container:
   properties: {col_widths: '{}', visible: true}
   type: ColumnPanel
