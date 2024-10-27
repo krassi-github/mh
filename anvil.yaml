@@ -1,15 +1,14 @@
-dependencies: []
-services:
-- source: /runtime/services/tables.yml
-  client_config: {}
-  server_config: {}
-startup: {type: form, module: Form1}
-package_name: MH
 allow_embedding: false
+dependencies: []
+metadata: {description: BP Monitor & Analyzer, logo_img: 'asset:kag1.jpg', title: MyHealth}
 name: MH
-runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
-  server_spec: null}
-metadata: {logo_img: 'asset:kag1.jpg', title: MyHealth, description: BP Monitor & Analyzer}
+package_name: MH
+renamed: true
+runtime_options: {client_version: '3', server_spec: null, server_version: python3-sandbox, version: 2}
+services:
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/tables.yml
+startup: {module: Form1, type: form}
 startup_form: null
 uplink_visible: true
-renamed: true
