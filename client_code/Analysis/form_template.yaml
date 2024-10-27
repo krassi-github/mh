@@ -1,156 +1,141 @@
-is_package: true
-container:
-  type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
 components:
-- type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: small,
-    background: 'theme:Primary Overlay 1'}
-  name: content_panel
-  layout_properties: {slot: default}
-  components:
-  - type: ColumnPanel
-    properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"ZSAFDF":25,"SMKEEC":20,"DRTKPD":5,"VDBNVA":10}',
-      spacing_below: small, background: ''}
-    name: column_panel_L
-    layout_properties: {grid_position: 'DOXDCO,TVSOTF', full_width_row: true}
-    components:
-    - type: Label
-      properties: {}
+- components:
+  - components:
+    - layout_properties: {grid_position: 'GVPBXS,ZSAFDF'}
       name: ser_1
-      layout_properties: {grid_position: 'GVPBXS,ZSAFDF'}
-    - type: Label
       properties: {}
+      type: Label
+    - layout_properties: {grid_position: 'GVPBXS,SMKEEC'}
       name: ser_2
-      layout_properties: {grid_position: 'GVPBXS,SMKEEC'}
-    - type: Label
       properties: {}
+      type: Label
+    - layout_properties: {grid_position: 'GVPBXS,DRTKPD'}
       name: step_v
-      layout_properties: {grid_position: 'GVPBXS,DRTKPD'}
-    - type: Label
       properties: {}
+      type: Label
+    - layout_properties: {grid_position: 'GVPBXS,VDBNVA'}
       name: t_zone
-      layout_properties: {grid_position: 'GVPBXS,VDBNVA'}
-    - type: DataGrid
+      properties: {}
+      type: Label
+    - components:
+      - layout_properties: {}
+        name: repeating_panel_2
+        properties: {item_template: Analysis.RowTemplate5, spacing_above: none, spacing_below: none}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'BMFZKP,ZQTYRJ'}
+      name: summary_data
       properties:
-        role: tonal-data-grid
-        columns:
-        - {id: KMJPWY, title: '', data_key: '', $$hashKey: 'object:34633'}
-        - {id: WZIVFJ, title: S1, data_key: '', $$hashKey: 'object:34634'}
-        - {id: HNNSYW, title: S2, data_key: '', $$hashKey: 'object:60469'}
-        - {id: ASTDNJ, title: D1, data_key: '', $$hashKey: 'object:34635'}
-        - {id: GBPAUZ, title: D2, data_key: '', $$hashKey: 'object:34677'}
-        - {id: PGSRXM, title: P1, data_key: '', $$hashKey: 'object:34679'}
-        - {id: XNFFYZ, title: P2, data_key: '', $$hashKey: 'object:34681'}
-        - {id: TPRRQJ, title: M1, data_key: '', $$hashKey: 'object:34683'}
-        - {id: QCGXLY, title: M2, data_key: '', $$hashKey: 'object:34685'}
-        - {id: LEIYCZ, title: A1, data_key: '', $$hashKey: 'object:34687'}
-        - {id: CJXBWR, title: A2, data_key: '', $$hashKey: 'object:34689'}
         auto_header: true
-        tooltip: ''
+        background: ''
         border: ''
+        columns:
+        - {$$hashKey: 'object:34633', data_key: '', id: KMJPWY, title: ''}
+        - {$$hashKey: 'object:34634', data_key: '', id: WZIVFJ, title: S1}
+        - {$$hashKey: 'object:60469', data_key: '', id: HNNSYW, title: S2}
+        - {$$hashKey: 'object:34635', data_key: '', id: ASTDNJ, title: D1}
+        - {$$hashKey: 'object:34677', data_key: '', id: GBPAUZ, title: D2}
+        - {$$hashKey: 'object:34679', data_key: '', id: PGSRXM, title: P1}
+        - {$$hashKey: 'object:34681', data_key: '', id: XNFFYZ, title: P2}
+        - {$$hashKey: 'object:34683', data_key: '', id: TPRRQJ, title: M1}
+        - {$$hashKey: 'object:34685', data_key: '', id: QCGXLY, title: M2}
+        - {$$hashKey: 'object:34687', data_key: '', id: LEIYCZ, title: A1}
+        - {$$hashKey: 'object:34689', data_key: '', id: CJXBWR, title: A2}
         foreground: ''
+        role: tonal-data-grid
         rows_per_page: 20
-        visible: true
-        wrap_on: never
         show_page_controls: false
         spacing_above: small
         spacing_below: small
-        background: ''
-      name: summary_data
-      layout_properties: {grid_position: 'BMFZKP,ZQTYRJ'}
-      components:
-      - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate5}
-        name: repeating_panel_2
-        layout_properties: {}
-  - type: ColumnPanel
-    properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: column_panel_R
-    layout_properties: {grid_position: 'DOXDCO,SUCTIE', full_width_row: true}
-    components:
-    - type: Label
-      properties: {}
-      name: label_R
-      layout_properties: {grid_position: 'ZCLYNA,JCQPUD'}
-    - type: DataGrid
-      properties:
-        role: tonal-data-grid
-        columns:
-        - {id: CGASCB, title: 'No', data_key: '', $$hashKey: 'object:13400', expand: false,
-          width: '180'}
-        - {id: RDIIXA, title: S1, data_key: '', $$hashKey: 'object:13401', width: ''}
-        - {id: ZTCJOI, title: S2, data_key: '', $$hashKey: 'object:13402', width: ''}
-        - {id: KUYNOT, title: D1, data_key: '', $$hashKey: 'object:14171', width: ''}
-        - {id: FEIZWZ, title: D2, data_key: '', $$hashKey: 'object:14157'}
-        - {id: EAWJTH, title: P1, data_key: '', $$hashKey: 'object:14159'}
-        - {id: QBWFPX, title: P2, data_key: '', $$hashKey: 'object:14161', width: ''}
-        - {id: BCWXLU, title: M1, data_key: '', $$hashKey: 'object:14163', width: ''}
-        - {id: VNTALA, title: M2, data_key: '', $$hashKey: 'object:14165', width: ''}
-        - {id: MDFGRJ, title: A1, data_key: '', $$hashKey: 'object:14167', width: ''}
-        - {id: ASAZCV, title: A2, data_key: '', $$hashKey: 'object:14169', width: ''}
-        auto_header: true
         tooltip: ''
-        border: ''
-        foreground: ''
-        rows_per_page: 20
         visible: true
         wrap_on: never
+      type: DataGrid
+    layout_properties: {full_width_row: true, grid_position: 'DOXDCO,TVSOTF'}
+    name: column_panel_L
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{"ZSAFDF":25,"SMKEEC":20,"DRTKPD":5,"VDBNVA":10}', foreground: '', role: outlined-card, spacing_above: none, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    type: ColumnPanel
+  - components:
+    - layout_properties: {grid_position: 'ZCLYNA,JCQPUD'}
+      name: label_R
+      properties: {}
+      type: Label
+    - components:
+      - layout_properties: {}
+        name: repeating_panel_1
+        properties: {background: '', border: '', foreground: '', item_template: Analysis.RowTemplate3, items: null, role: 0height, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
+        type: RepeatingPanel
+      layout_properties: {full_width_row: false, grid_position: 'PVHTYH,NAJAKC'}
+      name: list_data
+      properties:
+        auto_header: true
+        background: ''
+        border: ''
+        columns:
+        - {$$hashKey: 'object:13400', data_key: '', expand: false, id: CGASCB, title: 'No', width: '180'}
+        - {$$hashKey: 'object:13401', data_key: '', id: RDIIXA, title: S1, width: ''}
+        - {$$hashKey: 'object:13402', data_key: '', id: ZTCJOI, title: S2, width: ''}
+        - {$$hashKey: 'object:14171', data_key: '', id: KUYNOT, title: D1, width: ''}
+        - {$$hashKey: 'object:14157', data_key: '', id: FEIZWZ, title: D2}
+        - {$$hashKey: 'object:14159', data_key: '', id: EAWJTH, title: P1}
+        - {$$hashKey: 'object:14161', data_key: '', id: QBWFPX, title: P2, width: ''}
+        - {$$hashKey: 'object:14163', data_key: '', id: BCWXLU, title: M1, width: ''}
+        - {$$hashKey: 'object:14165', data_key: '', id: VNTALA, title: M2, width: ''}
+        - {$$hashKey: 'object:14167', data_key: '', id: MDFGRJ, title: A1, width: ''}
+        - {$$hashKey: 'object:14169', data_key: '', id: ASAZCV, title: A2, width: ''}
+        foreground: ''
+        role: tonal-data-grid
+        rows_per_page: 20
         show_page_controls: true
         spacing_above: small
         spacing_below: small
-        background: ''
-      name: list_data
-      layout_properties: {grid_position: 'PVHTYH,NAJAKC', full_width_row: false}
-      components:
-      - type: RepeatingPanel
-        properties: {role: 0height, tooltip: '', border: '', foreground: '', items: null,
-          visible: true, spacing_above: none, spacing_below: none, item_template: Analysis.RowTemplate3,
-          background: ''}
-        name: repeating_panel_1
-        layout_properties: {}
-  - type: FlowPanel
-    properties: {}
+        tooltip: ''
+        visible: true
+        wrap_on: never
+      type: DataGrid
+    layout_properties: {full_width_row: true, grid_position: 'DOXDCO,SUCTIE'}
+    name: column_panel_R
+    properties: {background: '', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: outlined-card, spacing_above: none, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+    type: ColumnPanel
+  - layout_properties: {grid_position: 'SKLLSZ,IBYFMW'}
     name: flow_panel_1
-    layout_properties: {grid_position: 'SKLLSZ,IBYFMW'}
-  - type: Plot
     properties: {}
+    type: FlowPanel
+  - layout_properties: {grid_position: 'RLETHD,WYYSNQ'}
     name: plot_1
-    layout_properties: {grid_position: 'RLETHD,WYYSNQ'}
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: nav-right}
-- type: Label
-  properties: {role: title, align: left, tooltip: '', border: '', foreground: 'theme:Primary',
-    visible: true, text: Analysis, font_size: null, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-    underline: false, icon: ''}
-  name: form_title
-  layout_properties: {slot: title}
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: column_panel_1
-  layout_properties: {slot: left-nav}
-  components:
-  - type: Button
-    properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
-      icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: 'fa:arrow-left'}
-    name: back
-    layout_properties: {grid_position: 'BEJSSM,EPUQNY'}
-    event_bindings: {click: back_click}
-  - type: Button
-    properties: {text: '', icon_align: top, icon: 'fa:download', role: filled-button}
-    name: export
-    layout_properties: {grid_position: 'BEJSSM,DXILQA'}
-    event_bindings: {click: export_click}
-  - type: form:Filter_a
     properties: {}
+    type: Plot
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {background: 'theme:Primary Overlay 1', border: '', col_spacing: medium, col_widths: '{}', foreground: '', role: null, spacing_above: none, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+- layout_properties: {slot: title}
+  name: form_title
+  properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: 'theme:Primary', icon: '', icon_align: left, italic: false, role: title, spacing_above: small, spacing_below: small, text: Analysis, tooltip: '', underline: false, visible: true}
+  type: Label
+- components:
+  - event_bindings: {click: back_click}
+    layout_properties: {grid_position: 'BEJSSM,EPUQNY'}
+    name: back
+    properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:arrow-left', icon_align: top, italic: false, role: filled-button, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+    type: Button
+  - event_bindings: {click: export_click}
+    layout_properties: {grid_position: 'BEJSSM,DXILQA'}
+    name: export
+    properties: {icon: 'fa:download', icon_align: top, role: filled-button, text: ''}
+    type: Button
+  - layout_properties: {grid_position: 'UZQEWY,FTUUVR'}
     name: filter_a_1
-    layout_properties: {grid_position: 'UZQEWY,FTUUVR'}
+    properties: {}
+    type: form:Filter_a
+  layout_properties: {slot: left-nav}
+  name: column_panel_1
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true
