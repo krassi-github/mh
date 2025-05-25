@@ -239,7 +239,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       x_data.append(zb)
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze
-    print(f" in SLICE  from= {loaded_from} to= {loaded_to}")
+    # print(f" in SLICE  from= {loaded_from} to= {loaded_to}")
   else:
     # Regular retreive
     if zt_beg == "00:00" and zt_end == "23:59":
