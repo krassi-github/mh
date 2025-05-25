@@ -105,6 +105,8 @@ class Form1(Form1Template):
       self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
       if Data.slice_step:
         self.s_step.text = Data.slice_step
+      else:
+        self.s_step.text = ''
       for i, c in enumerate(self.data_grid_1.columns):
         if c["id"] == self.id_title:
           if Data.slice_mode:
