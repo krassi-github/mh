@@ -332,6 +332,8 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
 def afib_details(row_date, L1=None, L2=None):
   global bp_list, bp_list2
   global afibs
+  # L1 Link to the period 1 of analysis (Basic List to be used)
+  # L2 Link to the period 2 of analysis (List 2 to be used)
 
   if L2:
     bp_ = bp_list2
