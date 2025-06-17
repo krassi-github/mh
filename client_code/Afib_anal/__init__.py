@@ -3,7 +3,7 @@ from anvil import *
 import anvil.server
 
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+#from plotly.subplots import make_subplots
 
 
 class Afib_anal(Afib_analTemplate):
@@ -11,47 +11,13 @@ class Afib_anal(Afib_analTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run before the form opens.
+    self.show_plot()
 
 
-  def load_afib_bargraph(self, yearly_data):
-    yearly_data = {
-      2021: {1: 0, 2: 1, 3: 0, 1: 2, 5: 0, 6: 0, 7: 1, 8: 2, 9: 3, 10: 0, 11: 2, 12: 0},
-      2022: {1: 0, 2: 1, 3: 0, 2: 2, 5: 0, 6: 0, 7: 1, 8: 2, 9: 3, 10: 0, 11: 2, 12: 0},
-      2023: {1: 0, 2: 1, 3: 0, 3: 2, 5: 0, 6: 0, 7: 1, 8: 2, 9: 3, 10: 0, 11: 2, 12: 0}
-    }
-    from anvil import Plot
-    from anvil import PlotComponent
-  
-    fig = make_subplots(
-      rows=len(yearly_data),
-      cols=1,
-      shared_xaxes=True,
-      subplot_titles=[str(y) for y in yearly_data.keys()]
-    )
-  
-    for i, (year, months) in enumerate(yearly_data.items()):
-      x_vals = list(range(1, 13))
-      y_vals = [months.get(m, 0) for m in x_vals]
-  
-      fig.add_trace(
-        go.Bar(
-          x=x_vals,
-          y=y_vals,
-          name=str(year),
-          marker_color=["crimson" if y > 0 else "lightgrey" for y in y_vals],
-          showlegend=False
-        ),
-        row=i+1, col=1
-      )
-  
-    fig.update_layout(
-      height=300 * len(yearly_data),
-      title_text="AFIB събития по месеци и години",
-      margin=dict(t=40, b=20),
-      xaxis=dict(tickmode='array', tickvals=list(range(1, 13)),
-                ticktext=["Ян", "Фев", "Март", "Апр", "Май", "Юни", "Юли", "Авг", "Сеп", "Окт", "Ное", "Дек"])
-    )
-  
-    self.content_panel_1.clear()
-    self.content_panel_1.add_component(Plot(fig))
+  # Във форма Afib_anal, метод или бутон
+
+  def show_plot(self, **event_args):
+    fig = anvil.server.call('get_afib_figure')
+    self.column_panel_2.clear()
+    self.column_panel_2.add_component(Plot(figure=fig))
+
