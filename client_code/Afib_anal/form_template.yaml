@@ -1,0 +1,31 @@
+components:
+- components:
+  - layout_properties: {grid_position: 'NYGIRT,JQDUMB'}
+    name: column_panel_2
+    properties: {}
+    type: ColumnPanel
+  - layout_properties: {grid_position: 'NYGIRT,UYFLVN'}
+    name: column_panel_3
+    properties: {}
+    type: ColumnPanel
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
+  name: navbar_links
+  properties: {}
+  type: FlowPanel
+- components:
+  - layout_properties: {grid_position: 'AXKZWP,KDJKWO'}
+    name: filter_1
+    properties: {}
+    type: form:Filter
+  layout_properties: {slot: left-nav}
+  name: column_panel_1
+  properties: {}
+  type: ColumnPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true
