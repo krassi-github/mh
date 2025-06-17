@@ -9,6 +9,6 @@ services:
 - client_config: {}
   server_config: {}
   source: /runtime/services/tables.yml
-startup: {module: Form1, type: form}
+startup: {module: Afib_anal, type: form}
 startup_form: null
 uplink_visible: true
