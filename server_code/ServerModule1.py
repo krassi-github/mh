@@ -1,3 +1,4 @@
+'''
 import anvil.server
 # Във Server Module (например 'ServerModule1')
 
@@ -37,7 +38,7 @@ def get_afib_figure():
       tickmode='array',
       tickvals=list(range(1, 13)),
       #ticktext=["Ян", "Фев", "Март", "Апр", "Май", "Юни",
-      #          "Юли", "Авг", "Сеп", "Окт", "Ное", "Дек"], '''      
+      #          "Юли", "Авг", "Сеп", "Окт", "Ное", "Дек"],     
       ticktext = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
       tickangle=0,  # ← ето това завърта етикетите; -45 OR -90
       row=i+1,
@@ -65,3 +66,4 @@ def get_afib_figure():
 #   print("Hello, " + name + "!")
 #   return 42
 #
+'''
