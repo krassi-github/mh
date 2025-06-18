@@ -22,5 +22,4 @@ unique_ids:
   modules:
     Data: '1673440869099991671259315.7528'
   scripts: {}
-  server_modules:
-    ServerModule1: '1750192969897147113633098.1804'
+  server_modules: {}
