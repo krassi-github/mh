@@ -46,7 +46,7 @@ components:
   type: FlowPanel
 - layout_properties: {grid_position: 'NDJMBI,JCQVTI'}
   name: t_from_to
-  properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: Time FROM - TO, tooltip: '', underline: false, visible: true}
+  properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: Range FROM - TO, tooltip: '', underline: false, visible: true}
   type: Label
 - components:
   - data_bindings:
