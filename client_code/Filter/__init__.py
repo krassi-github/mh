@@ -32,12 +32,22 @@ class Filter(FilterTemplate):
     self.drop_down_2.selected_value = None
     self.drop_down_2.items = self.drop_down_2.items
     '''
-    self.default_zone(0)
-    #self.msg.text = Data.current_zone+' '+Data.zt_beg+' '+Data.zt_end
+    if not Data.current_zone:
+      self.default_zone(0)
     # Set Form properties and Data Bindings.
+    p, d = anvil.server.call("get_first_date")
+    p1, d1 = anvil.server.call("get_last_date")
+    if p or p1:
+      self.msg.text +=  f"first or last date {p}  {p1}" 
+      self.msg.foreground = "red"
+    else:  
+      self.cur_date.min_date = p
+      self.cur_date.date = p1
+    self.cur_date.max_date = self.cur_date.date
     
-    self.d.selected = True
-    Data.current_range = 'd'
+    if not Data.current_range:    # 20-06-2025
+      self.d.selected = True
+      Data.current_range = 'd'
     self.all.checked = False
     Data.all = self.all.checked
     self.drop_down_1.items = Data.zone_items
@@ -138,4 +148,3 @@ class Filter(FilterTemplate):
     self.slice_time_show(**event_args)
     print(f"slice.time_change()  ==>  {Data.slice_mode}   {Data.slice_step}")
     self.zone_change()
-    
