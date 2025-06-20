@@ -68,7 +68,7 @@ Te2 = ""
 
 time_from = ""
 time_to = ""
-current_day = ""
+current_day = ""      # reserved
 current_range = ''
 loaded_from = ""
 loaded_to = ""
