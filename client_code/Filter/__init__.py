@@ -46,30 +46,7 @@ class Filter(FilterTemplate):
     else:  
       self.cur_date.min_date = d
       self.cur_date.max_date = d1
-    self.cur_date.date = d1
-    
-    if not Data.current_range:    # 20-06-2025
-      self.d.selected = True
-      Data.current_range = 'd'
-    elif Data.current_range == "d":
-      self.d.selected = True
-      self.d_clicked()
-    elif Data.current_range == "w":
-      self.w.selected = True
-      self.w_clicked()
-    elif Data.current_range == "m":
-      self.m.selected = True
-      self.m_clicked()
-      self.show_range("1001", 'm')
-    elif Data.current_range == "m3":
-      self.d.selected = True
-      self.m3_clicked()
-    elif Data.current_range == "r":
-      self.r.selected = True
-      self.r_clicked()
-    elif Data.current_range == "h0":
-      self.h0.selected = True
-      self.h0_clicked()     
+    self.cur_date.date = d1    
       
     self.all.checked = False
     Data.all = self.all.checked
@@ -83,12 +60,38 @@ class Filter(FilterTemplate):
     self.drop_down_2.width = "80%"
     self.slice_time.width = "80%"
 
+  #  GPT 20-06-2025
+  def restore_range_selection(self):
+    rng = Data.current_range or "d"
+
+    if rng == "d":
+      self.d.selected = True
+      self.d_clicked()
+    elif rng == "w":
+      self.w.selected = True
+      self.w_clicked()
+    elif rng == "m":
+      self.m.selected = True
+      self.m_clicked()
+    elif rng == "m3":
+      self.d.selected = True
+      self.m3_clicked()
+    elif rng == "r":
+      self.r.selected = True
+      self.r_clicked()
+    elif rng == "h0":
+      self.h0.selected = True
+      self.h0_clicked()
+    else:
+      self.d.selected = True
+      Data.current_range = "d"
+      
 #  GPT 20-06-2025
   def set_main_form(self, main_form):
-    print("set_main_form() ")
     self.main_form = main_form
+    self.restore_range_selection()
 
-    
+   
   def default_zone(self, zone_index):
     zone = Data.zone_items[zone_index][1]
     self.drop_down_1.selected_value = zone
@@ -99,7 +102,6 @@ class Filter(FilterTemplate):
     Data.current_range = rng
     #self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
     if self.main_form:
-      print(f"show_range()  Data.current_range= {Data.current_range}")
       self.main_form.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
    
   def r_clicked(self, **event_args):        # Range
