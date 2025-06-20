@@ -16,6 +16,10 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens. 
+    # GPT rework 20-06-2025 ----------------------------------------
+    # Задаваме `main_form` след създаване
+    self.filter_1.set_main_form(self)
+    
     clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
     self.id_title = clm_date["id"]
     #self.b_up.width = "80"

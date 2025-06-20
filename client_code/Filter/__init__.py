@@ -9,6 +9,9 @@ class Filter(FilterTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
     # Data initializing (because this code runs first)
+    # GPT rework 20-06-2025
+    self.main_form = None  # ще бъде зададен по-късно
+    
     p = Data.load_params()
     if p:
       self.msg.text += f" load_params= {p}"
@@ -56,7 +59,7 @@ class Filter(FilterTemplate):
       self.w_clicked()
     elif Data.current_range == "m":
       self.m.selected = True
-      # self.m_clicked()
+      self.m_clicked()
       self.show_range("1001", 'm')
     elif Data.current_range == "m3":
       self.d.selected = True
@@ -66,8 +69,7 @@ class Filter(FilterTemplate):
       self.r_clicked()
     elif Data.current_range == "h0":
       self.h0.selected = True
-      self.h0_clicked()
-      
+      self.h0_clicked()     
       
     self.all.checked = False
     Data.all = self.all.checked
@@ -81,7 +83,12 @@ class Filter(FilterTemplate):
     self.drop_down_2.width = "80%"
     self.slice_time.width = "80%"
 
+#  GPT 20-06-2025
+  def set_main_form(self, main_form):
+    print("set_main_form() ")
+    self.main_form = main_form
 
+    
   def default_zone(self, zone_index):
     zone = Data.zone_items[zone_index][1]
     self.drop_down_1.selected_value = zone
@@ -90,7 +97,10 @@ class Filter(FilterTemplate):
 # Ranges processing  -------------------------------------------------------------------
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):
     Data.current_range = rng
-    self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
+    #self.parent.parent.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
+    if self.main_form:
+      print(f"show_range()  Data.current_range= {Data.current_range}")
+      self.main_form.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
    
   def r_clicked(self, **event_args):        # Range
     if Data.time_from >= Data.time_to:
