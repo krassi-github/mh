@@ -68,11 +68,11 @@ Te2 = ""
 
 time_from = ""        # for range operartions; governed from Filter; initially set from load_params
 time_to = ""          #
-current_date = ""     # reserved
+current_date = ""     # 
 current_range = ''
 loaded_from = ""    
 loaded_to = ""
-loaded_from2 = ""
+loaded_from2 = ""      # second BP set for comparison
 loaded_to2 = ""
 
 comp_list = []    #[{"n", "no", "date2", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]

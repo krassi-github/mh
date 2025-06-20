@@ -41,15 +41,37 @@ class Filter(FilterTemplate):
       self.msg.text +=  f"first or last date {p}  {p1}" 
       self.msg.foreground = "red"
     else:  
-      self.cur_date.min_date = p
-      self.cur_date.date = p1
-    self.cur_date.max_date = self.cur_date.date
+      self.cur_date.min_date = d
+      self.cur_date.max_date = d1
+    self.cur_date.date = d1
     
     if not Data.current_range:    # 20-06-2025
       self.d.selected = True
       Data.current_range = 'd'
+    elif Data.current_range == "d":
+      self.d.selected = True
+      self.d_clicked()
+    elif Data.current_range == "w":
+      self.w.selected = True
+      self.w_clicked()
+    elif Data.current_range == "m":
+      self.m.selected = True
+      # self.m_clicked()
+      self.show_range("1001", 'm')
+    elif Data.current_range == "m3":
+      self.d.selected = True
+      self.m3_clicked()
+    elif Data.current_range == "r":
+      self.r.selected = True
+      self.r_clicked()
+    elif Data.current_range == "h0":
+      self.h0.selected = True
+      self.h0_clicked()
+      
+      
     self.all.checked = False
     Data.all = self.all.checked
+    
     self.drop_down_1.items = Data.zone_items
     self.flow_panel_2.width = "95%"
     self.flow_panel_1.width = "95%"
@@ -58,16 +80,12 @@ class Filter(FilterTemplate):
     self.drop_down_1.width = "80%"
     self.drop_down_2.width = "80%"
     self.slice_time.width = "80%"
-    # Any code you write here will run before the form opens.
-    #self.fr = self.item.get("from_date", "Error")
-    #self.to = self.item.get("to_date", "Error")  
 
 
   def default_zone(self, zone_index):
     zone = Data.zone_items[zone_index][1]
     self.drop_down_1.selected_value = zone
     Data.set_zone(zone)
-
 
 # Ranges processing  -------------------------------------------------------------------
   def show_range(self, user, rng, Tb=None, Te=None, Step=None):
