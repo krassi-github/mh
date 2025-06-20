@@ -1,6 +1,7 @@
 components:
 - components:
-  - layout_properties: {}
+  - event_bindings: {change: cur_date_change}
+    layout_properties: {}
     name: cur_date
     properties:
       format: '%Y/%m/%d'

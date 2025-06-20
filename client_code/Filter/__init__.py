@@ -155,7 +155,13 @@ class Filter(FilterTemplate):
     # print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
     
-
+# Events handlers ----------------------------------------------------------
+  def cur_date_change(self, **event_args):    # 20-06-2025
+    cd = (str(self.cur_date.date)).replace('-', '/') 
+    ld = anvil.server.call("get_last_date")
+    Data.current_date = cd if cd != ld else ''
+    self.show_range("1001", Data.current_range)
+    
   def drop_down_1_change(self, **event_args):
     Data.set_zone(self.drop_down_1.selected_value)
     self.msg.text = self.drop_down_1.selected_value

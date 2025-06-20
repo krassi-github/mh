@@ -194,7 +194,8 @@ def comp_list_export():
 # Load data funcs
 # set_bp_list()  ----------------------------------------------------------------------
 # Data Block 1 filled
-def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):
+def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):    
+  global current_date
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
   global params
@@ -217,6 +218,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global orange_cntr
   global green_cntr
 
+  # 20-06-2025  current_date and fr signal to prep_plt() that work range will be different from last_date !!!
+  tb = current_date if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
     # Retreive data from DB
   if slice_mode:
     x_data = []
@@ -229,7 +232,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       else:
         ze = str(hr).zfill(2) + ":00"
       # Retreive a single record (the summary) for the range
-      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=tb, Te=Te, Step=Step, \
                                         Average=True, fill_empty=fill_empty,
                                         crawl=crawl, zt_beg=zb, zt_end=ze)     
       # ToDo Processing on r= no data
@@ -248,7 +251,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     else:
       zb = zt_beg
       ze = zt_end
-    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=tb, Te=Te, Step=Step, \
                                             Average=False, fill_empty=fill_empty,
                                             crawl=crawl, zt_beg=zb, zt_end=ze)
     if x_data and r > 0:
