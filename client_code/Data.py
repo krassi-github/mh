@@ -66,11 +66,11 @@ Tb2 = ""
 Te1 = ""
 Te2 = ""
 
-time_from = ""
-time_to = ""
+time_from = ""        # for range operartions; governed from Filter; initially set from load_params
+time_to = ""          #
 current_day = ""      # reserved
 current_range = ''
-loaded_from = ""
+loaded_from = ""    
 loaded_to = ""
 loaded_from2 = ""
 loaded_to2 = ""
