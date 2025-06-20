@@ -219,7 +219,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global green_cntr
 
   # 20-06-2025  current_date and fr signal to prep_plt() that work range will be different from last_date !!!
-  tb = current_date if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
+  tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
     # Retreive data from DB
   if slice_mode:
     x_data = []
