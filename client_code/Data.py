@@ -68,7 +68,7 @@ Te2 = ""
 
 time_from = ""        # for range operartions; governed from Filter; initially set from load_params
 time_to = ""          #
-current_day = ""      # reserved
+current_date = ""     # reserved
 current_range = ''
 loaded_from = ""    
 loaded_to = ""
