@@ -157,7 +157,7 @@ class Filter(FilterTemplate):
     
 # Events handlers ----------------------------------------------------------
   def cur_date_change(self, **event_args):    # 20-06-2025
-    cd = (str(self.cur_date.date)).replace('-', '/') 
+    cd = (str(self.cur_date.date)).replace('-', '/') + " 00:00"
     ld = anvil.server.call("get_last_date")
     Data.current_date = cd if cd != ld else ''
     self.show_range("1001", Data.current_range)
