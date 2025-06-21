@@ -219,7 +219,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global green_cntr
 
   # 20-06-2025  current_date and fr signal to prep_plt() that work range will be different from last_date !!!
-  tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
+  # tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
     # Retreive data from DB
   if slice_mode:
     x_data = []
@@ -232,9 +232,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       else:
         ze = str(hr).zfill(2) + ":00"
       # Retreive a single record (the summary) for the range
-      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=tb, Te=Te, Step=Step, \
+      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                         Average=True, fill_empty=fill_empty,
-                                        crawl=crawl, zt_beg=zb, zt_end=ze)     
+                                        crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
@@ -251,9 +251,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     else:
       zb = zt_beg
       ze = zt_end
-    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=tb, Te=Te, Step=Step, \
+    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                             Average=False, fill_empty=fill_empty,
-                                            crawl=crawl, zt_beg=zb, zt_end=ze)
+                                            crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
     if x_data and r > 0:
       # data is available
       loaded_from = x_data[0]     # test x_data alternatively
@@ -306,6 +306,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   
 # -------------------------------------------------------------------------------------------------------------------------------
 def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
+  global current_date
   global bp_summary
   global all
   global zt_beg           # beg of time zone
@@ -322,7 +323,8 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
     zb = zt_beg
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
-                        Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
+                        Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, 
+                                          zt_beg=zb, zt_end=ze, cur_date=current_date) # 21-06-2025  cur_date
   # ======= print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
   if r >= 0:       
     for i in range(len(y_values)):      
