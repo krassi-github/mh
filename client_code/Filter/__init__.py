@@ -46,7 +46,8 @@ class Filter(FilterTemplate):
     else:  
       self.cur_date.min_date = d
       self.cur_date.max_date = d1
-    self.cur_date.date = d1    
+    if not Data.current_date:
+      self.cur_date.date = d1    
       
     self.all.checked = False
     Data.all = self.all.checked

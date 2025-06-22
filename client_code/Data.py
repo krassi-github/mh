@@ -58,10 +58,10 @@ slice_step = None   # Slice step (time) in hours
 # filter_a (Analysis Form) Data
 uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
 uom = ''
-max_number = (99, )    # max value of number (in period length)
-number = 0
+max_number = (99, )   # max value of number (in period length)
+number = 0            # period = uom * number 
 step = 0
-Tb1 = ""
+Tb1 = ""              # beg times & end times for comparative analysis
 Tb2 = ""
 Te1 = ""
 Te2 = ""
