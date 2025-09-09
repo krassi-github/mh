@@ -87,5 +87,8 @@ class Analysis(AnalysisTemplate):
     else:
       m = f"Export successful to {fn}"
     alert(m)
+
+  def afibs_click(self, **event_args):
+    open_form("Afib_anal")
       
 

@@ -207,6 +207,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_pul
   global bp_sys_add
   global bp_mean
+  global bp_afib
   global bp_colors
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
@@ -266,6 +267,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   bp_pul = []
   bp_sys_add = []
   bp_mean = []
+  bp_afib = []
   bp_colors = []
   green_cntr = 0
   orange_cntr = 0
@@ -301,6 +303,12 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
               break
         elif not len(bp_mean):
           bp_mean.append(None)
+
+        if y_values[i][6]:
+          bp_afib.append(y_values[i][6])
+        else:
+          bp_afib.append(None)
+          
 
   return(r)
   

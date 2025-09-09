@@ -4,6 +4,7 @@ import anvil.server
 
 import plotly.graph_objects as go
 #from plotly.subplots import make_subplots
+from .. import Data
 
 
 class Afib_anal(Afib_analTemplate):
@@ -12,6 +13,7 @@ class Afib_anal(Afib_analTemplate):
     self.init_components(**properties)
 
     self.show_plot()
+    self.show_grid()
 
 
   # Във форма Afib_anal, метод или бутон
@@ -19,4 +21,7 @@ class Afib_anal(Afib_analTemplate):
     fig = anvil.server.call('get_afib_figure')
     self.column_panel_2.clear()
     self.column_panel_2.add_component(Plot(figure=fig))
+
+  def show_grid(self):
+    self.repeating_panel_1.items = Data.bp_list
 

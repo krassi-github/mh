@@ -21,12 +21,12 @@ components:
         background: ''
         border: ''
         columns:
-        - {$$hashKey: 'object:165558', data_key: '', expand: true, id: LAVQQZ, title: date, width: '100'}
+        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: 204}
         - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: ''}
         - {$$hashKey: 'object:165560', data_key: '', id: GCJKIU, title: DIA}
         - {$$hashKey: 'object:165601', data_key: '', id: VZPVKB, title: PUL}
-        - {$$hashKey: 'object:165603', data_key: mean, id: XTQSTS, title: MEAN}
-        - {$$hashKey: 'object:165605', data_key: '', id: MDFTDB, title: afib}
+        - {$$hashKey: 'object:165603', data_key: mean, expand: false, id: XTQSTS, title: MEAN, width: 55}
+        - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: 67}
         foreground: ''
         role: tonal-data-grid
         rows_per_page: 20
