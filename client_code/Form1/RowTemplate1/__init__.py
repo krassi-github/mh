@@ -56,7 +56,7 @@ class RowTemplate1(RowTemplate1Template):
     afib_print = ""
     
     afibs = Data.afib_details(self.link_1.tag)   
-    if type(afibs) == type("str"):
+    if type(afibs) == type("str"):   # if isinstance(afibs, str):
       afib_print = str(afibs)
       alert(content=f"{self.link_1.tag}    {afib_print}", large=True, title="AFIB Details")
     else:
