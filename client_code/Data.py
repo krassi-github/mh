@@ -218,7 +218,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global orange_cntr
   global green_cntr
 
-  # 20-06-2025  current_date and fr signal to prep_plt() that work range will be different from last_date !!!
+  # 20-06-2025  current_date and fr signal to prep_plot() that work range will be different from last_date !!!
   # tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
     # Retreive data from DB
   if slice_mode:
@@ -353,7 +353,7 @@ def afib_details(row_date, L1=None, L2=None):
       a = b['afib']
       if a:
         afib_value = 1 if a == "AFIB" else int(a[:-2])    # more afibs are possible
-        r, afib_rows = anvil.server.call("get_afibs", row_date, afib_value)
+        r, afib_rows = anvil.server.call("get_afibs", row_date, number=afib_value)
         for i in range(len(afib_rows)):
           afibs.append({"date": afib_rows[i][0], "sys":afib_rows[i][1], "dia":afib_rows[i][2],\
                   "pul":afib_rows[i][3], "mean":afib_rows[i][4]})
