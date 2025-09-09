@@ -24,4 +24,6 @@ class Afib_anal(Afib_analTemplate):
 
   def show_grid(self):
     self.repeating_panel_1.items = Data.bp_list
+    # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
+    # self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
 
