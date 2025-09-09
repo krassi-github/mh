@@ -11,7 +11,10 @@ class Afib_anal(Afib_analTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
+    # Задаваме `main_form` след създаване
+    self.filter_1.set_main_form(self)
+    
     self.show_plot()
     self.show_grid()
 
