@@ -15,7 +15,6 @@ class Afib_anal(Afib_analTemplate):
 
 
   # Във форма Afib_anal, метод или бутон
-
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
     self.column_panel_2.clear()

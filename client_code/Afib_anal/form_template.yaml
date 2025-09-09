@@ -4,7 +4,40 @@ components:
     name: column_panel_2
     properties: {}
     type: ColumnPanel
-  - layout_properties: {grid_position: 'NYGIRT,UYFLVN'}
+  - components:
+    - layout_properties: {grid_position: 'ALHXBB,TQNRGW'}
+      name: label_1
+      properties: {}
+      type: Label
+    - components:
+      - layout_properties: {}
+        name: repeating_panel_1
+        properties: {background: '', border: '', foreground: '', item_template: Form1.RowTemplate1, items: null, role: 0height, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'ZMHMNG,YJLSMZ'}
+      name: data_grid_1
+      properties:
+        auto_header: true
+        background: ''
+        border: ''
+        columns:
+        - {$$hashKey: 'object:165558', data_key: '', expand: true, id: LAVQQZ, title: date, width: '100'}
+        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: ''}
+        - {$$hashKey: 'object:165560', data_key: '', id: GCJKIU, title: DIA}
+        - {$$hashKey: 'object:165601', data_key: '', id: VZPVKB, title: PUL}
+        - {$$hashKey: 'object:165603', data_key: mean, id: XTQSTS, title: MEAN}
+        - {$$hashKey: 'object:165605', data_key: '', id: MDFTDB, title: afib}
+        foreground: ''
+        role: tonal-data-grid
+        rows_per_page: 20
+        show_page_controls: true
+        spacing_above: small
+        spacing_below: small
+        tooltip: ''
+        visible: true
+        wrap_on: never
+      type: DataGrid
+    layout_properties: {grid_position: 'NYGIRT,UYFLVN'}
     name: column_panel_3
     properties: {}
     type: ColumnPanel
