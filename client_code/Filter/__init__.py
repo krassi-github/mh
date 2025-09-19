@@ -45,10 +45,15 @@ class Filter(FilterTemplate):
       self.msg.text +=  f"first or last date {p}  {p1}" 
       self.msg.foreground = "red"
     else:  
-      self.cur_date.min_date = d[:10]
-      self.cur_date.max_date = d1[:10]
-    self.cur_date.date = d1[:10]if not Data.current_date else Data.current_date
+      d_date  = self.to_date_only(d)
+      d1_date = self.to_date_only(d1)
+  
+      self.cur_date.min_date = d_date
+      self.cur_date.max_date = d1_date
+    self.cur_date.date = self.to_date_only(Data.current_date) if Data.current_date else d1_date
+    
     print(f"Filter says self.cur_date.date=  {self.cur_date.date}")
+    print("Filter says self.cur_date.date =", repr(self.cur_date.date), type(self.cur_date.date))
       
     self.all.checked = False
     Data.all = self.all.checked
@@ -76,6 +81,7 @@ class Filter(FilterTemplate):
       return datetime.strptime(s, '%Y-%m-%d').date()
     raise ValueError(f'Unsupported date value: {x!r}')
 
+    
   def restore_range_selection(self):
     rng = Data.current_range or "d"
 
