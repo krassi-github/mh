@@ -1,3 +1,4 @@
+from datetime import datetime, date as _date
 from ._anvil_designer import FilterTemplate
 from anvil import *
 import anvil.server
@@ -61,7 +62,20 @@ class Filter(FilterTemplate):
     self.drop_down_2.width = "80%"
     self.slice_time.width = "80%"
 
-  #  GPT 20-06-2025
+  #  GPT 19-09-2025 and 20-06-2025
+  def to_date_only(self, x):
+    if isinstance(x, _date) and not isinstance(x, datetime):
+      return x                          # already a date
+    if isinstance(x, datetime):
+      return x.date()                   # datetime -> date
+    if isinstance(x, (int, float)):
+      return datetime.fromtimestamp(x).date()  # Unix ts -> date
+    if isinstance(x, str):
+      # вземи само датната част, смени /->-, парсни като YYYY-MM-DD
+      s = x.split()[0].replace('/', '-')
+      return datetime.strptime(s, '%Y-%m-%d').date()
+    raise ValueError(f'Unsupported date value: {x!r}')
+
   def restore_range_selection(self):
     rng = Data.current_range or "d"
 
