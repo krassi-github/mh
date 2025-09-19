@@ -37,17 +37,17 @@ class Filter(FilterTemplate):
     '''
     if not Data.current_zone:
       self.default_zone(0)
-    # Set Form properties and Data Bindings.
+    
     p, d = anvil.server.call("get_first_date")
     p1, d1 = anvil.server.call("get_last_date")
     if p or p1:
       self.msg.text +=  f"first or last date {p}  {p1}" 
       self.msg.foreground = "red"
     else:  
-      self.cur_date.min_date = d
-      self.cur_date.max_date = d1
-    if not Data.current_date:
-      self.cur_date.date = d1    
+      self.cur_date.min_date = d[:10]
+      self.cur_date.max_date = d1[:10]
+    self.cur_date.date = d1[:10]if not Data.current_date else Data.current_date
+    print(f"Filter says self.cur_date.date=  {self.cur_date.date}")
       
     self.all.checked = False
     Data.all = self.all.checked
@@ -160,7 +160,7 @@ class Filter(FilterTemplate):
   def cur_date_change(self, **event_args):    # 20-06-2025
     cd = (str(self.cur_date.date)).replace('-', '/') + " 00:00"
     ld = anvil.server.call("get_last_date")
-    Data.current_date = cd if cd != ld else ''
+    Data.current_date = cd if cd != ld else ''    # ????? Защо празен стринг
     self.show_range("1001", Data.current_range)
     
   def drop_down_1_change(self, **event_args):

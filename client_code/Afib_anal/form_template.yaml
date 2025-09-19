@@ -1,41 +1,41 @@
 components:
 - components:
-  - components:
-    - event_bindings: {click: b_up_click}
-      layout_properties: {width: 18.388900000000007}
-      name: b_up
-      properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:arrow-up', icon_align: left, italic: false, role: tonal-button, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
-      type: Button
-    - event_bindings: {click: b_dn_click}
-      layout_properties: {width: 37.38890000000001}
-      name: b_dn
-      properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:arrow-down', icon_align: top, italic: false, role: tonal-button, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
-      type: Button
-    - layout_properties: {}
-      name: s_from
-      properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: 0margine, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
-      type: Label
-    - layout_properties: {}
-      name: s_to
-      properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: 0margine, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
-      type: Label
-    - layout_properties: {}
-      name: s_step
-      properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
-      type: Label
-    - layout_properties: {}
-      name: s_tz
-      properties: {}
-      type: Label
-    layout_properties: {grid_position: 'NYGIRT,JQDUMB ECCKFK,LUMIRO'}
-    name: flow_panel_1
-    properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
-    type: FlowPanel
-  - layout_properties: {grid_position: 'NYGIRT,JQDUMB TGTHLI,EODTXI'}
+  - layout_properties: {grid_position: 'NYGIRT,JQDUMB'}
     name: column_panel_2
     properties: {}
     type: ColumnPanel
   - components:
+    - components:
+      - event_bindings: {click: b_up_click}
+        layout_properties: {width: 18.388900000000007}
+        name: b_up
+        properties: {align: left, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:arrow-up', icon_align: left, italic: false, role: tonal-button, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+        type: Button
+      - event_bindings: {click: b_dn_click}
+        layout_properties: {width: 37.38890000000001}
+        name: b_dn
+        properties: {align: center, background: '', bold: false, border: '', enabled: true, font: '', font_size: null, foreground: '', icon: 'fa:arrow-down', icon_align: top, italic: false, role: tonal-button, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+        type: Button
+      - layout_properties: {}
+        name: s_from
+        properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: 0margine, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+        type: Label
+      - layout_properties: {}
+        name: s_to
+        properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: 0margine, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+        type: Label
+      - layout_properties: {}
+        name: s_step
+        properties: {align: left, background: '', bold: true, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+        type: Label
+      - layout_properties: {}
+        name: s_tz
+        properties: {}
+        type: Label
+      layout_properties: {grid_position: 'YTMBPS,LSFLQP'}
+      name: flow_panel_1
+      properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
+      type: FlowPanel
     - layout_properties: {grid_position: 'ALHXBB,TQNRGW'}
       name: label_2
       properties: {}
