@@ -38,20 +38,8 @@ class Filter(FilterTemplate):
     '''
     if not Data.current_zone:
       self.default_zone(0)
-    
-    p, d = anvil.server.call("get_first_date")
-    p1, d1 = anvil.server.call("get_last_date")
-    if p or p1:
-      self.msg.text +=  f"first or last date {p}  {p1}" 
-      self.msg.foreground = "red"
-    else:  
-      d_date  = self.to_date_only(d)
-      d1_date = self.to_date_only(d1)  
-      self.cur_date.min_date = d_date
-      self.cur_date.max_date = d1_date
-    self.cur_date.date = self.to_date_only(Data.current_date) if Data.current_date else d1_date
-    print("Filter says self.cur_date.date =", repr(self.cur_date.date), type(self.cur_date.date))
-      
+
+    self.set_cur_date()  
     self.all.checked = False
     Data.all = self.all.checked
     
@@ -78,6 +66,22 @@ class Filter(FilterTemplate):
       return datetime.strptime(s, '%Y-%m-%d').date()
     raise ValueError(f'Unsupported date value: {x!r}')
 
+  
+  def set_cur_date(self):
+    p, d = anvil.server.call("get_first_date")
+    p1, d1 = anvil.server.call("get_last_date")
+    
+    if p or p1:
+      self.msg.text +=  f"first or last date {p}  {p1}" 
+      self.msg.foreground = "red"
+    else:  
+      d_date  = self.to_date_only(d)
+      d1_date = self.to_date_only(d1)  
+      self.cur_date.min_date = d_date
+      self.cur_date.max_date = d1_date
+    self.cur_date.date = self.to_date_only(Data.current_date) if Data.current_date else d1_date
+    print("Filter says self.cur_date.date =", repr(self.cur_date.date), type(self.cur_date.date))
+    
     
   def restore_range_selection(self):
     rng = Data.current_range or "d"
