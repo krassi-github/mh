@@ -1,3 +1,4 @@
+import datetime
 from ._anvil_designer import Afib_analTemplate
 from anvil import *
 import anvil.server
@@ -63,7 +64,26 @@ class Afib_anal(Afib_analTemplate):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
     self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
 
+
+  def show_move(self, direction):
+    Tb, Te = anvil.server.call("times_calc", Data.current_range, \
+                                 Data.loaded_from, Data.loaded_to, direction)
+    self.label_2.text = f"{Tb}  {Te}  {Data.current_range} "
+    te = datetime.datetime.strptime(Te,  "%Y/%m/%d %H:%M")
+    #te -= datetime.timedelta(days=1)
+    Te = te.strftime("%Y/%m/%d %H:%M")
+    self.render_data("1001", Data.current_range, Tb, Te, crawl=True)
+  
+# Events handling ----------------------------------------------------------------------------------
   def back_click(self, **event_args):
     open_form("Form1")
+
+  def b_up_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def b_dn_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
     
 
