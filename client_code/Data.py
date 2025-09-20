@@ -86,7 +86,7 @@ bp_mean = []    # mean pressure
 bp_afib = []
 bp_n = []
 bp_colors = []   # collors
-bp_list = []     # main data list [{}]
+bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "afib"
 bp_summary = []  # summary
 afibs = []       # afib events
 x_data = []      # time data (X axis)
@@ -108,7 +108,7 @@ bp_afib2 = []
 bp_n2 = []
 bp_colors2 = []   # collors
 # data row [{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
-bp_list2 = []     # main data list [{}]
+bp_list2 = []     # main data list [{}]  # "date", "SYS", "DIA", "PUL", "MEA", "afib"
 bp_summary2 = []  # summary
 afibs2 = []       # afib events
 x_data2 = []      # time data (X axis)

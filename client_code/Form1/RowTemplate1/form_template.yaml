@@ -1,6 +1,6 @@
 components:
 - data_bindings:
-  - {code: 'self.item["date"][:10]', property: text, writeback: false}
+  - {code: 'self.item["date"]', property: text, writeback: false}
   layout_properties: {column: LAVQQZ}
   name: lb_1
   properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 20, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: none, spacing_below: none, text: '', tooltip: '', underline: false, visible: true}

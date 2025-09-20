@@ -86,7 +86,7 @@ class Form1(Form1Template):
     self.lb_34.text = str(round(100*Data.orange_cntr/tot)) + "%"
     self.lb_36.text = str(round(100*Data.red_cntr/tot)) + "%"
 
-    
+  # -----------------------------------------------------------------------------------------------  
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range   
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r < 0:

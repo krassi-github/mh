@@ -80,7 +80,7 @@ class Filter(FilterTemplate):
       self.cur_date.min_date = d_date
       self.cur_date.max_date = d1_date
     self.cur_date.date = self.to_date_only(Data.current_date) if Data.current_date else d1_date
-    print("Filter says self.cur_date.date =", repr(self.cur_date.date), type(self.cur_date.date))
+    # print("Filter says self.cur_date.date =", repr(self.cur_date.date), type(self.cur_date.date))
     
     
   def restore_range_selection(self):
