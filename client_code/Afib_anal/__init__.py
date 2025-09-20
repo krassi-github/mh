@@ -26,13 +26,12 @@ class Afib_anal(Afib_analTemplate):
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range  
     # Form1.render_data(user, rng, Tb=None, Te=None, Step=None, crawl=Fals)
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
+    print(f"render_data() CALLED {[user, rng, crawl]}")
+    
     if r < 0:
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
       self.label_2.boldface = True
-
-    if r < 0:
-      pass    # UI message to be generated
     else:
       self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
       #self.repeating_panel_1.items = Data.bp_list
@@ -58,14 +57,14 @@ class Afib_anal(Afib_analTemplate):
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
     self.column_panel_2.clear()
-    self.column_panel_2.add_component(Plot(figure=fig))
+    self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??
 
   def show_grid(self):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
     self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
 
 
-  def show_move(self, direction):
+  def show_move(self, direction):    # NEW from the Form1
     Tb, Te = anvil.server.call("times_calc", Data.current_range, \
                                  Data.loaded_from, Data.loaded_to, direction)
     self.label_2.text = f"{Tb}  {Te}  {Data.current_range} "
@@ -79,11 +78,9 @@ class Afib_anal(Afib_analTemplate):
     open_form("Form1")
 
   def b_up_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    self.show_move("up")
 
   def b_dn_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    self.show_move("dn")
     
 
