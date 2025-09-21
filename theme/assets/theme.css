@@ -1081,6 +1081,12 @@ div.plot-container.plotly svg.main-svg {
   box-sizing: border-box;
 }
 
+.role-afib-wide {
+  width: 100%;
+  max-width: 1500px;   /*$<;8 1600px,$>>?>>F> <E:4H */
+  margin: 0 auto;      /*$F5=BN@ */
+}
+
 .anvil-role-datagrid-wrapper {
   display: flex;
   justify-content: center;
