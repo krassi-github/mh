@@ -4,7 +4,6 @@ from anvil import *
 import anvil.server
 from anvil import ColumnPanel  # gp 21-09-2025
 
-#from anvil.plotly import Plot  # gp 21-09-2025
 import plotly.graph_objects as go
 #from plotly.subplots import make_subplots
 from .. import Data
@@ -14,6 +13,7 @@ class Afib_anal(Afib_analTemplate):
   id_title = ''
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    self.column_panel_2.full_width_row = True
     self.init_components(**properties)
     #self.column_panel_2.width = "100%"   # да не ограничава
     #self.column_panel_2.role = "afib-wide"
@@ -71,17 +71,12 @@ class Afib_anal(Afib_analTemplate):
   ''' 
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
-    fig.update_layout(
-      title={"text": "---------- Events", "x": 0.5, "xanchor": "center", "y": 0.98, "yanchor": "top"},
-      #height=160*n_years,           # височината работи от layout
-      autosize=False                # по желание, за да не сменя височината
-    )
 
     self.column_panel_2.clear()
     p = Plot(figure=fig)
-    p.width = 1000                   # <-- ширина на компонента (px)
-    # p.width = "100%"               # ако искаш да запълва контейнера
-    self.column_panel_2.add_component(p)
+    p.width = 800                   # <-- ширина на компонента (px)
+    p.height = 630
+    self.column_panel_2.add_component(p, full_width_row=True)
 
     
   '''def show_plot(self, **event_args):
