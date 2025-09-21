@@ -13,12 +13,11 @@ class Afib_anal(Afib_analTemplate):
   id_title = ''
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    # self.column_panel_2.full_width_row = True
     self.init_components(**properties)
     #self.column_panel_2.width = "100%"   # да не ограничава
-    self.column_panel_2.role = "afib-wide"
-    
-    print(f"CP.width= {self.column_panel_2.width}")
+    #self.column_panel_2.role = "afib-wide"
+    self.column_panel_3.width = 520
+
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
     self.filter_1.set_main_form(self)
@@ -30,9 +29,7 @@ class Afib_anal(Afib_analTemplate):
 
 
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range  
-    # Form1.render_data(user, rng, Tb=None, Te=None, Step=None, crawl=Fals)
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
-    print(f"render_data() CALLED {[user, rng, crawl]}")
     
     if r < 0:
       self.label_2.text += f"  set_bp_list= {r}"
@@ -78,8 +75,6 @@ class Afib_anal(Afib_analTemplate):
     p.height = 630
     #p(full_width_row=True = True)
     self.column_panel_2.add_component(p)
-    print(f"ContP full_width_row= {self.column_panel_2.full_width_row}")
-
     
   '''def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')

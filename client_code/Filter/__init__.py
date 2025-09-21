@@ -204,5 +204,5 @@ class Filter(FilterTemplate):
 
   def slice_time_change(self, **event_args):
     self.slice_time_show(**event_args)
-    print(f"slice.time_change()  ==>  {Data.slice_mode}   {Data.slice_step}")
+    # print(f"slice.time_change()  ==>  {Data.slice_mode}   {Data.slice_step}")
     self.zone_change()
