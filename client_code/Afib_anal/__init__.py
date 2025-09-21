@@ -2,7 +2,9 @@ import datetime
 from ._anvil_designer import Afib_analTemplate
 from anvil import *
 import anvil.server
+from anvil import ColumnPanel  # gp 21-09-2025
 
+#from anvil.plotly import Plot  # gp 21-09-2025
 import plotly.graph_objects as go
 #from plotly.subplots import make_subplots
 from .. import Data
@@ -13,6 +15,8 @@ class Afib_anal(Afib_analTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
+    self.column_panel_2.width = "1000px"  
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
     self.filter_1.set_main_form(self)
@@ -53,14 +57,25 @@ class Afib_anal(Afib_analTemplate):
       self.data_grid_1.columns = self.data_grid_1.columns 
       
       
-  # Във форма Afib_anal, метод или бутон
+  '''  # Във форма Afib_anal, метод или бутон
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
-    fig.update_layout(height=400 * 1.5, width=1000)
     self.column_panel_2.clear()
-    self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??
+    self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??  
+    '''
     
+  def show_plot(self, **event_args):
+    fig = anvil.server.call('get_afib_figure')
+    plot_component = Plot(figure=fig)
+  
+    wrapper = ColumnPanel()
+    wrapper.role = "plot-wrapper"
+    wrapper.add_component(plot_component)
+  
+    self.column_panel_2.clear()
+    self.column_panel_2.add_component(wrapper)
 
+  
   def show_grid(self):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
     self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
