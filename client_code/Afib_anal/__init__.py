@@ -56,9 +56,10 @@ class Afib_anal(Afib_analTemplate):
   # Във форма Afib_anal, метод или бутон
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
+    fig.update_layout(height=400 * 1.5, width=1000)
     self.column_panel_2.clear()
     self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??
-    fig.update_layout(height=400 * N, width=1000)
+    
 
   def show_grid(self):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
