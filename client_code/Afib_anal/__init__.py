@@ -58,6 +58,7 @@ class Afib_anal(Afib_analTemplate):
     fig = anvil.server.call('get_afib_figure')
     self.column_panel_2.clear()
     self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??
+    fig.update_layout(height=400 * N, width=1000)
 
   def show_grid(self):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
