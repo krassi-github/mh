@@ -13,10 +13,10 @@ class Afib_anal(Afib_analTemplate):
   id_title = ''
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    self.column_panel_2.full_width_row = True
+    # self.column_panel_2.full_width_row = True
     self.init_components(**properties)
     #self.column_panel_2.width = "100%"   # да не ограничава
-    #self.column_panel_2.role = "afib-wide"
+    self.column_panel_2.role = "afib-wide"
     
     print(f"CP.width= {self.column_panel_2.width}")
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
@@ -76,7 +76,9 @@ class Afib_anal(Afib_analTemplate):
     p = Plot(figure=fig)
     p.width = 800                   # <-- ширина на компонента (px)
     p.height = 630
-    self.column_panel_2.add_component(p, full_width_row=True)
+    #p(full_width_row=True = True)
+    self.column_panel_2.add_component(p)
+    print(f"ContP full_width_row= {self.column_panel_2.full_width_row}")
 
     
   '''def show_plot(self, **event_args):
