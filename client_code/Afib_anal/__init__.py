@@ -15,7 +15,8 @@ class Afib_anal(Afib_analTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
- 
+    self.column_panel_2.width = "1500px"
+    print(f"CP.width= {self.column_panel_2.width}")
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
     self.filter_1.set_main_form(self)
@@ -57,11 +58,29 @@ class Afib_anal(Afib_analTemplate):
       
       
   # Във форма Afib_anal, метод или бутон
-  def show_plot(self, **event_args):
+  ''' def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
+    fig.update_layout(
+      title={"text": "---------- Events", "x": 0.5, "xanchor": "center", "y": 0.98, "yanchor": "top"},
+      width=1800
+    )
     self.column_panel_2.clear()
     self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??  
-    
+  ''' 
+  def show_plot(self, **event_args):
+    fig = anvil.server.call('get_afib_figure')
+    fig.update_layout(
+      title={"text": "---------- Events", "x": 0.5, "xanchor": "center", "y": 0.98, "yanchor": "top"},
+      #height=160*n_years,           # височината работи от layout
+      autosize=False                # по желание, за да не сменя височината
+    )
+
+    self.column_panel_2.clear()
+    p = Plot(figure=fig)
+    p.width = 1300                   # <-- ширина на компонента (px)
+    # p.width = "100%"               # ако искаш да запълва контейнера
+    self.column_panel_2.add_component(p)
+
     
   '''def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
