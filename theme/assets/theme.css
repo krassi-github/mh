@@ -1072,8 +1072,8 @@ div.plot-container.plotly svg.main-svg {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  // min-height: 600px;
-  // min-width: 1020px;         // old value= 1020 
+  min-height: 600px;
+  min-width: 1020px;         // old value= 1020 
   //max-width: 100%;           /*$2<5AF> D<:E<@4=0$L8D<=0 */
   //min-width: 500px;
   //width: 400px;

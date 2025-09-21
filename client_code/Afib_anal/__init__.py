@@ -15,8 +15,7 @@ class Afib_anal(Afib_analTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
-    self.column_panel_2.width = "1000px"  
+ 
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
     self.filter_1.set_main_form(self)
@@ -57,14 +56,14 @@ class Afib_anal(Afib_analTemplate):
       self.data_grid_1.columns = self.data_grid_1.columns 
       
       
-  '''  # Във форма Afib_anal, метод или бутон
+  # Във форма Afib_anal, метод или бутон
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
     self.column_panel_2.clear()
     self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??  
-    '''
     
-  def show_plot(self, **event_args):
+    
+  '''def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
     plot_component = Plot(figure=fig)
   
@@ -74,7 +73,7 @@ class Afib_anal(Afib_analTemplate):
   
     self.column_panel_2.clear()
     self.column_panel_2.add_component(wrapper)
-
+  '''
   
   def show_grid(self):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
