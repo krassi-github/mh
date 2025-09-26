@@ -20,6 +20,7 @@ class Afib_anal(Afib_analTemplate):
 
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
+    # print(f"Data.current_range= {Data.current_range}")
     self.filter_1.set_main_form(self)
     clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
     self.id_title = clm_date["id"]
