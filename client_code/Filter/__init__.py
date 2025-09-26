@@ -96,7 +96,7 @@ class Filter(FilterTemplate):
       self.m.selected = True
       self.m_clicked()
     elif rng == "m3":
-      self.d.selected = True
+      self.m3.selected = True
       self.m3_clicked()
     elif rng == "r":
       self.r.selected = True

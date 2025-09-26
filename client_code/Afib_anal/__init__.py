@@ -8,7 +8,8 @@ import plotly.graph_objects as go
 #from plotly.subplots import make_subplots
 from .. import Data
 
-
+# 26-09-2025 При проблем с прехвърлянето на Data,current_range между формите може
+# да се приложи GPR MH_project -> AfibWork 1 решението
 class Afib_anal(Afib_analTemplate):
   id_title = ''
   def __init__(self, **properties):
@@ -20,7 +21,6 @@ class Afib_anal(Afib_analTemplate):
 
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
-    # print(f"Data.current_range= {Data.current_range}")
     self.filter_1.set_main_form(self)
     clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
     self.id_title = clm_date["id"]
