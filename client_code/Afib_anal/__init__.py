@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 from .. import Data
 
 # 26-09-2025 При проблем с прехвърлянето на Data,current_range между формите може
-# да се приложи GPR MH_project -> AfibWork 1 решението
+# да се приложи GPT MH_project -> AfibWork 1 решението
 class Afib_anal(Afib_analTemplate):
   id_title = ''
   def __init__(self, **properties):
