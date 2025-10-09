@@ -56,7 +56,7 @@ slice_mode = False  # on True Daily Data is sliced
 slice_step = None   # Slice step (time) in hours
 
 # filter_a (Analysis Form) Data
-uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
+uom_items = [('Day', "d"), ("Week", "w"), ("30days", "m")]    # ("Month", "m") 09-10-2025
 uom = ''
 max_number = (99, )   # max value of number (in period length)
 number = 0            # period = uom * number 
