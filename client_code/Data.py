@@ -52,7 +52,7 @@ custom_zone_items = []
 current_zone = ''   # current time_zone
 zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
-slice_mode = False  # on True Saily Data is sliced
+slice_mode = False  # on True Daily Data is sliced
 slice_step = None   # Slice step (time) in hours
 
 # filter_a (Analysis Form) Data
