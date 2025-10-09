@@ -11,7 +11,8 @@ class RowTemplate1(RowTemplate1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.link_1.tag = self.lb_1.text     # 09-06-2023 test
-    self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] else self.item["date"][:10]  # 20/09/2025
+    self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
+    or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
     self.row_spacing = 0
     if int(self.lb_2.text) >= Data.params["red_sys"]:
       self.lb_2.foreground = "red"

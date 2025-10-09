@@ -15,7 +15,7 @@ class RowTemplate3(RowTemplate3Template):
     self.row_spacing = 0
     # Test of assignment instead of binding
     # print(f"RT3  => {r}  item= {self.item}")
-    self.no.text = self.item["no"]
+    self.no.text = self.item["no"][:10]
     self.s1.text = self.item['s1']
     self.s2.text = self.item["s2"]
     self.d1.text = self.item["d1"]

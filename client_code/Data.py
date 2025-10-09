@@ -236,7 +236,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                         Average=True, fill_empty=fill_empty,
                                         crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
-      # ToDo Processing on r= no data
+      # ToDo Processing on r= no data !!
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
