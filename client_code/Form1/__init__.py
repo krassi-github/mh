@@ -16,6 +16,10 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens. 
+    # GPT rework 20-06-2025 ----------------------------------------
+    # Задаваме `main_form` след създаване
+    self.filter_1.set_main_form(self)
+    
     clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
     self.id_title = clm_date["id"]
     #self.b_up.width = "80"
@@ -26,7 +30,6 @@ class Form1(Form1Template):
     self.column_panel_2.row_spacing = 4
     self.flow_panel_2.border =  "border-bottom: 6px solid red"  # ""border-top-style: dotted"  # "solid"       #
     self.color_rows(self.repeating_panel_1)
-    self.render_data("1001", 'd')
   
   def color_rows(self, rep):    
     for i, r in enumerate(rep.get_components()):
@@ -83,8 +86,8 @@ class Form1(Form1Template):
     self.lb_34.text = str(round(100*Data.orange_cntr/tot)) + "%"
     self.lb_36.text = str(round(100*Data.red_cntr/tot)) + "%"
 
-    
-  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range    
+  # -----------------------------------------------------------------------------------------------  
+  def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range   
     r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
     if r < 0:
       self.label_2.text += f"  set_bp_list= {r}"

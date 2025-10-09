@@ -166,7 +166,7 @@ color: %color:On Primary Container%;
 }
 
 .anvil-role-0height {        
-  margin-top: 0px !important;    // 28-03-34 kag old value = 0px;
+  margin-top: 0px !important;    // 28-03-24 kag old value = 0px;
   margin-bottom: 0px !important;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -1066,3 +1066,33 @@ div.plot-container.plotly svg.main-svg {
   box-shadow: 0px 0px 100px 100px %color:Surface Variant%;
 }
 
+/* 21-09-2025 kag  from GPT  Formatting the Afib_anal content panels */
+.anvil-role-plot-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  min-height: 600px;
+  min-width: 1020px;         // old value= 1020 
+  //max-width: 100%;           /*$2<5AF> D<:E<@4=0$L8D<=0 */
+  //min-width: 500px;
+  //width: 400px;
+  //overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.role-afib-wide {
+  width: 100%;
+  max-width: 1500px;   /*$<;8 1600px,$>>?>>F> <E:4H */
+  margin: 0 auto;      /*$F5=BN@ */
+}
+
+.anvil-role-datagrid-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}

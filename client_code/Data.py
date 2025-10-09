@@ -1,5 +1,5 @@
-import anvil.server
 import datetime
+import anvil.server
 #    from . import Module1
 
 # LOCAL Data Layer
@@ -52,27 +52,27 @@ custom_zone_items = []
 current_zone = ''   # current time_zone
 zt_beg = "08:00"    # current values of time_zones
 zt_end = "16:00"
-slice_mode = False  # on True Saily Data is sliced
+slice_mode = False  # on True Daily Data is sliced
 slice_step = None   # Slice step (time) in hours
 
 # filter_a (Analysis Form) Data
-uom_items = [('Day', "d"), ("Week", "w"), ("Month", "m")]
+uom_items = [('Day', "d"), ("Week", "w"), ("30days", "m")]    # ("Month", "m") 09-10-2025
 uom = ''
-max_number = (99, )    # max value of number (in period length)
-number = 0
+max_number = (99, )   # max value of number (in period length)
+number = 0            # period = uom * number 
 step = 0
-Tb1 = ""
+Tb1 = ""              # beg times & end times for comparative analysis
 Tb2 = ""
 Te1 = ""
 Te2 = ""
 
-time_from = ""
-time_to = ""
-current_day = ""
+time_from = ""        # for range operartions; governed from Filter; initially set from load_params
+time_to = ""          #
+current_date = ""     # 
 current_range = ''
-loaded_from = ""
+loaded_from = ""    
 loaded_to = ""
-loaded_from2 = ""
+loaded_from2 = ""      # second BP set for comparison
 loaded_to2 = ""
 
 comp_list = []    #[{"n", "no", "date2", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
@@ -86,7 +86,7 @@ bp_mean = []    # mean pressure
 bp_afib = []
 bp_n = []
 bp_colors = []   # collors
-bp_list = []     # main data list [{}]
+bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "afib"
 bp_summary = []  # summary
 afibs = []       # afib events
 x_data = []      # time data (X axis)
@@ -108,7 +108,7 @@ bp_afib2 = []
 bp_n2 = []
 bp_colors2 = []   # collors
 # data row [{"no", " s1", "s2", "d1", "d2", "p1", "p2", "m1", "m2", "a1", "a2"}]
-bp_list2 = []     # main data list [{}]
+bp_list2 = []     # main data list [{}]  # "date", "SYS", "DIA", "PUL", "MEA", "afib"
 bp_summary2 = []  # summary
 afibs2 = []       # afib events
 x_data2 = []      # time data (X axis)
@@ -194,7 +194,8 @@ def comp_list_export():
 # Load data funcs
 # set_bp_list()  ----------------------------------------------------------------------
 # Data Block 1 filled
-def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):
+def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):    
+  global current_date
   global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
   global y_values
   global params
@@ -206,6 +207,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_pul
   global bp_sys_add
   global bp_mean
+  global bp_afib
   global bp_colors
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
@@ -217,6 +219,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global orange_cntr
   global green_cntr
 
+  # 20-06-2025  current_date and fr signal to prep_plot() that work range will be different from last_date !!!
+  # tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
     # Retreive data from DB
   if slice_mode:
     x_data = []
@@ -231,8 +235,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       # Retreive a single record (the summary) for the range
       r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                         Average=True, fill_empty=fill_empty,
-                                        crawl=crawl, zt_beg=zb, zt_end=ze)     
-      # ToDo Processing on r= no data
+                                        crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
+      # ToDo Processing on r= no data !!
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
@@ -250,7 +254,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       ze = zt_end
     r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                             Average=False, fill_empty=fill_empty,
-                                            crawl=crawl, zt_beg=zb, zt_end=ze)
+                                            crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
     if x_data and r > 0:
       # data is available
       loaded_from = x_data[0]     # test x_data alternatively
@@ -263,6 +267,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   bp_pul = []
   bp_sys_add = []
   bp_mean = []
+  bp_afib = []
   bp_colors = []
   green_cntr = 0
   orange_cntr = 0
@@ -299,10 +304,17 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
         elif not len(bp_mean):
           bp_mean.append(None)
 
+        if y_values[i][6]:
+          bp_afib.append(y_values[i][6])
+        else:
+          bp_afib.append(None)
+          
+
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
 def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
+  global current_date
   global bp_summary
   global all
   global zt_beg           # beg of time zone
@@ -319,7 +331,8 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
     zb = zt_beg
     ze = zt_end
   r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr,
-                        Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, zt_beg=zb, zt_end=ze)
+                        Tb=Tb, Te=Te, Average=True, fill_empty=False, crawl=crawl, 
+                                          zt_beg=zb, zt_end=ze, cur_date=current_date) # 21-06-2025  cur_date
   # ======= print(f"Summ  {Tb} !! {Te}  X= {x_data} #  Y= {y_values}")
   if r >= 0:       
     for i in range(len(y_values)):      
@@ -348,7 +361,7 @@ def afib_details(row_date, L1=None, L2=None):
       a = b['afib']
       if a:
         afib_value = 1 if a == "AFIB" else int(a[:-2])    # more afibs are possible
-        r, afib_rows = anvil.server.call("get_afibs", row_date, afib_value)
+        r, afib_rows = anvil.server.call("get_afibs", row_date, number=afib_value)
         for i in range(len(afib_rows)):
           afibs.append({"date": afib_rows[i][0], "sys":afib_rows[i][1], "dia":afib_rows[i][2],\
                   "pul":afib_rows[i][3], "mean":afib_rows[i][4]})
