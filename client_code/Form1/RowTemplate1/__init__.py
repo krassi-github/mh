@@ -10,7 +10,7 @@ class RowTemplate1(RowTemplate1Template):
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.link_1.tag = self.lb_1.text     # 09-06-2023 test
+    self.link_1.tag = self.lb_1.text     # 09-06-2023 save the date
     self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
     or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
     self.row_spacing = 0
@@ -57,7 +57,7 @@ class RowTemplate1(RowTemplate1Template):
   def link_1_click(self, **event_args):
     afib_print = ""
     
-    afibs = Data.afib_details(self.link_1.tag)   
+    afibs = Data.afib_details(self.link_1.tag)   # pass date via the tag
     if type(afibs) is str:   # if isinstance(afibs, str):
       afib_print = str(afibs)
       alert(content=f"{self.link_1.tag}    {afib_print}", large=True, title="AFIB Details")
