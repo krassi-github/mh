@@ -10,12 +10,13 @@ class RowTemplate1(RowTemplate1Template):
     global r
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # save the date;
+    ''' save the date;
     if Data.slice_mode:
       print(Data.bp_date[r])  # [r]["date"]
       self.link_1.tag = Data.bp_date[r] 
     else:
-      self.lb_1.text
+    '''
+    self.link_1.tag = self.lb_1.text
 
     self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
     or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
@@ -61,8 +62,9 @@ class RowTemplate1(RowTemplate1Template):
   '''
 
   def link_1_click(self, **event_args):
+    if Data.slice_mode:  # No date of Afib event(s) in slice node cause\n
+      return             # afib is averaged over dates of the range
     afib_print = ""
-    
     afibs = Data.afib_details(self.link_1.tag)   # pass date via the tag
     if type(afibs) is str:   # if isinstance(afibs, str):
       afib_print = str(afibs)
