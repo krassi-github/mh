@@ -229,6 +229,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     afibs_date = []
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"     # the time zone beginning
+      zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
       hr = z + slice_step
       if hr == 24:
         ze = "23:59"
@@ -244,18 +245,21 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
+      
       # get the first date of afib
       x_d = []
       y_v = []
-      r, x_d, y_v = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                          Average=True, fill_empty=False,        # Average=False fill_empty= fill_empty
-                                          crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
+
+      # work copies # fr=fr; # Average=False fill_empty= fill_empty
+      r, x_d, y_v = anvil.server.call("prep_plot", user_id, fr='d', Tb=Tb, Te=Te, Step=Step,\
+                                      Average=False, fill_empty=False,        
+                                      crawl=crawl, zt_beg=zb2, zt_end=ze, cur_date=current_date)
       
       for y in y_v:
-        print(f"z= {z} y= {y}")
+        #print(f"z= {z} y= {y}")
         ad = y[6] if any(x for x in afibs_date if x in (None, '')) else None
         afibs_date.append(ad)
-      
+    print(f"z= {z}  {afibs_date}")
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze
   else:
