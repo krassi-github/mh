@@ -4,9 +4,9 @@ import anvil.server
 from .. import Data
 
 class afibs_g(afibs_gTemplate):
-  def __init__(self, **properties):
+  def __init__(self, rows=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.repeating_panel_1.items = Data.afibs  
+    self.repeating_panel_1.items = Data.afibs  # rows
     

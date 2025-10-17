@@ -4,8 +4,7 @@ import anvil.server
 from .. import Data
 from ... afibs_g import afibs_g 
 
-#r = 0
-r = len(Data.bp_list)
+r = 0
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
     global r
@@ -13,9 +12,7 @@ class RowTemplate1(RowTemplate1Template):
     self.init_components(**properties)
     #save the date;
     if Data.slice_mode:
-      i = self.item["i"]
-      print(f"cntr i= {i}  ", end='')
-      print(Data.afibs_date[i]) 
+      i = self.item["i"] 
       self.link_1.tag = Data.afibs_date[i] 
     else:
       self.link_1.tag = self.lb_1.text
@@ -64,15 +61,13 @@ class RowTemplate1(RowTemplate1Template):
   '''
 
   def link_1_click(self, **event_args):
-    '''if Data.slice_mode:  # No date of Afib event(s) in slice node cause\n
-      return             # afib is averaged over dates of the range
-    '''
-    afib_print = ""
-    print(self.link_1.tag)
-    afibs = Data.afib_details(self.link_1.tag)   # pass date via the tag
-    if type(afibs) is str:   # if isinstance(afibs, str):
-      afib_print = str(afibs)
-      alert(content=f"{self.link_1.tag}    {afib_print}", large=True, title="AFIB Details")
-    else:
-      alert(afibs_g(), large=True, title="AFIB Details")
-      # alert(content=f"{self.link_1.tag}\n{afib_print}", large=True, title="AFIB Details")
+    # ако искаш да забраниш детайли в slice режим:
+    # if Data.slice_mode:
+    #   return
+  
+    rows, msg = Data.afib_details(self.link_1.tag)
+  
+    if not rows:
+      alert(content=f"{self.link_1.tag}\n{msg}", large=True, title="AFIB Details")
+      return
+    alert(afibs_g(rows), large=True, title="AFIB Details")

@@ -356,38 +356,32 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
   return(r)
 
-
 def afib_details(row_date, L1=None, L2=None):
-  global bp_list, bp_list2
-  global afibs
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
-
+  global bp_list, bp_list2, slice_mode
+  bp_ = bp_list2 if L2 else bp_list
   if L2:
-    bp_ = bp_list2
     row_date = L2
-  else:
-    bp_ = bp_list
 
-  afibs = []; r = 0
-  print(f"len bp_ {len(bp_)}")
-  #print(bp_)
+  rows_out = []
   for b in bp_:
-    if b['date'] == row_date:
-      a = b['afib']
+    if b['date'] == row_date or slice_mode:
+      a = b.get('afib')
       if a:
-        afib_value = 1 if a == "AFIB" else int(a[:-2])    # more afibs are possible
-        r, afib_rows = anvil.server.call("get_afibs", row_date, number=afib_value)
-        for i in range(len(afib_rows)):
-          afibs.append({"date": afib_rows[i][0], "sys":afib_rows[i][1], "dia":afib_rows[i][2],\
-                  "pul":afib_rows[i][3], "mean":afib_rows[i][4]})
-      else:
-        r = 0
-        afibs = "No AFIB on this row"
-  if not r:
-    return(afibs)
-  else:
-    return(f"DB issue {r}")
+        afib_value = 1 if a == "AFIB" else int(a[:-2])
+        _, rows = anvil.server.call("get_afibs", row_date, number=afib_value)
+        for r in rows:
+          rows_out.append({
+            "date": r[0],
+            "sys": r[1],
+            "dia": r[2],
+            "pul": r[3],
+            "mean": r[4]
+          })
+  print(f"Found {len(rows_out)} rows for {row_date}")
+  msg = "" if rows_out else "No AFIB for this row."
+  return rows_out, msg
 
 
 # ****************************************************************************************
