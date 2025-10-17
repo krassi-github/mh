@@ -101,7 +101,13 @@ class Form1(Form1Template):
     if r < 0 or r1 < 0:
       pass    # UI message to be generated
     else:
-      self.repeating_panel_1.items = Data.bp_list
+      rows = Data.bp_list
+      items = [
+        {**row, "i": i}            # i = 1..N – брояч за реда
+        for i, row in enumerate(rows, start=0)
+      ]
+      self.repeating_panel_1.items = items
+      #self.repeating_panel_1.items = Data.bp_list
       #print(f"RP.items = {self.repeating_panel_1.items}")
       self.s_from.text = Data.loaded_from[:10]
       self.s_to.text = "-     " + Data.loaded_to[:10]

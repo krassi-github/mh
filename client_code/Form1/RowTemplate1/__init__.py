@@ -4,7 +4,8 @@ import anvil.server
 from .. import Data
 from ... afibs_g import afibs_g 
 
-r = 0
+#r = 0
+r = len(Data.bp_list)
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
     global r
@@ -12,9 +13,10 @@ class RowTemplate1(RowTemplate1Template):
     self.init_components(**properties)
     #save the date;
     if Data.slice_mode:
-      print(f"cntr r= {r}")
-      print(Data.afibs_date[r])  # [r]["date"]
-      self.link_1.tag = Data.afibs_date[r] 
+      i = self.item["i"]
+      print(f"cntr i= {i}  ", end='')
+      print(Data.afibs_date[i]) 
+      self.link_1.tag = Data.afibs_date[i] 
     else:
       self.link_1.tag = self.lb_1.text
 
@@ -66,6 +68,7 @@ class RowTemplate1(RowTemplate1Template):
       return             # afib is averaged over dates of the range
     '''
     afib_print = ""
+    print(self.link_1.tag)
     afibs = Data.afib_details(self.link_1.tag)   # pass date via the tag
     if type(afibs) is str:   # if isinstance(afibs, str):
       afib_print = str(afibs)

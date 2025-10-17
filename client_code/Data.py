@@ -242,7 +242,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       # ToDo Processing on r= no data !!
       
       # get the first date of afib -------------------
-      af = ''
+      af = '';
       y_v = y_val[0]
       # print(y_v)
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6]
@@ -370,7 +370,8 @@ def afib_details(row_date, L1=None, L2=None):
     bp_ = bp_list
 
   afibs = []; r = 0
-  #print(f"len bp_ {len(bp_)}"); print(bp_)
+  print(f"len bp_ {len(bp_)}")
+  #print(bp_)
   for b in bp_:
     if b['date'] == row_date:
       a = b['afib']
