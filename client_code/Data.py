@@ -248,7 +248,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       x_d = []
       y_v = []
       r, x_d, y_v = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                          Average=False, fill_empty=fill_empty,
+                                          Average=True, fill_empty=False,        # Average=False fill_empty= fill_empty
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
       
       for y in y_v:
