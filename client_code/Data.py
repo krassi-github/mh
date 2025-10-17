@@ -226,6 +226,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   if slice_mode:
     x_data = []
     y_values = []
+    afibs_date = []
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"     # the time zone beginning
       hr = z + slice_step
@@ -238,7 +239,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                         Average=True, fill_empty=fill_empty,
                                         crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
-      # bp_date.append(y_val[0][1]    # save the date for the need of Form1.RowTemplate1 16-10-2025 TB removed
+      
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
@@ -249,11 +250,14 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       r, x_d, y_v = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                           Average=False, fill_empty=fill_empty,
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
-      afibs_date[z] = y_v[6] if any(x for x in afibs_date if x not in (None, '')) else None
+      
+      for y in y_v:
+        print(f"z= {z} y= {y}")
+        ad = y[6] if any(x for x in afibs_date if x in (None, '')) else None
+        afibs_date.append(ad)
       
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze
-    # print(f" in SLICE  from= {loaded_from} to= {loaded_to}")
   else:
     # Regular retreive
     if zt_beg == "00:00" and zt_end == "23:59":
