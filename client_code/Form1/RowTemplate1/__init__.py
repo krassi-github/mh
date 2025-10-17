@@ -12,6 +12,7 @@ class RowTemplate1(RowTemplate1Template):
     self.init_components(**properties)
     #save the date;
     if Data.slice_mode:
+      print(f"cntr r= {r}")
       print(Data.afibs_date[r])  # [r]["date"]
       self.link_1.tag = Data.afibs_date[r] 
     else:

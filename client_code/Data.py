@@ -244,13 +244,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       # get the first date of afib -------------------
       af = ''
       y_v = y_val[0]
-      print(y_v)
-      print (f"{len(y_v)}  > 6 and {y_v[6]} and {y_v[0]}")
-      if len(y_v) > 6 and y_v[6] and y_v[0]:
+      # print(y_v)
+      if len(y_v) > 6 and y_v[0]:         #  and y_v[6]
         af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "  "        
       else:
-        af = None
-
+        af = "RT Issue"
       afibs_date.append(af)
       
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
@@ -258,7 +256,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
       
-      print(f"  --afibs_date= {afibs_date}")
+      #print(f"  --afibs_date= {afibs_date}")
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze
   else:
