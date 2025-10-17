@@ -241,31 +241,24 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                         crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
       
+      # get the first date of afib -------------------
+      af = ''
+      y_v = y_val[0]
+      print(y_v)
+      print (f"{len(y_v)}  > 6 and {y_v[6]} and {y_v[0]}")
+      if len(y_v) > 6 and y_v[6] and y_v[0]:
+        af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "  "        
+      else:
+        af = None
+        input("Stopped by check")
+      afibs_date.append(af)
+      
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
       
-      # get the first date of afib
-      x_d = []
-      y_v = []
-
-      # work copies # fr=fr; # Average=False fill_empty= fill_empty
-      r, x_d, y_v = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step,\
-                                      Average=True, fill_empty=False,        
-                                      crawl=crawl, zt_beg=zb2, zt_end=ze, cur_date=current_date)
-      k = 0
-      for y in y_v:
-        #print(f"z= {z} y= {y}")
-        #ad = y[6] if any(x for x in afibs_date if x in (None, '')) else None
-        if any(x for x in afibs_date if x not in (None, '')):
-          ad = y[6]
-          print(f"k= {k}  {y[6]}")
-        else:
-          ad = None
-        k += 1
-        afibs_date.append(ad)
-    print(f"z= {z}  k= {k}  {afibs_date}")
+      print(f"  --afibs_date= {afibs_date}")
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze
   else:
