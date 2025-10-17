@@ -246,7 +246,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       y_v = y_val[0]
       # print(y_v)
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6]
-        af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "  "        
+        af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "**" 
+        # af := date-time of afib event OR "**" on No afib event in this row
       else:
         af = "RT Issue"
       afibs_date.append(af)
@@ -359,28 +360,33 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
 def afib_details(row_date, L1=None, L2=None):
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
-  global bp_list, bp_list2, slice_mode
+  global bp_list, bp_list2, slice_mode, afibs
   bp_ = bp_list2 if L2 else bp_list
   if L2:
     row_date = L2
 
   rows_out = []
-  for b in bp_:
-    if b['date'] == row_date or slice_mode:
-      a = b.get('afib')
-      if a:
-        afib_value = 1 if a == "AFIB" else int(a[:-2])
-        _, rows = anvil.server.call("get_afibs", row_date, number=afib_value)
-        for r in rows:
-          rows_out.append({
-            "date": r[0],
-            "sys": r[1],
-            "dia": r[2],
-            "pul": r[3],
-            "mean": r[4]
-          })
-  print(f"Found {len(rows_out)} rows for {row_date}")
+  afibs = []
+  if row_date != "**":
+    for b in bp_:
+      if b['date'] == row_date or slice_mode:
+        a = b.get('afib')
+        if a:
+          afib_value = 1 if a == "AFIB" else int(a[:-2])
+          _, rows = anvil.server.call("get_afibs", row_date, number=afib_value)
+          for r in rows:
+            rows_out.append({
+              "date": r[0],
+              "sys": r[1],
+              "dia": r[2],
+              "pul": r[3],
+              "mean": r[4]
+            })
+          if slice_mode:
+            print(f"row_date= {row_date} afib_value= {afib_value} afibs_date= {afibs_date}")
+            break
   msg = "" if rows_out else "No AFIB for this row."
+  afibs = rows_out
   return rows_out, msg
 
 
