@@ -89,6 +89,7 @@ bp_colors = []   # collors
 bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "afib"
 bp_summary = []  # summary
 afibs = []       # afib events
+afibs_date = []  # afib events date
 x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
 purple_cntr = 0  # color_counters (correspond to BP ranges)
@@ -207,7 +208,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_pul
   global bp_sys_add
   global bp_mean
-  global bp_afib
+  global bp_afib, afibs_date
   global bp_colors
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
@@ -242,6 +243,14 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
+      # get the first date of afib
+      x_d = []
+      y_v = []
+      r, x_d, y_v = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                          Average=False, fill_empty=fill_empty,
+                                          crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
+      afibs_date[z] = y_v[6] if any(x for x in afibs_date if x not in (None, '')) else None
+      
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze
     # print(f" in SLICE  from= {loaded_from} to= {loaded_to}")
