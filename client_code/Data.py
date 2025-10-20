@@ -242,7 +242,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       # ToDo Processing on r= no data !!
       
       # get the first date of afib -------------------
-      af = '';
+      af = ''
       y_v = y_val[0]
       # print(y_v)
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6]
