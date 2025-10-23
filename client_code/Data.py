@@ -245,13 +245,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       af = ''
       y_v = y_val[0]
       # print(y_v)
-      if len(y_v) > 6 and y_v[0] and y_v[6]:         #  and y_v[6] (from GPT)
+      if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
         af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "**" 
         # af := date-time of afib event OR "**" on No afib event in this row
-      else:
-        af = "RT Issue"
-      afibs_date.append(af)
-      
+      afibs_date.append(af)      
+ 
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process

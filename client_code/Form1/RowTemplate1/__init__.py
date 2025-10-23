@@ -67,7 +67,7 @@ class RowTemplate1(RowTemplate1Template):
     # ако искаш да забраниш детайли в slice режим:
     # if Data.slice_mode:
     #   return
-    self.parent.parent.parent.parent.parent.text += self.link_1.tag + ' '    # self.parent.parent.parent.parent.
+    get_open_form().label_2.text += self.link_1.tag + ' '    # self.parent.parent.parent.parent.
     # Form1.content_panel.column_panel_3.label_2
     rows, msg = Data.afib_details(self.link_1.tag, slice_window=self.slice_window)
   
