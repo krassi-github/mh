@@ -14,10 +14,10 @@ class RowTemplate1(RowTemplate1Template):
     if Data.slice_mode:
       i = self.item["i"] 
       self.link_1.tag = Data.afibs_date[i]
-      self.slice_window = self.item[date]
+      self.slice_window = self.item["date"]
     else:
       self.link_1.tag = self.lb_1.text
-      self.slice_window = None
+      self.slice_window = "00:00 - 23:59"
 
     self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
     or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
