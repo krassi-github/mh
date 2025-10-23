@@ -374,6 +374,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
         if a:
           afib_value = 1 if a == "AFIB" else int(a[:-2])
           _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
+          print(f"rows= {rows}")
           for r in rows:
             rows_out.append({
               "date": r[0],
