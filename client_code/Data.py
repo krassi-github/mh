@@ -357,7 +357,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
   return(r)
 
-def afib_details(row_date, L1=None, L2=None):
+def afib_details(row_date, L1=None, L2=None, slice_window=None):
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
   global bp_list, bp_list2, slice_mode, afibs
@@ -373,7 +373,7 @@ def afib_details(row_date, L1=None, L2=None):
         a = b.get('afib')
         if a:
           afib_value = 1 if a == "AFIB" else int(a[:-2])
-          _, rows = anvil.server.call("get_afibs", row_date, number=afib_value)
+          _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
           for r in rows:
             rows_out.append({
               "date": r[0],

@@ -13,9 +13,11 @@ class RowTemplate1(RowTemplate1Template):
     #save the date;
     if Data.slice_mode:
       i = self.item["i"] 
-      self.link_1.tag = Data.afibs_date[i] 
+      self.link_1.tag = Data.afibs_date[i]
+      self.slice_window = self.item[date]
     else:
       self.link_1.tag = self.lb_1.text
+      self.slice_window = None
 
     self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
     or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
@@ -65,7 +67,7 @@ class RowTemplate1(RowTemplate1Template):
     # if Data.slice_mode:
     #   return
   
-    rows, msg = Data.afib_details(self.link_1.tag)
+    rows, msg = Data.afib_details(self.link_1.tag, slice_window=self.slice_window)
   
     if not rows:
       alert(content=f"{self.link_1.tag}\n{msg}", large=True, title="AFIB Details")
