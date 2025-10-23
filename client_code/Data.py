@@ -245,7 +245,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       af = ''
       y_v = y_val[0]
       # print(y_v)
-      if len(y_v) > 6 and y_v[0]:         #  and y_v[6]
+      if len(y_v) > 6 and y_v[0] and y_v[6]:         #  and y_v[6] (from GPT)
         af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "**" 
         # af := date-time of afib event OR "**" on No afib event in this row
       else:

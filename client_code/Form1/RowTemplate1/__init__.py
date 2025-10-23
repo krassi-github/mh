@@ -2,7 +2,8 @@ from ._anvil_designer import RowTemplate1Template
 from anvil import *
 import anvil.server
 from .. import Data
-from ... afibs_g import afibs_g 
+from ... afibs_g import afibs_g
+from .. import Form1
 
 r = 0
 class RowTemplate1(RowTemplate1Template):
@@ -66,7 +67,8 @@ class RowTemplate1(RowTemplate1Template):
     # ако искаш да забраниш детайли в slice режим:
     # if Data.slice_mode:
     #   return
-  
+    self.parent.parent.parent.parent.parent.text += self.link_1.tag + ' '    # self.parent.parent.parent.parent.
+    # Form1.content_panel.column_panel_3.label_2
     rows, msg = Data.afib_details(self.link_1.tag, slice_window=self.slice_window)
   
     if not rows:
