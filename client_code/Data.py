@@ -90,6 +90,7 @@ bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "af
 bp_summary = []  # summary
 afibs = []       # afib events
 afibs_date = []  # afib events date
+afibs_count = [] # afib events count
 x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
 purple_cntr = 0  # color_counters (correspond to BP ranges)
@@ -208,7 +209,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_pul
   global bp_sys_add
   global bp_mean
-  global bp_afib, afibs_date
+  global bp_afib, afibs_date, afibs_count
   global bp_colors
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
@@ -291,7 +292,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     x_data = []
     y_values = []
     bp_list = []
-    #afibs_date = []
+
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"     # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
