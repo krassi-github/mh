@@ -91,6 +91,7 @@ bp_summary = []  # summary
 afibs = []       # afib events
 afibs_date = []  # afib events date
 afibs_count = [] # afib events count
+afibs_dt_cnt = [] # [{dt: yyyy/mm/dd hh:hh, cnt: int}] derived from bp_date and bp_afib
 x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
 purple_cntr = 0  # color_counters (correspond to BP ranges)
@@ -209,7 +210,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_pul
   global bp_sys_add
   global bp_mean
-  global bp_afib, afibs_date, afibs_count
+  global bp_afib, afibs_date, afibs_count, afibs_dt_cnt
   global bp_colors
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
@@ -252,6 +253,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   orange_cntr = 0
   red_cntr = 0
   purple_cntr = 0
+  afibs_dt_cnt = []
+  
   if r >= 0:       
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        
@@ -284,7 +287,10 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           bp_mean.append(None)
 
         if y_values[i][6]:
-          bp_afib.append(y_values[i][6])
+          _afib = y_values[i][6]
+          bp_afib.append(_afib)
+          _cnt = 1 if _afib == "AFIB" else int(_afib[:-2])
+          afibs_dt_cnt.append({dt: bp_date[i], _cnt})
         else:
           bp_afib.append(None)
 
