@@ -290,7 +290,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   if slice_mode:
     x_data = []
     y_values = []
-    afibs_date = []
+    bp_list = []
+    #afibs_date = []
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"     # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
@@ -318,7 +319,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
-
+    
+    for i in range(len(y_values)):      
+      if all or y_values[i][2]:    #        
+        bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
+                        "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})     
       #print(f"  --afibs_date= {afibs_date}")
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
