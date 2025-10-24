@@ -222,57 +222,21 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
 
   # 20-06-2025  current_date and fr signal to prep_plot() that work range will be different from last_date !!!
   # tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
-    # Retreive data from DB
-  if slice_mode:
-    x_data = []
-    y_values = []
-    afibs_date = []
-    for z in range(0, 24, slice_step):
-      zb = str(z).zfill(2) + ":00"     # the time zone beginning
-      zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
-      hr = z + slice_step
-      if hr == 24:
-        ze = "23:59"
-      else:
-        ze = str(hr).zfill(2) + ":00"
-      # Retreive a single record (the summary) for the range
-      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                        Average=True, fill_empty=fill_empty,
-                                        crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
-      # ToDo Processing on r= no data !!
-      
-      # get the first date of afib -------------------
-      af = ''
-      y_v = y_val[0]
-      # print(y_v)
-      if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
-        af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "**" 
-        # af := date-time of afib event OR "**" on No afib event in this row
-      afibs_date.append(af)      
- 
-      y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
-      zb = str(x_dat[0][:10]) + ' ' + zb
-      y_values.extend(y_val)    # append ? changed on the recovery process
-      x_data.append(zb)
-      
-      #print(f"  --afibs_date= {afibs_date}")
-    loaded_from = str(x_data[0])
-    loaded_to = str(x_dat[-1][:10]) + ' ' + ze
+
+  # Regular retreive
+  if zt_beg == "00:00" and zt_end == "23:59":
+    zb = None
+    ze = None
   else:
-    # Regular retreive
-    if zt_beg == "00:00" and zt_end == "23:59":
-      zb = None
-      ze = None
-    else:
-      zb = zt_beg
-      ze = zt_end
-    r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
-                                            Average=False, fill_empty=fill_empty,
-                                            crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
-    if x_data and r > 0:
-      # data is available
-      loaded_from = x_data[0]     # test x_data alternatively
-      loaded_to = x_data[-1]
+    zb = zt_beg
+    ze = zt_end
+  r, x_data, y_values = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                          Average=False, fill_empty=fill_empty,
+                                          crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)
+  if x_data and r > 0:
+    # data is available
+    loaded_from = x_data[0]     # test x_data alternatively
+    loaded_to = x_data[-1]
       
   bp_list = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
   bp_date = []
@@ -322,8 +286,42 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           bp_afib.append(y_values[i][6])
         else:
           bp_afib.append(None)
-          
 
+  if slice_mode:
+    x_data = []
+    y_values = []
+    afibs_date = []
+    for z in range(0, 24, slice_step):
+      zb = str(z).zfill(2) + ":00"     # the time zone beginning
+      zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
+      hr = z + slice_step
+      if hr == 24:
+        ze = "23:59"
+      else:
+        ze = str(hr).zfill(2) + ":00"
+      # Retreive a single record (the summary) for the range
+      r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
+                                          Average=True, fill_empty=fill_empty,
+                                          crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
+      # ToDo Processing on r= no data !!
+
+      # get the first date of afib -------------------
+      af = ''
+      y_v = y_val[0]
+      # print(y_v)
+      if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
+        af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "**" 
+        # af := date-time of afib event OR "**" on No afib event in this row
+      afibs_date.append(af)      
+
+      y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
+      zb = str(x_dat[0][:10]) + ' ' + zb
+      y_values.extend(y_val)    # append ? changed on the recovery process
+      x_data.append(zb)
+
+      #print(f"  --afibs_date= {afibs_date}")
+    loaded_from = str(x_data[0])
+    loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
