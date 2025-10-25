@@ -325,13 +325,16 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       # ToDo Processing on r= no data !!
 
       # get the first date of afib -------------------       
-      af = ''
-      _af = get_afibs_in_slice_hhmm(zb, ze, afibs_dt_cnt)
+      af = ''  # af := date-time of afib event OR "**" on No afib event in this row
+      _af_list = get_afibs_in_slice_hhmm(zb, ze, afibs_dt_cnt)  # list of dicts
       y_v = y_val[0]
       # print(y_v)
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
-        af = afibs_dt_cnt[ii].get("dt") if y_v[6] else "**" 
-        # af := date-time of afib event OR "**" on No afib event in this row
+        if _af_list:
+          af = _af_list[ii].get("dt") if y_v[6] else "**" 
+        else:
+          af = "**"
+          
       afibs_date.append(af)      
 
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
