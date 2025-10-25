@@ -396,7 +396,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
         a = b.get('afib')
         if a:
           afib_value = 1 if a == "AFIB" else int(a[:-2])
-          print(f"row_date= {row_date} a= {a} afib_value= {afib_value} afibs_date= {afibs_date}")
+          print(f"row_date= {row_date} a= {a} afib_value= {afib_value}")    #  afibs_date= {afibs_date}
           _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
           print(f"rows= {rows}")
           for r in rows:
