@@ -1,4 +1,4 @@
-import datetime
+import datetime, time
 import anvil.server
 #    from . import Module1
 
@@ -196,33 +196,54 @@ def comp_list_export():
 
 
 # *************************************************************************************    
-# Load data funcs
+# Load Data Funcs
+
+# Aux func - filters records, whose dt.hour is within slice_window out of afibs_dt_cnt
+def get_afibs_in_slice_hhmm(zb_str, ze_str, afibs_dt_cnt):
+  """
+  Филтрира afibs_dt_cnt по часовия слайс.
+  zb_str, ze_str : низове 'HH:MM'
+  afibs_dt_cnt   : list[ {'dt': 'YYYY/MM/DD HH:MM', 'cnt': int} ]
+  Връща всички записи, чийто час попада в [zb, ze),
+  като работи и при слайс, който пресича 00:00.
+  """
+  # парсваме границите
+  zb = datetime.strptime(zb_str, "%H:%M").time()
+  ze = datetime.strptime(ze_str, "%H:%M").time()
+
+  results = []
+  for rec in afibs_dt_cnt:
+    # извличаме часовата част от низа 'YYYY/MM/DD HH:MM'
+    try:
+      dt_time = datetime.strptime(rec["dt"], "%Y/%m/%d %H:%M").time()
+    except Exception:
+      continue  # пропускаме лош формат
+
+    # стандартен или "wrap-around" слайс (примерно 22:00–02:00)
+    if zb <= ze:
+      in_slice = zb <= dt_time < ze
+    else:
+      in_slice = (dt_time >= zb) or (dt_time < ze)
+
+    if in_slice:
+      results.append(rec)
+
+  return results
+
+
 # set_bp_list()  ----------------------------------------------------------------------
 # Data Block 1 filled
 def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill_empty=None):    
-  global current_date
-  global x_data  # !! Иначе не прехвърля данните (за разлика от променливите, работещи с append)
-  global y_values
-  global params
-  global all
-  global bp_list
-  global bp_date
-  global bp_sys
-  global bp_dia
-  global bp_pul
-  global bp_sys_add
-  global bp_mean
+  global current_date, all
+  global x_data, y_values
+  global params, current_range
+  global bp_list, bp_date, bp_sys, bp_dia, bp_pul, bp_sys_add, bp_mean, 
   global bp_afib, afibs_date, afibs_dt_cnt
-  global bp_colors
-  global current_range
+  global bp_colors,  purple_cntr, red_cntr, orange_cntr, green_cntr
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
   global loaded_to        # loaded data time stamp TO
   global zt_beg           # beg of time zone
   global zt_end           # end of time zone
-  global purple_cntr
-  global red_cntr
-  global orange_cntr
-  global green_cntr
 
   # 20-06-2025  current_date and fr signal to prep_plot() that work range will be different from last_date !!!
   # tb = current_date + " 00:00" if fr and fr != 'r' and current_date else Tb    # tb is replace of Tb for prep_plt() calla !!
@@ -243,19 +264,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     loaded_to = x_data[-1]
       
   bp_list = []      # "date", "SYS", "DIA", "PUL", "MEA", "afib"
-  bp_date = []
-  bp_sys = []
-  bp_dia = []
-  bp_pul = []
-  bp_sys_add = []
-  bp_mean = []
-  bp_afib = []
-  bp_colors = []
-  green_cntr = 0
-  orange_cntr = 0
-  red_cntr = 0
-  purple_cntr = 0
-  afibs_dt_cnt = []
+  bp_date = []; bp_sys = []; bp_dia = []; bp_pul = []; bp_sys_add = []; bp_mean = []; bp_afib = []
+  bp_colors = []; green_cntr = 0; orange_cntr = 0; red_cntr = 0; purple_cntr = 0; afibs_dt_cnt = []
   
   if r >= 0:       
     for i in range(len(y_values)):      
@@ -316,8 +326,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
 
-      # get the first date of afib -------------------
-
+      # get the first date of afib ------------------- 
       
       af = ''
       y_v = y_val[0]
