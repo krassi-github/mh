@@ -90,7 +90,6 @@ bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "af
 bp_summary = []  # summary
 afibs = []       # afib events
 afibs_date = []  # afib events date
-afibs_count = [] # afib events count
 afibs_dt_cnt = [] # [{dt: yyyy/mm/dd hh:hh, cnt: int}] derived from bp_date and bp_afib
 x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
@@ -210,7 +209,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_pul
   global bp_sys_add
   global bp_mean
-  global bp_afib, afibs_date, afibs_count, afibs_dt_cnt
+  global bp_afib, afibs_date, afibs_dt_cnt
   global bp_colors
   global current_range
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
