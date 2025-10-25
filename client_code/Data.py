@@ -301,7 +301,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           bp_afib.append(_afib)
           # prep data for the Slice mode
           _cnt = 1 if _afib == "AFIB" else int(_afib[:-2])
-          afibs_dt_cnt.append({"dt": bp_date[i], "cnt": _cnt})
+          sl = zt_beg + '-' + zt_end
+          r, slice_afibs = anvil.server.call("get_afibs", bp_date[i], number=1, slice_window=sl)
+          afibs_dt_cnt.append({"dt": slice_afibs[0][0], "cnt": _cnt})
         else:
           bp_afib.append(None)
 
@@ -331,8 +333,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       y_v = y_val[0]
       # print(y_v)
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
-        if _af_list:
-          af = _af_list[ii].get("dt") if y_v[6] else "**" 
+        if len(_af_list):
+          af = _af_list[0].get("dt") if y_v[6] else "**" 
         else:
           af = "**"
           
