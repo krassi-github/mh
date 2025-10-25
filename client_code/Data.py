@@ -86,14 +86,17 @@ bp_mean = []    # mean pressure
 bp_afib = []
 bp_n = []
 bp_colors = []   # collors
+
 bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "afib"
 bp_summary = []  # summary
+x_data = []      # time data (X axis)
+y_values = []    # blood pressure values
+# Slice mode related
 afibs = []       # afib events
 afibs_date = []  # afib events date
 afibs_dt_cnt = [] # [{dt: yyyy/mm/dd hh:hh, cnt: int}] derived from bp_date and bp_afib
-x_data = []      # time data (X axis)
-y_values = []    # blood pressure values
-purple_cntr = 0  # color_counters (correspond to BP ranges)
+# color_counters (correspond to BP ranges)
+purple_cntr = 0  
 red_cntr = 0     
 orange_cntr = 0
 green_cntr = 0
@@ -285,34 +288,37 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
         elif not len(bp_mean):
           bp_mean.append(None)
 
-        if y_values[i][6]:
+        if y_values[i][6]:  # AFIB -------------
           _afib = y_values[i][6]
           bp_afib.append(_afib)
+          # prep data for the Slice mode
           _cnt = 1 if _afib == "AFIB" else int(_afib[:-2])
-          afibs_dt_cnt.append({dt: bp_date[i], _cnt})
+          afibs_dt_cnt.append({"dt": bp_date[i], "cnt": _cnt})
         else:
           bp_afib.append(None)
 
-  if slice_mode:
+  if slice_mode:  # SLICE mode ------------------------------
     x_data = []
     y_values = []
     bp_list = []
 
     for z in range(0, 24, slice_step):
-      zb = str(z).zfill(2) + ":00"     # the time zone beginning
+      zb = str(z).zfill(2) + ":00"      # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
       hr = z + slice_step
       if hr == 24:
         ze = "23:59"
       else:
         ze = str(hr).zfill(2) + ":00"
-      # Retreive a single record (the summary) for the range
+      # Retreive a single record (the summary) for the range of slice window
       r, x_dat, y_val = anvil.server.call("prep_plot", user_id, fr=fr, Tb=Tb, Te=Te, Step=Step, \
                                           Average=True, fill_empty=fill_empty,
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
 
       # get the first date of afib -------------------
+
+      
       af = ''
       y_v = y_val[0]
       # print(y_v)
@@ -364,6 +370,7 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})
   return(r)
 
+# --------------------------------------------------------------------------------------------------------
 def afib_details(row_date, L1=None, L2=None, slice_window=None):
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
