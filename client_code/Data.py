@@ -215,8 +215,9 @@ def get_afibs_in_slice_hhmm(zb_str, ze_str, afibs_dt_cnt):
   for rec in afibs_dt_cnt:
     # извличаме часовата част от низа 'YYYY/MM/DD HH:MM'
     try:
-      dt_time = datetiime.datetime.strptime(rec["dt"], "%Y/%m/%d %H:%M").time()
+      dt_time = datetime.datetime.strptime(rec["dt"].strip(), "%Y/%m/%d %H:%M").time()
     except Exception:
+      print(f"Wrong format EXCEPTION rec[dt]= {rec['dt']}")
       continue  # пропускаме лош формат
     # стандартен или "wrap-around" слайс (примерно 22:00–02:00)
     if zb <= ze:
