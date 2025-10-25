@@ -93,8 +93,9 @@ x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
 # Slice mode related
 afibs = []       # afib events
-afibs_date = []  # afib events date
-afibs_dt_cnt = [] # [{dt: yyyy/mm/dd hh:hh, cnt: int}] derived from bp_date and bp_afib
+afibs_date = []  # afib events dates. filled by second block (slice mode) of set_bp_list()
+afibs_dt_cnt = [] # [{dt: yyyy/mm/dd hh:hh, cnt: int}] # Its length = number of steps with afib events in the range
+                  # filled by first block of set_bp_list() (regular mode); used by second block (slice_mode)
 # color_counters (correspond to BP ranges)
 purple_cntr = 0  
 red_cntr = 0     
@@ -397,26 +398,35 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
   rows_out = []
   afibs = []
   if row_date != "**":
-    for b in bp_:
-      if b['date'] == row_date or slice_mode:
-        a = b.get('afib')
-        if a:
-          afib_value = 1 if a == "AFIB" else int(a[:-2])
-          print(f"row_date= {row_date} a= {a} afib_value= {afib_value}")    #  afibs_date= {afibs_date}
-          _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
-          print(f"rows= {rows}")
-          for r in rows:
-            rows_out.append({
-              "date": r[0],
-              "sys": r[1],
-              "dia": r[2],
-              "pul": r[3],
-              "mean": r[4]
-            })
-          '''if slice_mode:
-            print(f"row_date= {row_date} afib_value= {afib_value} afibs_date= {afibs_date}")
-            break
-          '''
+    if not slice_mode:
+      for b in bp_:
+        if b['date'] == row_date:    #  or slice_mode 25-10-2025
+          a = b.get('afib')
+          if a:
+            afib_value = 1 if a == "AFIB" else int(a[:-2])
+            print(f"row_date= {row_date} a= {a} afib_value= {afib_value}")    #  afibs_date= {afibs_date}
+            _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
+    else:
+      match = next((rec for rec in afibs_dt_cnt if rec.get("dt") == row_date), None)      
+      if match:
+        afib_dt = match["dt"]
+        afib_value = match["cnt"]
+        _, rows = anvil.server.call("get_afibs", afib_dt, number=afib_value, slice_window=slice_window)
+      else:
+        afib_dt = None
+        afib_cnt = 0
+        rows = []
+            
+    print(f"rows= {rows}")
+    for r in rows:
+      rows_out.append({
+        "date": r[0],
+        "sys": r[1],
+        "dia": r[2],
+        "pul": r[3],
+        "mean": r[4]
+      })
+
   msg = "" if rows_out else "No AFIB for this row."
   afibs = rows_out
   return rows_out, msg
