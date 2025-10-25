@@ -1,4 +1,4 @@
-import datetime, time
+import datetime
 import anvil.server
 #    from . import Module1
 
@@ -208,26 +208,23 @@ def get_afibs_in_slice_hhmm(zb_str, ze_str, afibs_dt_cnt):
   като работи и при слайс, който пресича 00:00.
   """
   # парсваме границите
-  zb = datetime.strptime(zb_str, "%H:%M").time()
-  ze = datetime.strptime(ze_str, "%H:%M").time()
+  zb = datetime.datetime.strptime(zb_str, "%H:%M").time()
+  ze = datetime.datetime.strptime(ze_str, "%H:%M").time()
 
   results = []
   for rec in afibs_dt_cnt:
     # извличаме часовата част от низа 'YYYY/MM/DD HH:MM'
     try:
-      dt_time = datetime.strptime(rec["dt"], "%Y/%m/%d %H:%M").time()
+      dt_time = datetiime.datetime.strptime(rec["dt"], "%Y/%m/%d %H:%M").time()
     except Exception:
       continue  # пропускаме лош формат
-
     # стандартен или "wrap-around" слайс (примерно 22:00–02:00)
     if zb <= ze:
       in_slice = zb <= dt_time < ze
     else:
       in_slice = (dt_time >= zb) or (dt_time < ze)
-
     if in_slice:
       results.append(rec)
-
   return results
 
 
@@ -237,8 +234,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global current_date, all
   global x_data, y_values
   global params, current_range
-  global bp_list, bp_date, bp_sys, bp_dia, bp_pul, bp_sys_add, bp_mean, 
-  global bp_afib, afibs_date, afibs_dt_cnt
+  global bp_list, bp_date, bp_sys, bp_dia, bp_pul, bp_sys_add, bp_mean, bp_afib
+  global afibs_date, afibs_dt_cnt
   global bp_colors,  purple_cntr, red_cntr, orange_cntr, green_cntr
   global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
   global loaded_to        # loaded data time stamp TO
@@ -312,6 +309,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     y_values = []
     bp_list = []
 
+    ii = 0
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"      # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
@@ -326,13 +324,13 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
 
-      # get the first date of afib ------------------- 
-      
+      # get the first date of afib -------------------       
       af = ''
+      _af = get_afibs_in_slice_hhmm(zb, ze, afibs_dt_cnt)
       y_v = y_val[0]
       # print(y_v)
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
-        af = datetime.datetime.strptime(str(y_v[0]), "%Y%m%d%H%M").strftime("%Y/%m/%d %H:%M") if y_v[6] else "**" 
+        af = afibs_dt_cnt[ii].get("dt") if y_v[6] else "**" 
         # af := date-time of afib event OR "**" on No afib event in this row
       afibs_date.append(af)      
 
@@ -340,6 +338,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
+      ii += 1
     
     for i in range(len(y_values)):      
       if all or y_values[i][2]:    #        
@@ -384,6 +383,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
   global bp_list, bp_list2, slice_mode, afibs
+  
   bp_ = bp_list2 if L2 else bp_list
   if L2:
     row_date = L2
