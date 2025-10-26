@@ -200,11 +200,11 @@ def comp_list_export():
 # Load Data Funcs
 
 # Aux func - filters records, whose dt.hour is within slice_window out of afibs_dt_cnt
-def get_afibs_in_slice_hhmm(zb_str, ze_str, afibs_dt_cnt):
+def get_afibs_in_slice_hhmm(zb_str, ze_str, dt):
   """
   Филтрира afibs_dt_cnt по часовия слайс.
   zb_str, ze_str : низове 'HH:MM'
-  afibs_dt_cnt   : list[ {'dt': 'YYYY/MM/DD HH:MM', 'cnt': int} ]
+  afibs_dt_cnt   : list['YYYY/MM/DD HH:MM']
   Връща всички записи, чийто час попада в [zb, ze),
   като работи и при слайс, който пресича 00:00.
   """
@@ -213,12 +213,12 @@ def get_afibs_in_slice_hhmm(zb_str, ze_str, afibs_dt_cnt):
   ze = datetime.datetime.strptime(ze_str, "%H:%M").time()
 
   results = []
-  for rec in afibs_dt_cnt:
+  for rec in dt:
     # извличаме часовата част от низа 'YYYY/MM/DD HH:MM'
     try:
-      dt_time = datetime.datetime.strptime(rec["dt"].strip(), "%Y/%m/%d %H:%M").time()
+      dt_time = datetime.datetime.strptime(rec, "%Y/%m/%d %H:%M").time()
     except Exception:
-      print(f"Wrong format EXCEPTION rec[dt]= {rec['dt']}")
+      print(f"Wrong format EXCEPTION rec= {rec}")
       continue  # пропускаме лош формат
     # стандартен или "wrap-around" слайс (примерно 22:00–02:00)
     if zb <= ze:
@@ -335,17 +335,13 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       af = ''  # af := date-time of afib event OR "**" on No afib event in this row
       dt_list = []
       for a in afibs_dt_cnt:
-        _, rows = anvil.server.call("get_afibs", a["dt"], number=a["cnt"]e, slice_window=zb+'-'+ze)
-        dt = a["dt"]
-        
-
-      
-
-      _af_list = get_afibs_in_slice_hhmm(zb, ze, afibs_dt_cnt)  # list of dicts
+        _, rows = anvil.server.call("get_afibs", a["dt"], number=a["cnt"], slice_window=zb+'-'+ze)
+        dt = [r[0] for r in rows if r]        
+      _af_list = get_afibs_in_slice_hhmm(zb, ze, dt)  # list of dates of afibs
 
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
         if len(_af_list):
-          af = _af_list[0].get("dt") if y_v[6] else "**" 
+          af = _af_list[0] if y_v[6] else "**" 
         else:
           af = "**"
           
