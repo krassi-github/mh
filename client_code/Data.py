@@ -298,15 +298,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           bp_mean.append(None)
 
         if y_values[i][6]:  # AFIB -------------
-          _afib = y_values[i][6]
-          bp_afib.append(_afib)
-          # prep data for the Slice mode
-          _cnt = 1 if _afib == "AFIB" else int(_afib[:-2])
-          sl = zt_beg + '-' + zt_end    # to get the date of this record 
-          r, slice_afibs = anvil.server.call("get_afibs", bp_date[i], number=1, slice_window=sl)
-          #_cnt = len(slice_afibs)  # ! Съдържа сума на всички афиб от момента до края на рейнджа
-          if len(slice_afibs):  # IF afib  event stored in afibs_dt_cnt[]
-            afibs_dt_cnt.append({"dt": slice_afibs[0][0], "cnt": _cnt})
+          bp_afib.append(_values[i][6])
         else:
           bp_afib.append(None)
 
