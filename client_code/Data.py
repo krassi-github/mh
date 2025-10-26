@@ -91,9 +91,8 @@ bp_list = []     # main data list [{}] # "date", "SYS", "DIA", "PUL", "MEA", "af
 bp_summary = []  # summary
 x_data = []      # time data (X axis)
 y_values = []    # blood pressure values
+afibs = []
 # Slice mode related
-afibs = []       # afib events
-afibs_date = []  # afib events dates. filled by second block (slice mode) of set_bp_list()
 afibs_dt_cnt = [] # [{dt: yyyy/mm/dd hh:hh, cnt: int}] # Its length = number of steps with afib events in the range
                   # filled by first block of set_bp_list() (regular mode); used by second block (slice_mode)
 # color_counters (correspond to BP ranges)
@@ -385,14 +384,13 @@ def set_summary(user_id, fr=None, Tb=None, Te=None, crawl=False):
 def afib_details(row_date, L1=None, L2=None, slice_window=None):
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
-  global bp_list, bp_list2, slice_mode, afibs
-  
+  global bp_list, bp_list2, slice_mode, afibs, afibs_dt_
+  print(f"afib_details() row_date= {row_date}")
   bp_ = bp_list2 if L2 else bp_list
   if L2:
     row_date = L2
 
   rows_out = []
-  afibs = []
   if row_date != "**":
     if not slice_mode:
       for b in bp_:
@@ -422,9 +420,8 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
         "pul": r[3],
         "mean": r[4]
       })
-
-  msg = "" if rows_out else "No AFIB for this row."
   afibs = rows_out
+  msg = "" if rows_out else "No AFIB for this row."
   return rows_out, msg
 
 

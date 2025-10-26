@@ -14,7 +14,7 @@ class RowTemplate1(RowTemplate1Template):
     #save the date;
     if Data.slice_mode:
       i = self.item["i"] 
-      #print(f"i= {i} Data.afibs_date= {Data.afibs_date}")
+      print(f"i= {i} afibs_date= {Data.afibs_dt_cnt[i]}")
       self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
     else:
@@ -69,6 +69,7 @@ class RowTemplate1(RowTemplate1Template):
     # if Data.slice_mode:
     #   return
     get_open_form().label_2.text += self.link_1.tag + ' '    # self.parent.parent.parent.parent.
+    print(f"tag= {self.link_1.tag} ** {event_args}")
     # Form1.content_panel.column_panel_3.label_2
     rows, msg = Data.afib_details(self.link_1.tag, slice_window=self.slice_window)
   
