@@ -298,7 +298,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           bp_mean.append(None)
 
         if y_values[i][6]:  # AFIB -------------
-          bp_afib.append(_values[i][6])
+          bp_afib.append(y_values[i][6])
         else:
           bp_afib.append(None)
 
@@ -307,7 +307,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     y_values = []
     bp_list = []
 
-    ii = 0
+    ii = 0  # loop counter on slice windows
     for z in range(0, 24, slice_step):
       zb = str(z).zfill(2) + ":00"      # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
@@ -322,24 +322,22 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
 
-      # get the first date of afib ------------------- 
-      y_v = y_val[0]
-      af = ''  # af := date-time of afib event OR "**" on No afib event in this row
-      dt_list = []
-      for a in afibs_dt_cnt:
-        _, rows = anvil.server.call("get_afibs", a["dt"], number=a["cnt"], slice_window=zb+'-'+ze)
-        dt_list = [rs[0] for rs in rows if rs]        
-      _af_list = get_afibs_in_slice_hhmm(zb, ze, dt_list)  # list of dates of afibs
-
-      if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
-        if len(_af_list):
-          af = _af_list[0] if y_v[6] else "**" 
-        else:
-          af = "**"
-          
-      afibs_date.append(af)      
-
-      y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame
+      # prep data for the Slice modee -------------------
+      _dt   = y_val[0][1]
+      _afib = y_val[0][6]
+      if _afib:
+        _cnt = 1 if _afib == "AFIB" else int(_afib[:-2])
+      else:
+        _cnt = 0
+      sl = zb + '-' + ze    # to get the date of this record (first in slice window)
+     
+      r, slice_afibs = anvil.server.call("get_afibs", _dt, number=1, slice_window=sl)
+      if len(slice_afibs): 
+        afibs_dt_cnt.append({"dt": slice_afibs[0][0], "cnt": _cnt})  # date_time of afib
+      else:
+        afibs_dt_cnt.append({"dt": '', "cnt": 0})
+        
+      y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame for data grid
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)

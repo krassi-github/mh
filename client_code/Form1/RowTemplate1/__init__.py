@@ -15,7 +15,7 @@ class RowTemplate1(RowTemplate1Template):
     if Data.slice_mode:
       i = self.item["i"] 
       #print(f"i= {i} Data.afibs_date= {Data.afibs_date}")
-      self.link_1.tag = Data.afibs_date[i]
+      self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
     else:
       self.link_1.tag = self.lb_1.text
