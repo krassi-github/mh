@@ -354,7 +354,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       #print(f"  --afibs_date= {afibs_date}")
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
-    print(f"bp_list() {afibs_dt_cnt}")
+    print(f"afibs_dt_cnt {afibs_dt_cnt}")
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
@@ -397,7 +397,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
     row_date = L2
 
   rows_out = []
-  if row_date != "**":
+  if row_date != "":    # "**"
     if not slice_mode:
       for b in bp_:
         if b['date'] == row_date:    #  or slice_mode 25-10-2025
@@ -406,7 +406,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
             afib_value = 1 if a == "AFIB" else int(a[:-2])
             print(f"row_date= {row_date} a= {a} afib_value= {afib_value}")    #  afibs_date= {afibs_date}
             _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
-    else:
+    else:   
       match = next((rec for rec in afibs_dt_cnt if rec.get("dt") == row_date), None)      
       if match:
         afib_dt = match["dt"]
