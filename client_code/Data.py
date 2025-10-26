@@ -331,13 +331,16 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       else:
         _cnt = 0
       sl = zb + '-' + ze    # to get the date of this record (first in slice window)
-     
-      r, slice_afibs = anvil.server.call("get_afibs", _dt, number=1, slice_window=sl)
-      if len(slice_afibs): 
-        afibs_dt_cnt.append({"dt": slice_afibs[0][0], "cnt": _cnt})  # date_time of afib
+
+      if _dt and _afib:
+        r, slice_afibs = anvil.server.call("get_afibs", _dt, number=1, slice_window=sl)      
+        if len(slice_afibs): 
+          afibs_dt_cnt.append({"dt": slice_afibs[0][0], "cnt": _cnt})  # date_time of afib
+          print(f"{slice_afibs[0][0]} _dt= {_dt}  _afib= {_afib}  {slice_afibs}")
+        else:
+          afibs_dt_cnt.append({"dt": '', "cnt": 0})
       else:
         afibs_dt_cnt.append({"dt": '', "cnt": 0})
-        
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame for data grid
       zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
@@ -351,6 +354,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       #print(f"  --afibs_date= {afibs_date}")
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
+    print(f"bp_list() {afibs_dt_cnt}")
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
