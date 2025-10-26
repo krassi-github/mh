@@ -330,11 +330,19 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
                                           crawl=crawl, zt_beg=zb, zt_end=ze, cur_date=current_date)     
       # ToDo Processing on r= no data !!
 
-      # get the first date of afib -------------------       
-      af = ''  # af := date-time of afib event OR "**" on No afib event in this row
-      _af_list = get_afibs_in_slice_hhmm(zb, ze, afibs_dt_cnt)  # list of dicts
+      # get the first date of afib ------------------- 
       y_v = y_val[0]
-      # print(y_v)
+      af = ''  # af := date-time of afib event OR "**" on No afib event in this row
+      dt_list = []
+      for a in afibs_dt_cnt:
+        _, rows = anvil.server.call("get_afibs", a["dt"], number=a["cnt"]e, slice_window=zb+'-'+ze)
+        dt = a["dt"]
+        
+
+      
+
+      _af_list = get_afibs_in_slice_hhmm(zb, ze, afibs_dt_cnt)  # list of dicts
+
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
         if len(_af_list):
           af = _af_list[0].get("dt") if y_v[6] else "**" 
