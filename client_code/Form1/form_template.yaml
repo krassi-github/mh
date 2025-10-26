@@ -151,8 +151,8 @@ components:
         - {$$hashKey: 'object:165605', data_key: '', id: MDFTDB, title: afib}
         foreground: ''
         role: tonal-data-grid
-        rows_per_page: 20
-        show_page_controls: true
+        rows_per_page: 0
+        show_page_controls: false
         spacing_above: small
         spacing_below: small
         tooltip: ''

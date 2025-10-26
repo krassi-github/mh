@@ -69,7 +69,7 @@ class RowTemplate1(RowTemplate1Template):
     # if Data.slice_mode:
     #   return
     get_open_form().label_2.text += self.link_1.tag + ' '    # self.parent.parent.parent.parent.
-    print(f"tag= {self.link_1.tag} ** {event_args}")
+    print(f"tag= {self.link_1.tag} ** ")
     # Form1.content_panel.column_panel_3.label_2
     rows, msg = Data.afib_details(self.link_1.tag, slice_window=self.slice_window)
   

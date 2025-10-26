@@ -323,6 +323,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
 
       # prep data for the Slice modee -------------------
       _dt   = y_val[0][1]
+      if _dt[:4] != "2025":
+        print(f"DateException {_dt} fr= {fr} Tb= {Tb} Te= {Te} sl= {zb + '-' + ze}  {y_val}")
       _afib = y_val[0][6]
       if _afib:
         _cnt = 1 if _afib == "AFIB" else int(_afib[:-2])
