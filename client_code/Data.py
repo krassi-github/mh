@@ -336,8 +336,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       dt_list = []
       for a in afibs_dt_cnt:
         _, rows = anvil.server.call("get_afibs", a["dt"], number=a["cnt"], slice_window=zb+'-'+ze)
-        dt = [r[0] for r in rows if r]        
-      _af_list = get_afibs_in_slice_hhmm(zb, ze, dt)  # list of dates of afibs
+        dt_list = [rs[0] for rs in rows if rs]        
+      _af_list = get_afibs_in_slice_hhmm(zb, ze, dt_list)  # list of dates of afibs
 
       if len(y_v) > 6 and y_v[0]:         #  and y_v[6] (from GP)
         if len(_af_list):
