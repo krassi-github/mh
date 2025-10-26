@@ -14,7 +14,7 @@ class RowTemplate1(RowTemplate1Template):
     #save the date;
     if Data.slice_mode:
       i = self.item["i"] 
-      print(f"i= {i} afibs_date= {Data.afibs_dt_cnt[i]}")
+      print(f"i= {i} slice {self.item['date']}  date= {Data.afibs_dt_cnt[i]}")
       self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
     else:
@@ -68,12 +68,10 @@ class RowTemplate1(RowTemplate1Template):
     # ако искаш да забраниш детайли в slice режим:
     # if Data.slice_mode:
     #   return
-    get_open_form().label_2.text += self.link_1.tag + ' '    # self.parent.parent.parent.parent.
-    print(f"tag= {self.link_1.tag} ** ")
-    # Form1.content_panel.column_panel_3.label_2
+    get_open_form().label_2.text += self.link_1.tag + ' '    
     rows, msg = Data.afib_details(self.link_1.tag, slice_window=self.slice_window)
   
     if not rows:
-      alert(content=f"{self.link_1.tag}\n{msg}", large=True, title="AFIB Details")
+      alert(content=f"{self.link_1.tag}\n{msg}", large=False, title="AFIB Details")
       return
     alert(afibs_g(rows), large=True, title="AFIB Details")

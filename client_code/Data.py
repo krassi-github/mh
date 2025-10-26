@@ -336,7 +336,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
         r, slice_afibs = anvil.server.call("get_afibs", _dt, number=1, slice_window=sl)      
         if len(slice_afibs): 
           afibs_dt_cnt.append({"dt": slice_afibs[0][0], "cnt": _cnt})  # date_time of afib
-          print(f"{slice_afibs[0][0]} _dt= {_dt}  _afib= {_afib}  {slice_afibs}")
+          #print(f"{slice_afibs[0][0]} _dt= {_dt}  _afib= {_afib}  {slice_afibs}")
         else:
           afibs_dt_cnt.append({"dt": '', "cnt": 0})
       else:
@@ -348,13 +348,14 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       ii += 1
     
     for i in range(len(y_values)):      
-      if all or y_values[i][2]:    #        
+      if all or y_values[i][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
+        #                         slice_mode added 26-10-2025 ==> fill up full slices set if necessary
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})     
-      #print(f"  --afibs_date= {afibs_date}")
+
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
-    print(f"afibs_dt_cnt {afibs_dt_cnt}")
+    # print(f"afibs_dt_cnt {afibs_dt_cnt}")
   return(r)
   
 # -------------------------------------------------------------------------------------------------------------------------------
@@ -391,7 +392,6 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
   # L1 Link to the period 1 of analysis (Basic List to be used)
   # L2 Link to the period 2 of analysis (List 2 to be used)
   global bp_list, bp_list2, slice_mode, afibs, afibs_dt_
-  print(f"afib_details() row_date= {row_date}")
   bp_ = bp_list2 if L2 else bp_list
   if L2:
     row_date = L2
@@ -404,7 +404,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
           a = b.get('afib')
           if a:
             afib_value = 1 if a == "AFIB" else int(a[:-2])
-            print(f"row_date= {row_date} a= {a} afib_value= {afib_value}")    #  afibs_date= {afibs_date}
+            #print(f"row_date= {row_date} a= {a} afib_value= {afib_value}")    #  afibs_date= {afibs_date}
             _, rows = anvil.server.call("get_afibs", row_date, number=afib_value, slice_window=slice_window )
     else:   
       match = next((rec for rec in afibs_dt_cnt if rec.get("dt") == row_date), None)      
@@ -417,7 +417,6 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
         afib_cnt = 0
         rows = []
             
-    print(f"rows= {rows}")
     for r in rows:
       rows_out.append({
         "date": r[0],
@@ -427,7 +426,7 @@ def afib_details(row_date, L1=None, L2=None, slice_window=None):
         "mean": r[4]
       })
   afibs = rows_out
-  msg = "" if rows_out else "No AFIB for this row."
+  msg = "" if rows_out else "No AFIB for this row "
   return rows_out, msg
 
 
