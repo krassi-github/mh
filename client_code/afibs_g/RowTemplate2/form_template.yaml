@@ -1,5 +1,5 @@
 components: []
 container:
-  properties: {role: 0height}
+  properties: {align: center, role: 0height, visible: true}
   type: DataRowPanel
 is_package: true
