@@ -36,10 +36,14 @@ class Afib_anal(Afib_analTemplate):
       self.label_2.foreground = "red"
       self.label_2.boldface = True
     else:
-      self.repeating_panel_1.items = [row for row in Data.bp_list \
-                                      if row.get("afib") is not None and row.get("afib") != ""]
+      rows = [row for row in Data.bp_list \
+              if row.get("afib") is not None and row.get("afib") != ""] 
+      rows = Data.bp_list
+      items = [{**row, "i": i} for i, row in enumerate(rows, start=0)] # index inserted to each
+      self.repeating_panel_1.items = items
       #self.repeating_panel_1.items = Data.bp_list
       # print(f"RP.items = {self.repeating_panel_1.items}")
+      
       self.s_from.text = Data.loaded_from[:10]
       self.s_to.text = "-     " + Data.loaded_to[:10]
       self.s_tz.text = Data.zt_beg + " - " + Data.zt_end
