@@ -30,14 +30,14 @@ class Afib_anal(Afib_analTemplate):
 
 
   def render_data(self, user, rng, Tb=None, Te=None, Step=None, crawl=False):   #  show_range  
-    r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)
-    
+    r = Data.set_bp_list(user, fr=rng, Tb=Tb, Te=Te, Step=Step, crawl=crawl)    
     if r < 0:
       self.label_2.text += f"  set_bp_list= {r}"
       self.label_2.foreground = "red"
       self.label_2.boldface = True
     else:
-      self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
+      self.repeating_panel_1.items = [row for row in Data.bp_list \
+                                      if row.get("afib") is not None and row.get("afib") != ""]
       #self.repeating_panel_1.items = Data.bp_list
       # print(f"RP.items = {self.repeating_panel_1.items}")
       self.s_from.text = Data.loaded_from[:10]
