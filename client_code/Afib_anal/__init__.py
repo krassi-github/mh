@@ -46,8 +46,7 @@ class Afib_anal(Afib_analTemplate):
       if Data.slice_step:
         self.s_step.text = Data.slice_step
       else:
-        self.s_step.text = ''
-      
+        self.s_step.text = ''      
       for i, c in enumerate(self.data_grid_1.columns):
         if c["id"] == self.id_title:
           if Data.slice_mode:
