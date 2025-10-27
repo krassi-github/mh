@@ -15,7 +15,7 @@ class Form1(Form1Template):
     set_default_error_handling(error_handler)   # for TESTING
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    # Any code you write here will run before the form opens. 
+
     # GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
     self.filter_1.set_main_form(self)
@@ -107,7 +107,6 @@ class Form1(Form1Template):
         for i, row in enumerate(rows, start=0)
       ]
       self.repeating_panel_1.items = items
-      #self.repeating_panel_1.items = Data.bp_list
       #print(f"RP.items = {self.repeating_panel_1.items}")
       self.s_from.text = Data.loaded_from[:10]
       self.s_to.text = "-     " + Data.loaded_to[:10]
