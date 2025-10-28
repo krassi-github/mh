@@ -127,7 +127,7 @@ class Filter(FilterTemplate):
       self.main_form.render_data(user, rng, Tb=Tb, Te=Te, Step=Step)
    
   def r_clicked(self, **event_args):        # Range
-    if Data.time_from >= Data.time_to:
+    if Data.time_from >= Data.time_to or not Data.time_from or not Data.time_to:
       a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
       \n Do you want to correct date(s)?")
       if not a:
@@ -159,8 +159,12 @@ class Filter(FilterTemplate):
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   def t_to_change(self, **event_args):
-    Data.time_to = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"    
-    if self.r.selected:
+    dt = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"
+    if not dt or (Data.time_from >= Data.time_to):
+      passdt
+    else:
+      Data.time_to 
+ dt   if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
       
   # Standard/Custome zone ---------------------------------------------------------------------
