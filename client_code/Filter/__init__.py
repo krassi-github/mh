@@ -154,9 +154,15 @@ class Filter(FilterTemplate):
 
   # Range time_frame  -------------------------------------------------------------------------- 
   def t_from_change(self, **event_args):
-    dt = self.item["from_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"
+    dt = self.item["from_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "00:00"
     if not dt or (Data.time_from >= Data.time_to):
-      pass
+      a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
+      \n Do you want to correct date(s)?")
+      if not a:
+        self.r.selected = False
+        return()
+      else:
+        return()
     else:
       Data.time_from = dt
     if self.r.selected:
@@ -165,7 +171,13 @@ class Filter(FilterTemplate):
   def t_to_change(self, **event_args):
     dt = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"
     if not dt or (Data.time_from >= Data.time_to):
-      pass
+      a = alert(f"Time FROM is INVALID\n {Data.time_from} >= {Data.time_to}\
+      \n Do you want to correct date(s)?")
+      if not a:
+        self.r.selected = False
+        return()
+      else:
+        return()
     else:
       Data.time_to = dt
     if self.r.selected:
