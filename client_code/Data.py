@@ -238,8 +238,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   global bp_list, bp_date, bp_sys, bp_dia, bp_pul, bp_sys_add, bp_mean, bp_afib
   global afibs_date, afibs_dt_cnt
   global bp_colors,  purple_cntr, red_cntr, orange_cntr, green_cntr
-  global loaded_from      # loaded data time stamp FROM (? x_data VS y_values[1])
-  global loaded_to        # loaded data time stamp TO
+  global loaded_from      # loaded data time stamp FROM (x_data[0]])
+  global loaded_to        # loaded data time stamp TO   (x_data[-1])
   global zt_beg           # beg of time zone
   global zt_end           # end of time zone
 

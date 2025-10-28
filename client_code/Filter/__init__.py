@@ -174,7 +174,7 @@ class Filter(FilterTemplate):
       '''
     Tb=Data.loaded_from        #time_from
     Te=Data.loaded_to          # time_to
-    # print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
+    print(f"zone_change() ==> loaded_from {Data.loaded_from}   loaded_to {Data.loaded_to}")
     self.show_range("1001", Data.current_range, Tb=Tb, Te=Te)
     
 # Events handlers ----------------------------------------------------------
