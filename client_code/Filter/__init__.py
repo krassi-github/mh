@@ -154,17 +154,21 @@ class Filter(FilterTemplate):
 
   # Range time_frame  -------------------------------------------------------------------------- 
   def t_from_change(self, **event_args):
-    Data.time_from = self.item["from_date"].strftime("%Y/%m/%d %H:%M")
+    dt = self.item["from_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"
+    if not dt or (Data.time_from >= Data.time_to):
+      pass
+    else:
+      Data.time_from = dt
     if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
 
   def t_to_change(self, **event_args):
     dt = self.item["to_date"].strftime("%Y/%m/%d %H:%M")[:-5] + "23:59"
     if not dt or (Data.time_from >= Data.time_to):
-      passdt
+      pass
     else:
-      Data.time_to 
- dt   if self.r.selected:
+      Data.time_to = dt
+    if self.r.selected:
       self.show_range("1001", 'r', Tb=Data.time_from, Te=Data.time_to)
       
   # Standard/Custome zone ---------------------------------------------------------------------
