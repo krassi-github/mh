@@ -606,17 +606,18 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
 
 
 # AFIB yearly summary
-# Пример: в on_show() на формата
-def afibs_year_summary(self):
+
+def afibs_year_summary(year: str):
   global time_from, time_to, zt_beg, zt_end
-  # използвай същите граници и прозорец, които ползваш и за графиката/грида
-  # [{'year': 2025, 'N_measurements': 2450, 'S_afib_units': 13, 'AII': 0.005306, 'AFIB_minutes': 16.25}]
-  afibs_data = anvil.server.call(
-    "get_afib_yearly_summary",
-    date_from="2024/01/01",	                #date_from,
-    date_to="2024/12/31",                   #date_to,
-    zt_beg=zt_beg,
-    zt_end=zt_end
-  )
+  # return [{'year': 2025, 'N_measurements': 2450, 'S_afib_units': 13, 'AII': 0.005306, 'AFIB_minutes': 16.25}]
+  if year == "all":
+    
+    afibs_data = anvil.server.call(
+      "get_afib_yearly_summary",
+      date_from="2021/01/01",	                #date_from,
+      date_to="2025/12/31",                   #date_to,
+      zt_beg=zt_beg,
+      zt_end=zt_end
+    )
   # 
   return (afibs_data)

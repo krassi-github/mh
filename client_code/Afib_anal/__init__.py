@@ -65,12 +65,12 @@ class Afib_anal(Afib_analTemplate):
 # Left data grid - yearly afibs summary
 # [{'year': 2025, 'N_measurements': 2450, 'S_afib_units': 13, 'AII': 0.005306, 'AFIB_minutes': 16.25}]
   def show_y_summary(self):
-    self.repeating_panel_1.items = Data.afibs_year_summary(self)
+    self.repeating_panel_2.items = Data.afibs_year_summary("all")
 
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
-    self.plot_1.width = 800
-    self.plot_1.height = 630
+    #self.plot_1.width = 700    # 800
+    #self.plot_1.height = 500   # 630
     self.plot_1.figure = fig
 
     

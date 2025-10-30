@@ -2,19 +2,33 @@ components:
 - components:
   - components:
     - components:
-      - name: repeating_panel_2
-        properties: {item_template: Afib_anal.RowTemplate8}
-        type: RepeatingPanel
-      layout_properties: {grid_position: 'QJIIXX,VVOHIS'}
-      name: data_grid_2
-      properties:
-        columns:
-        - {data_key: year, expand: false, id: JKSDUP, title: Year, width: 117.46661376953125}
-        - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 108.2666015625}
-        - {data_key: minutes, expand: false, id: OJLQEN, title: Minutes, width: 147.6666259765625}
-        - {data_key: aii, id: BXYPIT, title: Index}
-        show_page_controls: false
-      type: DataGrid
+      - components:
+        - layout_properties: {}
+          name: repeating_panel_2
+          properties: {item_template: Afib_anal.RowTemplate8, role: 0height, spacing_above: none, spacing_below: none}
+          type: RepeatingPanel
+        layout_properties: {}
+        name: data_grid_2
+        properties:
+          columns:
+          - {data_key: year, expand: false, id: JKSDUP, title: Year, width: 117.46661376953125}
+          - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 108.2666015625}
+          - {data_key: minutes, expand: false, id: OJLQEN, title: Minutes, width: 147.6666259765625}
+          - {data_key: aii, id: BXYPIT, title: Index}
+          margin: [null, auto, '0', auto]
+          role: 0height
+          show_page_controls: false
+          spacing_above: none
+          spacing_below: none
+        type: DataGrid
+      layout_properties: {grid_position: 'HRZCCR,MFIMZQ'}
+      name: flow_panel_2
+      properties: {align: center}
+      type: FlowPanel
+    - layout_properties: {grid_position: 'QTKHME,FZNSEB'}
+      name: plot_1
+      properties: {}
+      type: Plot
     layout_properties: {full_width_row: true, grid_position: 'NYGIRT,JQDUMB'}
     name: column_panel_2
     properties: {wrap_on: never}
@@ -47,7 +61,7 @@ components:
         name: s_tz
         properties: {}
         type: Label
-      layout_properties: {grid_position: 'YTMBPS,LSFLQP'}
+      layout_properties: {full_width_row: true, grid_position: 'YTMBPS,LSFLQP'}
       name: flow_panel_1
       properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
       type: FlowPanel
