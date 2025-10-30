@@ -65,16 +65,12 @@ class Afib_anal(Afib_analTemplate):
   def show_y_summary(self):
     pass
 
-  
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
+    self.plot_1.width = 800
+    self.plot_1.height = 630
+    self.plot_1.figure = fig
 
-    self.column_panel_2.clear()
-    p = Plot(figure=fig)
-    p.width = 800                   # <-- ширина на компонента (px)
-    p.height = 630
-    #p(full_width_row=True = True)
-    self.column_panel_2.add_component(p)
     
 # Right data grid - List of afib events selected by Filter  
   def show_grid(self):
@@ -103,6 +99,16 @@ class Afib_anal(Afib_analTemplate):
 
   # ************************************************************************************************
 # Useful snipets / alternatives
+# Previous one
+  '''  def show_plot(self, **event_args):
+    fig = anvil.server.call('get_afib_figure')
+
+    self.column_panel_2.clear()
+    p = Plot(figure=fig)
+    p.width = 800                   # <-- ширина на компонента (px)
+    p.height = 630
+    #p(full_width_row=True = True)
+    self.column_panel_2.add_component(p)'''
   ''' def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
     fig.update_layout(
@@ -123,3 +129,5 @@ class Afib_anal(Afib_analTemplate):
     self.column_panel_2.clear()
     self.column_panel_2.add_component(wrapper)
   '''
+
+  
