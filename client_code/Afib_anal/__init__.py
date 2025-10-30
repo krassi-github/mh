@@ -24,7 +24,8 @@ class Afib_anal(Afib_analTemplate):
     self.filter_1.set_main_form(self)
     clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
     self.id_title = clm_date["id"]
-    
+
+    self.show_y_summary()
     self.show_plot()
     self.show_grid()
 
@@ -61,15 +62,10 @@ class Afib_anal(Afib_analTemplate):
       
       
   # Във форма Afib_anal, метод или бутон
-  ''' def show_plot(self, **event_args):
-    fig = anvil.server.call('get_afib_figure')
-    fig.update_layout(
-      title={"text": "---------- Events", "x": 0.5, "xanchor": "center", "y": 0.98, "yanchor": "top"},
-      width=1800
-    )
-    self.column_panel_2.clear()
-    self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??  
-  ''' 
+  def show_y_summary(self):
+    pass
+
+  
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')
 
@@ -80,18 +76,7 @@ class Afib_anal(Afib_analTemplate):
     #p(full_width_row=True = True)
     self.column_panel_2.add_component(p)
     
-  '''def show_plot(self, **event_args):
-    fig = anvil.server.call('get_afib_figure')
-    plot_component = Plot(figure=fig)
-  
-    wrapper = ColumnPanel()
-    wrapper.role = "plot-wrapper"
-    wrapper.add_component(plot_component)
-  
-    self.column_panel_2.clear()
-    self.column_panel_2.add_component(wrapper)
-  '''
-  
+# Right data grid - List of afib events selected by Filter  
   def show_grid(self):
     # self.repeating_panel_1.items = list(filter(lambda row: row.get("afib"), Data.bp_list))
     self.repeating_panel_1.items = [row for row in Data.bp_list if row.get("afib") is not None and row.get("afib") != ""]
@@ -115,5 +100,26 @@ class Afib_anal(Afib_analTemplate):
 
   def b_dn_click(self, **event_args):
     self.show_move("dn")
-    
 
+  # ************************************************************************************************
+# Useful snipets / alternatives
+  ''' def show_plot(self, **event_args):
+    fig = anvil.server.call('get_afib_figure')
+    fig.update_layout(
+      title={"text": "---------- Events", "x": 0.5, "xanchor": "center", "y": 0.98, "yanchor": "top"},
+      width=1800
+    )
+    self.column_panel_2.clear()
+    self.column_panel_2.add_component(Plot(figure=fig))  # To change for plot position & size ??  
+  ''' 
+
+  '''def show_plot(self, **event_args):
+    fig = anvil.server.call('get_afib_figure')
+    plot_component = Plot(figure=fig)
+  
+    wrapper = ColumnPanel()
+    wrapper.role = "plot-wrapper"
+    wrapper.add_component(plot_component) 
+    self.column_panel_2.clear()
+    self.column_panel_2.add_component(wrapper)
+  '''
