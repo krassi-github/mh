@@ -14,7 +14,6 @@ class RowTemplate1(RowTemplate1Template):
     #save the date;
     if Data.slice_mode:
       i = self.item["i"] 
-      print(f"i= {i} slice {self.item['date']}  date= {Data.afibs_dt_cnt[i]}")
       self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
     else:
@@ -51,18 +50,6 @@ class RowTemplate1(RowTemplate1Template):
     self.lb_5.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
     self.lb_6.background = "rgba(0, 0, 0, 0.0)"            #"rgba(69,183,249,0.1)"
 
-  '''
-  def color_rows(self):
-    print(self.get_components())
-    for i, r in enumerate(self.get_components()):
-      if not i%2:
-        self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
-        self.lb_2.background = "rgba(69,183,249,0.1)"
-        self.lb_3.background = "rgba(69,183,249,0.1)"
-        self.lb_4.background = "rgba(69,183,249,0.1)"
-        self.lb_5.background = "rgba(69,183,249,0.1)"
-        self.lb_6.background = "rgba(69,183,249,0.1)"
-  '''
 
   def link_1_click(self, **event_args):
     # ако искаш да забраниш детайли в slice режим:
@@ -75,3 +62,17 @@ class RowTemplate1(RowTemplate1Template):
       alert(content=f"{self.link_1.tag}\n{msg}", large=False, title="AFIB Details")
       return
     alert(afibs_g(rows), large=True, title="AFIB Details")
+
+# Old or alternatives
+  '''
+  def color_rows(self):
+    print(self.get_components())
+    for i, r in enumerate(self.get_components()):
+      if not i%2:
+        self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
+        self.lb_2.background = "rgba(69,183,249,0.1)"
+        self.lb_3.background = "rgba(69,183,249,0.1)"
+        self.lb_4.background = "rgba(69,183,249,0.1)"
+        self.lb_5.background = "rgba(69,183,249,0.1)"
+        self.lb_6.background = "rgba(69,183,249,0.1)"
+  '''

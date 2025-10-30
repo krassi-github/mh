@@ -62,8 +62,10 @@ class Afib_anal(Afib_analTemplate):
       
       
   # Във форма Afib_anal, метод или бутон
+# Left data grid - yearly afibs summary
+# [{'year': 2025, 'N_measurements': 2450, 'S_afib_units': 13, 'AII': 0.005306, 'AFIB_minutes': 16.25}]
   def show_y_summary(self):
-    pass
+    self.repeating_panel_1.items = Data.afibs_year_summary(self)
 
   def show_plot(self, **event_args):
     fig = anvil.server.call('get_afib_figure')

@@ -12,7 +12,7 @@ components:
         - {data_key: year, expand: false, id: JKSDUP, title: Year, width: 117.46661376953125}
         - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 108.2666015625}
         - {data_key: minutes, expand: false, id: OJLQEN, title: Minutes, width: 147.6666259765625}
-        - {data_key: a11, id: BXYPIT, title: Index}
+        - {data_key: aii, id: BXYPIT, title: Index}
         show_page_controls: false
       type: DataGrid
     layout_properties: {full_width_row: true, grid_position: 'NYGIRT,JQDUMB'}
