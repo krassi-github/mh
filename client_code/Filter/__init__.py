@@ -30,16 +30,10 @@ class Filter(FilterTemplate):
     self.drop_down_1.items = Data.zone_items
     self.drop_down_2.items = Data.custom_zone_items
 
-    '''    TO BE TESTED
-    self.drop_down_2.include_placeholder = True
-    self.drop_down_2.placeholder = "Select a custom zone"
-    self.drop_down_2.selected_value = None
-    self.drop_down_2.items = self.drop_down_2.items
-    '''
     if not Data.current_zone:
       self.default_zone(0)
-
-    self.set_cur_date()  
+    if not Data.current_date: 
+      self.set_cur_date()  
     self.all.checked = False
     Data.all = self.all.checked
     
@@ -217,6 +211,7 @@ class Filter(FilterTemplate):
 
   def slice_time_show(self, **event_args):    # rearange to restore slice mode 31/10/2025
     if Data.slice_mode:
+      print(f"Data.slice_step= {Data.slice_step}")
       self.slice_time.selected_value = Data.slice_step      
     else:
       Data.slice_step = 0

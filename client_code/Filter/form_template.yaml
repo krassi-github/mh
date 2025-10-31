@@ -141,7 +141,7 @@ components:
   layout_properties: {grid_position: 'ALYYSX,KONRIS'}
   name: slice_time
   properties:
-    items: [None, '1', '2', '3', '4', '6']
+    items: [None, '1', '2', '3', '4', '6', '8']
     spacing_above: none
     spacing_below: none
   type: DropDown
