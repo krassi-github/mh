@@ -350,6 +350,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     for i in range(len(y_values)):      
       if all or y_values[i][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
         #                         slice_mode added 26-10-2025 ==> fill up full slices set if necessary
+        # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
+        if fr not in ['d'. 'w'] and ():
+          
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
                         "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})     
 
@@ -606,7 +609,6 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
 
 
 # AFIB yearly summary
-
 def afibs_year_summary(year: str):
   global time_from, time_to, zt_beg, zt_end
   # return [{'year': 2025, 'N_measurements': 2450, 'S_afib_units': 13, 'AII': 0.005306, 'AFIB_minutes': 16.25}]
@@ -619,5 +621,4 @@ def afibs_year_summary(year: str):
       zt_beg=zt_beg,
       zt_end=zt_end
     )
-  # 
   return (afibs_data)
