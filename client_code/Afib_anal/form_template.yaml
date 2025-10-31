@@ -11,9 +11,9 @@ components:
         name: data_grid_2
         properties:
           columns:
-          - {data_key: year, expand: false, id: JKSDUP, title: Year, width: 83.7332763671875}
+          - {data_key: '', expand: false, id: JKSDUP, title: Year, width: 83.7332763671875}
           - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 88.5999755859375}
-          - {data_key: minutes, expand: false, id: OJLQEN, title: Minutes, width: 81.13330078125}
+          - {data_key: '', expand: false, id: OJLQEN, title: Minutes, width: 81.13330078125}
           - {data_key: aii, expand: false, id: BXYPIT, title: Index, width: 54.533203125}
           margin: [null, auto, '0', auto]
           role: 0height
@@ -91,8 +91,8 @@ components:
         role: tonal-data-grid
         rows_per_page: 20
         show_page_controls: true
-        spacing_above: small
-        spacing_below: small
+        spacing_above: none
+        spacing_below: none
         tooltip: ''
         visible: true
         wrap_on: never
