@@ -42,8 +42,6 @@ class Afib_anal(Afib_analTemplate):
       if Data.slice_mode:
         items = [row for row in items if row.get("afibs")]    # filtering afibs 31-10-2025
       self.repeating_panel_1.items = items
-      #self.repeating_panel_1.items = Data.bp_list
-      # print(f"RP.items = {self.repeating_panel_1.items}")
       
       self.s_from.text = Data.loaded_from[:10]
       self.s_to.text = "-     " + Data.loaded_to[:10]
