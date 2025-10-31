@@ -41,6 +41,12 @@ components:
   name: link_1
   properties: {align: left, background: '', bold: false, border: '', col_spacing: none, col_widths: '{}', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: '', tooltip: '', underline: false, url: '', visible: true, wrap_on: mobile}
   type: Link
+- data_bindings:
+  - {code: 'self.item[''aii'']', property: text, writeback: false}
+  layout_properties: {column: CQVNXW}
+  name: lb_7
+  properties: {align: center, font_size: 20, spacing_above: none, spacing_below: none}
+  type: Label
 container:
   properties: {align: left, auto_display_data: true, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', italic: false, role: 0height, spacing_above: none, spacing_below: none, tooltip: '', underline: false, visible: true}
   type: DataRowPanel
