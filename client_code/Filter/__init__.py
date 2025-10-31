@@ -212,7 +212,7 @@ class Filter(FilterTemplate):
   def slice_time_show(self, **event_args):    # rearange to restore slice mode 31/10/2025
     if Data.slice_mode:
       print(f"Data.slice_step= {Data.slice_step}")
-      self.slice_time.selected_value = Data.slice_step      
+      self.slice_time.selected_value = str(Data.slice_step)
     else:
       Data.slice_step = 0
       Data.slice_mode = False

@@ -5,7 +5,7 @@ from .. import Data
 from ... afibs_g import afibs_g
 from .. import Form1
 
-r = 0
+r = 0; run = 0
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
     global r
@@ -39,7 +39,7 @@ class RowTemplate1(RowTemplate1Template):
     if not r%2:
       pass
       self.color_rows()
-    r += 1  
+    r += 1; run  
 
   def color_rows(self):
     #print(self.get_components())
