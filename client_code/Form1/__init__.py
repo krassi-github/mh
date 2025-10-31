@@ -23,8 +23,6 @@ class Form1(Form1Template):
     
     clm_date = [c for c in self.data_grid_1.columns if c['title'] == 'date'][0]
     self.id_title = clm_date["id"]
-    self.data_grid_1.columns_dict['col_aii']['visible'] = False
-    self.data_grid_1.columns = list(self.data_grid_1.columns)  # apply
     #self.b_up.width = "80"
     #self.b_up.text = "   "
     #self.b_dn.width = "60"

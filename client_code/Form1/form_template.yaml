@@ -148,7 +148,7 @@ components:
         - {$$hashKey: 'object:165560', data_key: '', id: GCJKIU, title: DIA}
         - {$$hashKey: 'object:165601', data_key: '', id: VZPVKB, title: PUL}
         - {$$hashKey: 'object:165603', data_key: mean, id: XTQSTS, title: MEAN}
-        - {$$hashKey: 'object:165605', data_key: '', id: MDFTDB, title: afib}
+        - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: 75.733154296875}
         foreground: ''
         role: tonal-data-grid
         rows_per_page: 0
