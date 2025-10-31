@@ -7,14 +7,14 @@ components:
           name: repeating_panel_2
           properties: {item_template: Afib_anal.RowTemplate8, role: 0height, spacing_above: none, spacing_below: none}
           type: RepeatingPanel
-        layout_properties: {}
+        layout_properties: {width: 318.53361376953126}
         name: data_grid_2
         properties:
           columns:
-          - {data_key: year, expand: false, id: JKSDUP, title: Year, width: 117.46661376953125}
-          - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 108.2666015625}
-          - {data_key: minutes, expand: false, id: OJLQEN, title: Minutes, width: 147.6666259765625}
-          - {data_key: aii, id: BXYPIT, title: Index}
+          - {data_key: year, expand: false, id: JKSDUP, title: Year, width: 83.7332763671875}
+          - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 88.5999755859375}
+          - {data_key: minutes, expand: false, id: OJLQEN, title: Minutes, width: 81.13330078125}
+          - {data_key: aii, expand: false, id: BXYPIT, title: Index, width: 54.533203125}
           margin: [null, auto, '0', auto]
           role: 0height
           show_page_controls: false
