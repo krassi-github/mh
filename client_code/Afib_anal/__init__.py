@@ -14,6 +14,7 @@ class Afib_anal(Afib_analTemplate):
   id_title = ''
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    print(f"Afib_anal() item= {self.item}")
     self.column_panel_3.width = 520
 
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------

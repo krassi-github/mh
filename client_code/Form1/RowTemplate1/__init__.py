@@ -8,12 +8,13 @@ from .. import Form1
 r = 0; run = 0
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
-    global r
+    global r, run
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #save the date;
+    print(f"RT1(entry) r= {r}  run= {run}")
     if Data.slice_mode:
-      print(f"RT item= {self.item} ")
+      print(f"RT(slice) item= {self.item} ")
       i = self.item["i"] 
       self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
@@ -39,7 +40,7 @@ class RowTemplate1(RowTemplate1Template):
     if not r%2:
       pass
       self.color_rows()
-    r += 1; run  
+    r += 1; run += 1
 
   def color_rows(self):
     #print(self.get_components())

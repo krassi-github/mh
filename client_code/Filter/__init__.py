@@ -10,7 +10,8 @@ class Filter(FilterTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
     # Data initializing (because this code runs first)
-    # GPT rework 20-06-2025
+    # GPT rework 20-06-2025s
+    print(f"Filter props= {properties}")
     self.main_form = None  # ще бъде зададен по-късно
     
     p = Data.load_params()

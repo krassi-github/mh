@@ -16,6 +16,7 @@ class Form1(Form1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+    print(f"Form1 props= {properties}")
     # GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
     self.filter_1.set_main_form(self)
