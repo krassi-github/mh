@@ -5,7 +5,7 @@ components:
       - components:
         - layout_properties: {}
           name: repeating_panel_2
-          properties: {item_template: Afib_anal.RowTemplate8, role: 0height, spacing_above: none, spacing_below: none}
+          properties: {item_template: Afib_anal.RowTemplate8, role: 0height, spacing_above: small, spacing_below: none}
           type: RepeatingPanel
         layout_properties: {width: 318.53361376953126}
         name: data_grid_2

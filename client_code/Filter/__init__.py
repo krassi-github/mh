@@ -107,6 +107,7 @@ class Filter(FilterTemplate):
     else:
       self.d.selected = True
       Data.current_range = "d"
+
       
 #  GPT 20-06-2025
   def set_main_form(self, main_form):
@@ -214,15 +215,20 @@ class Filter(FilterTemplate):
     self.msg.text = self.drop_down_2.selected_value
     self.zone_change()
 
-  def slice_time_show(self, **event_args):
-    if self.slice_time.selected_value  != "None":
-      Data.slice_step = int(self.slice_time.selected_value)
-      Data.slice_mode = True
+  def slice_time_show(self, **event_args):    # rearange to restore slice mode 31/10/2025
+    if Data.slice_mode:
+      self.slice_time.selected_value = Data.slice_step      
     else:
       Data.slice_step = 0
       Data.slice_mode = False
 
   def slice_time_change(self, **event_args):
-    self.slice_time_show(**event_args)
+    #self.slice_time_show(**event_args)
+    if self.slice_time.selected_value  != "None":
+      Data.slice_step = int(self.slice_time.selected_value)
+      Data.slice_mode = True
+    else:
+      Data.slice_step = 0
+      Data.slice_mode = False    
     # print(f"slice.time_change()  ==>  {Data.slice_mode}   {Data.slice_step}")
     self.zone_change()

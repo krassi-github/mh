@@ -8,7 +8,12 @@ class RowTemplate8(RowTemplate8Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    # Any code you write here will run before the form opens.
+    row = self.item
+    # afib_minutes (2 знака след десетичната)
+    self.lb_minutes.text = f"{float(row.get('minutes', 0.0)):.2f}"
+    # aii като промили (‰)
+    aii = float(row.get('aii', 0.0))
+    self.lb_aii.text = f"{aii * 1000:.1f}\u2030"   # напр. 5.3‰
 
 
 '''# YearSummaryRowTemplate

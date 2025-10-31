@@ -13,6 +13,7 @@ class RowTemplate1(RowTemplate1Template):
     self.init_components(**properties)
     #save the date;
     if Data.slice_mode:
+      print(f"RT item= {self.item} ")
       i = self.item["i"] 
       self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
