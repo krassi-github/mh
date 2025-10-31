@@ -37,10 +37,9 @@ class Afib_anal(Afib_analTemplate):
     else:
       rows = [row for row in Data.bp_list \
               if row.get("afib") is not None and row.get("afib") != ""] 
-      rows = Data.bp_list
       items = [{**row, "i": i} for i, row in enumerate(rows, start=0)] # index inserted to each
-      if Data.slice_mode:
-        items = [row for row in items if row.get("afibs")]    # filtering afibs 31-10-2025
+#     #if Data.slice_mode:
+        #items = [row for row in items if row.get("afibs")]    # filtering afibs 31-10-2025
       self.repeating_panel_1.items = items
       
       self.s_from.text = Data.loaded_from[:10]
