@@ -364,6 +364,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
         # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
         afib_data = [{"aii": ''}]
         if fr not in ('d', 'w') and y_values[i][6] not in (None, ""):
+          if len(x_data) <= i:
+            print(f"i= {i} L= {len(x_data)} {x_data}")
           afib_data = anvil.server.call(
             "get_afib_yearly_summary",
             date_from=x_data[i],	                #date_from,

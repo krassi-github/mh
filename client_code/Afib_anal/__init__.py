@@ -15,7 +15,6 @@ class Afib_anal(Afib_analTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.column_panel_3.width = 520
-    print(f"Columns DG1 = {self.data_grid_1.columns}")
 
     # Test on 09.09.2025  GPT rework 20-06-2025 ----------------------------------------
     # Задаваме `main_form` след създаване
