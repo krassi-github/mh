@@ -81,9 +81,9 @@ components:
         background: ''
         border: ''
         columns:
-        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: ''}
-        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: ''}
-        - {$$hashKey: 'object:165560', data_key: '', expand: false, id: GCJKIU, title: DIA, width: ''}
+        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: 135}
+        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: 70}
+        - {$$hashKey: 'object:165560', data_key: '', expand: false, id: GCJKIU, title: DIA, width: '70'}
         - {$$hashKey: 'object:165601', data_key: '', expand: false, id: VZPVKB, title: PUL, width: ''}
         - {$$hashKey: 'object:165603', data_key: mean, expand: false, id: XTQSTS, title: MEAN, width: ''}
         - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: ''}
