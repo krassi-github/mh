@@ -318,7 +318,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     bp_list = []
 
     ii = 0  # loop counter on slice windows
-    for z in range(0, 25, slice_step):  # 25 for one more pass through the loop
+    for z in range(0, 24, slice_step):  # 
       zb = str(z).zfill(2) + ":00"      # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
       hr = z + slice_step
@@ -357,15 +357,15 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       y_values.extend(y_val)    # append ? changed on the recovery process
       x_data.append(zb)
       ii += 1
+    x_data.append(str(x_dat[0][:10]) + ' ' + ze)    # closing time stamp 23:59
     
-    for j in range(len(y_values)-1):      
+    for j in range(len(y_values)):      
       if all or y_values[j][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
         #                         slice_mode added 26-10-2025 ==> fill up full slices set if necessary
         # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
         afib_data = [{"aii": ''}]
-        if fr not in ('d', 'w') and y_values[j][6] not in (None, ""):
-          if len(x_data) <= j:
-            print(f"j= {j} L= {len(x_data)} {x_data}")
+        if fr not in ('d', 'w') and y_values[j][6] not in (None, ""):          
+          print(f" {x_data[j]} {x_data[j+1]}   {zt_beg}  {zt_end}")
           afib_data = anvil.server.call(
             "get_afib_yearly_summary",
             date_from=x_data[j],	                #date_from,
