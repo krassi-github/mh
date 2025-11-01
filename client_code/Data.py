@@ -353,11 +353,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       else:
         afibs_dt_cnt.append({"dt": '', "cnt": 0})
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame for data grid
-      zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
-      x_data.append(zb)
+      zb = x_dat[0][0] + ' ' + zb
+      x_data.append(zb2)
       ii += 1
-    x_data.append(str(x_dat[0][:10]) + ' ' + ze)    # closing time stamp 23:59
+    x_data.append(ze)    # closing time stamp 23:59
     
     for j in range(len(y_values)):      
       if all or y_values[j][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
@@ -365,20 +365,20 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
         # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
         afib_data = [{"aii": ''}]
         if fr not in ('d', 'w') and y_values[j][6] not in (None, ""):          
-          print(f" {x_data[j]} {x_data[j+1]}   {zt_beg}  {zt_end}")
+          print(f" {Tb} {Te}   {x_data[j]}  {x_data[j+1]}")
           afib_data = anvil.server.call(
             "get_afib_yearly_summary",
-            date_from=x_data[j],	                #date_from,
-            date_to=x_data[j+1],                   #date_to,
-            zt_beg=zt_beg,
-            zt_end=zt_end
+            date_from=Tb,	                #date_from,
+            date_to=Te,                   #date_to,
+            zt_beg=x_data[j],
+            zt_end=x_data[j+1]
           )
           
         bp_list.append({"date": y_values[j][1], "sys":y_values[j][2], "dia":y_values[j][3],\
                         "pul":y_values[j][4], "mean":y_values[j][5], "afib":y_values[j][6], "aii":afib_data[0]["aii"]})     
 
-    loaded_from = str(x_data[0])
-    loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
+    loaded_from = Tb     # str(x_data[0])
+    loaded_to =   Te     # str(x_dat[-1][:10]) + ' ' + ze  
     # print(f"afibs_dt_cnt {afibs_dt_cnt}")
   return(r)
   

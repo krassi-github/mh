@@ -19,7 +19,12 @@ class RowTemplate1(RowTemplate1Template):
     else:
       self.link_1.tag = self.lb_1.text
       self.slice_window = "00:00 - 23:59"
-
+      
+    row = self.item
+    if row.get('aii', 0.0):
+      aii = float(row.get('aii', 0.0))
+      self.lb_7.text = f"{aii * 1000:.1f}\u2030"   # e.g. 5.3‰
+    
     self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
     or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
     self.row_spacing = 0
