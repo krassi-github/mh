@@ -318,6 +318,9 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     y_values = []
     bp_list = []
 
+    r, afs = anvil.server.call("get_afibs", Tb, date_to=Te)
+    n_afibs = None if r else len(afs)    # if r ==> DB error check log for -197
+    
     ii = 0  # loop counter on slice windows
     for z in range(0, 24, slice_step):  # 
       zb = str(z).zfill(2) + ":00"      # the time zone beginning
@@ -369,10 +372,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
           print(f" {Tb} {Te}   {x_data[j]}  {x_data[j+1]}")
           afib_data = anvil.server.call(
             "get_afib_yearly_summary",
-            date_from=Tb,	                #date_from,
-            date_to=Te,                   #date_to,
-            zt_beg=x_data[j],
-            zt_end=x_data[j+1]
+            date_from = Tb,	               #date_from,
+            date_to = Te,                  #date_to,
+            zt_beg = x_data[j],            # slice beg
+            zt_end = x_data[j+1],          # slice end
+            n_external = n_afibs           # n of afibs in the range
           )
           
         bp_list.append({"date": y_values[j][1], "sys":y_values[j][2], "dia":y_values[j][3],\
