@@ -358,24 +358,24 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       x_data.append(zb)
       ii += 1
     
-    for i in range(len(y_values)):      
-      if all or y_values[i][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
+    for j in range(len(y_values)):      
+      if all or y_values[j][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
         #                         slice_mode added 26-10-2025 ==> fill up full slices set if necessary
         # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
         afib_data = [{"aii": ''}]
-        if fr not in ('d', 'w') and y_values[i][6] not in (None, ""):
-          if len(x_data) <= i:
-            print(f"i= {i} L= {len(x_data)} {x_data}")
+        if fr not in ('d', 'w') and y_values[j][6] not in (None, ""):
+          if len(x_data) <= j:
+            print(f"j= {j} L= {len(x_data)} {x_data}")
           afib_data = anvil.server.call(
             "get_afib_yearly_summary",
-            date_from=x_data[i],	                #date_from,
-            date_to=x_data[i+1],                   #date_to,
+            date_from=x_data[j],	                #date_from,
+            date_to=x_data[j+1],                   #date_to,
             zt_beg=zt_beg,
             zt_end=zt_end
           )
           
-        bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
-                        "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6], "aii":afib_data[0]["aii"]})     
+        bp_list.append({"date": y_values[j][1], "sys":y_values[j][2], "dia":y_values[j][3],\
+                        "pul":y_values[j][4], "mean":y_values[j][5], "afib":y_values[j][6], "aii":afib_data[0]["aii"]})     
 
     loaded_from = str(x_data[0])
     loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
