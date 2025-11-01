@@ -19,8 +19,9 @@ class RowTemplate1(RowTemplate1Template):
     else:
       self.link_1.tag = self.lb_1.text
       self.slice_window = "00:00 - 23:59"
-      
+    
     row = self.item
+    print(f"{Data.slice_mode} {row}")
     if row.get('aii', 0.0):
       aii = float(row.get('aii', 0.0))
       self.lb_7.text = f"{aii * 1000:.1f}\u2030"   # e.g. 5.3‰
