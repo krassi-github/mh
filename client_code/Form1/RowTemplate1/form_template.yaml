@@ -45,7 +45,7 @@ components:
   - {code: 'self.item[''aii'']', property: text, writeback: false}
   layout_properties: {column: CQVNXW}
   name: lb_7
-  properties: {align: center, font_size: 20, spacing_above: none, spacing_below: none}
+  properties: {align: left, font_size: 18, spacing_above: none, spacing_below: none}
   type: Label
 container:
   properties: {align: left, auto_display_data: true, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', italic: false, role: 0height, spacing_above: none, spacing_below: none, tooltip: '', underline: false, visible: true}
