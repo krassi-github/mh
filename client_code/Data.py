@@ -318,7 +318,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     bp_list = []
 
     ii = 0  # loop counter on slice windows
-    for z in range(0, 24, slice_step):
+    for z in range(0, 25, slice_step):  # 25 for one more pass through the loop
       zb = str(z).zfill(2) + ":00"      # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
       hr = z + slice_step
@@ -358,7 +358,7 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       x_data.append(zb)
       ii += 1
     
-    for j in range(len(y_values)):      
+    for j in range(len(y_values)-1):      
       if all or y_values[j][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
         #                         slice_mode added 26-10-2025 ==> fill up full slices set if necessary
         # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
