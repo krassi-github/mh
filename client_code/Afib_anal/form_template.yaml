@@ -81,13 +81,13 @@ components:
         background: ''
         border: ''
         columns:
-        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: 133}
-        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: ''}
-        - {$$hashKey: 'object:165560', data_key: '', id: GCJKIU, title: DIA}
-        - {$$hashKey: 'object:165601', data_key: '', id: VZPVKB, title: PUL}
-        - {$$hashKey: 'object:165603', data_key: mean, expand: false, id: XTQSTS, title: MEAN, width: 60.9998779296875}
-        - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: '52'}
-        - {data_key: '', expand: false, id: CQVNXW, title: AII, width: '45'}
+        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: '128'}
+        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: '48'}
+        - {$$hashKey: 'object:165560', data_key: '', expand: false, id: GCJKIU, title: DIA, width: '43'}
+        - {$$hashKey: 'object:165601', data_key: '', expand: false, id: VZPVKB, title: PUL, width: 43}
+        - {$$hashKey: 'object:165603', data_key: mean, expand: false, id: XTQSTS, title: MEAN, width: '50'}
+        - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: 47}
+        - {data_key: '', expand: false, id: CQVNXW, title: AII, width: '50'}
         foreground: ''
         role: tonal-data-grid
         rows_per_page: 20

@@ -273,10 +273,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
         if fr not in ('d', 'w') and y_values[i][6] not in (None, ""):
           afib_data = anvil.server.call(
             "get_afib_yearly_summary",
-            date_from=x_data[0],	       #x_data[i]  calculates per day
-            date_to=x_data[-1],         #x_data[0] - x_data[-1] per period
-            zt_beg=zt_beg,
-            zt_end=zt_end
+            date_from = x_data[i],	       #x_data[i]  calculates per day
+            date_to = x_data[i+1],         #x_data[0] - x_data[-1] per period
+            zt_beg = zt_beg,
+            zt_end = zt_end,
+            n_external = r
           )
         
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
