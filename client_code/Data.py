@@ -318,8 +318,8 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     y_values = []
     bp_list = []
 
-    r, afs = anvil.server.call("get_afibs", Tb, date_to=Te)
-    n_afibs = None if r else len(afs)    # if r ==> DB error check log for -197
+    r = anvil.server.call("check_data","1001", Tb, Te)
+    n_afibs = None if r <= 0 else r   # if r < 0 ==> DB error check log for -196
     
     ii = 0  # loop counter on slice windows
     for z in range(0, 24, slice_step):  # 
