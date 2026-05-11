@@ -1,0 +1,52 @@
+components:
+- data_bindings:
+  - {code: 'self.item["year"]', property: text, writeback: false}
+  layout_properties: {column: JKSDUP}
+  name: lb_year
+  properties:
+    font_size: 18
+    role: 0height
+    spacing:
+      padding: ['0', null, '0', null]
+    text: ''
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''afibs'']', property: text, writeback: false}
+  layout_properties: {column: VJQQOR}
+  name: lb_afibs
+  properties:
+    align: left
+    font_size: 18
+    role: 0height
+    spacing:
+      padding: ['0', null, '0', null]
+    text: '....'
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''minutes'']', property: text, writeback: false}
+  layout_properties: {column: OJLQEN}
+  name: lb_minutes
+  properties:
+    align: center
+    font_size: 18
+    role: 0height
+    spacing:
+      padding: ['0', null, '0', null]
+    text: |
+      --.-
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''aii'']', property: text, writeback: false}
+  layout_properties: {column: BXYPIT}
+  name: lb_aii
+  properties:
+    align: center
+    font_size: 18
+    role: null
+    spacing:
+      padding: ['0', null, '0', null]
+  type: Label
+container:
+  properties: {role: 0height}
+  type: DataRowPanel
+is_package: true

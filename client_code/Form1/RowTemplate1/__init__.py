@@ -8,19 +8,25 @@ from .. import Form1
 r = 0
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
-    global r
+    global r, run
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     #save the date;
     if Data.slice_mode:
       i = self.item["i"] 
-      print(f"i= {i} slice {self.item['date']}  date= {Data.afibs_dt_cnt[i]}")
       self.link_1.tag = Data.afibs_dt_cnt[i].get("dt")
       self.slice_window = self.item["date"]
     else:
       self.link_1.tag = self.lb_1.text
       self.slice_window = "00:00 - 23:59"
+    
+    row = self.item
+    print(f"{Data.slice_mode} {row}")
+    if row.get('aii', 0.0):
+      aii = float(row.get('aii', 0.0))
+      self.lb_7.text = f"{aii * 1000:.1f}\u2030"   # e.g. 5.3‰
 
+    self.lb_1.wrap = False    # Date column
     self.lb_1.text = self.item["date"] if Data.current_range in ["d", "w"] \
     or Data.slice_mode is True else self.item["date"][:10]  # 20/09/2025, 09/10/2025
     self.row_spacing = 0
@@ -39,7 +45,7 @@ class RowTemplate1(RowTemplate1Template):
     if not r%2:
       pass
       self.color_rows()
-    r += 1  
+    r += 1
 
   def color_rows(self):
     #print(self.get_components())
@@ -51,18 +57,6 @@ class RowTemplate1(RowTemplate1Template):
     self.lb_5.background = "rgba(103, 80, 164, 0.05)"      #"rgba(69,183,249,0.1)"
     self.lb_6.background = "rgba(0, 0, 0, 0.0)"            #"rgba(69,183,249,0.1)"
 
-  '''
-  def color_rows(self):
-    print(self.get_components())
-    for i, r in enumerate(self.get_components()):
-      if not i%2:
-        self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
-        self.lb_2.background = "rgba(69,183,249,0.1)"
-        self.lb_3.background = "rgba(69,183,249,0.1)"
-        self.lb_4.background = "rgba(69,183,249,0.1)"
-        self.lb_5.background = "rgba(69,183,249,0.1)"
-        self.lb_6.background = "rgba(69,183,249,0.1)"
-  '''
 
   def link_1_click(self, **event_args):
     # ако искаш да забраниш детайли в slice режим:
@@ -75,3 +69,17 @@ class RowTemplate1(RowTemplate1Template):
       alert(content=f"{self.link_1.tag}\n{msg}", large=False, title="AFIB Details")
       return
     alert(afibs_g(rows), large=True, title="AFIB Details")
+
+# Old or alternatives
+  '''
+  def color_rows(self):
+    print(self.get_components())
+    for i, r in enumerate(self.get_components()):
+      if not i%2:
+        self.lb_1.background = "rgba(69,183,249,0.1)"  #'theme:Gray 200'
+        self.lb_2.background = "rgba(69,183,249,0.1)"
+        self.lb_3.background = "rgba(69,183,249,0.1)"
+        self.lb_4.background = "rgba(69,183,249,0.1)"
+        self.lb_5.background = "rgba(69,183,249,0.1)"
+        self.lb_6.background = "rgba(69,183,249,0.1)"
+  '''

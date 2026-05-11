@@ -67,7 +67,7 @@ Te1 = ""
 Te2 = ""
 
 time_from = ""        # for range operartions; governed from Filter; initially set from load_params
-time_to = ""          #
+time_to = ""         #
 current_date = ""     # 
 current_range = ''
 loaded_from = ""    
@@ -267,9 +267,21 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
   
   if r >= 0:       
     for i in range(len(y_values)):      
-      if all or y_values[i][2]:    #        
+      if all or y_values[i][2]:    #  
+        # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
+        afib_data = [{"aii": ''}]
+        if fr not in ('d', 'w') and y_values[i][6] not in (None, ""):
+          afib_data = anvil.server.call(
+            "get_afib_yearly_summary",
+            date_from = x_data[i],	       #x_data[i]  calculates per day
+            date_to = x_data[i+1],         #x_data[0] - x_data[-1] per period
+            zt_beg = zt_beg,
+            zt_end = zt_end,
+            n_external = r
+          )
+        
         bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
-                        "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})        
+                        "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6], "aii":afib_data[0]["aii"] })        
         bp_date.append(y_values[i][1])
         bp_sys.append(y_values[i][2])
         bp_dia.append(y_values[i][3])
@@ -306,8 +318,11 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
     y_values = []
     bp_list = []
 
+    r = anvil.server.call("check_data","1001", Tb, Te)
+    n_afibs = None if r <= 0 else r   # if r < 0 ==> DB error check log for -196
+    
     ii = 0  # loop counter on slice windows
-    for z in range(0, 24, slice_step):
+    for z in range(0, 24, slice_step):  # 
       zb = str(z).zfill(2) + ":00"      # the time zone beginning
       zb2 = str(z).zfill(2) + ":00"     # the time zone beginning COPY
       hr = z + slice_step
@@ -342,19 +357,33 @@ def set_bp_list(user_id, fr=None, Tb=None, Te=None, Step=None, crawl=False, fill
       else:
         afibs_dt_cnt.append({"dt": '', "cnt": 0})
       y_val[0][1] = zb + " - " + (str(z + slice_step).zfill(2) + ":00")    # form the slice frame for data grid
-      zb = str(x_dat[0][:10]) + ' ' + zb
       y_values.extend(y_val)    # append ? changed on the recovery process
-      x_data.append(zb)
+      zb = x_dat[0][0] + ' ' + zb
+      x_data.append(zb2)
       ii += 1
+    x_data.append(ze)    # closing time stamp 23:59
     
-    for i in range(len(y_values)):      
-      if all or y_values[i][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
+    for j in range(len(y_values)):      
+      if all or y_values[j][2] or slice_mode:    # za filtrirane na redowe bez izmerwaniq
         #                         slice_mode added 26-10-2025 ==> fill up full slices set if necessary
-        bp_list.append({"date": y_values[i][1], "sys":y_values[i][2], "dia":y_values[i][3],\
-                        "pul":y_values[i][4], "mean":y_values[i][5], "afib":y_values[i][6]})     
+        # AII (AFIB Intensity Index) calc all but 'd'and 'w' foxed ranges  31-10-2025
+        afib_data = [{"aii": ''}]
+        if fr not in ('d', 'w') and y_values[j][6] not in (None, ""):          
+          print(f" {Tb} {Te}   {x_data[j]}  {x_data[j+1]}")
+          afib_data = anvil.server.call(
+            "get_afib_yearly_summary",
+            date_from = Tb,	               #date_from,
+            date_to = Te,                  #date_to,
+            zt_beg = x_data[j],            # slice beg
+            zt_end = x_data[j+1],          # slice end
+            n_external = n_afibs           # n of afibs in the range
+          )
+          
+        bp_list.append({"date": y_values[j][1], "sys":y_values[j][2], "dia":y_values[j][3],\
+                        "pul":y_values[j][4], "mean":y_values[j][5], "afib":y_values[j][6], "aii":afib_data[0]["aii"]})     
 
-    loaded_from = str(x_data[0])
-    loaded_to = str(x_dat[-1][:10]) + ' ' + ze  
+    loaded_from = Tb     # str(x_data[0])
+    loaded_to =   Te     # str(x_dat[-1][:10]) + ' ' + ze  
     # print(f"afibs_dt_cnt {afibs_dt_cnt}")
   return(r)
   
@@ -603,3 +632,19 @@ def set_comp_summary(object: str, number: int, uom: str, Step: int, Tb1: str, Tb
   comp_summary.append(min_row)
   
   return (0)
+
+
+# AFIB yearly summary
+def afibs_year_summary(year: str):
+  global time_from, time_to, zt_beg, zt_end
+  # return [{'year': 2025, 'N_measurements': 2450, 'S_afib_units': 13, 'AII': 0.005306, 'AFIB_minutes': 16.25}]
+  if year == "all":
+    
+    afibs_data = anvil.server.call(
+      "get_afib_yearly_summary",
+      date_from="2021/01/01",	                #date_from,
+      date_to="2025/12/31",                   #date_to,
+      zt_beg=zt_beg,
+      zt_end=zt_end
+    )
+  return (afibs_data)

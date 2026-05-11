@@ -141,6 +141,11 @@ class Form1(Form1Template):
   def b_dn_click(self, **event_args):
     #self.app_title.text = f"DN time_from= {Data.time_from}  time_to= {Data.time_to}"
     self.show_move("dn")    
+
+
+  def button_1_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Analysis')
   
   def plot_1_show(self):
     self.label_1.text = (f"init x_data_len: {len(Data.x_data)} y_values_len: {len(Data.y_values)}\
@@ -239,8 +244,5 @@ class Form1(Form1Template):
     ]
     '''
 
-  def button_1_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    open_form('Analysis')
 
   

@@ -1,6 +1,35 @@
 components:
 - components:
-  - layout_properties: {full_width_row: true, grid_position: 'NYGIRT,JQDUMB'}
+  - components:
+    - components:
+      - components:
+        - layout_properties: {}
+          name: repeating_panel_2
+          properties: {item_template: Afib_anal.RowTemplate8, role: 0height, spacing_above: small, spacing_below: none}
+          type: RepeatingPanel
+        layout_properties: {width: 318.53361376953126}
+        name: data_grid_2
+        properties:
+          columns:
+          - {data_key: '', expand: false, id: JKSDUP, title: Year, width: 83.7332763671875}
+          - {data_key: afibs, expand: false, id: VJQQOR, title: AFIBs, width: 88.5999755859375}
+          - {data_key: '', expand: false, id: OJLQEN, title: Minutes, width: 81.13330078125}
+          - {data_key: aii, expand: false, id: BXYPIT, title: Index, width: 54.533203125}
+          margin: [null, auto, '0', auto]
+          role: 0height
+          show_page_controls: false
+          spacing_above: none
+          spacing_below: none
+        type: DataGrid
+      layout_properties: {grid_position: 'HRZCCR,MFIMZQ'}
+      name: flow_panel_2
+      properties: {align: center}
+      type: FlowPanel
+    - layout_properties: {grid_position: 'QTKHME,FZNSEB'}
+      name: plot_1
+      properties: {}
+      type: Plot
+    layout_properties: {full_width_row: true, grid_position: 'NYGIRT,JQDUMB'}
     name: column_panel_2
     properties: {wrap_on: never}
     type: ColumnPanel
@@ -32,7 +61,7 @@ components:
         name: s_tz
         properties: {}
         type: Label
-      layout_properties: {grid_position: 'YTMBPS,LSFLQP'}
+      layout_properties: {full_width_row: true, grid_position: 'YTMBPS,LSFLQP'}
       name: flow_panel_1
       properties: {align: left, background: '', border: '', foreground: '', role: null, spacing: medium, spacing_above: none, spacing_below: none, tooltip: '', visible: true}
       type: FlowPanel
@@ -52,18 +81,19 @@ components:
         background: ''
         border: ''
         columns:
-        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: 133}
-        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: ''}
-        - {$$hashKey: 'object:165560', data_key: '', id: GCJKIU, title: DIA}
-        - {$$hashKey: 'object:165601', data_key: '', id: VZPVKB, title: PUL}
-        - {$$hashKey: 'object:165603', data_key: mean, expand: false, id: XTQSTS, title: MEAN, width: 69}
-        - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: 67}
+        - {$$hashKey: 'object:165558', data_key: '', expand: false, id: LAVQQZ, title: date, width: 135}
+        - {$$hashKey: 'object:165559', data_key: '', expand: false, id: APQHOG, title: SYS, width: 70}
+        - {$$hashKey: 'object:165560', data_key: '', expand: false, id: GCJKIU, title: DIA, width: '70'}
+        - {$$hashKey: 'object:165601', data_key: '', expand: false, id: VZPVKB, title: PUL, width: ''}
+        - {$$hashKey: 'object:165603', data_key: mean, expand: false, id: XTQSTS, title: MEAN, width: ''}
+        - {$$hashKey: 'object:165605', data_key: '', expand: false, id: MDFTDB, title: afib, width: ''}
+        - {data_key: '', expand: false, id: CQVNXW, title: AII, width: ''}
         foreground: ''
         role: tonal-data-grid
         rows_per_page: 20
         show_page_controls: true
-        spacing_above: small
-        spacing_below: small
+        spacing_above: none
+        spacing_below: none
         tooltip: ''
         visible: true
         wrap_on: never
