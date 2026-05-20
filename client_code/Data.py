@@ -643,7 +643,7 @@ def afibs_year_summary(year: str):
     afibs_data = anvil.server.call(
       "get_afib_yearly_summary",
       date_from="2021/01/01",	                #date_from,  // "2021/01/01"
-      date_to=time_to,                       #date_to,  //  "2025/12/31",
+      date_to=time_to,                        #date_to,    // "2025/12/31",
       zt_beg=zt_beg,
       zt_end=zt_end
     )
