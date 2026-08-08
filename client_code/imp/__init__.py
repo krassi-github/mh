@@ -3,6 +3,11 @@ from anvil import *
 import anvil.server
 from .. import Data
 
+import json
+import anvil.js
+from anvil import alert
+from anvil.js.window import a7GetMeasurements
+
 class imp(impTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -40,3 +45,38 @@ class imp(impTemplate):
   def timer_1_tick(self, **event_args):
     self.label_1.text = '.CSV file'
     self.timer_1.interval = 0
+
+  @handle("button_1", "click")
+  def button_1_click(self, **event_args):
+    try:
+      result = a7GetMeasurements()
+
+      records = json.loads(
+        result.recordsJson
+      )
+  
+      check = anvil.server.call(
+        "a7_import",
+        records,
+        True
+      )
+  
+      text = (
+        f"User: {check['device_user']}\n"
+        f"Read: {check['read']}\n"
+        f"Duplicates: {check['duplicates']}\n"
+        f"New: {check['new']}\n"
+        f"Collisions: {check['collisions']}\n"
+        f"Imported: {check['imported']}"
+      )
+  
+      alert(
+        text,
+        title="A7 CHECK"
+      )
+  
+    except Exception as err:
+      alert(
+      str(err),
+      title="A7 CHECK ERROR"
+      )

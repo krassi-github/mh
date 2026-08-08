@@ -2,6 +2,634 @@ allow_embedding: false
 dependencies: []
 metadata: {description: BP Monitor & Analyzer, logo_img: 'asset:kag1.jpg', title: MyHealth}
 name: MH
+native_deps:
+  head_html: |-
+    <script>
+      window.a7GetMeasurements = async function() {
+        const SERVICE_UUID =
+          "0000fff0-0000-1000-8000-00805f9b34fb";
+
+        const NOTIFY_UUID =
+          "0000fff1-0000-1000-8000-00805f9b34fb";
+
+        const WRITE_UUID =
+          "0000fff2-0000-1000-8000-00805f9b34fb";
+
+        const CMD_GET_MEASUREMENTS = new Uint8Array([
+          0x4D, 0xFF, 0x00, 0x09,
+          0x00, 0x00, 0x00, 0x00,
+          0x00, 0x00, 0x00, 0xFD, 0x52
+        ]);
+
+        const sleep = ms =>
+          new Promise(resolve => setTimeout(resolve, ms));
+
+        if (!navigator.bluetooth) {
+          throw new Error(
+            "Web Bluetooth is not available."
+          );
+        }
+
+        const device =
+          await navigator.bluetooth.requestDevice({
+            filters: [
+              {name: "A7 Touch BT"}
+            ],
+            optionalServices: [
+              SERVICE_UUID
+            ]
+          });
+
+        let notifyChar = null;
+        let handler = null;
+        let timer = null;
+
+        try {
+          // ONE connection only
+          const server =
+            await device.gatt.connect();
+
+          const service =
+            await server.getPrimaryService(
+              SERVICE_UUID
+            );
+
+          notifyChar =
+            await service.getCharacteristic(
+              NOTIFY_UUID
+            );
+
+          const writeChar =
+            await service.getCharacteristic(
+              WRITE_UUID
+            );
+
+          let received = [];
+
+          const framePromise =
+            new Promise((resolve, reject) => {
+
+              timer = setTimeout(() => {
+                reject(
+                  new Error(
+                    "Timeout waiting for measurement data."
+                  )
+                );
+              }, 60000);
+
+              handler = event => {
+                const value = event.target.value;
+
+                const chunk = new Uint8Array(
+                  value.buffer,
+                  value.byteOffset,
+                  value.byteLength
+                );
+
+                for (const b of chunk) {
+                  received.push(b);
+                }
+
+                if (received.length < 4) {
+                  return;
+                }
+
+                if (received[0] !== 0x4D) {
+                  clearTimeout(timer);
+                  reject(
+                    new Error(
+                      "Invalid Microlife frame start."
+                    )
+                  );
+                  return;
+                }
+
+                const declaredLength =
+                  received[2] * 256 +
+                  received[3];
+
+                const expectedLength =
+                  declaredLength + 4;
+
+                if (
+                  received.length >= expectedLength
+                ) {
+                  clearTimeout(timer);
+
+                  resolve(
+                    received.slice(
+                      0,
+                      expectedLength
+                    )
+                  );
+                }
+              };
+
+              notifyChar.addEventListener(
+                "characteristicvaluechanged",
+                handler
+              );
+            });
+
+          await notifyChar.startNotifications();
+
+          // Same settling delay as Windows version
+          await sleep(500);
+
+          if (writeChar.writeValueWithResponse) {
+            await writeChar.writeValueWithResponse(
+              CMD_GET_MEASUREMENTS
+            );
+          } else {
+            await writeChar.writeValue(
+              CMD_GET_MEASUREMENTS
+            );
+          }
+
+          const frame =
+            await framePromise;
+
+          // -------------------------
+          // Validate frame
+          // -------------------------
+
+          const declaredLength =
+            frame[2] * 256 +
+            frame[3];
+
+          if (
+            frame.length !==
+            declaredLength + 4
+          ) {
+            throw new Error(
+              "Frame length mismatch."
+            );
+          }
+
+          let checksum = 0;
+
+          for (
+            let i = 0;
+            i < frame.length - 1;
+            i++
+          ) {
+            checksum =
+              (checksum + frame[i]) & 0xFF;
+          }
+
+          const receivedChecksum =
+            frame[frame.length - 1];
+
+          if (
+            checksum !==
+            receivedChecksum
+          ) {
+            throw new Error(
+              "Checksum error: received 0x" +
+              receivedChecksum
+              .toString(16)
+              .padStart(2, "0") +
+              ", calculated 0x" +
+              checksum
+              .toString(16)
+              .padStart(2, "0")
+            );
+          }
+
+          const payload =
+            frame.slice(
+              4,
+              frame.length - 1
+            );
+
+          if (payload.length < 29) {
+            throw new Error(
+              "Measurement payload too short."
+            );
+          }
+
+          const recordCount =
+            payload[3];
+
+          const user =
+            payload[4];
+
+          const PREFIX_SIZE = 29;
+          const RECORD_SIZE = 7;
+
+          const expectedPayloadLength =
+            PREFIX_SIZE +
+            recordCount * RECORD_SIZE;
+
+          if (
+            payload.length !==
+            expectedPayloadLength
+          ) {
+            throw new Error(
+              "Expected " +
+              recordCount +
+              " records (" +
+              expectedPayloadLength +
+              " payload bytes), got " +
+              payload.length
+            );
+          }
+
+          // --------------------------------
+          // Decode 7-byte measurements
+          // --------------------------------
+
+          const pad2 = n =>
+            n.toString().padStart(2, "0");
+
+          function decodeMonth(
+            dayByte,
+            hourByte
+          ) {
+            return (
+              ((hourByte & 0x80) >> 4)
+              | ((dayByte & 0x40) >> 4)
+              | ((dayByte & 0x80) >> 6)
+              | ((hourByte & 0x40) >> 6)
+            );
+          }
+
+          const rawRecords = [];
+
+          for (
+            let offset = PREFIX_SIZE;
+            offset < payload.length;
+            offset += RECORD_SIZE
+          ) {
+            const raw =
+              Array.from(
+                payload.slice(
+                  offset,
+                  offset + RECORD_SIZE
+                )
+              );
+
+            const systolic = raw[0];
+            const diastolic = raw[1];
+            const pulse = raw[2];
+            const dayByte = raw[3];
+            const hourByte = raw[4];
+            const minute = raw[5];
+            const flags = raw[6];
+
+            const day =
+              dayByte & 0x1F;
+
+            const hour =
+              hourByte & 0x1F;
+
+            const month =
+              decodeMonth(
+                dayByte,
+                hourByte
+              );
+
+            const memoryNo =
+              rawRecords.length + 1;
+
+            if (
+              month < 1 ||
+              month > 12
+            ) {
+              throw new Error(
+                "Invalid month " +
+                month +
+                " in record #" +
+                memoryNo
+              );
+            }
+
+            if (
+              day < 1 ||
+              day > 31 ||
+              hour > 23 ||
+              minute > 59
+            ) {
+              throw new Error(
+                "Invalid date/time in record #" +
+                memoryNo
+              );
+            }
+
+            rawRecords.push({
+              memoryNo: memoryNo,
+              systolic: systolic,
+              diastolic: diastolic,
+              pulse: pulse,
+              month: month,
+              day: day,
+              hour: hour,
+              minute: minute,
+              flags: flags,
+              raw: raw
+            });
+          }
+
+          // --------------------------------
+          // Restore years.
+          //
+          // A7 records do not contain year.
+          // Same algorithm as Windows parser:
+          // work backwards from today's
+          // year/month.
+          // --------------------------------
+
+          const captureDate =
+            new Date();
+
+          const years =
+            new Array(
+              rawRecords.length
+            ).fill(
+              captureDate.getFullYear()
+            );
+
+          let year =
+            captureDate.getFullYear();
+
+          let newerMonth =
+            captureDate.getMonth() + 1;
+
+          for (
+            let i = rawRecords.length - 1;
+            i >= 0;
+            i--
+          ) {
+            const month =
+            rawRecords[i].month;
+
+            if (month > newerMonth) {
+            year -= 1;
+          }
+
+            years[i] = year;
+            newerMonth = month;
+          }
+
+            // --------------------------------
+            // Build decoded records
+            // --------------------------------
+
+            const decoded = [];
+
+            for (
+            let i = 0;
+            i < rawRecords.length;
+            i++
+            ) {
+            const r =
+            rawRecords[i];
+
+            const recordYear =
+            years[i];
+
+            // Exact calendar validation.
+            const dt = new Date(
+            recordYear,
+            r.month - 1,
+            r.day,
+            r.hour,
+            r.minute
+            );
+
+            if (
+            dt.getFullYear() !== recordYear ||
+            dt.getMonth() + 1 !== r.month ||
+            dt.getDate() !== r.day ||
+            dt.getHours() !== r.hour ||
+            dt.getMinutes() !== r.minute
+            ) {
+            throw new Error(
+            "Invalid calendar date in record #" +
+            r.memoryNo
+            );
+          }
+
+            const dateText =
+            recordYear +
+            "/" +
+            pad2(r.month) +
+            "/" +
+            pad2(r.day) +
+            " " +
+            pad2(r.hour) +
+            ":" +
+            pad2(r.minute);
+
+            const displayDate =
+            pad2(r.day) +
+            "-" +
+            pad2(r.month) +
+            "-" +
+            recordYear +
+            " " +
+            pad2(r.hour) +
+            ":" +
+            pad2(r.minute);
+
+            const timeKey =
+            Number(
+            "" +
+            recordYear +
+            pad2(r.month) +
+            pad2(r.day) +
+            pad2(r.hour) +
+            pad2(r.minute)
+            );
+
+            const afScreeningOn =
+            (r.flags & 0x80) !== 0;
+
+            const afDetected =
+            (r.flags & 0x40) !== 0;
+
+            const rawHex =
+            r.raw
+            .map(
+            b =>
+            b.toString(16)
+            .padStart(2, "0")
+            .toUpperCase()
+            )
+            .join(" ");
+
+            decoded.push({
+            memory_no: r.memoryNo,
+            user: user,
+
+            time_key: timeKey,
+            date: dateText,
+            display_date: displayDate,
+
+            sys: r.systolic,
+            dia: r.diastolic,
+            pul: r.pulse,
+
+            af_screening_on:
+            afScreeningOn,
+
+            af_detected:
+            afDetected,
+
+            flags: r.flags,
+            raw_hex: rawHex
+          });
+          }
+
+            const afibRecords =
+            decoded.filter(
+            r => r.af_detected
+            );
+
+            const screeningOffCount =
+            decoded.filter(
+            r => !r.af_screening_on
+            ).length;
+
+            const formatMeasurement = r =>
+            "#" +
+            r.memory_no +
+            ": " +
+            r.display_date +
+            ", " +
+            r.sys +
+            "/" +
+            r.dia +
+            ", pulse " +
+            r.pul;
+
+            return {
+            deviceName:
+            device.name || "A7 Touch BT",
+
+            user: user,
+
+            frameLength:
+            frame.length,
+
+            payloadLength:
+            payload.length,
+
+            records:
+            decoded.length,
+
+            afib:
+            afibRecords.length,
+
+            screeningOff:
+            screeningOffCount,
+
+            periodStart:
+            decoded.length
+            ? decoded[0].display_date
+            : "",
+
+            periodEnd:
+            decoded.length
+            ? decoded[
+            decoded.length - 1
+            ].display_date
+            : "",
+
+            firstDecoded:
+            decoded.length
+            ? formatMeasurement(
+            decoded[0]
+            )
+            : "",
+
+            lastDecoded:
+            decoded.length
+            ? formatMeasurement(
+            decoded[
+            decoded.length - 1
+            ]
+            )
+            : "",
+
+            firstRecord:
+            decoded.length
+            ? decoded[0].raw_hex
+            : "",
+
+            lastRecord:
+            decoded.length
+            ? decoded[
+            decoded.length - 1
+            ].raw_hex
+            : "",
+
+            afibText:
+            afibRecords.length
+            ? afibRecords
+            .map(formatMeasurement)
+            .join("\n")
+            : "None",
+
+            // Това ще използваме на
+            // следващата стъпка за MH server.
+            recordsJson:
+            JSON.stringify(decoded)
+          };
+
+            return {
+            deviceName:
+            device.name || "A7 Touch BT",
+
+            user: user,
+            frameLength: frame.length,
+            payloadLength: payload.length,
+            records: recordCount,
+            afib: afibCount,
+            screeningOff:
+            screeningOffCount,
+
+            firstRecord:
+            toHex(firstRecord),
+
+            lastRecord:
+            toHex(lastRecord)
+          };
+
+          } finally {
+            if (timer !== null) {
+            clearTimeout(timer);
+          }
+
+            try {
+            if (notifyChar && handler) {
+            notifyChar.removeEventListener(
+            "characteristicvaluechanged",
+            handler
+            );
+          }
+          } catch (_) {
+          }
+
+            try {
+            if (notifyChar) {
+            await notifyChar.stopNotifications();
+          }
+          } catch (_) {
+          }
+
+            try {
+            if (
+            device.gatt &&
+            device.gatt.connected
+            ) {
+            device.gatt.disconnect();
+          }
+          } catch (_) {
+          }
+          }
+          };
+            </script>
 package_name: MH
 renamed: true
 runtime_options:

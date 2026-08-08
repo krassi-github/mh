@@ -1,33 +1,48 @@
 components:
 - components:
-  - event_bindings: {change: file_loader_1_change, lost_focus: file_loader_1_lost_focus}
-    layout_properties: {}
-    name: file_loader_1
-    properties:
-      align: left
-      background: ''
-      bold: true
-      border: ''
-      enabled: true
-      file: null
-      file_types: csv
-      files: []
-      font: ''
-      font_size: null
-      foreground: ''
-      icon: fa:download
-      icon_align: left
-      italic: false
-      multiple: false
-      role: tonal-button
-      show_state: true
-      spacing_above: small
-      spacing_below: small
-      text: Import
-      tooltip: ''
-      underline: false
-      visible: true
-    type: FileLoader
+  - components:
+    - event_bindings: {change: file_loader_1_change, lost_focus: file_loader_1_lost_focus}
+      layout_properties: {}
+      name: file_loader_1
+      properties:
+        align: left
+        background: ''
+        bold: true
+        border: ''
+        enabled: true
+        file: null
+        file_types: csv
+        files: []
+        font: ''
+        font_size: null
+        foreground: ''
+        icon: fa:download
+        icon_align: left
+        italic: false
+        multiple: false
+        role: tonal-button
+        show_state: true
+        spacing:
+          padding: [null, '10', null, '10']
+        spacing_above: small
+        spacing_below: small
+        text: Import
+        tooltip: ''
+        underline: false
+        visible: true
+      type: FileLoader
+    - layout_properties: {}
+      name: button_1
+      properties:
+        bold: true
+        role: tonal-button
+        spacing:
+          padding: [null, '10', null, '10']
+        text: A7 imp
+      type: Button
+    name: flow_panel_1
+    properties: {}
+    type: FlowPanel
   - layout_properties: {}
     name: label_1
     properties: {align: left, background: '', bold: false, border: '', font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: input-prompt, spacing_above: small, spacing_below: small, text: .CSV file, tooltip: '', underline: false, visible: true}
