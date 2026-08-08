@@ -47,7 +47,64 @@ class imp(impTemplate):
     self.timer_1.interval = 0
 
   @handle("button_1", "click")
-  def button_1_click(self, **event_args):
+  def button_1_click(self, **event_args):    # GP's name is a7_sync_click
+    try:
+      result = a7GetMeasurements()
+  
+      records = json.loads(
+        result.recordsJson
+      )
+  
+      sync = anvil.server.call(
+        "a7_import",
+        records,
+        False
+      )
+  
+      if sync["collisions"] > 0:
+        alert(
+          (
+            f"User {sync['device_user']}\n"
+            f"Read: {sync['read']}\n"
+            f"Collisions: {sync['collisions']}\n\n"
+            "Nothing was imported."
+          ),
+          title="A7 Sync - ERROR"
+        )
+        return
+  
+      if sync["imported"] == 0:
+        text = (
+          f"User {sync['device_user']}\n"
+          f"Read: {sync['read']}\n"
+          f"Already present: "
+          f"{sync['duplicates']}\n\n"
+          "Database is up to date."
+        )
+  
+      else:
+        text = (
+          f"User {sync['device_user']}\n"
+          f"Read: {sync['read']}\n"
+          f"Already present: "
+          f"{sync['duplicates']}\n"
+          f"New imported: "
+          f"{sync['imported']}\n\n"
+          "Sync completed."
+        )
+  
+      alert(
+        text,
+        title="A7 Sync"
+      )
+  
+    except Exception as err:
+      alert(
+        str(err),
+        title="A7 Sync - ERROR"
+      )
+    
+  def button_1_click_tst_version(self, **event_args):
     try:
       result = a7GetMeasurements()
 
