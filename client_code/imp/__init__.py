@@ -58,7 +58,7 @@ class imp(impTemplate):
       check = anvil.server.call(
         "a7_import",
         records,
-        True
+        True    # True - for testing w/o import
       )
   
       text = (
@@ -68,6 +68,7 @@ class imp(impTemplate):
         f"New: {check['new']}\n"
         f"Collisions: {check['collisions']}\n"
         f"Imported: {check['imported']}"
+        f"Backup: {check['backup']}"
       )
   
       alert(

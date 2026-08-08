@@ -23,7 +23,7 @@ components:
         role: tonal-button
         show_state: true
         spacing:
-          padding: [null, '10', null, '10']
+          padding: [null, '5', null, '5']
         spacing_above: small
         spacing_below: small
         text: Import
@@ -37,7 +37,7 @@ components:
         bold: true
         role: tonal-button
         spacing:
-          padding: [null, '10', null, '10']
+          padding: [null, '0', null, '5']
         text: A7 imp
       type: Button
     name: flow_panel_1
