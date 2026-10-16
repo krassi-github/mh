@@ -37,7 +37,7 @@ class imp(impTemplate):
     self.label_1.text = str(r) + ' / ' + str(all_recs)
     self.last.text = last_date
     Data.load_params()
-    self.timer_1.interval = 10
+    self.timer_1.interval = 20
 
   def file_loader_1_lost_focus(self, **event_args):
     self.label_1.text = '.CSV file'
