@@ -6,7 +6,12 @@ from .. import Data
 import json
 import anvil.js
 from anvil import alert
-from anvil.js.window import a7GetMeasurements
+#from anvil.js.window import a7GetMeasurements
+from anvil.js.window import (
+a7GetMeasurements,
+b6GetMeasurements,
+)
+
 
 class imp(impTemplate):
   def __init__(self, **properties):
@@ -103,38 +108,34 @@ class imp(impTemplate):
         str(err),
         title="A7 Sync - ERROR"
       )
-    
-  def button_1_click_tst_version(self, **event_args):
-    try:
-      result = a7GetMeasurements()
 
-      records = json.loads(
-        result.recordsJson
-      )
-  
-      check = anvil.server.call(
-        "a7_import",
-        records,
-        True    # True - for testing w/o import
-      )
+  @handle("button_2", "click")
+  def button_2_click(self, **event_args):
+    try:
+      result = b6GetMeasurements()
   
       text = (
-        f"User: {check['device_user']}\n"
-        f"Read: {check['read']}\n"
-        f"Duplicates: {check['duplicates']}\n"
-        f"New: {check['new']}\n"
-        f"Collisions: {check['collisions']}\n"
-        f"Imported: {check['imported']}"
-        f"Backup: {check['backup']}"
+        f"User: {result.user}\n"
+        f"Records: {result.records}\n\n"
+        f"Period:\n"
+        f"{result.periodStart}\n"
+        f"{result.periodEnd}\n\n"
+        f"AFIB: {result.afib}\n"
+        f"IHB: {result.ihb}\n"
+        f"AFIB+IHB: {result.afibIhb}\n\n"
+        f"AFIB records:\n"
+        f"{result.afibText}"
       )
   
       alert(
         text,
-        title="A7 CHECK"
+        title="B6 BLE TEST"
       )
   
     except Exception as err:
       alert(
-      str(err),
-      title="A7 CHECK ERROR"
+        str(err),
+        title="B6 BLE TEST - ERROR"
       )
+      
+ 

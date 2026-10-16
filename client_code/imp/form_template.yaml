@@ -35,10 +35,22 @@ components:
       name: button_1
       properties:
         bold: true
+        enabled: false
         role: tonal-button
         spacing:
-          padding: [null, '0', null, '5']
-        text: A7 imp
+          padding: [null, '5', null, '5']
+        text: A7
+        visible: false
+      type: Button
+    - data_bindings: []
+      layout_properties: {}
+      name: button_2
+      properties:
+        bold: true
+        role: tonal-button
+        spacing:
+          padding: [null, '5', null, '5']
+        text: B6
       type: Button
     name: flow_panel_1
     properties: {}
