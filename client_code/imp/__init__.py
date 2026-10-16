@@ -114,6 +114,67 @@ class imp(impTemplate):
     try:
       result = b6GetMeasurements()
   
+      records = json.loads(
+        result.recordsJson
+      )
+  
+      sync = anvil.server.call(
+        "b6_import",
+        records,
+        False
+      )
+  
+      new = sync.get(
+        "canonical_new",
+        0
+      )
+  
+      existing = sync.get(
+        "canonical_existing",
+        0
+      )
+  
+      conflicts = sync.get(
+        "legacy_conflicts",
+        0
+      )
+  
+      enriched = sync.get(
+        "canonical_enriched",
+        0
+      )
+  
+      text = (
+        f"User {result.user}\n"
+        f"Read: {len(records)}\n"
+        f"Already present: {existing}\n"
+        f"New imported: {new}\n"
+        f"Enriched: {enriched}\n"
+        f"Legacy conflicts: {conflicts}\n\n"
+      )
+  
+      if new == 0:
+        text += "Database is up to date."
+      else:
+        text += "Sync completed."
+  
+      alert(
+        text,
+        title="B6 Sync"
+      )
+
+    except Exception as err:
+      alert(
+        str(err),
+        title="B6 Sync - ERROR"
+      )
+
+  ''' Test module
+  @handle("button_2", "click")
+  def button_2_click(self, **event_args):
+    try:
+      result = b6GetMeasurements()
+  
       text = (
         f"User: {result.user}\n"
         f"Records: {result.records}\n\n"
@@ -137,5 +198,5 @@ class imp(impTemplate):
         str(err),
         title="B6 BLE TEST - ERROR"
       )
-      
+  '''    
  
